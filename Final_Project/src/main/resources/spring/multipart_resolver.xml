@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 모든 서블릿 버전에서 사용 가능한 방법: commons-fileupload 라이브러리 의존 설정 필요 -->
+	<!-- 
+	<bean id="multipartResolver" 
+	      class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
+	-->
+	
+	<!-- 서블릿 3.0 이상 버전에서만 사용 가능한 방법: web.xml에서 multipart-config 설정 필요 -->
+	<bean id="multipartResolver" 
+	      class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+</beans>
