@@ -27,12 +27,12 @@ public class HomeController {
 		return "auth/signup";
 	}
 	
-	@RequestMapping("/myPage")
+	@RequestMapping("/mypage")
 	public String myPage() {
 		return "user/mypage";
 	}
 	
-	@RequestMapping("/mypageUpdate")
+	@RequestMapping("/mypage/update")
 	public String myPageUpdate() {
 		return "user/mypageupdate";
 	}
@@ -42,22 +42,22 @@ public class HomeController {
 		return "place/placelist";
 	}
 	
-	@RequestMapping("/placeDetail")
+	@RequestMapping("/place/detail")
 	public String placeDetail() {
 		return "place/placedetail";
 	}
 	
-	@RequestMapping("/travelDetail")
+	@RequestMapping("/travel/detail")
 	public String travelDetail() {
 		return "travel/traveldetail";
 	}
 	
-	@RequestMapping("/travelInsert")
+	@RequestMapping("/travel/insert")
 	public String travelInsert() {
 		return "travel/travelinsert";
 	}
 	
-	@RequestMapping("/travelList")
+	@RequestMapping("/travel/list")
 	public String travelList() {
 		return "travel/travellist";
 	}
