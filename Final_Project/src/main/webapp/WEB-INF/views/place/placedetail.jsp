@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../common/header.jsp"%>
 <img src="${pageContext.request.contextPath}/resources/images/placeDetail.PNG"/>
 </body>
 </html>
