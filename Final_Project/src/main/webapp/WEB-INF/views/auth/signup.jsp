@@ -9,8 +9,5 @@
 </head>
 <body>
 <img src="${pageContext.request.contextPath}/resources/images/signup.PNG"/>
-
-
-
 </body>
 </html>
