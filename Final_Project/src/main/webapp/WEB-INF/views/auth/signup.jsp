@@ -11,5 +11,6 @@
 <img src="${pageContext.request.contextPath}/resources/images/signup.PNG"/>
 <a href='/signin'>
 <button type="button">로그인</button></a>
+
 </body>
 </html>

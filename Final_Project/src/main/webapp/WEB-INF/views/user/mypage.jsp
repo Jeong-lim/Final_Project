@@ -12,5 +12,6 @@
 <button type="button">회원정보수정</button></a>
 <a href='/'>
 <button type="button">메인페이지</button></a>
+
 </body>
 </html>

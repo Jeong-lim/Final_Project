@@ -10,5 +10,6 @@
 <a href='/mypage'>
 <button type="button">수정 완료</button></a>
 <img src="${pageContext.request.contextPath}/resources/images/mypageUpdate.PNG"/>
+
 </body>
 </html>
