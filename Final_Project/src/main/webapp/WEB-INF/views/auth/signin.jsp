@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <img src="${pageContext.request.contextPath}/resources/images/signin.PNG"/>
 로그인 페이지
 <a href='<c:url value="/signup"/>'><button type="button" class="">회원가입</button></a>

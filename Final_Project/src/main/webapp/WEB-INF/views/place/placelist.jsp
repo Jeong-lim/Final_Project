@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../common/header.jsp"%>
 <a href='<c:url value="/place/detail"/>'>
 <button type="button" class="">관광지 상세보기</button></a>
 <img src="${pageContext.request.contextPath}/resources/images/place.PNG"/>
