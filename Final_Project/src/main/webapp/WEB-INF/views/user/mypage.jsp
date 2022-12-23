@@ -187,7 +187,7 @@ li {
 					<p class="openBtn">게시글 수 4 팔로워 4 팔로우 3</p>
 				</div>
 				<div class="profile_update">
-					<a href='/mypage/update'>
+					<a href='<c:url value="/mypage/update"/>'>
 						<button type="button">회원정보수정</button>
 					</a>
 				</div>
