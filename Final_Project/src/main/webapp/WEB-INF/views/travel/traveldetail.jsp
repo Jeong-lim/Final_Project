@@ -201,8 +201,8 @@ $(document).ready(function(){
 			<button onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
 		</div>
 		<div class="profile">
-			<img src="${pageContext.request.contextPath}/resources/images/user.png">
-			<label>cncnrkdud99</label>
+			<img src="${pageContext.request.contextPath}/resources/images/user.png" onclick="location.href='<c:url value="/mypage"/>'">
+			<label onclick="location.href='<c:url value="/mypage"/>'">cncnrkdud99</label>
 		</div>
 
 		<div class="menu">
