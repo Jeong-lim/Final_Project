@@ -148,9 +148,6 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 
-	<a href='<c:url value="/travel/detail"/>'>
-		<button type="button" class="">여행일정 상세보기</button>
-	</a>
 
 	<div class="outer">
 		<div class="inner">

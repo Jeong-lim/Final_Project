@@ -12,6 +12,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <script>
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
@@ -60,6 +61,8 @@ $('document').ready(function() {
 
 
 	});
+	
+
 </script>
 <script>
 $(function() {
@@ -69,9 +72,37 @@ $(function() {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
 
-
+	
   
 });
+
+window.onload = function() {
+	 
+    function onClick() {
+        document.querySelector('.modal_wrap').style.display ='block';
+        document.querySelector('.black_bg').style.display ='block';
+    }   
+    function offClick() {
+        document.querySelector('.modal_wrap').style.display ='none';
+        document.querySelector('.black_bg').style.display ='none';
+    }
+    
+    function onClick2(){
+    	 document.querySelector('#modal_wrap2').style.display ='block';
+         document.querySelector('#black_bg2').style.display ='block';
+    }
+    function offClick2() {
+        document.querySelector('#modal_wrap2').style.display ='none';
+        document.querySelector('#black_bg2').style.display ='none';
+    }
+
+    document.getElementById('modal_btn2').addEventListener('click', onClick2);
+    document.querySelector('#modal_close2').addEventListener('click', offClick2);
+    document.getElementById('modal_btn').addEventListener('click', onClick);
+    document.querySelector('.modal_close').addEventListener('click', offClick);
+ 
+};
+
 </script>
 <style>
 	.outer{
@@ -79,9 +110,9 @@ $(function() {
 	}
 	.inner{
 		width:1000px;
-		height:700px;
+		height:900px;
 		margin:auto;
-		border:1px solid black;
+		margin-top:30px;
 	}
 	.sido1{
 		width:120px;
@@ -104,7 +135,157 @@ $(function() {
 	.daterange:focus{
 		outline:none;
 	}
+	.content{
+		width:800px;
+		height:200px;
+		border:1px solid black;
+		margin:auto;
+		margin-top:40px;
+	}
+	.contentdiv{
+		width:800px;
+		border-top:1px solid black;
+		margin:30px auto;
+	}
+	.content_title{
+		height:45px;
+		border-bottom:1px solid black;
+		padding:5px;
+	}
+	.content_title label{
+		font-size:23px;
+		font-weight:bold;
+		float:left;
+		margin-left:10px;
+		line-height:45px;
+	}
+	.content_title :nth-child(2){
+		font-size:13px;
+		font-weight:bold;
+		float:left;
+		line-height:45px;
+		margin-left:10px;
+		vertical-align: baseline;
+	}
+	.content_title img{
+		width:35px;
+		height:35px;
+		float:left;
+		margin-left:10px;
+		padding:5px;
 
+	}
+	.content_box{
+		vertical-align: middle;
+		line-height:144px;
+		height:144px;
+		width:800px;
+
+	}
+	.content_box img{
+		width:35px;
+		height:35px;
+		float:left;
+		margin:50px 10px;
+		
+	}
+	.content_box label{
+		float:left;
+		line-height:135px;
+		font-weight:bold;
+	}
+	.modal_wrap{
+        display: none;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background:#eee;
+        z-index: 2;
+        overflow:scroll;
+    }
+    ::-webkit-scrollbar {
+  		display: none;
+	}
+    .black_bg{
+        display: none;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0, 0,0, 0.5);
+        top:0;
+        left: 0;
+        z-index: 1;
+    }
+    .modal_close{
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -30px;
+        right: 0;
+    }
+    .modal_close> a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+        text-indent: -9999px;
+    }
+    .content_box button{
+    	border:0;
+    	background-color:white;
+    	float:left;
+    }
+    .content_title button{
+    	border:0;
+    	background-color:white;
+    	float:left;
+    }
+    .memo_textarea{
+    	margin-top:30px;
+    }
+    .memo_title{
+    	display:block;
+    	font-size:25px;
+    	font-weight: bold;
+    	margin-top:30px;
+    }
+    .memo_btn{
+    	display: block;
+    margin: auto;
+    margin-top: 20px;
+    border: 0;
+    background-color: #68B984;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px grey;
+    }
+	.place_title{
+		display:block;
+    	font-size:15px;
+    	font-weight: bold;
+    	padding:20px;
+	}
+	.place img{
+		width:150px;
+		height:150px;
+		margin:0;
+		float:left;
+	}
+	.place{
+		height:150px;
+		border-top:1px solid black;
+	}
+	
+	.place:nth-last-child(2) {
+		border-bottom:1px solid black;
+	}
 </style>
 </head>
 <body>
@@ -112,20 +293,60 @@ $(function() {
 
 <div class="outer">
 	<div class="inner">
-		<div class="selectdiv1">
-			<select name="sido1" id="sido1" class="sido1"></select>
+		<div class="selectdiv1" >
+			<select name="sido1" id="sido1"  class="sido1"></select>
 			<select name="gugun1" id="gugun1" class="gugun1"></select>
 		</div>
+	    <input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
+	    
+	    <div class="contentdiv">
+	    	<div class="content">
+	    		<div class="content_title"><label>DAY 1</label><label>- 2월14일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="content_box">
+	    			<button type="button" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    		</div>
+	    	</div>
+	    	<div class="content"></div>
+	    	<div class="content"></div>
+	    
+	    </div>
+	    
+	    
+	    
+		<!-- 장소모달 -->
+<div class="black_bg"></div>
+<div class="modal_wrap">
+    <div class="modal_close"><a href="#">close</a></div>
+    <div>
+    	<label class="place_title">관광지 선택하기</label>
+        	<div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg">
+        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/남산타워.jpg">
+        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/청계천.jpg">
+        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist1.jpg">
+        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist2.jpg">
+        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist3.jpg"></div>
+        <button type="button">선택완료</button>
+    </div>
+</div>
+
+<!-- 메모모달 -->
+<div class="black_bg" id="black_bg2"></div>
+<div class="modal_wrap" id="modal_wrap2">
+    <div>
+    	<label class="memo_title">MEMOo</label>
+		<textarea class="memo_textarea" rows="10" cols="50"></textarea>
+		<button type="button" class="memo_btn" id="modal_close2" >SAVE</button>
+
+    </div>
+</div>
 
 
-	    	<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
 
-	   
-	   
 	</div>
 </div>
 
-		
+
+
 
 
 </body>
