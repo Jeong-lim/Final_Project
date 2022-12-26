@@ -29,7 +29,6 @@
 .wrap_insert {
 	text-align: left;
 	width: 390px;
-
 }
 
 .input_text {
