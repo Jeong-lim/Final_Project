@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css"/>
 </head>
  		<header>
+ 		<a href="/">
 			<img class="logo"src="${pageContext.request.contextPath}/resources/images/logo.png" />
+		</a>
 			<div class="menu_container">
 			<div class="menu">
 				<a href="/place">관광지</a> 
@@ -19,7 +21,9 @@
 			
 			<div class="user_container">
 				<div class="user_img_container">
-					<a href="/mypage"><img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user.png" alt="" /></a>
+				<a href='<c:url value="/mypage"/>'>
+					<img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user.png" />
+				</a>
 				</div>
 				<div class="auth_container">
 					<a href="/signin">로그아웃</a>
@@ -28,4 +32,6 @@
 			</div>
 
 		</header>
+		
+		
 </html>
