@@ -33,7 +33,7 @@
 	margin: auto;
 }
 
-img {
+.gbg_img {
 	width: 700px;
 	height: 400px;
 }
@@ -57,7 +57,7 @@ img {
 }
 </style>
 <body>
-	<!--<%@ include file="../common/header.jsp"%>-->
+	<%@ include file="../common/header.jsp"%>
 	<div class="container_top">
 		<div class="container">
 			<div class="title">
@@ -68,15 +68,15 @@ img {
 			<div class="slider_container">
 				<div class="bxslider">
 					<div>
-						<img
+						<img class="gbg_img"
 							src="${pageContext.request.contextPath}/resources/images/gbg1.jpg">
 					</div>
 					<div>
-						<img
+						<img class="gbg_img"
 							src="${pageContext.request.contextPath}/resources/images/gbg2.jpg">
 					</div>
 					<div>
-						<img
+						<img class="gbg_img"
 							src="${pageContext.request.contextPath}/resources/images/gbg3.jpg">
 					</div>
 				</div>
