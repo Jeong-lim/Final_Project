@@ -12,6 +12,5 @@
 </head>
 <body>
 <%@ include file="common/slider.jsp"%>
-<%@ include file="common/sliderbanner.jsp"%>
 </body>
 </html>
