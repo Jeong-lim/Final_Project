@@ -333,7 +333,7 @@ window.onload = function() {
 <div class="black_bg" id="black_bg2"></div>
 <div class="modal_wrap" id="modal_wrap2">
     <div>
-    	<label class="memo_title">MEMO</label>
+    	<label class="memo_title">MEMOo</label>
 		<textarea class="memo_textarea" rows="10" cols="50"></textarea>
 		<button type="button" class="memo_btn" id="modal_close2" >SAVE</button>
 
