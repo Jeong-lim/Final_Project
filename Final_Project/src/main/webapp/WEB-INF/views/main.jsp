@@ -6,17 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <%@ include file="common/header.jsp"%>
 
-
-<a href='<c:url value="/travel/detail"/>'>
-<button type="button" class="">여행일정상세보기</button></a>
-
-<img src="${pageContext.request.contextPath}/resources/images/main1.PNG"/>
-<img src="${pageContext.request.contextPath}/resources/images/main2.PNG"/>
-
-
+</head>
+<body>
+<%@ include file="common/slider.jsp"%>
+<%@ include file="common/sliderbanner.jsp"%>
 </body>
 </html>

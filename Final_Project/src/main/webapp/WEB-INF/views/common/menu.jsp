@@ -6,5 +6,5 @@
 			<span class="mr-2">Title.</span>
 			<a class="text-white" href="#">Subtitle</a>
 		</h6>
-	</li>	
+	</li>
 </ul>

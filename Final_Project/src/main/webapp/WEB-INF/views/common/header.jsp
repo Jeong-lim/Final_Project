@@ -1,26 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		
-	</head>
-	<body>
-	<a href='<c:url value="/"/>'>
-<button type="button" class="">메인페이지</button></a>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css"/>
+</head>
+ 		<header>
+			<img class="logo"src="${pageContext.request.contextPath}/resources/images/logo.png" />
+			<div class="menu_container">
+			<div class="menu">
+				<a href="/place">관광지</a> 
+				<a href="/travel/list">여행 일정</a> 
+				<a href="/travel/insert">여행 일정 등록</a>
+			</div>
+			</div>
+			
+			<div class="user_container">
+				<div class="user_img_container">
+					<a href="/mypage"><img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user.png" alt="" /></a>
+				</div>
+				<div class="auth_container">
+					<a href="/signin">로그아웃</a>
+				</div>
+				
+			</div>
 
-	<a href='<c:url value="/signin"/>'>
-<button type="button" class="">로그인</button></a>
-<a href='<c:url value="/mypage"/>'>
-<button type="button" class="">마이페이지</button></a>
-<a href='<c:url value="/place"/>'>
-<button type="button" class="">관광지리스트</button></a>
-<a href='<c:url value="/travel/list"/>'>
-<button type="button" class="">여행일정리스트</button></a>
-<a href='<c:url value="/travel/insert"/>'>
-<button type="button" class="">여행일정등록하기</button></a>
-
-	</body>
+		</header>
 </html>
