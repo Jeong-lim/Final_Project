@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 <%@ include file="common/header.jsp"%>
-
 </head>
 <body>
+
 <%@ include file="common/slider.jsp"%>
+<%@ include file="common/slidetravel.jsp"%>
+
+
 <%@ include file="common/sliderbanner.jsp"%>
 </body>
 </html>
