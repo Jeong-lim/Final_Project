@@ -42,15 +42,18 @@ img {
 	border: 1px solid #dfdfdf;
 	border-radius: 15px;
 	width: 100px;
-	padding:5px;
-	margin:auto;
+	padding: 5px;
+	margin: auto;
 }
-.title{
+
+.title {
+	
 }
-.slider_container{
-	width:700px;
-	margin:auto;
-	margin-top:30px;
+
+.slider_container {
+	width: 700px;
+	margin: auto;
+	margin-top: 30px;
 }
 </style>
 <body>
