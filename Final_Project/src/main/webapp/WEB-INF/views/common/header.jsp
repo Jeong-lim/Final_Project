@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css"/>
 </head>
  		<header>
- 		<a href="/">
+ 		<a href="<c:url value='/'/>">
 			<img class="logo"src="${pageContext.request.contextPath}/resources/images/logo.png" />
 		</a>
 			<div class="menu_container">
