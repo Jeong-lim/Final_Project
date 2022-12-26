@@ -120,7 +120,7 @@ $(function() {
 
 	    	<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
 
-	    
+	   
 	   
 	</div>
 </div>
