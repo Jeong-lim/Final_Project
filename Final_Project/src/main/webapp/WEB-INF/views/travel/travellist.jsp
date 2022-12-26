@@ -120,7 +120,7 @@
 }
 
 .category {
-	float:left;
+	float: left;
 }
 
 .test_obj input[type="radio"] {
@@ -129,14 +129,14 @@
 
 .test_obj input[type="radio"]+span {
 	display: inline-block;
-	width:80px;
-	padding: 5px;
+	width: 80px; padding : 5px;
 	border: 1px solid #dfdfdf;
 	border-radius: 15px;
 	background-color: #ffffff;
 	text-align: center;
 	cursor: pointer;
 	font-size: 13px;
+	padding: 5px;
 }
 
 .test_obj input[type="radio"]:checked+span {
