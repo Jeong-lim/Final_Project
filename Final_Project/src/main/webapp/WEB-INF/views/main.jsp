@@ -9,6 +9,7 @@
 <%@ include file="common/header.jsp"%>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 
@@ -121,6 +122,17 @@
  ::-webkit-scrollbar {
   		display: none;
 	}
+.item {
+  width: 1000px;
+  height: 200px;
+  margin: 50px auto;
+  padding-top: 75px;
+  background: rgba(255,85,0, .7);
+  text-align: center;
+  color: #4E4C48;
+  font-size: 1.5em;
+  z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -144,10 +156,9 @@
 	</div>
 	
 	<%@ include file="common/slider.jsp"%>
-	<%@ include file="common/slidetravel.jsp"%>
-
-
+	<%@ include file="common/information.jsp"%>
 	<%@ include file="common/sliderbanner.jsp"%>
+	<%@ include file="common/slidetravel.jsp"%>
 	<%@ include file="common/footer.jsp"%>
 </body>
 </html>
