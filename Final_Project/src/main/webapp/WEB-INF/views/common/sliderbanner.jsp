@@ -135,6 +135,7 @@
 	color: black;
 	transform: translateY(70px);
 	transition: all .5s;
+	padding-left: 300px;
 }
 
 .slide_travel_period {
@@ -143,6 +144,7 @@
 	color: black;
 	transform: translateY(70px);
 	transition: all .5s;
+	padding-left: 300px;
 }
 
 .slide_travel_theme {
@@ -151,6 +153,7 @@
 	color: black;
 	transform: translateY(70px);
 	transition: all .5s;
+	padding-left: 300px;
 }
 
 </style>

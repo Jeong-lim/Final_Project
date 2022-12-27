@@ -177,9 +177,6 @@ ul {
 	text-align: left;
 }
 
-li {
-	line-height: 30px;
-}
 
 .block {
 	float: right;
