@@ -23,14 +23,23 @@ a {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	box-shadow: rgba(149, 157, 165, 0.15) 0px 3px 6px 0px
+	box-shadow: rgba(149, 157, 165, 0.15) 0px 3px 6px 0px;
+	height:76px;
 }
 
 
 .navbar__menu {
 	display: flex;
-	list-style: none;
-	padding-right: 30%;
+    width: 300px;
+    list-style: none;
+    padding-right: 38%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar li{
+	display: inline-block;
+    padding: 8px 0px;
 }
 
 .navbar__li {
@@ -40,13 +49,14 @@ a {
 
 .navbar__links {
 	list-style: none;
-	color: teal;
-	display: flex;
-	padding-right: 100px;
+    color: teal;
+    display: flex;
+    padding-right: 100px;
+    align-items: center;
 }
 
 .navbar__links__li {
-	padding: 0px 10px;
+	
 }
 
 .navbar__toggleBtn {
@@ -64,10 +74,11 @@ a {
 
 .user_img {
 	width: 40px;
+    padding-right: 8px;
 }
 
 .logout_wrapper {
-	margin-top: 7px;
+	
 }
 
 /* @media screen and (max-width: 600px) {
@@ -99,6 +110,37 @@ a {
 		display: flex;
 	}
 } */
+
+/* Underline From Center */
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 51%;
+  right: 51%;
+  bottom: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
 </style>
 </head>
 
@@ -110,9 +152,9 @@ a {
 		</a>
         </div>
         <ul class="navbar__menu">
-            <li class="navbar__li"><a href="/place">관광지</a> </li>
-            <li class="navbar__li"><a href="/travel/list">여행 일정</a> </li>
-            <li class="navbar__li"><a href="/travel/insert">여행 일정 등록</a></li>
+            <li class="hvr-underline-from-center"><a href="/place">관광지</a> </li>
+            <li class="hvr-underline-from-center"><a href="/travel/list">여행 일정</a> </li>
+            <li class="hvr-underline-from-center"><a href="/travel/insert">여행 일정 등록</a></li>
         </ul>
         <ul class="navbar__links">
             <li class="navbar__links__li"><a href="<c:url value='/mypage'/>">
