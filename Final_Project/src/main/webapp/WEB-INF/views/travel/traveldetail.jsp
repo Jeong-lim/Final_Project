@@ -43,8 +43,11 @@ $(document).ready(function(){
 		text-align: center;
 	}
 	.inner{
-		width:1000px;
-		margin:auto;
+		width:800px;
+		margin:60px auto; 
+		height:auto;
+		min-height:1000px;
+		
 	}
 	.menu{
 		text-align: left;
@@ -62,8 +65,12 @@ $(document).ready(function(){
 		border:1px solid black;
 		line-height: 40px;
 		text-align: center;
-		border-radius: 0 30px 0 0;
+		border-radius: 16px 16px 0 0;
 		background-color:rgb(229, 236, 255);
+	}
+	.radiobtn:hover + label{
+		background-color: rgb(87, 119, 199);
+		color:white;
 	}
 	.radiobtn:checked + label{
 		background-color: rgb(87, 119, 199);
@@ -71,20 +78,23 @@ $(document).ready(function(){
 	}
 	.schedule{
 		position:absolute;
-		width:1000px;
+		width:800px;
+		margin:auto;
 		border: 1px solid black;
 	}
 	.weather{
 		display:none;
 		position:absolute;
-		width:1000px;
+		margin:auto;
+		width:800px;
 		height:800px;
 		border: 1px solid black;
 	}
 	.traffic{
 		display:none;
 		position:absolute;
-		width:1000px;
+		margin:auto;
+		width:800px;
 		height:800px;
 		border: 1px solid black;
 	}
@@ -126,7 +136,7 @@ $(document).ready(function(){
 		font-size:13px;
 	}
 	.content{
-		width:800px;
+		width:600px;
 		padding:10px;
 		border: 2px solid black;
 		border-radius: 30px;
@@ -189,6 +199,9 @@ $(document).ready(function(){
 	    background-color: rgb(87, 119, 199);
 	    color:white;
 	    font-weight:bold;
+	}
+	.top_title button:hover{
+		background-color:#205295;
 	}
 	
 </style>
@@ -282,5 +295,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
