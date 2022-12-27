@@ -1,12 +1,16 @@
 @charset "UTF-8";
 
-img {
-	display: block; margin: 0px auto;
+.slider_img_container {
+	 margin: 0px auto;
 }
 
 .image_container {
 	width: 1000px;
 	
+}
+
+img {
+	display: none;
 }
 
 .bx-wrapper {

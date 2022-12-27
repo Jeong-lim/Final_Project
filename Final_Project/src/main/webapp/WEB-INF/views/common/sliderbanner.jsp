@@ -32,7 +32,6 @@
 }
 
 .section .slidelist>li>a {
-	display: block;
 	position: relative;
 }
 
