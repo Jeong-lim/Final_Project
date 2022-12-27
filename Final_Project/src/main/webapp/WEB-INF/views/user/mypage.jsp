@@ -306,6 +306,7 @@ ul {
 			<script>
   const open = () => {
     document.querySelector(".modal").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
   }
 
   const close = () => {

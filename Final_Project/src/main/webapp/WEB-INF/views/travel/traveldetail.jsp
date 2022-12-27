@@ -39,6 +39,7 @@ $(document).ready(function(){
 
 </script>
 <style>
+
 	.outer{
 		text-align: center;
 	}
@@ -227,9 +228,9 @@ $(document).ready(function(){
 		</div>
 
 		<div class="menu">
-			<div class="items"><input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked><label for="radio1" class="radiolabel" >일정</label></div>
-			<div class="items"><input type="radio" id="radio2" class="radiobtn" name="radio1" value="weather"><label for="radio2" class="radiolabel">날씨</label></div>
-			<div class="items"><input type="radio" id="radio3" class="radiobtn" name="radio1" value="traffic"><label for="radio3" class="radiolabel">교통</label></div>
+			<div class="items"><input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked><label for="radio1" class="radiolabel" >일정</label>
+			</div><div class="items"><input type="radio" id="radio2" class="radiobtn" name="radio1" value="weather"><label for="radio2" class="radiolabel">날씨</label>
+			</div><div class="items"><input type="radio" id="radio3" class="radiobtn" name="radio1" value="traffic"><label for="radio3" class="radiolabel">교통</label></div>
 		</div>
 		
 		<div class="contentdiv">

@@ -81,25 +81,36 @@ window.onload = function() {
     function onClick() {
         document.querySelector('.modal_wrap').style.display ='block';
         document.querySelector('.black_bg').style.display ='block';
+        document.body.style.overflow = "hidden";
     }   
     function offClick() {
         document.querySelector('.modal_wrap').style.display ='none';
         document.querySelector('.black_bg').style.display ='none';
+        document.body.style.overflow = "unset";
     }
     
     function onClick2(){
-    	 document.querySelector('#modal_wrap2').style.display ='block';
+    	 document.querySelector('.modal_wrap2').style.display ='block';
          document.querySelector('#black_bg2').style.display ='block';
+         document.body.style.overflow = "hidden";
     }
     function offClick2() {
-        document.querySelector('#modal_wrap2').style.display ='none';
+        document.querySelector('.modal_wrap2').style.display ='none';
         document.querySelector('#black_bg2').style.display ='none';
+        document.body.style.overflow = "unset";
     }
 
-    document.getElementById('modal_btn2').addEventListener('click', onClick2);
-    document.querySelector('#modal_close2').addEventListener('click', offClick2);
     document.getElementById('modal_btn').addEventListener('click', onClick);
     document.querySelector('#modal_close').addEventListener('click', offClick);
+    document.getElementById('modal_btn2').addEventListener('click', onClick2);
+    document.querySelector('#modal_close2').addEventListener('click', offClick2);
+    
+    document.querySelector('#black_bg1').addEventListener('click', offClick);
+    document.querySelector('#black_bg2').addEventListener('click', offClick2);
+    
+    
+
+   
  
 };
 
@@ -113,7 +124,6 @@ window.onload = function() {
 		margin:auto;
 		margin-top:50px;
 		height:auto;
-		min-height:1000px;
 	}
 	.sido1{
 		width:120px;
@@ -425,7 +435,7 @@ window.onload = function() {
 	    	<div class="content">
 	    		<div class="content_title"><label>DAY 1</label><label>- 2월14일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		<div class="schedule_box">
-	    			<button type="button" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
 	    		</div>
 	    	</div>
 	    	
@@ -445,7 +455,7 @@ window.onload = function() {
 	    	<div class="content">
 	    		<div class="content_title"><label>DAY 3</label><label>- 2월16일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		<div class="schedule_box">
-	    			<button type="button" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
 	    		</div>
 	    	
 	    	</div>
@@ -455,10 +465,9 @@ window.onload = function() {
 	    
 	    
 		<!-- 장소모달 -->
-<div class="black_bg"></div>
+<div class="black_bg" id="black_bg1"></div>
 <div class="modal_wrap">
-    
-    <div>
+        <div>
     	<div class="place_sel_box"><label class="place_title">관광지 선택하기</label><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div>
     	 <button type="button" id="modal_close" class="place_btn">완료</button>
     	</div><br><br>
@@ -475,7 +484,7 @@ window.onload = function() {
 </div>
 
 <!-- 메모모달 -->
-<div class="black_bg" id="black_bg2"></div>
+<div class="black_bg" id="black_bg2" ></div>
 <div class="modal_wrap2" id="modal_wrap2">
     <div>
     	<label class="memo_title">MEMO</label>
@@ -490,9 +499,10 @@ window.onload = function() {
 	</div>
 </div>
 
+	<%@ include file="../common/footer.jsp"%>
 
 
 
-<%@ include file="../common/footer.jsp"%>
+
 </body>
 </html>
