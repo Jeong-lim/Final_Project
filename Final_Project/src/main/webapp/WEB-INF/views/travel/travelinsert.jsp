@@ -99,7 +99,7 @@ window.onload = function() {
     document.getElementById('modal_btn2').addEventListener('click', onClick2);
     document.querySelector('#modal_close2').addEventListener('click', offClick2);
     document.getElementById('modal_btn').addEventListener('click', onClick);
-    document.querySelector('.modal_close').addEventListener('click', offClick);
+    document.querySelector('#modal_close').addEventListener('click', offClick);
  
 };
 
@@ -110,27 +110,37 @@ window.onload = function() {
 	}
 	.inner{
 		width:1000px;
-		height:900px;
 		margin:auto;
-		margin-top:30px;
+		margin-top:50px;
 	}
 	.sido1{
 		width:120px;
 		height:40px;
 		margin-right:20px;
+		float:left;
 	}
+	
 	.gugun1{
 		width: 120px;
     	height: 40px;
+    	float:left;
 	}
+	
+	.sido1,.gugun1:focus{
+		outline:0;
+	}
+	
 	.daterange{
 		width:200px;
 		height:35px;
 		text-align: center;
 		margin-left:100px;
+		float:right;
 	}
 	.selectdiv1{
+		width:800px;
 		display:inline-block;
+
 	}
 	.daterange:focus{
 		outline:none;
@@ -142,6 +152,7 @@ window.onload = function() {
 		margin:auto;
 		margin-top:40px;
 	}
+	
 	.contentdiv{
 		width:800px;
 		border-top:1px solid black;
@@ -182,18 +193,14 @@ window.onload = function() {
 		width:800px;
 
 	}
-	.content_box img{
+	.schedule_box img{
 		width:35px;
 		height:35px;
 		float:left;
-		margin:50px 10px;
+		margin:10px;
 		
 	}
-	.content_box label{
-		float:left;
-		line-height:135px;
-		font-weight:bold;
-	}
+
 	.modal_wrap{
         display: none;
         width: 500px;
@@ -202,7 +209,19 @@ window.onload = function() {
         top:50%;
         left: 50%;
         margin: -250px 0 0 -250px;
-        background:#eee;
+        background:white;
+        z-index: 2;
+        overflow:scroll;
+    }
+    .modal_wrap2{
+        display: none;
+        width: 500px;
+        height: 350px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background:#FED049;
         z-index: 2;
         overflow:scroll;
     }
@@ -234,10 +253,21 @@ window.onload = function() {
         background:url(https://img.icons8.com/metro/26/000000/close-window.png);
         text-indent: -9999px;
     }
-    .content_box button{
-    	border:0;
-    	background-color:white;
-    	float:left;
+    .schedule_box button{
+    	border: none;
+    background-color: transparent;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    }
+    #modal_btn{
+    	border: none;
+    background-color: transparent;
+    height: 144px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 0;
     }
     .content_title button{
     	border:0;
@@ -265,14 +295,19 @@ window.onload = function() {
     color: white;
     font-weight: bold;
     box-shadow: 3px 3px 3px grey;
+ 
     }
 	.place_title{
-		display:block;
-    	font-size:15px;
-    	font-weight: bold;
-    	padding:20px;
+    	float: left;
+	    line-height: 40px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    display: inline-block;
+	    margin-left: 10px;
+    	
 	}
 	.place img{
+		display:inline-block;
 		width:150px;
 		height:150px;
 		margin:0;
@@ -283,9 +318,94 @@ window.onload = function() {
 		border-top:1px solid black;
 	}
 	
-	.place:nth-last-child(2) {
-		border-bottom:1px solid black;
+	
+	.place_btn{
+	float: right;
+    width: 50px;
+    height: 35px;
+    margin: 5px;
+    border: none;
+    box-shadow: 2px 2px 2px grey;
+    background-color: #68B984;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
 	}
+	.place_btn:hover{
+		background-color:#3D5656;
+	}
+	.memo_btn:hover{
+		background-color:#3D5656;
+	}
+	.place_sel_box{
+	position:fixed;
+		width: 500px;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+		
+	}
+	.search img{
+		width: 25px;
+    height: 25px;
+    border-left: 1px solid black;
+    padding: 3px;
+	}
+	.search{
+		border: 1px solid black;
+    display: flex;
+    border-radius: 5px;
+    
+	}
+	.select{
+		border:none;
+		padding:5px;
+    border-radius: 5px;
+	}
+	.select:focus{
+		outline:0;
+	}
+
+	
+	
+	.place_content{
+		display:inline-block;
+		width:350px;
+		text-align: left;
+	}
+	
+	.title{
+		font-size:20px;
+		font-weight:bold;
+		margin:15px;
+		
+	}
+	.title_s{
+		font-size:10px;
+		margin-left:15px;
+	}
+	input[type=checkbox]{
+		width:25px;
+		height:25px;
+		float:right;
+		
+	}
+	.schedule_box{
+		height:144px;
+		overflow:scroll;
+	}
+	
+	.schedule{
+		height: 40px;
+    border-bottom: 1px solid black;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 15px;
+	}
+	
 </style>
 </head>
 <body>
@@ -296,18 +416,37 @@ window.onload = function() {
 		<div class="selectdiv1" >
 			<select name="sido1" id="sido1"  class="sido1"></select>
 			<select name="gugun1" id="gugun1" class="gugun1"></select>
-		</div>
-	    <input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
+			<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
+	    </div>
 	    
 	    <div class="contentdiv">
 	    	<div class="content">
 	    		<div class="content_title"><label>DAY 1</label><label>- 2월14일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<div class="content_box">
+	    		<div class="schedule_box">
 	    			<button type="button" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
 	    		</div>
 	    	</div>
-	    	<div class="content"></div>
-	    	<div class="content"></div>
+	    	
+	    	
+	    	<div class="content">
+	    		<div class="content_title"><label>DAY 2</label><label>- 2월15일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="schedule_box">
+		    		<div class="schedule">경복궁</div>
+		    		<div class="schedule">남산타워</div>
+		    		<div class="schedule">청계천</div>
+		    		<div class="schedule">북촌한옥마을</div>
+		    		<button type="button" ><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    		</div>
+	    	</div>
+	    	
+	    	
+	    	<div class="content">
+	    		<div class="content_title"><label>DAY 3</label><label>- 2월16일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="schedule_box">
+	    			<button type="button" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    		</div>
+	    	
+	    	</div>
 	    
 	    </div>
 	    
@@ -316,24 +455,28 @@ window.onload = function() {
 		<!-- 장소모달 -->
 <div class="black_bg"></div>
 <div class="modal_wrap">
-    <div class="modal_close"><a href="#">close</a></div>
+    
     <div>
-    	<label class="place_title">관광지 선택하기</label>
-        	<div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg">
-        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/남산타워.jpg">
-        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/청계천.jpg">
-        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist1.jpg">
-        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist2.jpg">
-        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist3.jpg"></div>
-        <button type="button">선택완료</button>
+    	<div class="place_sel_box"><label class="place_title">관광지 선택하기</label><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div>
+    	 <button type="button" id="modal_close" class="place_btn">완료</button>
+    	</div><br><br>
+    	<div class="place_box">
+	        	  <div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg"><div class="place_content"><div class="title"><label>경복궁</label><input type="checkbox"></div> <div class="title_s">경복궁입니댱~~</div></div>
+	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/남산타워.jpg"><div class="place_content"><div class="title"><label>남산타워</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
+	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/청계천.jpg"><div class="place_content"><div class="title"><label>청계천</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
+	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist1.jpg"><div class="place_content"><div class="title"><label>북촌한옥마을</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
+	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist2.jpg"><div class="place_content"><div class="title"><label>국립중앙박물관</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
+	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist3.jpg"><div class="place_content"><div class="title"><label>남산타워</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
+	        </div>
+	    </div>
     </div>
 </div>
 
 <!-- 메모모달 -->
 <div class="black_bg" id="black_bg2"></div>
-<div class="modal_wrap" id="modal_wrap2">
+<div class="modal_wrap2" id="modal_wrap2">
     <div>
-    	<label class="memo_title">MEMOo</label>
+    	<label class="memo_title">MEMO</label>
 		<textarea class="memo_textarea" rows="10" cols="50"></textarea>
 		<button type="button" class="memo_btn" id="modal_close2" >SAVE</button>
 
