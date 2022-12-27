@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +14,9 @@
 
 .container {
 	width: 1000px;
-	min-height: 1000px;
+	min-height: 800px;
 	margin: auto;
+	text-align: center;
 }
 
 .mypage_title {
@@ -45,19 +46,24 @@
 
 .img_button {
 	float: left;
-	margin: 100px 0 0 20px;
+	margin: 125px 0 0 20px;
 }
 
 .update_form {
 	margin: auto;
 	margin-top: 10px;
-	width: 800px;
+	padding-left: 15px;
+	width : 800px;
 	flex-direction: column;
 	text-align: left;
 }
 
 .input_div {
-	margin-top:20px;
+	margin-top: 20px;
+}
+
+.input_div button {
+	margin-top:40px;
 }
 
 label {
@@ -67,7 +73,7 @@ label {
 
 .input {
 	display: inline-block;
-	height:25px;
+	height: 25px;
 }
 </style>
 <body>
@@ -86,7 +92,7 @@ label {
 						src="${pageContext.request.contextPath}/resources/images/profile.jpg" />
 				</div>
 				<div class="img_button">
-					<button type="button">삭제</button>
+					<button type="button">기본프로필로 변경</button>
 					<button type="button">사진 불러오기</button>
 				</div>
 			</div>
@@ -108,15 +114,19 @@ label {
 				<div class="input_div">
 					<label>전화번호</label> <input type="text" class="input">
 				</div>
-
 			</div>
-			<a href='/mypage'>
-				<button type="button">수정 완료</button>
-			</a>
+			<div class="input_div">
+				<a href='/mypage'>
+					<button type="button">수정 완료</button>
+				</a>
+			</div>
+
+
 		</div>
 	</div>
 
 
 
 </body>
+<%@ include file="../common/footer.jsp"%>
 </html>

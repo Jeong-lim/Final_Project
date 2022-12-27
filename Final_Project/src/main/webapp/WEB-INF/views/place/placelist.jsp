@@ -26,14 +26,14 @@
 }
 
 .search {
-	
+	float:right;
 }
 
 .search_bar {
 	height: 30px;
 	padding: 0;
 	margin: 0;
-	width: 364px;
+	width: 300px;
 }
 
 .search_btn {
@@ -68,7 +68,7 @@
 }
 
 .test_obj input[type="radio"]:checked+span {
-	background-color: #113a6b;
+	background-color: #68B984;
 	color: #ffffff;
 }
 
@@ -87,7 +87,8 @@
 	margin-right: 50px;
 }
 
-.place_info {
+.place_list {
+	margin-top:30px;
 	
 }
 
@@ -160,7 +161,22 @@ a {
 								name="category" value=""> <span>종교/역사/전통</span></label>
 						</div>
 					</div>
-				</a> <a href='<c:url value="/place/detail"/>'>
+				</a> 
+				<a href='<c:url value="/place/detail"/>'>
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/롯데월드.jpg" />
+						</div>
+						<div class="place_info">
+							<h3>롯데월드</h3>
+							<h4>서울특별시 송파구</h4>
+							<label class="test_obj"><input type="radio"
+								name="category" value=""> <span>쇼핑/놀이</span></label>
+						</div>
+					</div>
+				</a>
+				<a href='<c:url value="/place/detail"/>'>
 					<div class="place">
 						<div class="image_wrap">
 							<img class="place_img"
@@ -182,4 +198,5 @@ a {
 
 
 </body>
+<%@ include file="../common/footer.jsp"%>
 </html>

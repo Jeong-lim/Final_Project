@@ -15,7 +15,7 @@
 
 .container {
 	width: 1000px;
-	min-height: 1000px;
+	min-height: 800px;
 	margin: auto;
 }
 
@@ -176,7 +176,6 @@ ul {
 	padding-left: 0px;
 	text-align: left;
 }
-
 
 .block {
 	float: right;

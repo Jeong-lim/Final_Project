@@ -6,121 +6,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
 <style>
-.outer {
+.container_top {
 	text-align: center;
 }
 
-.inner {
+.container {
 	width: 1000px;
+	min-height: 1000px;
 	margin: auto;
-	border: 1px solid black;
-}
-
-.title {
-	width: 800px;
 	text-align: left;
-	border: 0px;
-	margin: 40px auto;
 }
 
-.list {
-	width: 800px;
-	margin: auto;
-}
-
-.listdetail {
-	width: 800px;
-	height: 200px;
-	border: 1px solid black;
-}
-
-.listdetail img {
-	width: 200px;
-	height: 200px;
-	float: left
-}
-
-.bar {
-	margin: auto;
-	width: 800px;
-	height: 60px;
-}
-
-.items {
-	display: inline-block;
-}
-
-.radiobtn {
-	display: none;
-}
-
-.radioLabel {
-	display: inline-block;
+.select {
+	height: 30px;
+	margin-right: 5px;
 	width: 100px;
-	height: 35px;
-	border-radius: 15px;
-	line-height: 35px;
-}
-
-.radiobtn:checked+label {
-	box-shadow: 3px 3px 3px;
-}
-
-.selectdiv {
-	display: inline-block;
-	width: 300px;
-	height: 30px;
-	border: 1px solid black;
-	margin-left: 200px;
-}
-
-.selectdiv select {
-	height: 30px;
-	float: left;
 }
 
 .search {
-	width: 200px;
-	height: 26px;
-	padding: 2px;
-	float: left;
-	border: 0px;
+	float:right;
 }
 
-.search:focus {
-	outline: 0;
-}
-
-.selectdiv img {
-	display: inline-block;
-	width: 30px;
+.search_bar {
 	height: 30px;
+	padding: 0;
+	margin: 0;
+	width: 300px;
 }
 
-.listContent {
-	display: inline-block;
+.search_btn {
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	vertical-align: middle;
 }
 
-.contentTitle {
-	width: 550px;
-	height: 80px;
-	margin-top: 30px;
-	font-size: 25px;
-	font-weight: bold;
-	text-align: left;
-}
-
-.contentWriter {
-	text-align: left;
-}
-
-.share {
-	float: right;
+.search_img {
+	width: 20px;
+	height: 20px;
 }
 
 .category {
-	float: left;
+	margin-top: 10px;
+}
+.category span{
+	width:80px;
 }
 
 .test_obj input[type="radio"] {
@@ -129,114 +61,142 @@
 
 .test_obj input[type="radio"]+span {
 	display: inline-block;
-	width: 80px; padding : 5px;
+	padding: 5px;
 	border: 1px solid #dfdfdf;
 	border-radius: 15px;
 	background-color: #ffffff;
 	text-align: center;
 	cursor: pointer;
 	font-size: 13px;
-	padding: 5px;
 }
 
 .test_obj input[type="radio"]:checked+span {
-	background-color: #113a6b;
+	background-color: #68B984;
 	color: #ffffff;
 }
+
+.place {
+	border: 1px solid black;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height:160px;
+
+}
+
+.place_img {
+	width: 200px;
+	height: 160px;
+	float: left;
+	margin-right: 50px;
+}
+
+.place_list {
+	margin-top:30px;
+	
+}
+.place_info{
+	padding:10px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+.travel_tit{
+	margin-bottom:20px;
+}
+
 </style>
-</head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-
-
-	<div class="outer">
-		<div class="inner">
-
-			<div class="title">
-				<div>travely가 준비한</div>
-				<div>여행 일정 리스트</div>
+	<div class="container_top">
+		<div class="container">
+			<br>
+			<div>
+				<span>TRAVELY가 준비한</span>
 			</div>
-
-			<div class="bar">
-				<div class="category">
-					<label class="test_obj"> <input type="radio"
-						name="category" value=""> <span>최신순</span>
-					</label> <label class="test_obj"> <input type="radio"
-						name="category" value=""> <span>조회순</span>
-					</label> <label class="test_obj"> <input type="radio"
-						name="category" value=""> <span>인기순</span>
-					</label>
-
-				</div>
-
-				<div class="selectdiv">
-					<select>
-						<option>작성자</option>
-						<option>제목</option>
-					</select> <input type="text" class="search"> <img
-						src="../resources/images/search.png">
-				</div>
-
+			<div>
+				<h2>여행 일정 리스트</h2>
 			</div>
-
-			<div class="list">
-
-				<div class="listdetail">
-					<img src="../resources/images/travellist1.jpg"
-						onclick="location.href='<c:url value="/travel/detail"/>'">
-					<div class="listContent">
-						<div class="contentTitle"
-							onclick="location.href='<c:url value="/travel/detail"/>'">꼭
-							가봐야 할 3박4일 서울 여행</div>
-						<div class="contentWriter">
-							작성자 dudtjahgo98
-							<button class="share"
-								onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+			<div class="search">
+				<select class="select">
+					<option value="area">작성자</option>
+					<option value="place">제목</option>
+				</select> <input type="text" class="search_bar" value=""
+					placeholder="search..">
+				<button class="search_btn">
+					<img class="search_img"
+						src="${pageContext.request.contextPath}/resources/images/search.png" />
+				</button>
+			</div>
+			<div class="category">
+				<label class="test_obj"> <input type="radio" name="category"
+					value=""> <span>최신순</span>
+				</label> <label class="test_obj"> <input type="radio"
+					name="category" value=""> <span>조회순</span>
+				</label> <label class="test_obj"> <input type="radio"
+					name="category" value=""> <span>인기순</span>
+				</label> 
+			</div>
+			<div class="place_list">
+				<a href='<c:url value="/travel/detail"/>'>
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/travellist1.jpg" />
+						</div>
+						<div class="place_info">
+							<h3 class="travel_tit">꼭 가봐야 할 3박4일 서울 여행</h3>
+							<h4>작성자 rkdudrhdwn99</h4>
+							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>
-				</div>
-
-				<div class="listdetail">
-					<img src="../resources/images/travellist2.jpg"
-						onclick="location.href='<c:url value="/travel/detail"/>'">
-					<div class="listContent">
-						<div class="contentTitle"
-							onclick="location.href='<c:url value="/travel/detail"/>'">아이들과
-							가기 좋은 역사 여행</div>
-						<div class="contentWriter">
-							작성자 wjdflarkwlak00
-							<button class="share"
-								onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+				</a> <a href='<c:url value="/travel/detail"/>'>
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/travellist2.jpg" />
+						</div>
+						<div class="place_info">
+							<h3>아이들과 가기 좋은 역사 탐방</h3>
+							<h4>작성자 dudtjahgo98</h4>
+							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>
-				</div>
-
-				<div class="listdetail">
-					<img src="../resources/images/travellist3.jpg"
-						onclick="location.href='<c:url value="/travel/detail"/>'">
-					<div class="listContent">
-						<div class="contentTitle"
-							onclick="location.href='<c:url value="/travel/detail"/>'">남자친구랑
-							떠나는 남산 타워 투어</div>
-						<div class="contentWriter">
-							작성자 rkdudrhdwn99
-							<button class="share"
-								onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+				</a> 
+				<a href='<c:url value="/travel/detail"/>'>
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/travellist3.jpg" />
 						</div>
-
+						<div class="place_info">
+							<h3>남산 타워 데이트 코스</h3>
+							<h4>작성자 wjdflarkwlak00</h4>
+							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
+						</div>
 					</div>
-				</div>
-
-
+				</a>
+				<a href='<c:url value="/travel/detail"/>'>
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/travellist4.jpg" />
+						</div>
+						<div class="place_info">
+							<h3>제주도 먹방투어</h3>
+							<h4>작성자 helpmeee1717</h4>
+							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
+						</div>
+					</div>
+				</a>
 			</div>
-
-
-
 		</div>
+		<div></div>
 	</div>
 
 
 
-
 </body>
+<%@ include file="../common/footer.jsp"%>
 </html>
