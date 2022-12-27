@@ -26,21 +26,21 @@
 	width: 800px;
 	border-bottom: 2px solid #A4A4A4;
 	padding: 20px;
-	height: 150px;
+	height: 160px;
 	margin: auto;
 }
 
 .profile_img {
 	float: left;
 	border: 1px solid black;
-	width: 120px;
-	height: 120px;
+	width: 140px;
+	height: 140px;
 	margin: 10px;
 }
 
 .profile_image {
-	width: 120px;
-	height: 120px;
+	width: 140px;
+	height: 140px;
 }
 
 .img_button {
@@ -50,14 +50,14 @@
 
 .update_form {
 	margin: auto;
-	margin-top: 20px;
+	margin-top: 10px;
 	width: 800px;
 	flex-direction: column;
 	text-align: left;
 }
 
 .input_div {
-	margin: 20px;
+	margin-top:20px;
 }
 
 label {
@@ -65,8 +65,9 @@ label {
 	display: inline-block;
 }
 
-input {
+.input {
 	display: inline-block;
+	height:25px;
 }
 </style>
 <body>
@@ -77,7 +78,7 @@ input {
 	<br>
 	<div class="container_top">
 		<div class="container">
-			<h2 class="mypage_title">회원정보 수정</h2>
+			<h1 class="mypage_title">회원정보 수정</h1>
 			<br>
 			<div class="profile">
 				<div class="profile_img">
@@ -93,23 +94,22 @@ input {
 				<h3>계정</h3>
 
 				<div class="input_div">
-					<label>이름</label> <input type="text">
+					<label>이름</label> <input type="text" class="input">
 				</div>
 				<div class="input_div">
-					<label>이메일</label> <input type="email">
+					<label>이메일</label> <input type="email" class="input">
 				</div>
 				<div class="input_div">
-					<label>비밀번호</label> <input type="password">
+					<label>비밀번호</label> <input type="password" class="input">
 				</div>
 				<div class="input_div">
-					<label>비밀번호 확인</label> <input type="password">
+					<label>비밀번호 확인</label> <input type="password" class="input">
 				</div>
 				<div class="input_div">
-					<label>전화번호</label> <input type="text">
+					<label>전화번호</label> <input type="text" class="input">
 				</div>
 
 			</div>
-
 			<a href='/mypage'>
 				<button type="button">수정 완료</button>
 			</a>
