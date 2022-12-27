@@ -27,6 +27,16 @@
 	 margin: 0px auto;
 }
 
+.bx-wrapper .bx-controls-direction a {
+	display: none;
+}
+
+.bx-wrapper {
+	margin-top: 2%;
+	border: none;
+	box-shadow: none;
+}
+
   </style>
 </head>
 <body>
