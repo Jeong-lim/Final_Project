@@ -203,6 +203,9 @@ $(document).ready(function(){
 	.top_title button:hover{
 		background-color:#205295;
 	}
+	 ::-webkit-scrollbar {
+  		display: none;
+	}
 	
 </style>
 

@@ -172,6 +172,9 @@ hr{
 	border:1px solid #E6E6E6;
 	margin:20px 0 20px 0;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 
 <body>

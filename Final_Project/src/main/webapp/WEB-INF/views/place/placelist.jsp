@@ -96,6 +96,9 @@ a {
 	text-decoration: none;
 	color: black;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>

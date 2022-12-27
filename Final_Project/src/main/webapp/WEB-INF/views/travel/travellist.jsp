@@ -105,6 +105,10 @@ a {
 .travel_tit{
 	margin-bottom:20px;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
+
 
 </style>
 <body>
