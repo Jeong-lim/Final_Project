@@ -11,8 +11,6 @@ ul, li {list-style:none;}
 .slidebox .slidelist .slideitem > a {display:block;width:auto;position:relative;}
 .slidebox .slidelist .slideitem > a div {max-width:100%;}
 .slidebox .slidelist .slideitem > a label {position:absolute;top:50%;transform:translateY(-50%);padding:20px;border-radius:50%;cursor:pointer;}
-.slidebox .slidelist .slideitem > a label.prev {left:20px;background:#333 url('./img/left-arrow.png') center center / 50% no-repeat;}
-.slidebox .slidelist .slideitem > a label.next {right:20px;background:#333 url('./img/right-arrow.png') center center / 50% no-repeat;}
 
 
 [name="slide"] {display:none;}

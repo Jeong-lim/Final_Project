@@ -88,7 +88,12 @@ $(document).ready(function(){
 		height:800px;
 		border: 1px solid black;
 	}
-	img{
+	.profile__img {
+		width: 30px;
+		height:30px;
+	}
+	
+	.note__img {
 		width: 30px;
 		height:30px;
 	}
@@ -201,7 +206,7 @@ $(document).ready(function(){
 			<button onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
 		</div>
 		<div class="profile">
-			<img src="${pageContext.request.contextPath}/resources/images/user.png" onclick="location.href='<c:url value="/mypage"/>'">
+			<img class="profile__img" src="${pageContext.request.contextPath}/resources/images/user.png" onclick="location.href='<c:url value="/mypage"/>'">
 			<label onclick="location.href='<c:url value="/mypage"/>'">cncnrkdud99</label>
 		</div>
 
@@ -228,7 +233,7 @@ $(document).ready(function(){
 						<span class="place">국립 중앙 박물관</span>
 					</div>
 					<div class="memo">
-						<img src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">남산타워에서 자물쇠 걸기💑</label>
+						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">남산타워에서 자물쇠 걸기💑</label>
 					</div>
 				</div>	
 					
@@ -247,7 +252,7 @@ $(document).ready(function(){
 						<span class="place">경복궁</span>
 					</div>
 					<div class="memo">
-						<img src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">경복궁에서 한복 빌리기🎀</label>
+						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">경복궁에서 한복 빌리기🎀</label>
 					</div>
 				</div>	
 					
@@ -266,7 +271,7 @@ $(document).ready(function(){
 						<span class="place">광화문</span>
 					</div>
 					<div class="memo">
-						<img src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">광화문에서 태극기 들고 있기🙌🙌🙌🙌</label>
+						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">광화문에서 태극기 들고 있기🙌🙌🙌🙌</label>
 					</div>
 				</div>
 				

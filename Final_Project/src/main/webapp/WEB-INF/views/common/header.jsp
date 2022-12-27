@@ -26,10 +26,6 @@ a {
 	box-shadow: rgba(149, 157, 165, 0.15) 0px 3px 6px 0px
 }
 
-.navbar__logo {
-	font-size: 30px;
-	color: violet;
-}
 
 .navbar__menu {
 	display: flex;
@@ -37,7 +33,7 @@ a {
 	padding-right: 30%;
 }
 
-.navbar__menu li {
+.navbar__li {
 	padding: 0px 20px;
 	margin-right: 20px;
 }
@@ -49,7 +45,7 @@ a {
 	padding-right: 100px;
 }
 
-.navbar__links li {
+.navbar__links__li {
 	padding: 0px 10px;
 }
 
@@ -74,7 +70,7 @@ a {
 	margin-top: 7px;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
 	.navbar {
 		flex-direction: column;
 		align-items: flex-start;
@@ -102,7 +98,7 @@ a {
 	.navbar__menu.active, .navbar__links.active {
 		display: flex;
 	}
-}
+} */
 </style>
 </head>
 
@@ -114,12 +110,12 @@ a {
 		</a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="/place">관광지</a> </li>
-            <li><a href="/travel/list">여행 일정</a> </li>
-            <li><a href="/travel/insert">여행 일정 등록</a></li>
+            <li class="navbar__li"><a href="/place">관광지</a> </li>
+            <li class="navbar__li"><a href="/travel/list">여행 일정</a> </li>
+            <li class="navbar__li"><a href="/travel/insert">여행 일정 등록</a></li>
         </ul>
         <ul class="navbar__links">
-            <li><a href="<c:url value='/mypage'/>">
+            <li class="navbar__links__li"><a href="<c:url value='/mypage'/>">
 					<img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user.png" />
 				</a></li>
             <li class="logout_wrapper"><a href="/signin">로그아웃</a></li>
