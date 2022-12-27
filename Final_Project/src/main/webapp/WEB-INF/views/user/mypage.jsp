@@ -205,6 +205,9 @@ ul {
 	line-height: 30px;
 	vertical-align: top;
 }
+::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 <body>
 	<br>
