@@ -76,13 +76,15 @@
 	border: 1px solid black;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	height:160px;
+
 }
 
 .place_img {
-	width: 180px;
-	height: 140px;
+	width: 200px;
+	height: 160px;
 	float: left;
-	margin-right: 30px;
+	margin-right: 50px;
 }
 
 .place_info {
