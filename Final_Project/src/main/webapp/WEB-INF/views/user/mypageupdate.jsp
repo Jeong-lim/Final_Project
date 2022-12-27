@@ -75,6 +75,9 @@ label {
 	display: inline-block;
 	height: 25px;
 }
+::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
