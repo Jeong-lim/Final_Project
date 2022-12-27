@@ -77,6 +77,9 @@
 	padding: 5px;
 	padding-top: 20px;
 }
+.card:hover{
+	box-shadow: 5px 5px 5px gray;
+}
 
 .card.last {
 	border: 1px dashed black;
@@ -171,10 +174,19 @@ a {
 	height: 20px;
 }
 
-ul {
-	list-style: none;
-	padding-left: 0px;
-	text-align: left;
+.modal_ul {
+	display: block;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    text-align: left;
+}
+
+.modal_li {
+	list-style-type: none;
 }
 
 .block {
@@ -205,9 +217,10 @@ ul {
 	line-height: 30px;
 	vertical-align: top;
 }
+
 ::-webkit-scrollbar {
-  		display: none;
-	}
+	display: none;
+}
 </style>
 <body>
 	<br>
@@ -281,8 +294,8 @@ ul {
 						팔로워
 						<div class="close closeBtn"></div>
 					</div>
-					<ul>
-						<li><img class="follower_img"
+					<ul class="modal_ul">
+						<li class="modal_li"><img class="follower_img"
 							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 							class="follower_id">dudtj1234</label>
 							<button class="block">차단</button></li>
@@ -306,6 +319,7 @@ ul {
 			<script>
   const open = () => {
     document.querySelector(".modal").classList.remove("hidden");
+    document.body.style.overflow = "hidden";
   }
 
   const close = () => {
@@ -315,6 +329,7 @@ ul {
   document.querySelector(".openBtn").addEventListener("click", open);
   document.querySelector(".closeBtn").addEventListener("click", close);
   document.querySelector(".bg").addEventListener("click", close);
+  document.body.style.overflow = "unset";
 
 </script>
 
