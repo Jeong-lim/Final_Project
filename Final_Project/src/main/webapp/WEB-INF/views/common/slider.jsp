@@ -23,6 +23,9 @@
   </script>
   
   <style>
+  .slider {
+  	z-index: 1;
+  }
   	.slider_img_container {
 	 margin: 0px auto;
 }
