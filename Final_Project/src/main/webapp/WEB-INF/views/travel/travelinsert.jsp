@@ -112,6 +112,8 @@ window.onload = function() {
 		width:1000px;
 		margin:auto;
 		margin-top:50px;
+		height:auto;
+		min-height:1000px;
 	}
 	.sido1{
 		width:120px;
@@ -409,7 +411,7 @@ window.onload = function() {
 </style>
 </head>
 <body>
-<!-- %@ include file="../common/header.jsp"%-->
+<%@ include file="../common/header.jsp"%>
 
 <div class="outer">
 	<div class="inner">
@@ -491,6 +493,6 @@ window.onload = function() {
 
 
 
-
+<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
