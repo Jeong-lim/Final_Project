@@ -43,7 +43,7 @@ $(document).ready(function(){
 		text-align: center;
 	}
 	.inner{
-		width:800px;
+		width:1000px;
 		margin:60px auto; 
 		height:auto;
 		min-height:1000px;
@@ -78,7 +78,7 @@ $(document).ready(function(){
 	}
 	.schedule{
 		position:absolute;
-		width:800px;
+		width:1000px;
 		margin:auto;
 		border: 1px solid black;
 	}
@@ -86,7 +86,7 @@ $(document).ready(function(){
 		display:none;
 		position:absolute;
 		margin:auto;
-		width:800px;
+		width:1000px;
 		height:800px;
 		border: 1px solid black;
 	}
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		display:none;
 		position:absolute;
 		margin:auto;
-		width:800px;
+		width:1000px;
 		height:800px;
 		border: 1px solid black;
 	}
@@ -136,7 +136,7 @@ $(document).ready(function(){
 		font-size:13px;
 	}
 	.content{
-		width:600px;
+		width:800px;
 		padding:10px;
 		border: 2px solid black;
 		border-radius: 30px;

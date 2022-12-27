@@ -140,7 +140,7 @@ window.onload = function() {
 		float:right;
 	}
 	.selectdiv1{
-		width:800px;
+		width:1000px;
 		display:inline-block;
 
 	}
@@ -148,7 +148,7 @@ window.onload = function() {
 		outline:none;
 	}
 	.content{
-		width:800px;
+		width:1000px;
 		height:200px;
 		border:1px solid black;
 		margin:auto;
@@ -156,7 +156,7 @@ window.onload = function() {
 	}
 	
 	.contentdiv{
-		width:800px;
+		width:1000px;
 		border-top:1px solid black;
 		margin:30px auto;
 	}
@@ -192,7 +192,7 @@ window.onload = function() {
 		vertical-align: middle;
 		line-height:144px;
 		height:144px;
-		width:800px;
+		width:1000px;
 
 	}
 	.schedule_box img{
