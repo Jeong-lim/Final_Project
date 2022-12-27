@@ -61,6 +61,9 @@
 	font-size: 18px;
 	border: none;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 
 <body>

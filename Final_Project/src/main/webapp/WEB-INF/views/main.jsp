@@ -118,6 +118,9 @@
 	color: #fff;
 	z-index: 10;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 </head>
 <body>

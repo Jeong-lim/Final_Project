@@ -55,6 +55,9 @@
 	margin: auto;
 	margin-top: 30px;
 }
+ ::-webkit-scrollbar {
+  		display: none;
+	}
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
