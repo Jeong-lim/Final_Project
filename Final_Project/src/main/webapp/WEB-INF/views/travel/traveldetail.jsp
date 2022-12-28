@@ -61,21 +61,23 @@ $(document).ready(function(){
 	}
 	.radiolabel{
 		display:inline-block;
-		width:100px;
-		height:40px;
 		border:1px solid black;
-		line-height: 40px;
 		text-align: center;
 		border-radius: 16px 16px 0 0;
 		background-color:rgb(229, 236, 255);
+		font-size: 25px;
+	    width: 150px;
+	    height: 50px;
+	    line-height: 50px;
 	}
 	.radiobtn:hover + label{
-		background-color: rgb(87, 119, 199);
+		background-color: #3B82F6;
 		color:white;
 	}
 	.radiobtn:checked + label{
-		background-color: rgb(87, 119, 199);
-	    color:white;
+		background-color: #3B82F6;
+	    color: white;
+	   
 	}
 	.schedule{
 		position:absolute;
@@ -134,7 +136,7 @@ $(document).ready(function(){
     	font-weight: bold;
 	}
 	.date{
-		font-size:13px;
+		font-size:18px;
 	}
 	.content{
 		width:800px;
@@ -155,6 +157,7 @@ $(document).ready(function(){
     	
 	}
 	.place{
+		font-size:22px;
 		margin-left:10px;
 	}
 	.days{
@@ -182,7 +185,7 @@ $(document).ready(function(){
 		text-align: left;
 	}
 	.top_tit{
-		font-size:35px;
+		font-size:40px;
 		font-weight: bold;
 	}
 	.top_date{
@@ -192,20 +195,37 @@ $(document).ready(function(){
 	}
 	.top_title button{
 		border: none;
-	    box-shadow: 1px 1px 1px 0 black;
-	    border-radius: 3px;
-	    width: 70px;
-	    height: 30px;
-	    margin-left: 30px;
-	    background-color: rgb(87, 119, 199);
-	    color:white;
-	    font-weight:bold;
+    box-shadow: 1px 1px 1px 0 black;
+    border-radius: 3px;
+    width: 80px;
+    height: 40px;
+    margin-left: 30px;
+    background-color: #3B82F6;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
 	}
 	.top_title button:hover{
 		background-color:#205295;
 	}
 	 ::-webkit-scrollbar {
   		display: none;
+	}
+	.weather{
+		text-align: center;
+	}
+	.weather_sample{
+		width:800px;
+		height:700px;
+		margin:auto;
+	}
+	.traffic{
+		text-align: center;
+	}
+	.traffic_sample{
+		width:900px;
+		height:800px;
+		margin:auto;
 	}
 	
 </style>
@@ -294,8 +314,12 @@ $(document).ready(function(){
 				
 				
 			</div>
-			<div class="weather" id="weather">날씨</div>
-			<div class="traffic" id="traffic">교통</div>
+			<div class="weather" id="weather">
+				<img src="../resources/images/weather.png" class="weather_sample">
+			</div>
+			<div class="traffic" id="traffic">
+				<img src="../resources/images/traffic_sample.png" class="traffic_sample">
+			</div>
 		</div>
 	</div>
 </div>
