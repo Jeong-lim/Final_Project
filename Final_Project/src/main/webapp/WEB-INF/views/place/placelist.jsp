@@ -20,20 +20,25 @@
 }
 
 .select {
-	height: 30px;
+	height: 34px;
 	margin-right: 5px;
 	width: 100px;
+	border-radius: 5px;
+	border: 2px solid #dfdfdf;
+	padding:3px;
 }
 
 .search {
-	float:right;
+	float: right;
 }
 
 .search_bar {
 	height: 30px;
 	padding: 0;
 	margin: 0;
-	width: 300px;
+	width: 250px;
+	border-radius: 5px;
+	border: 2px solid #dfdfdf;
 }
 
 .search_btn {
@@ -41,6 +46,7 @@
 	height: 32px;
 	padding: 0;
 	vertical-align: middle;
+	background-color: none;
 }
 
 .search_img {
@@ -54,17 +60,19 @@
 
 .test_obj input[type="radio"] {
 	display: none;
+
 }
 
 .test_obj input[type="radio"]+span {
 	display: inline-block;
-	padding: 5px;
 	border: 1px solid #dfdfdf;
 	border-radius: 15px;
 	background-color: #ffffff;
 	text-align: center;
 	cursor: pointer;
-	font-size: 13px;
+	font-size: 14px;
+	padding: 7px 10px 5px 10px;
+	height:20px;
 }
 
 .test_obj input[type="radio"]:checked+span {
@@ -73,11 +81,20 @@
 }
 
 .place {
-	border: 1px solid black;
+	border: 2px solid #BDBDBD;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	height:160px;
+	height: 160px;
+	border-radius:35px;
+}
 
+.category_label {
+	padding: 5px 10px;
+	border: 1px solid #dfdfdf;
+	border-radius: 15px;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 13px;
 }
 
 .place_img {
@@ -85,20 +102,35 @@
 	height: 160px;
 	float: left;
 	margin-right: 50px;
+	border-top-left-radius: 32px;
+	border-bottom-left-radius: 32px;
 }
 
 .place_list {
-	margin-top:30px;
-	
+	margin-top: 30px;
+}
+
+.place_info {
+	margin: 30px 0 0 30px;
+}
+
+.place_name {
+	font-size: 25px;
+	margin: 0;
+}
+
+.place_area {
+	font-size: 15px;
 }
 
 a {
 	text-decoration: none;
 	color: black;
 }
- ::-webkit-scrollbar {
-  		display: none;
-	}
+
+::-webkit-scrollbar {
+	display: none;
+}
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -138,58 +170,54 @@ a {
 				</label>
 			</div>
 			<div class="place_list">
-				<a href='<c:url value="/place/detail"/>'>
-					<div class="place">
-						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
-						</div>
-						<div class="place_info">
-							<h3>경복궁</h3>
-							<h4>서울특별시 종로구</h4>
-							<label class="test_obj"><input type="radio"
-								name="category" value=""> <span>종교/역사/전통</span></label>
-						</div>
+
+				<div class="place">
+					<div class="image_wrap">
+						<img class="place_img"
+							src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
 					</div>
-				</a> <a href='<c:url value="/place/detail"/>'>
+					<div class="place_info">
+						<a href='<c:url value="/place/detail"/>'>
+							<p class="place_name">경복궁</p>
+						</a>
+						<p class="place_area">서울특별시 종로구</p>
+						<label class="category_label"> <span>종교/역사/전통</span></label>
+					</div>
+				</div>
+				<a href='<c:url value="/place/detail"/>'>
 					<div class="place">
 						<div class="image_wrap">
 							<img class="place_img"
 								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>남산타워</h3>
-							<h4>서울특별시 용산구</h4>
-							<label class="test_obj"><input type="radio"
-								name="category" value=""> <span>종교/역사/전통</span></label>
+							<p class="place_name">남산타워</p>
+							<p class="place_area">서울특별시 용산구</p>
+							<label class="category_label"> <span>종교/역사/전통</span></label>
 						</div>
 					</div>
-				</a> 
-				<a href='<c:url value="/place/detail"/>'>
+				</a> <a href='<c:url value="/place/detail"/>'>
 					<div class="place">
 						<div class="image_wrap">
 							<img class="place_img"
 								src="${pageContext.request.contextPath}/resources/images/롯데월드.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>롯데월드</h3>
-							<h4>서울특별시 송파구</h4>
-							<label class="test_obj"><input type="radio"
-								name="category" value=""> <span>쇼핑/놀이</span></label>
+							<p class="place_name">롯데월드</p>
+							<p class="place_area">서울특별시 송파구</p>
+							<label class="category_label"><span>쇼핑/놀이</span></label>
 						</div>
 					</div>
-				</a>
-				<a href='<c:url value="/place/detail"/>'>
+				</a> <a href='<c:url value="/place/detail"/>'>
 					<div class="place">
 						<div class="image_wrap">
 							<img class="place_img"
 								src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>청계천</h3>
-							<h4>서울특별시 종로구</h4>
-							<label class="test_obj"><input type="radio"
-								name="category" value=""> <span>종교/역사/전통</span></label>
+							<p class="place_name">경복궁</p>
+							<p class="place_area">서울특별시 종로구</p>
+							<label class="category_label"><span>종교/역사/전통</span></label>
 						</div>
 					</div>
 				</a>

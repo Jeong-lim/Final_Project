@@ -67,7 +67,7 @@
 	background-color: #ffffff;
 	text-align: center;
 	cursor: pointer;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .test_obj input[type="radio"]:checked+span {
@@ -76,11 +76,11 @@
 }
 
 .place {
-	border: 1px solid black;
+	border: 2px solid #BDBDBD;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	height:160px;
-
+	border-radius:35px;
 }
 
 .place_img {
@@ -88,6 +88,8 @@
 	height: 160px;
 	float: left;
 	margin-right: 50px;
+	border-top-left-radius: 35px;
+	border-bottom-left-radius: 35px;
 }
 
 .place_list {
@@ -95,7 +97,14 @@
 	
 }
 .place_info{
-	padding:10px;
+	margin:30px 0 0 30px;
+}
+.travel_title {
+	font-size:25px;
+	margin:0;
+}
+.travel_writer {
+	font-size:15px;
 }
 
 a {
@@ -150,8 +159,8 @@ a {
 								src="${pageContext.request.contextPath}/resources/images/travellist1.jpg" />
 						</div>
 						<div class="place_info">
-							<h3 class="travel_tit">꼭 가봐야 할 3박4일 서울 여행</h3>
-							<h4>작성자 rkdudrhdwn99</h4>
+							<p class="travel_title">꼭 가봐야 할 3박4일 서울 여행</p>
+							<p class="travel_writer">작성자 rkdudrhdwn99</p>
 							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>
@@ -162,8 +171,8 @@ a {
 								src="${pageContext.request.contextPath}/resources/images/travellist2.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>아이들과 가기 좋은 역사 탐방</h3>
-							<h4>작성자 dudtjahgo98</h4>
+							<p class="travel_title">아이들과 가기 좋은 역사 탐방</p>
+							<p class="travel_writer">작성자 dudtjahdo98</p>
 							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>
@@ -175,8 +184,8 @@ a {
 								src="${pageContext.request.contextPath}/resources/images/travellist3.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>남산 타워 데이트 코스</h3>
-							<h4>작성자 wjdflarkwlak00</h4>
+							<p class="travel_title">남산 타워 데이트 코스</p>
+							<p class="travel_writer">작성자 wjdflarkwlak00</p>
 							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>
@@ -188,8 +197,8 @@ a {
 								src="${pageContext.request.contextPath}/resources/images/travellist4.jpg" />
 						</div>
 						<div class="place_info">
-							<h3>제주도 먹방투어</h3>
-							<h4>작성자 helpmeee1717</h4>
+							<p class="travel_title">제주도 먹방투어</p>
+							<p class="travel_writer">작성자 helpmeee1717</p>
 							<a href='<c:url value="/travel/insert"/>'><button>스크랩</button></a>
 						</div>
 					</div>

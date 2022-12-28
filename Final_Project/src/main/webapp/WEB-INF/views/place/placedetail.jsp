@@ -33,21 +33,30 @@
 	margin: auto;
 }
 
+.place_info{
+	margin:50px 0 30px 0;
+}
+.place_name{
+	font-size:38px;
+	font-wight:500%;
+	margin:0;
+}
+.place_area{
+	font-size:20px;
+}
+
 .gbg_img {
 	width: 700px;
 	height: 400px;
 }
 
-.category {
+.category_label {
+	padding: 5px;
 	border: 1px solid #dfdfdf;
 	border-radius: 15px;
-	width: 100px;
-	padding: 5px;
-	margin: auto;
-}
-
-.title {
-	
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 15px;
 }
 
 .slider_container {
@@ -55,18 +64,27 @@
 	margin: auto;
 	margin-top: 30px;
 }
- ::-webkit-scrollbar {
-  		display: none;
-	}
+.content p{
+	text-align: left;
+	font-size:18px;
+	font-weight:100;
+	line-height:30px;
+}
+.content{
+	margin:30px 0;
+}
+::-webkit-scrollbar {
+	display: none;
+}
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div class="container_top">
 		<div class="container">
-			<div class="title">
-				<h2>경복궁</h2>
-				<h4>서울특별시 종로구</h4>
-				<h5 class="category">종교/역사/전통</h5>
+			<div class="place_info">
+				<p class="place_name">경복궁</p>
+				<p class="place_area">서울특별시 종로구</p>
+				<label class="category_label"> <span>종교/역사/전통</span></label>
 			</div>
 			<div class="slider_container">
 				<div class="bxslider">
@@ -84,8 +102,8 @@
 					</div>
 				</div>
 			</div>
-			
-			<div>
+
+			<div class="content">
 				<p>경복궁은 조선 시대에 지어진 왕궁 중 가장 큰 궁궐이었다. 조선 왕조 개국 3년인 1395년에 완공된 궁궐은
 					390여 칸으로 한양의 중심축에 자리했다. 개국공신 정도전은 태조로부터 첫 번째 궁궐의 이름을 지으라는 명을 받았고,
 					고심 끝에 '새 왕조가 큰 복을 누려 번영할 것'이라는 의미로 경복궁(景福宮)이라는 이름을 붙였다.</p>

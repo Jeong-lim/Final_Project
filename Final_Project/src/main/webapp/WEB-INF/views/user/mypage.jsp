@@ -24,31 +24,32 @@
 }
 
 .profile {
-	width: 800px;
+	width: 980px;
 	border-bottom: 2px solid #A4A4A4;
 	padding: 20px;
-	height: 160px;
+	height: 180px;
 	margin: auto;
 }
 
 .profile_img {
 	float: left;
 	border: 1px solid black;
-	width: 140px;
-	height: 140px;
+	width: 160px;
+	height: 160px;
 	margin: 10px;
 	margin-bottom: 20px;
 }
 
 .profile_image {
-	width: 140px;
-	height: 140px;
+	width: 160px;
+	height: 160px;
 }
 
 .profile_info {
 	float: left;
-	margin: 0 20px 0 20px;
+	margin: 0 20px 0 40px;
 	text-align: left;
+	font-size: 18px;
 }
 
 .profile_info p {
@@ -60,25 +61,26 @@
 	margin-right: 20px;
 	margin-top: 10px;
 }
-
-.mytravel {
-	margin: auto;
-	margin-top: 20px;
-	width: 840px;
-	min-height: 500px;
+.openBtn{
+	cursor: pointer;
 }
 
+.mytravel {
+	width: 1040px;
+	margin:30px 0;
+	min-height:1000px;
+}
 .card {
-	width: 175px;
-	height: 190px;
+	width: 200px;
+	height: 220px;
 	border: 1px solid black;
 	float: left;
-	margin: 10px;
+	margin: 20px;
 	padding: 5px;
 	padding-top: 20px;
 }
 .card:hover{
-	box-shadow: 5px 5px 5px gray;
+	box-shadow: 4px 4px 10px #BDBDBD;
 }
 
 .card.last {
@@ -86,7 +88,7 @@
 }
 
 .travel_tit {
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: 600;
 }
 
@@ -115,6 +117,7 @@ a {
 .add {
 	height: 40px;
 	margin-top: 60px;
+	cursor: pointer;
 }
 
 .insert_btn {
