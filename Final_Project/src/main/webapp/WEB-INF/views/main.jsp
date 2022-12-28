@@ -67,32 +67,32 @@
 
 
 #floating__banner_1 {
-	background: #c9ffe2;
+	background: #DBEAFE;
 	color: #143601;
 	font-weight: bold;
 }
 
 
 #floating__banner_2 {
-	background: #b6f9c9;
+	background: #BFDBFE;
 	color: #143601;
 	font-weight: bold;
 }
 
 #floating__banner_3 {
-	background: #96e8bc;
+	background: #93C5FD;
 	color: #143601;
 	font-weight: bold;
 }
 
 #floating__banner_4 {
-	background: #7dd181;
+	background: #60A5FA;
 	color: #143601;
 	font-weight: bold;
 }
 
 #floating__banner_5 {
-	background: #44ad50;
+	background: #3B82F6;
 	color: #143601;
 	font-weight: bold;
 }
@@ -141,7 +141,7 @@
 			<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
-					<div>✈️실시간 여행 인기코스✈️</div>
+					<div>✈️ 실시간 여행 인기코스 ✈️</div>
 				</div>
 				<div class="body">
 					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_1">꼭 가봐야 할 3박4일 서울 여행</li></a>
@@ -155,10 +155,14 @@
 		</div>
 	</div>
 	
-	<%@ include file="common/slider.jsp"%>
+	<%@ include file="common/slider.jsp"%>	
+	<%@ include file="common/advertising.jsp"%>	
 	<%@ include file="common/information.jsp"%>
 	<%@ include file="common/sliderbanner.jsp"%>
 	<%@ include file="common/slidetravel.jsp"%>
+	
+	
+	
 	<%@ include file="common/footer.jsp"%>
 </body>
 </html>

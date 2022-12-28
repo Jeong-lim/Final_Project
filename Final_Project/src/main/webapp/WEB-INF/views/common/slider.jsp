@@ -16,7 +16,7 @@
     $('.bxslider').bxSlider({
     	  auto: true,
     	  autoControls: true,
-    	  stopAutoOnClick: false,
+    	  stopAutoOnClick: true,
     	  pager: true,
     	  slideWidth: 1000,
     	});
