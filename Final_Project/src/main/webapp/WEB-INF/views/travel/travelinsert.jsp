@@ -130,28 +130,46 @@ window.onload = function() {
 		height:40px;
 		margin-right:20px;
 		float:left;
+		cursor:pointer;
 	}
 	
 	.gugun1{
 		width: 120px;
     	height: 40px;
     	float:left;
+    	cursor:pointer;
 	}
 	
-	.sido1,.gugun1:focus{
+	.sido1 + .gugun1:focus{
 		outline:0;
 	}
 	
 	.daterange{
-		width:200px;
-		height:35px;
-		text-align: center;
-		margin-left:100px;
-		float:right;
+		width: 260px;
+    height: 35px;
+    text-align: center;
+    margin-left: 100px;
+    float: right;
+    cursor: pointer;
+    letter-spacing: 2px;
+    border-radius: 19px;
+	}
+	
+	.daterange:hover{
+		background-color: #D8D8D8;
+		color:white;
+		font-weight: bold;
+	}
+	.sido1,.gugun1:hover{
+	background-color: #2C74B3;
+		color:white;
+		font-weight: bold;
 	}
 	.selectdiv1{
-		width:1000px;
-		display:inline-block;
+		width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 	}
 	.daterange:focus{
@@ -168,7 +186,7 @@ window.onload = function() {
 	.contentdiv{
 		width:1000px;
 		border-top:1px solid black;
-		margin:30px auto;
+		margin:20px auto;
 	}
 	.content_title{
 		height:45px;
@@ -217,7 +235,7 @@ window.onload = function() {
         display: none;
         width: 500px;
         height: 500px;
-        position: absolute;
+        position: fixed;
         top:50%;
         left: 50%;
         margin: -250px 0 0 -250px;
@@ -229,7 +247,7 @@ window.onload = function() {
         display: none;
         width: 500px;
         height: 350px;
-        position: absolute;
+        position: fixed;
         top:50%;
         left: 50%;
         margin: -250px 0 0 -250px;
@@ -241,15 +259,16 @@ window.onload = function() {
   		display: none;
 	}
     .black_bg{
-        display: none;
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color:rgba(0, 0,0, 0.5);
-        top:0;
-        left: 0;
-        z-index: 1;
+       display: none; 
+    position: fixed;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0,0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor:pointer;
     }
     .modal_close{
         width: 26px;
@@ -257,6 +276,7 @@ window.onload = function() {
         position: absolute;
         top: -30px;
         right: 0;
+        cursor:pointer;
     }
     .modal_close> a{
         display: block;
@@ -271,6 +291,7 @@ window.onload = function() {
     font-weight: bold;
     display: flex;
     align-items: center;
+    cursor:pointer;
     }
     #modal_btn{
     	border: none;
@@ -280,14 +301,17 @@ window.onload = function() {
     display: flex;
     align-items: center;
     margin: 0;
+    cursor:pointer;
     }
     .content_title button{
     	border:0;
     	background-color:white;
     	float:left;
+    	cursor:pointer;
     }
     .memo_textarea{
     	margin-top:30px;
+    	
     }
     .memo_title{
     	display:block;
@@ -307,6 +331,7 @@ window.onload = function() {
     color: white;
     font-weight: bold;
     box-shadow: 3px 3px 3px grey;
+    cursor:pointer;
  
     }
 	.place_title{
@@ -337,11 +362,12 @@ window.onload = function() {
     height: 35px;
     margin: 5px;
     border: none;
-    box-shadow: 2px 2px 2px grey;
+    box-shadow: 0 2px 2px 2px grey;
     background-color: #68B984;
     color: white;
     font-weight: bold;
     border-radius: 5px;
+    cursor:pointer;
 	}
 	.place_btn:hover{
 		background-color:#3D5656;
@@ -365,6 +391,7 @@ window.onload = function() {
     height: 25px;
     border-left: 1px solid black;
     padding: 3px;
+    cursor:pointer;
 	}
 	.search{
 		border: 1px solid black;
@@ -376,6 +403,7 @@ window.onload = function() {
 		border:none;
 		padding:5px;
     border-radius: 5px;
+    cursor:pointer;
 	}
 	.select:focus{
 		outline:0;
@@ -390,19 +418,20 @@ window.onload = function() {
 	}
 	
 	.title{
-		font-size:20px;
+		font-size:22px;
 		font-weight:bold;
 		margin:15px;
 		
 	}
 	.title_s{
-		font-size:10px;
+		font-size:12px;
 		margin-left:15px;
 	}
 	input[type=checkbox]{
 		width:25px;
 		height:25px;
 		float:right;
+		cursor:pointer;
 		
 	}
 	.schedule_box{
@@ -417,6 +446,37 @@ window.onload = function() {
     text-align: left;
     padding-left: 15px;
 	}
+	.save{
+		display: inline-block;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 30px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #3B82F6;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 2px 2px dimgrey;
+	}
+	.save:hover{
+		box-shadow:0px 3px 3px 3px gray;
+	}
+	.open_radio{
+		accent-color:#3B82F6;
+	}
+	.open_radio:checked + label {
+		color:#3B82F6;
+		accent-color:#3B82F6;
+	}
+	.open_radio_label{
+		font-size: 18px;
+		font-weight:bold;
+	}
+	.top_title{
+		font-size:32px;
+	}
 	
 </style>
 </head>
@@ -426,8 +486,12 @@ window.onload = function() {
 <div class="outer">
 	<div class="inner">
 		<div class="selectdiv1" >
-			<select name="sido1" id="sido1"  class="sido1"></select>
-			<select name="gugun1" id="gugun1" class="gugun1"></select>
+			<label class="top_title">여행 일정 등록하기</label>
+			<span>
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio1" value="all" checked ><label for="open_radio1" class="open_radio_label">전체 공개</label>
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio2" value="follow" ><label for="open_radio2" class="open_radio_label">팔로우 공개</label>
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio3" value="private" ><label for="open_radio3" class="open_radio_label">비공개</label>
+			</span>
 			<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
 	    </div>
 	    
@@ -459,6 +523,8 @@ window.onload = function() {
 	    		</div>
 	    	
 	    	</div>
+	    	
+	    	<button class="save" onclick="location.href='<c:url value="/travel/detail"/>'">저장</button>
 	    
 	    </div>
 	    
@@ -499,10 +565,11 @@ window.onload = function() {
 	</div>
 </div>
 
-	<%@ include file="../common/footer.jsp"%>
+	
 
 
 
-
+<%@ include file="../common/footer.jsp"%>
 </body>
+
 </html>
