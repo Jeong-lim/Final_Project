@@ -156,11 +156,35 @@
 	padding-left: 300px;
 }
 
+.slider__banner {
+	width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+.slider__banner__header {
+	font-size: 40px;
+	font-weight: bold;
+	color: #4E4C48;
+}
+
+.slider__banner__text {
+	font-size: 20px;
+	color: #3B82F6;
+	margin-top: 10px;
+}
+
 </style>
 </head>
 
 <body>
-<div class="section">
+	<div class="slider__banner">
+		<div class="slider__banner__header {
+">나의 여행 일지</div>
+		<div class="slider__banner__text">TRAVELY에서 작성한 여행 일지를 확인해보세요!</div>
+	</div>
+	<div class="section">
+	
 	<input type="radio" name="slide" id="slide01" checked>
 	<input type="radio" name="slide" id="slide02">
 	<input type="radio" name="slide" id="slide03">

@@ -29,28 +29,41 @@
 		width: calc(10% - 20px);
 	}
 }
+
+.slide {
+	display: none;
+}
+
 #container {
 	margin: 0;
 	padding: 0;
 	display: grid;
-	place-items: center
+	place-items: center;
+	margin-bottom: 100px;
+	margin-top: 100px;
+}
+
+#slider-container #slider .slide {
+	padding-bottom: 40px;
 }
 
 #slider-container {
 	height: 300px;
-	width: 1000px;
-	position: relative;
+	width: 1070px;
+	position:relative;
 	overflow: hidden;
-	padding: 20px;
+	padding-bottom: 60px;
 }
 
 #slider-container .btn {
 	position: absolute;
-	top: calc(50% - 30px);
-	height: 30px;
-	width: 30px;
-	border-left: 8px solid pink;
-	border-top: 8px solid pink;
+	top: calc(50%);
+	height: 15px;
+	width: 15px;
+	border-left: 5px solid #3B82F6;
+	border-top: 5px solid #3B82F6;
+	z-index: 3;
+	cursor: pointer;
 }
 
 #slider-container .btn:hover {
@@ -58,7 +71,7 @@
 }
 
 #slider-container .btn.inactive {
-	border-color: rgb(153, 121, 126)
+	border-color: #1D4ED8;
 }
 
 #slider-container .btn:first-of-type {
@@ -81,19 +94,16 @@
 #slider-container #slider .slide {
 	height: 100%;
 	margin: auto 10px;
-	background-color: #a847a4;
-	box-shadow: 2px 2px 4px 2px white, -2px -2px 4px 2px white;
 	display: grid;
 	place-items: center;
-	overflow:hidden;
 	text-align: center;
 }
 
 .image-thumbnail {
-	width: 100%;
-	height: 100%;
+	width: 230px;
+	height: 350px;
 	object-fit: cover;
-	
+	border-radius: 20px;
 }
 
 .travel_thumbnail_text {
@@ -103,35 +113,154 @@
 	font-weight: bolder;
 }
 
+
+
+
+.slider__a__ {
+	display: block;
+	width: auto;
+	text-decoration: none;
+	margin: 5px;
+}
+
+.slider__a__ .screen {
+	position: relative;
+	overflow: hidden;
+}
+
+.slider__a__ .screen .top {
+	position: absolute;
+	bottom: 150%;
+	left: 10px;
+	z-index: 2;
+	color: #fff;
+	font-size: 26px;
+	font-weight: 900;
+	transition: all .35s;
+}
+
+.slider__a__ .screen .bottom {
+	position: absolute;
+	top: 150%;
+	left: 20px;
+	z-index: 2;
+	color: #fff;
+	font-size: 12px;
+	transition: all .35s;
+}
+
+
+
+.slider__a__ .screen::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 230px;
+	height: 350px;
+	background: rgba(0, 0, 0, .5);
+	z-index: 1;
+	opacity: 0;
+	transition: all .35s;
+	border-radius: 20px;
+}
+
+.slider__a__:hover .top {
+	bottom: 52%;
+}
+
+.slider__a__:hover .bottom {
+	top: 52%;
+}
+
+.slider__a__:hover .screen::after {
+	opacity: 1;
+	border-radius: 20px;
+}
+.slider__travel {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.slider__travel__header {
+	font-size: 40px;
+	font-weight: bold;
+	color: #4E4C48;
+}
+
+.slider__travel__text {
+	font-size: 20px;
+	color: #3B82F6;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
 </style>
 </head>
 <body>
+
+
 	<div id="container">
+			<div class="slider__travel">
+	<div class="slider__travel__header">TRAVELY 추천 코스</div>
+	<div class="slider__travel__text">TRAVELY에서 추천한 여행코스‼️ 함께 보실래요 ⁉️</div>
+	</div>
 		<div id="slider-container">
 			<span onclick="slideRight()" class="btn"></span>
 			<div id="slider">
 				<div class="slide">
-					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					<div class="travel_thumbnail_text">당신을 위한 <br />청계천 코스</div>
+				<a class="slider__a__" href="">
+					<div class="screen">
+					<div class="top">일본 도쿄도시 아침</div>
+					<div class="bottom">PIXABAY</div>
+					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/닥밭골벽화마을.jpg" />
+</div>				
+				</a>
+				</div>
+				
+				
+ 				<div class="slide">
+				<a class="slider__a__" href="">
+					<div class="screen">
+					<div class="top">일본 도쿄도시 아침</div>
+					<div class="bottom">PIXABAY</div>
+					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/망상해수욕장역.jpg" />
+</div>
+				</a>
 				</div>
 				<div class="slide">
-					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					<div class="travel_thumbnail_text">당신을 위한 <br />청계천 코스</div>
+				<a class="slider__a__" href="">
+					<div class="screen">
+					<div class="top">일본 도쿄도시 아침</div>
+					<div class="bottom">PIXABAY</div>
+					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/우도.jpg" />
+</div>
+				</a>
 				</div>
 				<div class="slide">
-					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					<div class="travel_thumbnail_text">당신을 위한 <br />청계천 코스</div>
+				<a class="slider__a__" href="">
+					<div class="screen">
+					<div class="top">일본 도쿄도시 아침</div>
+					<div class="bottom">PIXABAY</div>
+					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/월류봉.jpg" />
+</div>
+				</a>
 				</div>
 				<div class="slide">
-					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					<div class="travel_thumbnail_text">당신을 위한 <br />청계천 코스</div>
+				<a class="slider__a__" href="">
+					<div class="screen">
+					<div class="top">일본 도쿄도시 아침</div>
+					<div class="bottom">PIXABAY</div>
+					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/트리인블루.jpg" />
+</div>
+				</a>
 				</div>
-				<div class="slide">
-					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					<div class="travel_thumbnail_text">당신을 위한 <br />청계천 코스</div>
 				</div>
-			</div>
+			
 			<span onclick="slideLeft()" class="btn"></span>
+			</div>
+			
 		</div>
 	</div>
 	<script>
