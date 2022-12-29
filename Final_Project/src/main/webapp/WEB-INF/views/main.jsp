@@ -89,6 +89,27 @@
 	font-weight: bold;
 }
 
+#floating__banner_1:hover {
+	transform: scale( 1.03, 1.03 );
+	transition: transform .1s; 
+}
+#floating__banner_2:hover {
+	transform: scale( 1.03, 1.03 );
+	transition: transform .1s; 
+}
+#floating__banner_3:hover {
+	transform: scale( 1.03, 1.03 );
+	transition: transform .1s; 
+}
+#floating__banner_4:hover {
+	transform: scale( 1.03, 1.03 );
+	transition: transform .1s; 
+}
+#floating__banner_5:hover {
+	transform: scale( 1.03, 1.03 );
+	transition: transform .1s; 
+	border-radius: 0 0 10px 10px;
+}
 
 #floating__banner_2 {
 	background: #BFDBFE;
@@ -112,6 +133,7 @@
 	background: #3B82F6;
 	color: #143601;
 	font-weight: bold;
+	border-radius: 0 0 10px 10px;
 }
 .container {
 	width: 260px;
@@ -124,7 +146,6 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 1;
-	overflow: hidden;
 }
 #floatMenu {
 	position: absolute;
@@ -195,7 +216,7 @@ a#MOVE_TOP_BTN {
 #news-container ul li div
 {
 	background: transparent;
-	padding-left: 10px;
+	padding-left: 20px;
 	padding-top: 10px;
 	font-size: 20px;
 	font-weight: bold;
@@ -209,10 +230,10 @@ a#MOVE_TOP_BTN {
 		<div id="news-container">
 			<ul>
 				<li>
-					<div>서울 ⛈️</div>
+					<div>서울시 ⛈️</div>
 				</li>
 				<li>
-					<div>파주 🌤️</div>
+					<div>파주시 🌤️</div>
 				</li>
 				<li>
 					<div>고양시 ⛅</div>
