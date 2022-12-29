@@ -25,7 +25,7 @@
 	width: 100px;
 	border-radius: 5px;
 	border: 2px solid #dfdfdf;
-	padding:3px;
+	padding: 3px;
 }
 
 .search {
@@ -42,11 +42,12 @@
 }
 
 .search_btn {
-	width: 32px;
-	height: 32px;
+	width: 30px;
+	height: 30px;
 	padding: 0;
 	vertical-align: middle;
-	background-color: none;
+	background-color: white;
+	border:none;
 }
 
 .search_img {
@@ -60,7 +61,6 @@
 
 .test_obj input[type="radio"] {
 	display: none;
-
 }
 
 .test_obj input[type="radio"]+span {
@@ -72,11 +72,11 @@
 	cursor: pointer;
 	font-size: 14px;
 	padding: 7px 10px 5px 10px;
-	height:20px;
+	height: 20px;
 }
 
 .test_obj input[type="radio"]:checked+span {
-	background-color: #68B984;
+	background-color: #3B82F6;
 	color: #ffffff;
 }
 
@@ -85,7 +85,7 @@
 	margin-top: 20px;
 	margin-bottom: 20px;
 	height: 160px;
-	border-radius:35px;
+	border-radius: 35px;
 }
 
 .category_label {
@@ -121,6 +121,7 @@
 
 .place_area {
 	font-size: 15px;
+	cursor: default;
 }
 
 a {
@@ -184,43 +185,48 @@ a {
 						<label class="category_label"> <span>종교/역사/전통</span></label>
 					</div>
 				</div>
-				<a href='<c:url value="/place/detail"/>'>
-					<div class="place">
-						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
-						</div>
-						<div class="place_info">
+
+				<div class="place">
+					<div class="image_wrap">
+						<img class="place_img"
+							src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
+					</div>
+					<div class="place_info">
+						<a href='<c:url value="/place/detail"/>'>
 							<p class="place_name">남산타워</p>
-							<p class="place_area">서울특별시 용산구</p>
-							<label class="category_label"> <span>종교/역사/전통</span></label>
-						</div>
+						</a>
+						<p class="place_area">서울특별시 용산구</p>
+						<label class="category_label"> <span>종교/역사/전통</span></label>
 					</div>
-				</a> <a href='<c:url value="/place/detail"/>'>
-					<div class="place">
-						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/롯데월드.jpg" />
-						</div>
-						<div class="place_info">
+				</div>
+
+				<div class="place">
+					<div class="image_wrap">
+						<img class="place_img"
+							src="${pageContext.request.contextPath}/resources/images/롯데월드.jpg" />
+					</div>
+					<div class="place_info">
+						<a href='<c:url value="/place/detail"/>'>
 							<p class="place_name">롯데월드</p>
-							<p class="place_area">서울특별시 송파구</p>
-							<label class="category_label"><span>쇼핑/놀이</span></label>
-						</div>
+						</a>
+						<p class="place_area">서울특별시 송파구</p>
+						<label class="category_label"><span>쇼핑/놀이</span></label>
 					</div>
-				</a> <a href='<c:url value="/place/detail"/>'>
-					<div class="place">
-						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-						</div>
-						<div class="place_info">
+				</div>
+
+				<div class="place">
+					<div class="image_wrap">
+						<img class="place_img"
+							src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
+					</div>
+					<div class="place_info">
+						<a href='<c:url value="/place/detail"/>'>
 							<p class="place_name">경복궁</p>
-							<p class="place_area">서울특별시 종로구</p>
-							<label class="category_label"><span>종교/역사/전통</span></label>
-						</div>
+						</a>
+						<p class="place_area">서울특별시 종로구</p>
+						<label class="category_label"><span>종교/역사/전통</span></label>
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 		<div></div>
