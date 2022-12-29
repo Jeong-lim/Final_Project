@@ -10,7 +10,7 @@
 	width: 1000px;
 	height: 200px;
 	margin: 0px auto;
-	margin-top: 100px;
+	margin-top: 150px;
 }
 
 .ad__main {
@@ -30,7 +30,6 @@
 .ad__container__1 {
 	width: 470px;
 	height: 150px;
-	border: 2px solid #9CA3AF;
 	display: inline-block;
 	border-radius: 20px;
 	float: left;
@@ -39,7 +38,6 @@
 .ad__container__2 {
 	width: 470px;
 	height: 150px;
-	border: 2px solid #9CA3AF;
 	border-radius: 20px; 
 	display : inline-block;
 	float: right;
@@ -62,6 +60,7 @@
     height: 150px;
     object-fit: cover;
     border-radius: 16px;
+    box-shadow: 0 25.6px 57.6px 0 rgb(0 0 0 / 22%), 0 4.8px 14.4px 0 rgb(0 0 0 / 18%);
 }
 
 .ad__img-2 {

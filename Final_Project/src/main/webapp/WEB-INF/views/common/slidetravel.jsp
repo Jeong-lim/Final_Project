@@ -212,8 +212,8 @@
 				<div class="slide">
 				<a class="slider__a__" href="">
 					<div class="screen">
-					<div class="top">일본 도쿄도시 아침</div>
-					<div class="bottom">PIXABAY</div>
+					<div class="top">닥밭골벽화마을 코스</div>
+					<div class="bottom">TRAVELY</div>
 					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/닥밭골벽화마을.jpg" />
 </div>				
 				</a>
@@ -223,8 +223,8 @@
  				<div class="slide">
 				<a class="slider__a__" href="">
 					<div class="screen">
-					<div class="top">일본 도쿄도시 아침</div>
-					<div class="bottom">PIXABAY</div>
+					<div class="top">올 여름은 망상해수욕장으로</div>
+					<div class="bottom">TRAVELY</div>
 					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/망상해수욕장역.jpg" />
 </div>
 				</a>
@@ -232,8 +232,8 @@
 				<div class="slide">
 				<a class="slider__a__" href="">
 					<div class="screen">
-					<div class="top">일본 도쿄도시 아침</div>
-					<div class="bottom">PIXABAY</div>
+					<div class="top">제주도하면 뭐? 우도</div>
+					<div class="bottom">TRAVELY</div>
 					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/우도.jpg" />
 </div>
 				</a>
@@ -241,8 +241,8 @@
 				<div class="slide">
 				<a class="slider__a__" href="">
 					<div class="screen">
-					<div class="top">일본 도쿄도시 아침</div>
-					<div class="bottom">PIXABAY</div>
+					<div class="top">월류봉으로 가는 코스</div>
+					<div class="bottom">TRAVELY</div>
 					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/월류봉.jpg" />
 </div>
 				</a>
@@ -250,8 +250,8 @@
 				<div class="slide">
 				<a class="slider__a__" href="">
 					<div class="screen">
-					<div class="top">일본 도쿄도시 아침</div>
-					<div class="bottom">PIXABAY</div>
+					<div class="top">트리인블루라고 들어보셨나요?</div>
+					<div class="bottom">TRAVELY</div>
 					<img class="image-thumbnail" src="${pageContext.request.contextPath}/resources/images/트리인블루.jpg" />
 </div>
 				</a>

@@ -18,7 +18,7 @@
   text-align: center;
   color: #4E4C48;
   font-size: 1.5em;
-  background-color: white;
+  background-color: transparent;
 }
 
 .scroll__header {
