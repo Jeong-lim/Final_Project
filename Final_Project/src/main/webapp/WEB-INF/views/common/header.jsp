@@ -51,7 +51,8 @@ a {
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 0 30px
+    padding: 0 30px;
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 3px 6px 0px
 }
 
 
