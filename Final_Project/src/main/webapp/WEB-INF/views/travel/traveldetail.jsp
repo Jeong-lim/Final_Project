@@ -145,11 +145,11 @@ $('document').ready(function() {
 	
 	.weather{
 		display:none;
-		position:absolute;
-		margin:auto;
-		width:1000px;
-		height:800px;
-		border: 1px solid black;
+		position: absolute;
+    margin: auto;
+    width: 1000px;
+    height: 800px;
+    border: 2px solid #E6E6E6;
 	}
 	.traffic{
 		display:none;
@@ -157,7 +157,7 @@ $('document').ready(function() {
 		margin:auto;
 		width:1000px;
 		height:800px;
-		border: 1px solid black;
+		border: 2px solid #E6E6E6;
 	}
 	.profile__img {
 		width: 30px;
@@ -278,17 +278,13 @@ $('document').ready(function() {
 	 ::-webkit-scrollbar {
   		display: none;
 	}
-	.weather{
-		text-align: center;
-	}
+	
 	.weather_sample{
 		width:800px;
 		height:700px;
 		margin:auto;
 	}
-	.traffic{
-		text-align: center;
-	}
+	
 	.traffic_sample{
 		width:900px;
 		height:800px;
