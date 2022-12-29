@@ -133,6 +133,25 @@
   font-size: 1.5em;
   z-index: 2;
 }
+a#MOVE_TOP_BTN {
+	position: fixed;
+	right: 2%;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+}
+
+      a.top {
+        position: fixed;
+        bottom: 50px;
+        display: none;
+        right: 1%;
+      }
+      
+      a.top img {
+      	width: 50px;
+      	height: 50px;
+      }
 </style>
 </head>
 <body>
@@ -155,6 +174,8 @@
 		</div>
 	</div>
 	
+	<a href="#" class="top"><img src="${pageContext.request.contextPath}/resources/images/topbutton.png"></a>
+	
 	<%@ include file="common/slider.jsp"%>	
 	<%@ include file="common/advertising.jsp"%>	
 	<%@ include file="common/information.jsp"%>
@@ -164,5 +185,22 @@
 	
 	
 	<%@ include file="common/footer.jsp"%>
+	
+	<script>
+	 $( document ).ready( function() {
+	        $( window ).scroll( function() {
+	          if ( $( this ).scrollTop() > 200 ) {
+	            $( '.top' ).fadeIn();
+	          } else {
+	            $( '.top' ).fadeOut();
+	          }
+	        } );
+	        $( '.top' ).click( function() {
+	          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	          return false;
+	        } );
+	      } );
+
+	</script>
 </body>
 </html>

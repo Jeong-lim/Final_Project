@@ -13,10 +13,11 @@
     $(document).ready(function(){
     	$('.bxslider').bxSlider({
     		  auto: true,
-    		  autoControls: true,
+    		  autoControls: false,
     		  stopAutoOnClick: true,
     		  pager: true,
-    		  slideWidth: 1000
+    		  slideWidth: 1000,
+    		  speed: 400
     		});
     	});
   </script>
@@ -24,6 +25,7 @@
   <style>
   .bxslider {
   	z-index: 1;
+  	
   }
   	.slider_img_container {
 
@@ -35,10 +37,11 @@
 }
 
 .bx-wrapper {
-	margin-top: 2%;
 	border: none;
 	box-shadow: none;
 	margin: 0 auto;
+	top: 50px;
+	
 }
 
   </style>
