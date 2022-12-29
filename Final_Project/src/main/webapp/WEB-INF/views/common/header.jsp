@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Nav bar</title>   
+    <title>Nav bar</title>  
     <style>
 @font-face {
     font-family: 'Pretendard-Regular';
@@ -17,8 +17,25 @@
     font-style: normal;
 }
 * { font-family: 'Pretendard-Regular'; }
+
+
 body {
 	margin: 0;
+}
+
+@media screen and (max-width:680px){
+	.navbar{
+		flex-direction: column;
+		align-items: center;
+		width:100%;
+	}
+	
+	.navbar_links{
+		justify-content: center;
+		width:100%;
+	}
+	
+	
 }
 
 a {
@@ -26,12 +43,15 @@ a {
 	color: black;
 }
 
+
+
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-shadow: rgba(149, 157, 165, 0.15) 0px 3px 6px 0px;
-	height:76px;
+	width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 30px
 }
 
 
@@ -39,9 +59,12 @@ a {
 	display: flex;
     width: 300px;
     list-style: none;
-    padding-right: 38%;
     justify-content: space-between;
     align-items: center;
+    padding-left: 0;
+}
+.navbar_logo{
+	display:inline-block;
 }
 
 .navbar li{
@@ -49,22 +72,16 @@ a {
     padding: 8px 0px;
 }
 
-.navbar__li {
-	padding: 0px 20px;
-	margin-right: 20px;
-}
+
 
 .navbar__links {
 	list-style: none;
-    color: teal;
     display: flex;
-    padding-right: 100px;
     align-items: center;
+    width: 110px;
 }
 
-.navbar__links__li {
-	
-}
+
 
 .navbar__toggleBtn {
 	display: none;
@@ -75,48 +92,21 @@ a {
 
 .logo {
 	width: 150px;
-	height: 50px;
-	padding-left: 30%;
+	height: 55px;
+	
 }
 
 .user_img {
 	width: 40px;
-    padding-right: 8px;
+    padding-right: 14px;
+    cursor:pointer;
 }
 
 .logout_wrapper {
-	
+	cursor:pointer;
 }
 
-/* @media screen and (max-width: 600px) {
-	.navbar {
-		flex-direction: column;
-		align-items: flex-start;
-		padding: 8px 24px;
-	}
-	.navbar__menu {
-		display: none;
-		flex-direction: column;
-		align-items: center;
-		width: 100%;
-	}
-	.navbar__menu li {
-		width: 100%;
-		text-align: center;
-		font-size: small;
-	}
-	.navbar__links {
-		display: none;
-		justify-content: center;
-		width: 100%;
-	}
-	.navbar__toggleBtn {
-		display: block;
-	}
-	.navbar__menu.active, .navbar__links.active {
-		display: flex;
-	}
-} */
+
 
 /* Underline From Center */
 .hvr-underline-from-center {
@@ -149,26 +139,29 @@ a {
   right: 0;
 }
 </style>
+
 </head>
 
 <body>
     <nav class="navbar">
+    
         <div class="navbar__logo">
-             <a href="<c:url value='/'/>">
-			<img class="logo"src="${pageContext.request.contextPath}/resources/images/logo.png" />
-		</a>
-        </div>
-        <ul class="navbar__menu">
-            <li class="hvr-underline-from-center"><a href="/place">관광지</a> </li>
-            <li class="hvr-underline-from-center"><a href="/travel/list">여행 일정</a> </li>
-            <li class="hvr-underline-from-center"><a href="/travel/insert">여행 일정 등록</a></li>
-        </ul>
-        <ul class="navbar__links">
-            <li class="navbar__links__li"><a href="<c:url value='/mypage'/>">
+	             <a href="<c:url value='/'/>">
+				<img class="logo"src="${pageContext.request.contextPath}/resources/images/logo.png" />
+			</a>
+	    </div>    
+	        <ul class="navbar__menu">
+	            <li class="hvr-underline-from-center"><a href="/place">관광지</a> </li>
+	            <li class="hvr-underline-from-center"><a href="/travel/list">여행 일정</a> </li>
+	            <li class="hvr-underline-from-center"><a href="/travel/insert">여행 일정 등록</a></li>
+	        </ul>
+        
+        <span class="navbar__links">
+            <label class="navbar__links__li" onclick="location.href='<c:url value="/mypage"/>'">
 					<img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user.png" />
-				</a></li>
-            <li class="logout_wrapper"><a href="/signin">로그아웃</a></li>
-        </ul>
+				</label>
+            <label class="logout_wrapper" onclick="location.href='<c:url value="/signin"/>'">로그아웃</label>
+        </span>
 
         <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>
     </nav>
