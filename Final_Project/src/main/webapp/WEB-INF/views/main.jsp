@@ -21,8 +21,25 @@
 			// 현재 스크롤 위치를 가져온다.
 			var scrollTop = $(window).scrollTop();
 			var newPosition = scrollTop + floatPosition + "px";
-
 			$("#floatMenu").stop().animate({
+				"top" : newPosition
+			}, 650);
+
+		}).scroll();
+
+	});
+	
+	$(document).ready(function() {
+
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatWeather = parseInt($("#floatWeather").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+		$(window).scroll(function() {
+
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			var newPosition = scrollTop + floatWeather + "px";
+			$("#floatWeather").stop().animate({
 				"top" : newPosition
 			}, 650);
 
@@ -114,11 +131,26 @@
 	width: 200px;
 	height: 200px;
 	left: 70px;
-	top: 240px;
+	top: 280px;
 	background-color: #606060;
 	color: #fff;
 	z-index: 10;
 }
+
+
+#floatWeather {
+	position: absolute;
+	width: 260px;
+	height: 50px;
+	left: 40px;
+	top: 160px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	color: black;
+	z-index: 10;
+}
+
  ::-webkit-scrollbar {
   		display: none;
 	}
@@ -145,18 +177,59 @@ a#MOVE_TOP_BTN {
         position: fixed;
         bottom: 50px;
         display: none;
-        right: 1%;
+        right: 3%;
       }
       
       a.top img {
       	width: 50px;
       	height: 50px;
       }
+#news-container
+{
+	width: 300px; 
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#news-container ul li div
+{
+	background: transparent;
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #6B7280;
+
+}
 </style>
 </head>
 <body>
+	<div id="floatWeather">
+		<div id="news-container">
+			<ul>
+				<li>
+					<div>서울 ⛈️</div>
+				</li>
+				<li>
+					<div>파주 🌤️</div>
+				</li>
+				<li>
+					<div>고양시 ⛅</div>
+				</li>
+				<li>
+					<div>평택시 ❄️</div>
+				</li>
+
+				<li><div>전주시 ☃️</div></li>
+			</ul>
+		</div>
+
+	</div>
 	<div id="floatMenu">
+				
 		<div class="container">
+			
 			<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
@@ -200,7 +273,121 @@ a#MOVE_TOP_BTN {
 	          return false;
 	        } );
 	      } );
+	 $(function(){
+	        $('#news-container').vTicker({ 
+	            speed: 500,
+	            pause: 3000,
+	            animation: 'fade',
+	            mousePause: false,
+	            showItems: 1
+	        
+	        });
+	    });
 
+		(function(a) {
+			a.fn.vTicker = function(b) {
+				var c = {
+					speed : 700,
+					pause : 4000,
+					showItems : 3,
+					animation : "",
+					mousePause : true,
+					isPaused : false,
+					direction : "up",
+					height : 0
+				};
+				var b = a.extend(c, b);
+				moveUp = function(g, d, e) {
+					if (e.isPaused) {
+						return
+					}
+					var f = g.children("ul");
+					var h = f.children("li:first").clone(true);
+					if (e.height > 0) {
+						d = f.children("li:first").height()
+					}
+					f.animate({
+						top : "-=" + d + "px"
+					}, e.speed, function() {
+						a(this).children("li:first").remove();
+						a(this).css("top", "0px")
+					});
+					if (e.animation == "fade") {
+						f.children("li:first").fadeOut(e.speed);
+						if (e.height == 0) {
+							f.children("li:eq(" + e.showItems + ")").hide()
+									.fadeIn(e.speed)
+						}
+					}
+					h.appendTo(f)
+				};
+				moveDown = function(g, d, e) {
+					if (e.isPaused) {
+						return
+					}
+					var f = g.children("ul");
+					var h = f.children("li:last").clone(true);
+					if (e.height > 0) {
+						d = f.children("li:first").height()
+					}
+					f.css("top", "-" + d + "px").prepend(h);
+					f.animate({
+						top : 0
+					}, e.speed, function() {
+						a(this).children("li:last").remove()
+					});
+					if (e.animation == "fade") {
+						if (e.height == 0) {
+							f.children("li:eq(" + e.showItems + ")").fadeOut(
+									e.speed)
+						}
+						f.children("li:first").hide().fadeIn(e.speed)
+					}
+				};
+				return this.each(function() {
+					var f = a(this);
+					var e = 0;
+					f.css({
+						overflow : "hidden",
+						position : "relative"
+					}).children("ul").css({
+						position : "absolute",
+						margin : 0,
+						padding : 0
+					}).children("li").css({
+						margin : 0,
+						padding : 0
+					});
+					if (b.height == 0) {
+						f.children("ul").children("li").each(function() {
+							if (a(this).height() > e) {
+								e = a(this).height()
+							}
+						});
+						f.children("ul").children("li").each(function() {
+							a(this).height(e)
+						});
+						f.height(e * b.showItems)
+					} else {
+						f.height(b.height)
+					}
+					var d = setInterval(function() {
+						if (b.direction == "up") {
+							moveUp(f, e, b)
+						} else {
+							moveDown(f, e, b)
+						}
+					}, b.pause);
+					if (b.mousePause) {
+						f.bind("mouseenter", function() {
+							b.isPaused = true
+						}).bind("mouseleave", function() {
+							b.isPaused = false
+						})
+					}
+				})
+			}
+		})(jQuery);
 	</script>
 </body>
 </html>
