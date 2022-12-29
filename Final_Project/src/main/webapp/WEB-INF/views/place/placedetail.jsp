@@ -79,6 +79,7 @@
 </style>
 <body>
 	<%@ include file="../common/header.jsp"%>
+	
 	<div class="container_top">
 		<div class="container">
 			<div class="place_info">

@@ -108,6 +108,9 @@ window.onload = function() {
     document.querySelector('#black_bg1').addEventListener('click', offClick);
     document.querySelector('#black_bg2').addEventListener('click', offClick2);
     
+    document.querySelector('#memo_title_x').addEventListener('click',offClick2);
+    document.querySelector('#place_title_x').addEventListener('click',offClick);
+    
     
 
    
@@ -125,20 +128,16 @@ window.onload = function() {
 		margin-top:50px;
 		height:auto;
 	}
-	.sido1{
-		width:120px;
-		height:40px;
-		margin-right:20px;
-		float:left;
-		cursor:pointer;
+	.sido1,.gugun1{
+		background-color: white;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    border-radius: 27px;
+    text-align: center;
 	}
 	
-	.gugun1{
-		width: 120px;
-    	height: 40px;
-    	float:left;
-    	cursor:pointer;
-	}
+	
 	
 	.sido1 + .gugun1:focus{
 		outline:0;
@@ -153,18 +152,18 @@ window.onload = function() {
     cursor: pointer;
     letter-spacing: 2px;
     border-radius: 19px;
+    border:hidden;
+    box-shadow: 0 1px 1px 1px gray;
 	}
 	
 	.daterange:hover{
-		background-color: #D8D8D8;
+		background-color: #3B82F6;
 		color:white;
 		font-weight: bold;
+		border:hidden;
+		box-shadow: 0 2px 2px 2px gray;
 	}
-	.sido1,.gugun1:hover{
-	background-color: #2C74B3;
-		color:white;
-		font-weight: bold;
-	}
+	
 	.selectdiv1{
 		width: 1000px;
     display: flex;
@@ -233,27 +232,28 @@ window.onload = function() {
 
 	.modal_wrap{
         display: none;
-        width: 500px;
-        height: 500px;
-        position: fixed;
-        top:50%;
-        left: 50%;
-        margin: -250px 0 0 -250px;
-        background:white;
-        z-index: 2;
-        overflow:scroll;
+       width: 800px;
+    height: 600px;
+    position: fixed;
+    top: 45%;
+    left: 41%;
+    margin: -250px 0 0 -250px;
+    background: white;
+    z-index: 2;
+    overflow: scroll;
     }
     .modal_wrap2{
         display: none;
-        width: 500px;
-        height: 350px;
-        position: fixed;
-        top:50%;
-        left: 50%;
-        margin: -250px 0 0 -250px;
-        background:#FED049;
-        z-index: 2;
-        overflow:scroll;
+       width: 500px;
+    height: 380px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+    background: white;
+    z-index: 2;
+    overflow: scroll;
+    border-radius: 23px;
     }
     ::-webkit-scrollbar {
   		display: none;
@@ -310,42 +310,59 @@ window.onload = function() {
     	cursor:pointer;
     }
     .memo_textarea{
-    	margin-top:30px;
+    	margin-top: 37px;
+    resize: none;
+    width: 400px;
+    font-size: 20px;
+    height: 180px;
+    padding: 10px;
+    border: 2px solid #cfd2cf;
     	
     }
     .memo_title{
-    	display:block;
-    	font-size:25px;
-    	font-weight: bold;
-    	margin-top:30px;
+    	display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 0%), 0 3px 6px rgb(0 0 0 / 17%);
+    	
+    }
+    .memo_title_logo{
+    	width:150px;
+    	height:45px;
+    }
+    .memo_title_x,.place_title_x{
+    	width:20px;
+    	height:20px;
+    	cursor:pointer;
     }
     .memo_btn{
     	display: block;
     margin: auto;
     margin-top: 20px;
     border: 0;
-    background-color: #68B984;
-    width: 100px;
+    background-color: #3B82F6;
+    width: 120px;
     height: 30px;
     border-radius: 20px;
     color: white;
     font-weight: bold;
     box-shadow: 3px 3px 3px grey;
-    cursor:pointer;
+    cursor: pointer;
  
     }
 	.place_title{
-    	float: left;
-	    line-height: 40px;
-	    font-size: 18px;
-	    font-weight: bold;
-	    display: inline-block;
-	    margin-left: 10px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 25px;
     	
 	}
 	.place img{
 		display:inline-block;
-		width:150px;
+		width:200px;
 		height:150px;
 		margin:0;
 		float:left;
@@ -362,48 +379,73 @@ window.onload = function() {
     height: 35px;
     margin: 5px;
     border: none;
-    box-shadow: 0 2px 2px 2px grey;
-    background-color: #68B984;
+    box-shadow: 0 1px 1px 1px grey;
+    background-color: #3B82F6;
     color: white;
     font-weight: bold;
     border-radius: 5px;
     cursor:pointer;
 	}
 	.place_btn:hover{
-		background-color:#3D5656;
+		background-color:#205295;
 	}
 	.memo_btn:hover{
-		background-color:#3D5656;
+		background-color: #205295;
+	}
+	.modal_wrap_box{
+		position: fixed;
+    height: 101px;
+    z-index: 2;
 	}
 	.place_sel_box{
-	position:fixed;
-		width: 500px;
-    height: 40px;
+    width: 800px;
+    height: 45px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    padding: 0 10px;
+    box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
+    border-bottom:1px solid gray;
 		
+	}
+	.place_search_box{
+	background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 4px 0 13px;
+    border-bottom: 1px solid black;
+    height: 56px;
+    box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
+		
+	}
+	.place_sel_logo{
+		width:150px;
+		height:45px;
 	}
 	.search img{
 		width: 25px;
     height: 25px;
-    border-left: 1px solid black;
     padding: 3px;
     cursor:pointer;
 	}
 	.search{
 		border: 1px solid black;
-    display: flex;
-    border-radius: 5px;
-    
+    display: inline-flex;
+    border-radius: 16px;
+    width: 176px;
+    height: 33px;
+    margin-left: 5px;
 	}
 	.select{
-		border:none;
-		padding:5px;
-    border-radius: 5px;
-    cursor:pointer;
+	border: none;
+    padding: 5px;
+    border-radius: 17px;
+    cursor: pointer;
+    width: 130px;
 	}
 	.select:focus{
 		outline:0;
@@ -412,9 +454,9 @@ window.onload = function() {
 	
 	
 	.place_content{
-		display:inline-block;
-		width:350px;
-		text-align: left;
+		display: inline-block;
+    width: 600px;
+    text-align: left;
 	}
 	
 	.title{
@@ -473,9 +515,16 @@ window.onload = function() {
 	.open_radio_label{
 		font-size: 18px;
 		font-weight:bold;
+		color:gray;
 	}
 	.top_title{
 		font-size:32px;
+	}
+	.place_box{
+		margin-top: 101px;
+    position: absolute;
+    z-index: 1;
+    width: 800px;
 	}
 	
 </style>
@@ -534,9 +583,10 @@ window.onload = function() {
 <div class="black_bg" id="black_bg1"></div>
 <div class="modal_wrap">
         <div>
-    	<div class="place_sel_box"><label class="place_title">관광지 선택하기</label><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div>
-    	 <button type="button" id="modal_close" class="place_btn">완료</button>
-    	</div><br><br>
+	        <div class="modal_wrap_box">
+		    	<div class="place_sel_box"><img src="../resources/images/logo.png" class="place_sel_logo"><label class="place_title">관광지 선택하기</label><img src="../resources/images/x.png" class="place_title_x" id="place_title_x"></div>
+		    	<div class="place_search_box"><span><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div></span> <button type="button" id="modal_close" class="place_btn">완료</button></div>
+	    	</div>          
     	<div class="place_box">
 	        	  <div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg"><div class="place_content"><div class="title"><label>경복궁</label><input type="checkbox"></div> <div class="title_s">경복궁입니댱~~</div></div>
 	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/남산타워.jpg"><div class="place_content"><div class="title"><label>남산타워</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
@@ -553,9 +603,9 @@ window.onload = function() {
 <div class="black_bg" id="black_bg2" ></div>
 <div class="modal_wrap2" id="modal_wrap2">
     <div>
-    	<label class="memo_title">MEMO</label>
-		<textarea class="memo_textarea" rows="10" cols="50"></textarea>
-		<button type="button" class="memo_btn" id="modal_close2" >SAVE</button>
+    	<div class="memo_title"><img src="../resources/images/logo.png" class="memo_title_logo"><img src="../resources/images/x.png" class="memo_title_x" id="memo_title_x"></div>
+		<textarea class="memo_textarea" rows="10" cols="50" spellcheck="false"></textarea>
+		<button type="button" class="memo_btn" id="modal_close2" >확인</button>
 
     </div>
 </div>
