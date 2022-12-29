@@ -9,13 +9,20 @@
 </head>
 <style>
 @charset "UTF-8";
+
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
-* { font-family: 'Pretendard-Regular'; }
+
+* {
+	font-family: 'Pretendard-Regular';
+}
+
 .container_top {
 	text-align: center;
 }
@@ -23,22 +30,21 @@
 .container {
 	margin: auto;
 	padding-top: 100px;
-	width: 400px;
-	margin: auto;
+	width: 350px;
 }
 
 .logo_img {
-	width: 170px;
+	width: 200px;
 	height: 70px;
+	margin: 20px;
 }
 
 .wrap_insert {
 	float: none;
-	width: 390px;
 }
 
 .input_text {
-	height: 49px;
+	height: 55px;
 	padding: 0 11px;
 	font-size: 14px;
 	color: #333;
@@ -46,7 +52,8 @@
 	line-height: 49px;
 	box-shadow: none;
 	border-bottom: 0;
-	width: 366px;
+	margin: auto;
+	width: 326px;
 }
 
 .input_text.password {
@@ -56,32 +63,29 @@
 .wrap_save {
 	overflow: hidden;
 	vertical-align: baseline;
+	width: 350px;
 }
 
 .box_check {
-	margin-top: 18px;
+	margin-top: 19px;
 	overflow: hidden;
 	position: relative;
-	height: 18px;
 	float: left;
-}
-
-.label_check {
-	float: left;
-	height: 18px;
-	padding-left: 21px;
-	color: #606060;
 	font-size: 12px;
-	cursor: pointer;
-	line-height: 18px;
+	color: #767676;
 }
 
-.input_check {
-	order: 0;
-	margin: 2px 1px;
-	padding: 0;
-	vertical-align: top;
-	-webkit-appearance: none;
+.save_id {
+	line-height: 25px;
+}
+
+input[type="checkbox" i] {
+	background-color: initial;
+	cursor: default;
+	appearance: auto;
+	box-sizing: border-box;
+	margin: 3px 3px 4px 4px;
+	vertical-align: middle;
 }
 
 .icon {
@@ -103,12 +107,8 @@
 	color: #767676;
 	display: inline-block;
 	float: right;
-	margin-top: 13px;
+	margin: 20px 0;
 	text-decoration: none;
-}
-
-.error {
-	font-size: 15px;
 }
 
 .login_info a {
@@ -127,20 +127,19 @@
 .wrap_button {
 	float: none;
 	width: auto;
-	margin-top: 19px;
-	padding-bottom: 15px;
 }
 
 .btn_login {
 	display: block;
 	width: 100%;
-	background: #68B984;
-	padding: 17px 0 21px;
+	background: #3B82F6;
+	padding: 17px 0;
 	text-align: center;
 	color: #fff;
-	line-height: 22px;
+	line-height: 20px;
 	font-size: 18px;
 	border: none;
+	cursor: pointer;
 }
 
 .kakao {
@@ -149,16 +148,32 @@
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 17px;
-	margin-bottom: 16px;
+	margin: auto;
+	margin-bottom: 20px;
 	border: none;
 	border-radius: 4px;
 	color: rgb(59, 29, 30);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: rgb(254, 221, 53);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 17px;
+	margin: auto;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 4px;
+	color: rgb(59, 29, 30);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .kakao_img {
 	width: 15px;
 	height: 15px;
+	margin-right: 3px;
 }
 
 .login_path {
@@ -170,17 +185,19 @@
 .login_images {
 	width: 70px;
 	height: 70px;
-	background-color:white;
-	border:none;
+	background-color: white;
+	border: none;
 }
-hr{
+
+.line {
 	background-color: #E6E6E6;
-	border:1px solid #E6E6E6;
-	margin:20px 0 20px 0;
+	border: 1px solid #E6E6E6;
+	margin: 30px 0;
 }
- ::-webkit-scrollbar {
-  		display: none;
-	}
+
+::-webkit-scrollbar {
+	display: none;
+}
 </style>
 
 <body>
@@ -196,7 +213,7 @@ hr{
 			<div class="wrap_insert">
 				<div>
 					<input type="text" id="email" class="input_text"
-						placeholder="사용자아이디(이메일)" />
+						placeholder="사용자아이디" />
 				</div>
 				<div>
 					<input type="password" id="password" class="input_text password"
@@ -205,27 +222,28 @@ hr{
 			</div>
 			<div class="wrap_save">
 				<div class="box_check">
-					<input type="checkbox" class="input_check" name="chk_acc">
-					<label class="label_check"><span class="icon"></span>아이디 저장</label>
+					<label class="save_id"><input type="checkbox">아이디
+						저장</label>
 				</div>
 				<div class="login_info">
 					<a>아이디 찾기</a><span class="bar"> | </span><a>비밀번호 찾기</a> <span
 						class="bar"> |</span> <a href="<c:url value='/signup'/>"
 						class="signin">회원가입</a>
 				</div>
-			</div>
-			<div class=wrap_button>
-				<button class="btn_login">
-					<span>로그인</span>
-				</button>
+				<div class="wrap_button">
+					<button class="btn_login">
+						<span>로그인</span>
+					</button>
 
+				</div>
 			</div>
-			<hr>
+
+			<div class="line"></div>
 			<div class="login_path">
 				<button class="kakao">
 					<img class="kakao_img"
-						src="${pageContext.request.contextPath}/resources/images/speech-bubble.png"><span>카카오로
-						쉬운 시작</span>
+						src="${pageContext.request.contextPath}/resources/images/speech-bubble.png"><span>
+						카카오로 쉬운 시작</span>
 				</button>
 
 				<div>

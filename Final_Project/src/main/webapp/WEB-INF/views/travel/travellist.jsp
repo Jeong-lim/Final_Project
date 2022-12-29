@@ -143,20 +143,23 @@ a {
 .scrap:hover {
 	background-color: #205295;
 }
-.icons{
-	float:right;
-	margin:10px 30px 55px 10px;
 
+.icons {
+	float: right;
+	margin: 10px 30px 55px 10px;
 }
-.views, .publish{
-	width:20px;
-	margin-left:10px;
-	margin-right:3px;
+
+.views, .publish {
+	width: 20px;
+	margin-left: 10px;
+	margin-right: 3px;
 	vertical-align: middle;
 }
-.views{
-	   padding-bottom: 6px
+
+.views {
+	padding-bottom: 6px
 }
+
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -207,6 +210,12 @@ a {
 						</a>
 						<button class="scrap"
 							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							114 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />11
+						</div>
 					</div>
 				</div>
 
@@ -223,13 +232,12 @@ a {
 						</a>
 						<button class="scrap"
 							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
-							<div class="icons">
+						<div class="icons">
 							<img class="views"
-							src="${pageContext.request.contextPath}/resources/images/views.png" />
-							218
-							<img class="publish"
-							src="${pageContext.request.contextPath}/resources/images/publish.png" />17
-							</div>
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							218 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />17
+						</div>
 					</div>
 				</div>
 
@@ -246,6 +254,12 @@ a {
 						</a>
 						<button class="scrap"
 							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							117 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />10
+						</div>
 					</div>
 				</div>
 
@@ -262,6 +276,12 @@ a {
 						</a>
 						<button class="scrap"
 							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							110 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />20
+						</div>
 					</div>
 				</div>
 
