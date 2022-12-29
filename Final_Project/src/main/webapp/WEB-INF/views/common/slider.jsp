@@ -11,22 +11,22 @@
 	
   <script>
     $(document).ready(function(){
-      $('.slider').bxSlider();
-    });
-    $('.bxslider').bxSlider({
-    	  auto: true,
-    	  autoControls: true,
-    	  stopAutoOnClick: true,
-    	  pager: true,
-    	  slideWidth: 1000,
+    	$('.bxslider').bxSlider({
+    		  auto: true,
+    		  autoControls: true,
+    		  stopAutoOnClick: true,
+    		  pager: true,
+    		  slideWidth: 1000
+    		});
     	});
   </script>
   
   <style>
-  .slider {
+  .bxslider {
   	z-index: 1;
   }
   	.slider_img_container {
+
 	 margin: 0px auto;
 }
 
@@ -38,13 +38,14 @@
 	margin-top: 2%;
 	border: none;
 	box-shadow: none;
+	margin: 0 auto;
 }
 
   </style>
 </head>
 <body>
 		
-	<div class="slider">
+	<div class="bxslider">
 		<div class="image_container">
 			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/slider1.png" />
 		</div>
