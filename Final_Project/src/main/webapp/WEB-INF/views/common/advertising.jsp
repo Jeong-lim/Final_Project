@@ -58,14 +58,10 @@
 }
 
 .ad__img {
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 150px;
-	height: 150px;
-	border-top-left-radius: 16px;
-	border-bottom-left-radius: 16px;
+	width: 470px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 16px;
 }
 
 .ad__img-2 {
@@ -93,22 +89,12 @@
 			<span class="ad__header__font">TRAVELY</span> 소식
 		</div>
 		<div class="ad__container__1">
-			<div class="ad__img__container">
 				<img class="ad__img"
 					src="${pageContext.request.contextPath}/resources/images/ad__img-1.png" />
-			</div>
-			<span class="ad__main">트래블리 비즈니스<br />
-			<span class="ad__main_text">출장부터 복지까지 트래블리 <br /> 비즈니스로 스마트하게
-			</span></span>
 		</div>
 		<div class="ad__container__2">
-			<div class="ad__img__container">
-				<img class="ad__img-2"
+				<img class="ad__img"
 					src="${pageContext.request.contextPath}/resources/images/ad__img-2.png" />
-			</div>
-			<span class="ad__main">트래블리 비즈니스<br /> <span
-				class="ad__main_text">출장부터 복지까지 트래블리 <br /> 비즈니스로 스마트하게
-			</span></span>
 		</div>
 	</div>
 </body>
