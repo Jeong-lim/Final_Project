@@ -546,7 +546,7 @@ window.onload = function() {
 	    
 	    <div class="contentdiv">
 	    	<div class="content">
-	    		<div class="content_title"><label>DAY 1</label><label>- 2월14일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="content_title"><label>DAY 1</label><label>- 2022.2.14</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		<div class="schedule_box">
 	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
 	    		</div>
@@ -554,7 +554,7 @@ window.onload = function() {
 	    	
 	    	
 	    	<div class="content">
-	    		<div class="content_title"><label>DAY 2</label><label>- 2월15일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		<div class="schedule_box">
 		    		<div class="schedule">경복궁</div>
 		    		<div class="schedule">남산타워</div>
@@ -566,14 +566,14 @@ window.onload = function() {
 	    	
 	    	
 	    	<div class="content">
-	    		<div class="content_title"><label>DAY 3</label><label>- 2월16일</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		<div class="content_title"><label>DAY 3</label><label>- 2022.2.16</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		<div class="schedule_box">
 	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
 	    		</div>
 	    	
 	    	</div>
 	    	
-	    	<button class="save" onclick="location.href='<c:url value="/travel/detail"/>'">저장</button>
+	    	<button class="save" onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>
 	    
 	    </div>
 	    
@@ -585,7 +585,7 @@ window.onload = function() {
         <div>
 	        <div class="modal_wrap_box">
 		    	<div class="place_sel_box"><img src="../resources/images/logo.png" class="place_sel_logo"><label class="place_title">관광지 선택하기</label><img src="../resources/images/x.png" class="place_title_x" id="place_title_x"></div>
-		    	<div class="place_search_box"><span><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div></span> <button type="button" id="modal_close" class="place_btn">완료</button></div>
+		    	<div class="place_search_box"><span><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div></span> <button type="button" id="modal_close" class="place_btn">확인</button></div>
 	    	</div>          
     	<div class="place_box">
 	        	  <div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg"><div class="place_content"><div class="title"><label>경복궁</label><input type="checkbox"></div> <div class="title_s">경복궁입니댱~~</div></div>
