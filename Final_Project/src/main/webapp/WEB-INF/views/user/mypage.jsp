@@ -374,6 +374,10 @@ a {
 							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 							class="follower_id">youngseo98</label>
 							<button class="block">차단</button></li>
+						<li><img class="follower_img"
+							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+							class="follower_id">youngseo98</label>
+							<button class="block">차단</button></li>
 					</ul>
 
 				</div>
