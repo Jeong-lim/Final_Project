@@ -87,7 +87,7 @@
 		text-align: left;
 		margin-left:50px;
 		padding:10px;
-		height:30px;
+		height:40px;
 	}
 	.memo_content{
 		position: absolute;
@@ -210,6 +210,10 @@
 	
 	
 	.sido1 + .gugun1:focus{
+		outline:0;
+	}
+	
+	.sido1:focus {
 		outline:0;
 	}
 	
