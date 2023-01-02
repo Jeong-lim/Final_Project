@@ -342,6 +342,9 @@ window.onload = function() {
     border: 2px solid #cfd2cf;
     	
     }
+    .memo_textarea:focus{
+    	outline:0;
+    }
     .memo_title{
     	display: flex;
     height: 50px;
