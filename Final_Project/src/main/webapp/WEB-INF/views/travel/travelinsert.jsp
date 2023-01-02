@@ -12,6 +12,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
 
 <script>
 $('document').ready(function() {
@@ -128,6 +134,8 @@ window.onload = function() {
 		margin-top:50px;
 		height:auto;
 	}
+	
+
 	.sido1,.gugun1{
 		background-color: white;
     cursor: pointer;
@@ -188,9 +196,13 @@ window.onload = function() {
 		margin:20px auto;
 	}
 	.content_title{
-		height:45px;
-		border-bottom:1px solid black;
-		padding:5px;
+		height: 45px;
+    padding: 5px;
+    margin-top: 30px;
+    background: #FED049;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px lightgrey;
+    display:flex;
 	}
 	.content_title label{
 		font-size:23px;
@@ -294,18 +306,33 @@ window.onload = function() {
     cursor:pointer;
     }
     #modal_btn{
+    width:130px;
+    margin-top:20px;
     	border: none;
     background-color: transparent;
-    height: 144px;
+    border: 1px solid transparent;
     font-weight: bold;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    margin: 0;
-    cursor:pointer;
+    border-radius: .25rem;
+                    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    color: #0d6efd;
+                    border-color: #0d6efd;
+                    margin-left:10px;
+    }
+    #modal_btn:hover {
+                        color: #fff;
+                        background-color: #0d6efd;
+                        border-color: #0d6efd;
+                    }
+    #modal_btn img{
+    	width:35px;
+    	height:35px;
     }
     .content_title button{
     	border:0;
-    	background-color:white;
+    	background-color:transparent;
     	float:left;
     	cursor:pointer;
     }
@@ -477,23 +504,30 @@ window.onload = function() {
 		
 	}
 	.schedule_box{
-		height:144px;
-		overflow:scroll;
+		height: 50px;
+    overflow: scroll;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 13px;
 	}
 	
 	.schedule{
-		height: 40px;
-    border-bottom: 1px solid black;
+	display: inline-block;
+    height: 40px;
+    width: 100%;
     line-height: 40px;
     text-align: left;
-    padding-left: 15px;
+    margin: 0 10px;
+    padding-left: 10px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
 	}
 	.save{
 		display: inline-block;
     width: 150px;
     height: 40px;
     cursor: pointer;
-    margin-top: 30px;
+    margin: 30px 0px;
     border: none;
     font-size: 20px;
     font-weight: bold;
@@ -503,7 +537,9 @@ window.onload = function() {
     box-shadow: 0px 2px 2px 2px dimgrey;
 	}
 	.save:hover{
-		box-shadow:0px 3px 3px 3px gray;
+		color: #fff;
+                        background-color: #0d6efd;
+                        border-color: #0d6efd;
 	}
 	.open_radio{
 		accent-color:#3B82F6;
@@ -526,6 +562,26 @@ window.onload = function() {
     z-index: 1;
     width: 800px;
 	}
+	.schedule_insert_box{
+		height: 35px;
+    width: 130px;
+    border: 1px solid black;
+    margin-top: 15px;
+	}
+	.schedule_insert_box img{
+		height:35px;
+		width:35px;
+	}
+	.insert_num{
+	display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    margin-left: 5px;
+	}
 	
 </style>
 </head>
@@ -544,38 +600,41 @@ window.onload = function() {
 			<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
 	    </div>
 	    
-	    <div class="contentdiv">
-	    	<div class="content">
+	    <hr class="uk-divider-icon">
+	    
+	    
+	    	
 	    		<div class="content_title"><label>DAY 1</label><label>- 2022.2.14</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<div class="schedule_box">
+	    		<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    		
+	    	
+	    	
+	    	
+	    	
+	    	
+	    			<div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		
+		    		<div class="schedule_box"><div class="insert_num">1</div><div class="schedule">경복궁</div></div>
+		    		<div class="schedule_box"><div class="insert_num">2</div><div class="schedule">남산타워</div></div>
+		    		<div class="schedule_box"><div class="insert_num">3</div><div class="schedule">청계천</div></div>
+		    		<div class="schedule_box"><div class="insert_num">4</div><div class="schedule">북촌한옥마을</div></div>
+		    		
+		    		
+		    		<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    		
+	    	
+	    	
+	    	
+	    	
+	    	<div class="content_title"><label>DAY 3</label><label>- 2022.2.16</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    		
 	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		</div>
-	    	</div>
 	    	
 	    	
-	    	<div class="content">
-	    		<div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<div class="schedule_box">
-		    		<div class="schedule">경복궁</div>
-		    		<div class="schedule">남산타워</div>
-		    		<div class="schedule">청계천</div>
-		    		<div class="schedule">북촌한옥마을</div>
-		    		<button type="button" ><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		</div>
-	    	</div>
-	    	
-	    	
-	    	<div class="content">
-	    		<div class="content_title"><label>DAY 3</label><label>- 2022.2.16</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<div class="schedule_box">
-	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		</div>
-	    	
-	    	</div>
 	    	
 	    	<button class="save" onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>
 	    
-	    </div>
+	    
 	    
 	    
 	    
