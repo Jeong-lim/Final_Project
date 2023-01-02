@@ -4,6 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Nav bar</title> 
+    <style>
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+* { font-family: 'Pretendard-Regular'; }
+=======
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +28,7 @@
 	href="${pageContext.request.contextPath}/resources/css/header.css" />
 <title>Nav bar</title>
 <!-- UIkit CSS -->
+>>>>>>> branch 'master' of https://github.com/Jeong-lim/Final_Project.git
 
 
 </head>
