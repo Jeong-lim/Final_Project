@@ -12,10 +12,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css" />
 <title>Nav bar</title>
-<!-- UIkit CSS -->
-
-
 </head>
+
 
 <body>
 	<nav class="navbar">
@@ -42,15 +40,15 @@
 				<div class="uk-dropdown-large"
 					uk-dropdown="mode: click; offset: 10; bg-scroll: true">
 					<ul class="uk-nav uk-dropdown-nav">
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudrhdwn99이 회원님을 팔로우
-								하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudchlrh99이 회원님을 팔로우
-								하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">dudtjghkdlxld98이 회원님을
-								팔로우 하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">wjdflaqorhvk00이 회원님을
-								팔로우 하였습니다.</a></li>
-						
+						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudrhdwn99이
+								회원님을 팔로우 하였습니다.</a></li>
+						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudchlrh99이
+								회원님을 팔로우 하였습니다.</a></li>
+						<li class="uk-active"><a href="<c:url value='/mypage'/>">dudtjghkdlxld98이
+								회원님을 팔로우 하였습니다.</a></li>
+						<li class="uk-active"><a href="<c:url value='/mypage'/>">wjdflaqorhvk00이
+								회원님을 팔로우 하였습니다.</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -68,13 +66,9 @@
 
 		<a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>
 	</nav>
-
-
-
-	<!-- UIkit JS -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
 </body>
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
 </html>

@@ -5,37 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
-<style>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/information.css" />
 
-
-.item {
-  width: 1000px;
-  height: 380px;
-  margin: 50px auto;
-  padding-top: 75px;
-  text-align: center;
-  color: #4E4C48;
-  font-size: 1.5em;
-  background-color: transparent;
-}
-
-.scroll__header {
-	font-size: 40px;
-	float: left;
-	padding-bottom: 30px;
-	font-weight: bolder;
-}
-
-.scroll__main {
-	font-size: x-large;
-	float: left;
-	text-align: left;
-	line-height: 150%;
-}
-
-</style>
 </head>
 <body>
 <div class="item" data-aos="fade-up" data-aos-anchor-placement="top-center">
@@ -52,6 +25,8 @@ NEXT, 여행은 TRAVELY
 앞으로의 여행은 TRAVELY입니다. <br />
 </div>
 </div>
+</body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() { AOS.refresh(); }, 500);
@@ -59,6 +34,5 @@ document.addEventListener("DOMContentLoaded", function() {
 AOS.init({
 	  duration: 1000
 	});
-</script>
-</body>
+</script> 
 </html>
