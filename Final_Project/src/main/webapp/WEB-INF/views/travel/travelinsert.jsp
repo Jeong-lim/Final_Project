@@ -175,8 +175,8 @@ $(function() {
 		    	  
 		    	  const diffDate = date1.getTime() - date2.getTime();
 		    	  const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
-		    	  console.log(days);
-		    	  
+		    	  console.log(days); //일 수
+
 		    	 
 		    	}
 
