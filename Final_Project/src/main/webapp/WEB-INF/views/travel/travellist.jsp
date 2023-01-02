@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="../common/header.jsp"%>
 </head>
 <style>
 .container_top {
@@ -170,7 +171,7 @@ a {
 }
 </style>
 <body>
-	<%@ include file="../common/header.jsp"%>
+	
 	<div class="container_top">
 		<div class="container">
 			<br>

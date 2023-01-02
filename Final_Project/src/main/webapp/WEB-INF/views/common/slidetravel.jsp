@@ -134,6 +134,7 @@
 	font-size: 26px;
 	font-weight: 900;
 	transition: all .35s;
+	text-align: left;
 }
 
 .slider__a__ .screen .bottom {
