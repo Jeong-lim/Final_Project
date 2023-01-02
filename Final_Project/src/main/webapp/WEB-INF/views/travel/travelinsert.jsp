@@ -29,6 +29,7 @@
 			</span>
 			<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
 	    </div>
+	    <div class="title_input_box"><input type="text" id="title_input"  class="title_input" placeholder="일정 제목을 입력해주세요"><img class="title_input_img" id="title_input_img" src="../resources/images/pen.png"></div>
 	    
 	    <hr class="uk-divider-icon">
 	    
@@ -173,7 +174,18 @@ $(function() {
   
 });
 
+
+
+
+
 window.onload = function() {
+	var btnClear = document.querySelector('#title_input_img');
+	btnClear.addEventListener('click', function(){
+		console.log("click");
+	    document.querySelector('#title_input').value="";
+	    
+	})
+	
 	 
     function onClick() {
         document.querySelector('.modal_wrap').style.display ='block';
