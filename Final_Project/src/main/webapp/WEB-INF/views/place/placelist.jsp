@@ -18,6 +18,11 @@
 	margin: auto;
 	text-align: left;
 }
+.list_tit{
+	font-size:30px;
+	font-weight:bold;
+	margin-top:15px;
+}
 
 .select {
 	height: 34px;
@@ -142,7 +147,7 @@ a {
 				<span>TRAVELY가 준비한</span>
 			</div>
 			<div>
-				<h2>우리나라 관광지 리스트</h2>
+				<p class="list_tit">우리나라 관광지 리스트</p>
 			</div>
 			<div class="search">
 				<select class="select">
