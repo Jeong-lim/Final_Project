@@ -164,11 +164,25 @@ $('document').ready(function() {
 </script>
 <script>
 $(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
+	$(function() {
+		  $('input[name="daterange"]').daterangepicker({
+		    opens: 'left'
+		  }, function(start, end, label) {
+		    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+		    const getDateDiff = (start, end) => {
+		    	  const date1 = new Date(start);
+		    	  const date2 = new Date(end);
+		    	  
+		    	  const diffDate = date1.getTime() - date2.getTime();
+		    	  const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
+		    	  console.log(days);
+		    	  
+		    	 
+		    	}
+
+		    	getDateDiff(start, end);
+		  });
+		});
 
 	
   
