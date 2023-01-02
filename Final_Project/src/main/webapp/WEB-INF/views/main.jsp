@@ -60,9 +60,6 @@
 	<%@ include file="common/information.jsp"%>
 	<%@ include file="common/sliderbanner.jsp"%>
 	<%@ include file="common/slidetravel.jsp"%>
-	
-	
-	
 	<%@ include file="common/footer.jsp"%>
 	
 
