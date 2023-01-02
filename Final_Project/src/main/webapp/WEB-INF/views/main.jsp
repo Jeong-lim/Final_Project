@@ -7,9 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="common/header.jsp"%>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-
 <script>
 	$(document).ready(function() {
 
@@ -50,7 +48,6 @@
 
 <style>
 
-
 /* head */
 .leaderboard .head {
 	padding: 16px 13px;
@@ -80,9 +77,6 @@
 	display: flex;
 }
 
-
-
-
 #floating__banner_1 {
 	background: #DBEAFE;
 	color: #143601;
@@ -90,24 +84,28 @@
 }
 
 #floating__banner_1:hover {
-	transform: scale( 1.03, 1.03 );
-	transition: transform .1s; 
+	transform: scale(1.03, 1.03);
+	transition: transform .1s;
 }
+
 #floating__banner_2:hover {
-	transform: scale( 1.03, 1.03 );
-	transition: transform .1s; 
+	transform: scale(1.03, 1.03);
+	transition: transform .1s;
 }
+
 #floating__banner_3:hover {
-	transform: scale( 1.03, 1.03 );
-	transition: transform .1s; 
+	transform: scale(1.03, 1.03);
+	transition: transform .1s;
 }
+
 #floating__banner_4:hover {
-	transform: scale( 1.03, 1.03 );
-	transition: transform .1s; 
+	transform: scale(1.03, 1.03);
+	transition: transform .1s;
 }
+
 #floating__banner_5:hover {
-	transform: scale( 1.03, 1.03 );
-	transition: transform .1s; 
+	transform: scale(1.03, 1.03);
+	transition: transform .1s;
 	border-radius: 0 0 10px 10px;
 }
 
@@ -135,6 +133,7 @@
 	font-weight: bold;
 	border-radius: 0 0 10px 10px;
 }
+
 .container {
 	width: 260px;
 	height: auto;
@@ -147,6 +146,7 @@
 	transform: translate(-50%, -50%);
 	z-index: 1;
 }
+
 #floatMenu {
 	position: absolute;
 	width: 200px;
@@ -157,7 +157,6 @@
 	color: #fff;
 	z-index: 10;
 }
-
 
 #floatWeather {
 	position: absolute;
@@ -172,20 +171,22 @@
 	z-index: 10;
 }
 
- ::-webkit-scrollbar {
-  		display: none;
-	}
-.item {
-  width: 1000px;
-  height: 200px;
-  margin: 50px auto;
-  padding-top: 75px;
-  background: rgba(255,85,0, .7);
-  text-align: center;
-  color: #4E4C48;
-  font-size: 1.5em;
-  z-index: 2;
+::-webkit-scrollbar {
+	display: none;
 }
+
+.item {
+	width: 1000px;
+	height: 200px;
+	margin: 50px auto;
+	padding-top: 75px;
+	background: rgba(255, 85, 0, .7);
+	text-align: center;
+	color: #4E4C48;
+	font-size: 1.5em;
+	z-index: 2;
+}
+
 a#MOVE_TOP_BTN {
 	position: fixed;
 	right: 2%;
@@ -194,34 +195,41 @@ a#MOVE_TOP_BTN {
 	z-index: 999;
 }
 
-      a.top {
-        position: fixed;
-        bottom: 50px;
-        display: none;
-        right: 3%;
-      }
-      
-      a.top img {
-      	width: 50px;
-      	height: 50px;
-      }
-#news-container
-{
-	width: 300px; 
-	margin: 0 auto;
-	text-align: center;
-
+a.top {
+	position: fixed;
+	bottom: 50px;
+	display: none;
+	right: 3%;
 }
 
-#news-container ul li div
-{
+a.top img {
+	width: 50px;
+	height: 50px;
+}
+
+#news-container {
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#news-container ul li div {
 	background: transparent;
 	padding-left: 20px;
 	padding-top: 10px;
 	font-size: 20px;
 	font-weight: bold;
 	color: #6B7280;
+}
 
+@media ( max-width :1600px) {
+	#floatWeather {
+		display: none;
+	}
+	
+	#floatMenu {
+		display: none;
+	}
 }
 </style>
 </head>
