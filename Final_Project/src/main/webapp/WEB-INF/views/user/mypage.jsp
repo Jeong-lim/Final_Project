@@ -6,323 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
 <%@ include file="../common/header.jsp"%>
 </head>
-<style>
-.container_top {
-	text-align: center;
-}
 
-.container {
-	width: 1000px;
-	min-height: 800px;
-	margin: auto;
-}
-
-.mypage_title {
-	text-align: center;
-}
-
-.profile {
-	width: 980px;
-	border-bottom: 2px solid #A4A4A4;
-	padding: 20px;
-	height: 180px;
-	margin: auto;
-}
-
-.profile_img {
-	float: left;
-	border: 1px solid black;
-	width: 160px;
-	height: 160px;
-	margin: 10px;
-	margin-bottom: 20px;
-}
-
-.profile_image {
-	width: 160px;
-	height: 160px;
-}
-
-.profile_info {
-	float: left;
-	margin: 0 20px 0 40px;
-	text-align: left;
-	font-size: 18px;
-}
-
-.profile_info p {
-	margin-left: 0;
-}
-
-.profile_update {
-	float: right;
-	margin-right: 20px;
-	margin-top: 10px;
-}
-
-.openBtn {
-	cursor: pointer;
-}
-
-.updateBtn {
-	cursor: pointer;
-	border: none;
-	box-shadow: 1px 1px 1px 0 black;
-	border-radius: 3px;
-	width: 100px;
-	height: 28px;
-	background-color: #3B82F6;
-	color: white;
-	font-size: 15px;
-}
-
-.updateBtn:hover {
-	background-color: #205295;
-}
-
-.mytravel {
-	width: 1040px;
-	margin: 30px 0;
-	min-height: 1000px;
-}
-
-.card {
-	width: 200px;
-	height: 220px;
-	border: 1px solid black;
-	float: left;
-	margin: 20px;
-	padding: 20px 5px 2px 5px;
-}
-
-.card:hover {
-	box-shadow: 4px 4px 10px #BDBDBD;
-}
-
-.card.last {
-	border: 1px dashed black;
-}
-
-.travel_tit {
-	font-size: 25px;
-	font-weight: 500;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-.category {
-	background-color: #68B984;
-	width: 120px;
-	margin: auto;
-	padding: 2px;
-	margin-top: 25px;
-	border-radius: 15px;
-	color: white;
-	border-radius: 15px;
-}
-
-.category.a {
-	background-color: #FED049;
-}
-
-.category.b {
-	background-color: #3D5656;
-}
-
-.icons {
-	margin-top: 40px;
-	float: right;
-	margin-right: 15px;
-}
-
-.views, .publish {
-	width: 20px;
-	margin-left: 10px;
-	margin-right: 3px;
-	vertical-align: middle;
-}
-
-.views {
-	padding-bottom: 6px
-}
-
-.add {
-	height: 40px;
-	margin-top: 60px;
-	cursor: pointer;
-}
-
-.insert_btn {
-	width: 40px;
-	height: 40px;
-	border: none;
-	background-color: white;
-	float: left;
-	cursor: pointer;
-}
-
-.add_img {
-	width: 45px;
-}
-
-.add_label {
-	line-height: 50px;
-	font-size: 20px;
-	vertical-align: middle;
-	cursor: pointer;
-}
-
-.modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.modal .bg {
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modalBox {
-	position: absolute;
-	background-color: #fff;
-	width: 400px;
-	height: 450px;
-	padding: 10px 15px 15px 15px;
-}
-
-.modalBox button {
-	display: block;
-	width: 70px;
-}
-
-.hidden {
-	display: none;
-}
-
-.follower {
-	width: 100%;
-	height: 35px;
-	font-size: 20px;
-	border-bottom: 1px solid black;
-}
-
-.box {
-	width: 380px;
-	height: 360px;
-	overflow: scroll;
-	padding: 0 10px 10px 10px;
-	overflow: scroll;
-}
-
-.modal_ul {
-	display: block;
-	list-style-type: none;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 0px;
-	text-align: left;
-}
-
-.modal_li {
-	list-style-type: none;
-}
-
-.block {
-	float: right;
-	cursor: pointer;
-	border: none;
-	box-shadow: 1px 1px 1px 0 black;
-	border-radius: 3px;
-	width: 100px;
-	height: 26px;
-	background-color: #3B82F6;
-	color: white;
-	font-size: 13px;
-	margin-top: 5px;
-}
-
-.close {
-	float: right;
-	width: 20px;
-	height: 20px;
-	text-align: center;
-}
-
-.closeBtn:after {
-	content: "\00d7";
-	font-size: 20px;
-}
-
-.follower_img {
-	width: 40px;
-	height: 40px;
-	margin-right: 20px;
-}
-
-.follower_id {
-	display: inline-block;
-	line-height: 40px;
-	vertical-align: top;
-}
-
-::-webkit-scrollbar {
-	display: none;
-}
-
-.logo {
-	width: 100px;
-	height: 35px;
-	float: left;
-}
-
-.follower_tit {
-	line-height: 30px;
-	margin-right:70px;
-}
-
-.search img {
-	width: 25px;
-	height: 25px;
-	padding: 3px;
-	cursor: pointer;
-}
-
-.search {
-	border: 1px solid black;
-	display: inline-flex;
-	border-radius: 16px;
-	width: 380px;
-	height: 33px;
-	margin: 5px 0;
-}
-
-.select {
-	border: none;
-	padding: 5px;
-	border-radius: 17px;
-	cursor: pointer;
-	width: 330px;
-	margin-left: 5px;
-}
-
-.select:focus {
-	outline: 0;
-}
-</style>
 <body>
 	<br>
 	<br>
@@ -416,8 +104,8 @@ a {
 				<div class="bg"></div>
 				<div class="modalBox">
 					<div class="follower">
-						<img class="logo" src="../resources/images/logo.png"> <label
-							class="follower_tit">팔로워</label>
+						<img class="modal_logo" src="../resources/images/logo.png">
+						<label class="follower_tit">팔로워</label>
 						<div class="close closeBtn"></div>
 					</div>
 					<div class="search">
@@ -432,42 +120,42 @@ a {
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">dudtj1234</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">moomoogayoung</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">jungrimlee</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
 								<button class="block">차단</button></li>
-							<li><a href='<c:url value="/mypage"/>'><img
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">youngseo98</label></a>
@@ -478,7 +166,12 @@ a {
 				</div>
 			</div>
 
-			<script>
+
+
+		</div>
+	</div>
+</body>
+<script>
   const open = () => {
     document.querySelector(".modal").classList.remove("hidden");
     document.body.style.overflow = "hidden";
@@ -495,9 +188,5 @@ a {
 
 </script>
 
-
-		</div>
-	</div>
-</body>
 <%@ include file="../common/footer.jsp"%>
 </html>

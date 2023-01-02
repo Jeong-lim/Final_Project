@@ -8,75 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<script>
-	$(function() {
-		$('.bxslider').bxSlider({
-			mode : 'fade',
-			captions : true,
-			slideWidth : 700
-		});
-	});
-</script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/placedetail.css" />
 </head>
-<style>
-.container_top {
-	text-align: center;
-}
-
-.container {
-	width: 1000px;
-	min-height: 1000px;
-	margin: auto;
-}
-
-.place_info{
-	margin:50px 0 30px 0;
-}
-.place_name{
-	font-size:38px;
-	font-wight:500%;
-	margin:0;
-}
-.place_area{
-	font-size:20px;
-}
-
-.gbg_img {
-	width: 700px;
-	height: 400px;
-}
-
-.category_label {
-	padding: 5px;
-	border: 1px solid #dfdfdf;
-	border-radius: 15px;
-	background-color: #ffffff;
-	text-align: center;
-	font-size: 15px;
-}
-
-.slider_container {
-	width: 700px;
-	margin: auto;
-	margin-top: 30px;
-}
-.content p{
-	text-align: left;
-	font-size:18px;
-	font-weight:100;
-	line-height:30px;
-}
-.content{
-	margin:30px 0;
-}
-::-webkit-scrollbar {
-	display: none;
-}
-</style>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	
@@ -123,5 +56,18 @@
 		</div>
 	</div>
 </body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+	$(function() {
+		$('.bxslider').bxSlider({
+			mode : 'fade',
+			captions : true,
+			slideWidth : 700
+		});
+	});
+</script>
 <%@ include file="../common/footer.jsp"%>
 </html>
