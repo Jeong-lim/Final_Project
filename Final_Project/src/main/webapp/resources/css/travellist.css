@@ -23,10 +23,18 @@
 	border-radius: 5px;
 	border: 2px solid #dfdfdf;
 	padding: 3px;
+	cursor: pointer;
+	
+}
+.select:focus {
+	outline: 0;
 }
 
 .search {
 	float: right;
+}
+.search_bar:focus {
+	outline:0;
 }
 
 .search_bar {
@@ -45,6 +53,8 @@
 	vertical-align: middle;
 	background-color: white;
 	border: none;
+	cursor: pointer;
+	
 }
 
 .search_img {

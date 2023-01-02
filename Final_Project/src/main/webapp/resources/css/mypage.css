@@ -231,6 +231,7 @@ a {
 .modal_li {
 	list-style-type: none;
 	padding:5px;
+
 }
 
 .block {
@@ -269,6 +270,7 @@ a {
 	display: inline-block;
 	line-height: 40px;
 	vertical-align: top;
+	cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -291,6 +293,8 @@ a {
 	height: 25px;
 	padding: 3px;
 	cursor: pointer;
+	margin-top: 3px;
+	
 }
 
 .search {
