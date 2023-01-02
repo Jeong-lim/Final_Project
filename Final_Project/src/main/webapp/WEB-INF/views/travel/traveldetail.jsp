@@ -9,9 +9,13 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/traveldetail.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </head>
 <body>
 <%@ include file="../common/header.jsp"%>
+
 
 
 <div class="outer">
@@ -19,7 +23,8 @@
 		<div class="top_title">
 			<label class="top_tit">3박4일 서울여행</label>
 			<label class="top_date">2022.2.14 - 2022.2.16</label>
-			<button onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+			<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+			<button class="update_btn" onclick="location.href='<c:url value="/travel/insert"/>'">수정</button><hr class="uk-divider-vertical"><button id="delete_btn" class="delete_btn" >삭제</button>
 		</div>
 		<div class="profile">
 			<img class="profile__img" src="${pageContext.request.contextPath}/resources/images/user.png" onclick="location.href='<c:url value="/mypage"/>'">
@@ -103,9 +108,34 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시글 삭제</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>일정을 삭제하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='<c:url value="/mypage"/>'">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 <%@ include file="../common/footer.jsp"%>
 </body>
 <script>
+$('#delete_btn').click(function(e){
+	e.preventDefault();
+	$('.modal').modal("show");
+});
+	
 $(document).ready(function(){
 	console.log("ok");
     $('#radio2').hide();   
@@ -136,6 +166,8 @@ $(document).ready(function(){
 
 </script>
 <script>
+	
+	
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 	  var area1 = ["서울"];

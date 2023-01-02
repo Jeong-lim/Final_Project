@@ -461,3 +461,22 @@
     box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
     margin-left: 5px;
 	}
+	.title_input{
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    font-size: 17px;
+	}
+	.title_input:focus{
+		outline:0;
+	}
+	.title_input_img{
+		width:25px;
+		height:25px;
+		cursor:pointer;
+	}
+	.title_input_box{
+		display:flex;
+		align-items: center;
+	}

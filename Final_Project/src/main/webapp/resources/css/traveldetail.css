@@ -166,13 +166,13 @@
 		display: inline-block;
     	margin-left: 20px;
 	}
-	.top_title button{
+	.share_btn{
 		border: none;
     box-shadow: 1px 1px 1px 0 black;
     border-radius: 3px;
     width: 70px;
     height: 35px;
-    margin-left: 30px;
+    margin:0 30px;
     background-color: #3B82F6;
     color: white;
     font-weight: bold;
@@ -222,4 +222,25 @@
     justify-content: flex-start;
     box-sizing: border-box;
     padding: 15px;
+	}
+	
+	.uk-divider-vertical  {
+    width: max-content;
+    height: 25px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    border-left: 2px solid lightgray !important;
+}
+
+	.update_btn, .delete_btn{
+	cursor:pointer;
+		font-size: 18px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: dimgray;
+	}
+	
+	.update_btn:hover, .delete_btn:hover{
+		background:none !important;
 	}
