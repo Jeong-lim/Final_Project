@@ -1,33 +1,20 @@
 @charset "UTF-8";
 
+.bxslider {
+	z-index: 1;
+}
+
 .slider_img_container {
-	 margin: 0px auto;
+	margin: 0px auto;
 }
 
-.image_container {
-	width: 1000px;
-	
-}
-
-img {
+.bx-wrapper .bx-controls-direction a {
 	display: none;
 }
 
 .bx-wrapper {
-	margin-top: 2%;
 	border: none;
 	box-shadow: none;
+	margin: 0 auto;
+	top: 50px;
 }
-
-.bx-wrapper img {
-	max-width: 1000px;
-}
-
-.bx-next {
-	display: none;
-}
-
-.bx-prev {
-	display: none;
-}
-
