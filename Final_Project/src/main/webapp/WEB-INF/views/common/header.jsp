@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -6,11 +7,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/header.css" />
 <title>Nav bar</title>
 </head>
-
 
 <body>
 	<nav class="navbar">
@@ -37,14 +39,40 @@
 				<div class="uk-dropdown-large"
 					uk-dropdown="mode: click; offset: 10; bg-scroll: true">
 					<ul class="uk-nav uk-dropdown-nav">
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudrhdwn99이
-								회원님을 팔로우 하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">rkdudchlrh99이
-								회원님을 팔로우 하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">dudtjghkdlxld98이
-								회원님을 팔로우 하였습니다.</a></li>
-						<li class="uk-active"><a href="<c:url value='/mypage'/>">wjdflaqorhvk00이
-								회원님을 팔로우 하였습니다.</a></li>
+
+						<li class="uk-active">rkdudrhdwn99이 회원님을 팔로우 하였습니다.</li>
+						<div class="follow_button__">
+							<a href="<c:url value='/mypage'/>"><img class="follow_check"
+								src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>
+							<a href="<c:url value='/'/>"><img class="follow_cancel"
+								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+						</div>
+
+
+
+
+						<li class="uk-active">rkdudchlrh99이 회원님을 팔로우 하였습니다.</li>
+						<div class="follow_button__">
+							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
+								src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>
+							<a href="<c:url value='/'/>"> <img class="follow_cancel"
+								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+						</div>
+						<li class="uk-active">dudtjghkdlxld98이 회원님을 팔로우 하였습니다.</li>
+						<div class="follow_button__">
+							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
+								src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>
+							<a href="<c:url value='/'/>"> <img class="follow_cancel"
+								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+						</div>
+						<li class="uk-active">wjdflaqorhvk00이 회원님을 팔로우 하였습니다.</li>
+						<div class="follow_button__">
+							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
+								src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>
+							<a href="<c:url value='/mypage'/>"> <img
+								class="follow_cancel"
+								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+						</div>
 
 					</ul>
 				</div>
@@ -58,7 +86,7 @@
 				onclick="location.href='<c:url value="/signin"/>'">로그아웃</label>
 			</span>
 		</div>
-		</nav>
+	</nav>
 </body>
 <script
 	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
