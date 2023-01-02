@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+.container_top {
+	text-align: center;
+}
+
+.container {
+	width: 1000px;
+	min-height: 800px;
+	margin: auto;
+	text-align: center;
+}
+
+.mypage_title {
+	text-align: center;
+}
+
+.profile {
+	width: 980px;
+	border-bottom: 2px solid #A4A4A4;
+	padding: 20px;
+	height: 180px;
+	margin: auto;
+}
+
+.profile_img {
+	float: left;
+	border: 1px solid black;
+	width: 160px;
+	height: 160px;
+	margin: 10px;
+	margin-bottom: 20px;
+}
+
+.profile_image {
+	width: 160px;
+	height: 160px;
+}
+
+.imgBtn {
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 100px;
+	height: 28px;
+	background-color: #3B82F6;
+	color: white;
+	font-size: 15px;
+}
+
+.imgBtn:hover {
+	background-color: #205295;
+}
+
+.img_button {
+	float: left;
+	margin: 140px 0 0 20px;
+}
+
+.update_form {
+	margin: auto;
+	margin-top: 30px;
+	width: 900px;
+	flex-direction: column;
+	text-align: left;
+}
+
+.input_div {
+	margin-top: 20px;
+}
+
+.input_div button {
+	margin-top: 40px;
+}
+
+.account_tit {
+	font-size:25px;
+	font-weight:500;
+}
+
+.profile_lab {
+	width: 150px;
+	display: inline-block;
+}
+
+.input {
+	display: inline-block;
+	height: 25px;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}

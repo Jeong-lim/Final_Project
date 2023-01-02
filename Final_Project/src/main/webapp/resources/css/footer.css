@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+#footer {
+	width: 100%;
+}
+
+.footer_ul {
+	margin-top: 15px;
+}
+
+#footer.pr_none .footer_cont {
+	min-height: 100px;
+	text-align: center;
+}
+
+#footer .footer_cont {
+	margin: auto;
+	padding-top:5px;
+	box-shadow: rgba(149, 157, 165, 0.15) 0 -3px 6px 0;
+}
+
+
+#footer .footer_policy {
+	overflow: hidden;
+	margin-top: 26px;
+	margin:auto;
+	font-size: 0;
+	line-height: 0;
+}
+
+.clfix {
+	zoom: 1;
+	display: block;
+}
+
+ul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+
+
+#footer .footer_policy li {
+	float: left;
+	padding: 0 0 0 6px;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+#footer .footer_policy li a {
+	display: inline-block;
+	padding: 0 3px;
+	font-size: 12px;
+	line-height: 14px;
+	font-family: "돋움", Dotum, "맑은 고딕", "Malgun Gothic", "Apple Gothic",
+		sans-serif;
+	color: #505050;
+	text-decoration: none;
+}
+
+#footer p {
+	margin: 19px 0 20px;
+	letter-spacing: -0.5px;
+}
+
+.footerp {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	color: #909090;
+}
+
+#footer p span {
+	display: inline-block;
+	padding: 0 8px 0 8px;
+	font-size: 11px;
+	vertical-align: middle;
+}

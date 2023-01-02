@@ -9,7 +9,6 @@
 <%@ include file="common/header.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
-
 </head>
 <body>
 	<div id="floatWeather">
@@ -61,9 +60,6 @@
 	<%@ include file="common/information.jsp"%>
 	<%@ include file="common/sliderbanner.jsp"%>
 	<%@ include file="common/slidetravel.jsp"%>
-	
-	
-	
 	<%@ include file="common/footer.jsp"%>
 	
 

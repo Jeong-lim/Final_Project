@@ -33,6 +33,15 @@ body {
 		
 }
 
+.uk-dropdown {
+	padding: 20px;
+}
+
+.uk-nav>li>a {
+	padding: 0;
+}
+
+=======
 .uk-nav>li>a {
 	padding: 0px 0;
 }

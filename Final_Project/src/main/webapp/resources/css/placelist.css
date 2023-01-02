@@ -44,7 +44,7 @@
 	padding: 0;
 	vertical-align: middle;
 	background-color: white;
-	border: none;
+	border:none;
 }
 
 .search_img {
@@ -54,10 +54,6 @@
 
 .category {
 	margin-top: 10px;
-}
-
-.category span {
-	width: 60px;
 }
 
 .test_obj input[type="radio"] {
@@ -89,6 +85,15 @@
 	border-radius: 35px;
 }
 
+.category_label {
+	padding: 5px 10px;
+	border: 1px solid #dfdfdf;
+	border-radius: 15px;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 13px;
+}
+
 .place_img {
 	width: 200px;
 	height: 160px;
@@ -106,55 +111,19 @@
 	margin: 30px 0 0 30px;
 }
 
-.travel_title {
+.place_name {
 	font-size: 25px;
 	margin: 0;
 }
 
-.travel_writer {
+.place_area {
 	font-size: 15px;
+	cursor: default;
 }
 
 a {
 	text-decoration: none;
 	color: black;
-	cursor: pointer;
-}
-
-.travel_tit {
-	margin-bottom: 20px;
-}
-
-.scrap {
-	cursor: pointer;
-	border: none;
-	box-shadow: 1px 1px 1px 0 black;
-	border-radius: 3px;
-	width: 60px;
-	height: 28px;
-	background-color: #3B82F6;
-	color: white;
-	font-size: 15px;
-}
-
-.scrap:hover {
-	background-color: #205295;
-}
-
-.icons {
-	float: right;
-	margin: 10px 30px 55px 10px;
-}
-
-.views, .publish {
-	width: 20px;
-	margin-left: 10px;
-	margin-right: 3px;
-	vertical-align: middle;
-}
-
-.views {
-	padding-bottom: 6px
 }
 
 ::-webkit-scrollbar {

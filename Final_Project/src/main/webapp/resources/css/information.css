@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.item {
+  width: 1000px;
+  height: 380px;
+  margin: 50px auto;
+  padding-top: 75px;
+  text-align: center;
+  color: #4E4C48;
+  font-size: 1.5em;
+  background-color: transparent;
+}
+
+.scroll__header {
+	font-size: 40px;
+	float: left;
+	padding-bottom: 30px;
+	font-weight: bolder;
+}
+
+.scroll__main {
+	font-size: x-large;
+	float: left;
+	text-align: left;
+	line-height: 150%;
+}

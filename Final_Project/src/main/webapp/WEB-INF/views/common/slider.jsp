@@ -1,52 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-	
-  <script>
-    $(document).ready(function(){
-    	$('.bxslider').bxSlider({
-    		  auto: true,
-    		  autoControls: false,
-    		  stopAutoOnClick: true,
-    		  pager: true,
-    		  slideWidth: 1000,
-    		  speed: 400
-    		});
-    	});
-  </script>
-  
-  <style>
-  .bxslider {
-  	z-index: 1;
-  	
-  }
-  	.slider_img_container {
-	width:1000px;
-	height:500px;
-	 margin: 0px auto;
-}
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slider.css" />
 
-.bx-wrapper .bx-controls-direction a {
-	display: none;
-}
-
-.bx-wrapper {
-	border: none;
-	box-shadow: none;
-	margin: 0 auto;
-	top: 50px;
-	
-}
-
-
-  </style>
 </head>
 <body>
 		
@@ -68,4 +29,22 @@
 		</div>
 	</div>
 </body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+    	$('.bxslider').bxSlider({
+    		  auto: true,
+    		  autoControls: false,
+    		  stopAutoOnClick: true,
+    		  pager: true,
+    		  slideWidth: 1000,
+    		  speed: 400
+    		});
+    	});
+  </script>
+
 </html>
