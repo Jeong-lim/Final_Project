@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/information.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/information.css" />
+
 
 </head>
 <body>
