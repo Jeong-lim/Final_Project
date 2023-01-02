@@ -12,12 +12,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<!-- UIkit CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
 
-<!-- UIkit JS -->
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
 
 <script>
 $('document').ready(function() {
@@ -177,6 +172,7 @@ window.onload = function() {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom:35px;
 
 	}
 	.daterange:focus{
@@ -543,6 +539,7 @@ window.onload = function() {
 	}
 	.open_radio{
 		accent-color:#3B82F6;
+		cursor:pointer;
 	}
 	.open_radio:checked + label {
 		color:#3B82F6;
@@ -552,6 +549,7 @@ window.onload = function() {
 		font-size: 18px;
 		font-weight:bold;
 		color:gray;
+		cursor:pointer;
 	}
 	.top_title{
 		font-size:32px;
