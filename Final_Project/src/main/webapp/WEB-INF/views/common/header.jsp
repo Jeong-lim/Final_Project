@@ -37,9 +37,10 @@
 						src="${pageContext.request.contextPath}/resources/images/alarm_full.png">
 				</button>
 				<div class="uk-dropdown-large"
-					uk-dropdown="mode: click; offset: 10; bg-scroll: true">
+					uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">
 					<ul class="uk-nav uk-dropdown-nav">
-
+					
+						<div class="follow__wrapper">
 						<li class="uk-active">rkdudrhdwn99이 회원님을 팔로우 하였습니다.</li>
 						<div class="follow_button__">
 							<a href="<c:url value='/mypage'/>"><img class="follow_check"
@@ -47,10 +48,9 @@
 							<a href="<c:url value='/'/>"><img class="follow_cancel"
 								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
 						</div>
-
-
-
-
+						</div>
+						
+						<div class="follow__wrapper">
 						<li class="uk-active">rkdudchlrh99이 회원님을 팔로우 하였습니다.</li>
 						<div class="follow_button__">
 							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
@@ -58,6 +58,9 @@
 							<a href="<c:url value='/'/>"> <img class="follow_cancel"
 								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
 						</div>
+						</div>
+						
+						<div class="follow__wrapper">
 						<li class="uk-active">dudtjghkdlxld98이 회원님을 팔로우 하였습니다.</li>
 						<div class="follow_button__">
 							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
@@ -65,6 +68,9 @@
 							<a href="<c:url value='/'/>"> <img class="follow_cancel"
 								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
 						</div>
+						</div>
+						
+						<div class="follow__wrapper">
 						<li class="uk-active">wjdflaqorhvk00이 회원님을 팔로우 하였습니다.</li>
 						<div class="follow_button__">
 							<a href="<c:url value='/mypage'/>"> <img class="follow_check"
@@ -72,6 +78,7 @@
 							<a href="<c:url value='/mypage'/>"> <img
 								class="follow_cancel"
 								src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+						</div>
 						</div>
 
 					</ul>
