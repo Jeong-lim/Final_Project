@@ -24,6 +24,10 @@
 		outline:0;
 	}
 	
+	.sido1:focus {
+		outline:0;
+	}
+	
 	.daterange{
 		width: 260px;
     height: 35px;
@@ -343,6 +347,7 @@
     width: 176px;
     height: 33px;
     margin-left: 5px;
+    align-items: center;
 	}
 	.select{
 	border: none;
