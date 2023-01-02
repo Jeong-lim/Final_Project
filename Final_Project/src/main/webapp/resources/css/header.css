@@ -41,6 +41,14 @@ body {
 	padding: 0;
 }
 
+=======
+.uk-nav>li>a {
+	padding: 0px 0;
+}
+
+.uk-dropdown-large {
+	padding: 0px;
+}
 
 a {
 	text-decoration: none !important;
@@ -91,8 +99,8 @@ a {
 }
 
 .logo {
-	width: 150px !important;
-	height: 55px !important;
+	width: 150px;
+	height: 55px;
 }
 
 .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge,
