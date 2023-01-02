@@ -28,7 +28,8 @@
   	
   }
   	.slider_img_container {
-
+	width:1000px;
+	height:500px;
 	 margin: 0px auto;
 }
 
@@ -44,19 +45,26 @@
 	
 }
 
+
   </style>
 </head>
 <body>
 		
 	<div class="bxslider">
 		<div class="image_container">
-			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/slider1.png" />
+			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/mainSlide4.png" />
 		</div>
 		<div class="image_container">
-			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/slider2.png" />
+			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/mainSlide2.png" />
 		</div>
 		<div class="image_container">
-			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/slider3.png" />
+			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/mainSlide3.png" />
+		</div>
+		<div class="image_container">
+			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/mainSlide1.png" />
+		</div>
+		<div class="image_container">
+			<img class="slider_img_container" src="${pageContext.request.contextPath}/resources/images/mainSlide5.png" />
 		</div>
 	</div>
 </body>
