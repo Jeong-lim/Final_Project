@@ -35,6 +35,10 @@ body {
 
 .uk-active {
 	width: 200px;
+	margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    word-break: keep-all;
 }
 
 .uk-dropdown {
@@ -42,14 +46,15 @@ body {
 	width: 280px;
 }
 
-//
 
 .uk-nav>li>a {
 	padding: 5px 0px 5px 27px;
 	padding-left: 28px;
 	word-break: keep-all;
 }
-
+.follow__wrapper:hover {
+	background-color: #D1D5DB;
+}
 
 .follow_button__ {
 	float: right;
