@@ -61,25 +61,43 @@
 	margin-right: 20px;
 	margin-top: 10px;
 }
-.openBtn{
+
+.openBtn {
 	cursor: pointer;
+}
+
+.updateBtn {
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 100px;
+	height: 28px;
+	background-color: #3B82F6;
+	color: white;
+	font-size: 15px;
+}
+
+.updateBtn:hover {
+	background-color: #205295;
 }
 
 .mytravel {
 	width: 1040px;
-	margin:30px 0;
-	min-height:1000px;
+	margin: 30px 0;
+	min-height: 1000px;
 }
+
 .card {
 	width: 200px;
 	height: 220px;
 	border: 1px solid black;
 	float: left;
 	margin: 20px;
-	padding: 5px;
-	padding-top: 20px;
+	padding: 20px 5px 2px 5px;
 }
-.card:hover{
+
+.card:hover {
 	box-shadow: 4px 4px 10px #BDBDBD;
 }
 
@@ -89,7 +107,7 @@
 
 .travel_tit {
 	font-size: 25px;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 a {
@@ -102,8 +120,10 @@ a {
 	width: 120px;
 	margin: auto;
 	padding: 2px;
+	margin-top: 25px;
 	border-radius: 15px;
 	color: white;
+	border-radius: 15px;
 }
 
 .category.a {
@@ -112,6 +132,23 @@ a {
 
 .category.b {
 	background-color: #3D5656;
+}
+
+.icons {
+	margin-top: 40px;
+	float: right;
+	margin-right: 15px;
+}
+
+.views, .publish {
+	width: 20px;
+	margin-left: 10px;
+	margin-right: 3px;
+	vertical-align: middle;
+}
+
+.views {
+	padding-bottom: 6px
 }
 
 .add {
@@ -126,15 +163,18 @@ a {
 	border: none;
 	background-color: white;
 	float: left;
+	cursor: pointer;
 }
 
 .add_img {
-	width: 39px;
+	width: 45px;
 }
 
 .add_label {
-	line-height: 40px;
+	line-height: 50px;
+	font-size: 20px;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 .modal {
@@ -158,14 +198,13 @@ a {
 	position: absolute;
 	background-color: #fff;
 	width: 400px;
-	height: 200px;
-	padding: 15px;
+	height: 450px;
+	padding: 10px 15px 15px 15px;
 }
 
 .modalBox button {
 	display: block;
-	width: 80px;
-	margin: 0 auto;
+	width: 70px;
 }
 
 .hidden {
@@ -174,18 +213,28 @@ a {
 
 .follower {
 	width: 100%;
-	height: 20px;
+	height: 35px;
+	font-size: 20px;
+	border-bottom: 1px solid black;
+}
+
+.box {
+	width: 380px;
+	height: 360px;
+	overflow: scroll;
+	padding: 0 10px 10px 10px;
+	overflow: scroll;
 }
 
 .modal_ul {
 	display: block;
-    list-style-type: none;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0px;
-    text-align: left;
+	list-style-type: none;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 0px;
+	text-align: left;
 }
 
 .modal_li {
@@ -194,6 +243,16 @@ a {
 
 .block {
 	float: right;
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 100px;
+	height: 26px;
+	background-color: #3B82F6;
+	color: white;
+	font-size: 13px;
+	margin-top: 5px;
 }
 
 .close {
@@ -209,24 +268,62 @@ a {
 }
 
 .follower_img {
-	width: 30px;
-	height: 30px;
-	margin-left: 10px;
+	width: 40px;
+	height: 40px;
 	margin-right: 20px;
 }
 
 .follower_id {
 	display: inline-block;
-	line-height: 30px;
+	line-height: 40px;
 	vertical-align: top;
 }
 
 ::-webkit-scrollbar {
 	display: none;
 }
+
+.logo {
+	width: 100px;
+	height: 35px;
+	float: left;
+}
+
+.follower_tit {
+	line-height: 30px;
+	margin-right:70px;
+}
+
+.search img {
+	width: 25px;
+	height: 25px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+.search {
+	border: 1px solid black;
+	display: inline-flex;
+	border-radius: 16px;
+	width: 380px;
+	height: 33px;
+	margin: 5px 0;
+}
+
+.select {
+	border: none;
+	padding: 5px;
+	border-radius: 17px;
+	cursor: pointer;
+	width: 330px;
+	margin-left: 5px;
+}
+
+.select:focus {
+	outline: 0;
+}
 </style>
 <body>
-	<br>
 	<br>
 	<br>
 	<br>
@@ -243,38 +340,63 @@ a {
 					<p>홍길동</p>
 					<p>honggildong@gmail.com</p>
 					<p>010-1234-5678</p>
-					<p class="openBtn">게시글 수 4 팔로워 4 팔로우 3</p>
+					<p>
+						게시글 수 4 <label class="openBtn">팔로워 9</label> 팔로우 3
+					</p>
 				</div>
 				<div class="profile_update">
-					<a href='<c:url value="/mypage/update"/>'>
-						<button type="button">회원정보수정</button>
-					</a>
+					<button class="updateBtn"
+						onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
 				</div>
 			</div>
 			<div class="mytravel">
 				<a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
 						<p class="travel_tit">서울 여행 코스</p>
-						<p>2022.12.23-25</p>
+						<p>2022.12.23 - 25</p>
 						<p class="category a">체험/학습</p>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							110 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />20
+						</div>
 					</div>
 				</a> <a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
 						<p class="travel_tit">부산 여행 코스</p>
-						<p>2022.11.20-21</p>
+						<p>2022.11.20 - 21</p>
 						<p class="category b">스포츠/문화</p>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							118 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />12
+						</div>
 					</div>
 				</a> <a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
 						<p class="travel_tit">강원도 여행 코스</p>
-						<p>2022.8.13-17</p>
+						<p>2022.8.13 - 17</p>
 						<p class="category">자연/힐링</p>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							225 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />33
+						</div>
 					</div>
 				</a> <a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
 						<p class="travel_tit">경주 여행 코스</p>
-						<p>2022.5.21-22</p>
+						<p>2022.5.21 - 22</p>
 						<p class="category a">체험/학습</p>
+						<div class="icons">
+							<img class="views"
+								src="${pageContext.request.contextPath}/resources/images/views.png" />
+							183 <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />29
+						</div>
 					</div>
 				</a> </a> <a href='<c:url value="/travel/insert"/>'>
 					<div class="card last">
@@ -294,27 +416,64 @@ a {
 				<div class="bg"></div>
 				<div class="modalBox">
 					<div class="follower">
-						팔로워
+						<img class="logo" src="../resources/images/logo.png"> <label
+							class="follower_tit">팔로워</label>
 						<div class="close closeBtn"></div>
 					</div>
-					<ul class="modal_ul">
-						<li class="modal_li"><img class="follower_img"
-							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-							class="follower_id">dudtj1234</label>
-							<button class="block">차단</button></li>
-						<li><img class="follower_img"
-							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-							class="follower_id">moomoogayoung</label>
-							<button class="block">차단</button></li>
-						<li><img class="follower_img"
-							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-							class="follower_id">jungrimlee</label>
-							<button class="block">차단</button></li>
-						<li><img class="follower_img"
-							src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-							class="follower_id">youngseo98</label>
-							<button class="block">차단</button></li>
-					</ul>
+					<div class="search">
+						<input type="text" class="select" spellcheck="false"> <img
+							src="../resources/images/search.png">
+					</div>
+					<div class="box">
+
+						<ul class="modal_ul">
+							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">dudtj1234</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">moomoogayoung</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">jungrimlee</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+							<li><a href='<c:url value="/mypage"/>'><img
+									class="follower_img"
+									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+									class="follower_id">youngseo98</label></a>
+								<button class="block">차단</button></li>
+						</ul>
+					</div>
 
 				</div>
 			</div>
