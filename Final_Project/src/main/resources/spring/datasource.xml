@@ -9,9 +9,9 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
 		  destroy-method="close"> 
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<property name="username" value="spring"/>
-		<property name="password" value="oracle"/>
+		<property name="url" value="jdbc:oracle:thin:kosa403.iptime.org:21521:xe"/>
+		<property name="username" value="travel"/>
+		<property name="password" value="travel"/>
 		<property name="initialSize" value="2"/>
 		<property name="maxTotal" value="3"/>
 		<property name="maxIdle" value="2"/>

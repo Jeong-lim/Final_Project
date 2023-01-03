@@ -4,6 +4,8 @@
   
 <configuration>
 	<typeAliases>
+		<typeAlias type="com.mycompany.webapp.file.model.FileVo" alias="file"/>
+		<typeAlias type="com.mycompany.webapp.place.model.PlaceVo" alias="place"/>
 	</typeAliases>	
 </configuration>
 
