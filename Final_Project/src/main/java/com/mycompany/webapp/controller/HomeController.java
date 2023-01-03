@@ -17,7 +17,7 @@ public class HomeController {
 		return "main";
 	}
 	
-	@RequestMapping("/signin")
+	/*@RequestMapping("/signin")
 	public String signIn() {
 		return "auth/signin";
 	}
@@ -60,7 +60,7 @@ public class HomeController {
 	@RequestMapping("/travel/list")
 	public String travelList() {
 		return "travel/travellist";
-	}
+	}*/
 	
 }
 
