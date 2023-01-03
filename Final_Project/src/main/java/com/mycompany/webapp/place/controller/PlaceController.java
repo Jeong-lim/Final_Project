@@ -27,6 +27,6 @@ public class PlaceController {
 		placeService.countPlace();
 		System.out.println(placeService.countPlace());
 		return "place/placelist";
-	}
+	}  
 
 }
