@@ -1,8 +1,16 @@
 package com.mycompany.webapp.user.dao;
+import org.apache.ibatis.annotations.Mapper;
 
+<<<<<<< HEAD
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.mycompany.webapp.user.model.UserVo;
+=======
+@Mapper
+public interface UserDao {
+	
+	public int count();
+>>>>>>> branch 'master' of https://github.com/Jeong-lim/Final_Project.git
 
 @Mapper
 public interface UserDao {
