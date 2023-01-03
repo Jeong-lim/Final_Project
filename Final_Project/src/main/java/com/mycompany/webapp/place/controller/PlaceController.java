@@ -12,6 +12,15 @@ public class PlaceController {
 	@Autowired
 	private PlaceService placeService;
 	
+	@RequestMapping("/")
+	public String main() {
+//		System.out.println("check");
+		placeService.countPlace();
+//		System.out.println(placeService.countPlace());
+		return "main";
+	}
+	
+	
 	@RequestMapping("/place")
 	public String place() {
 		System.out.println("check");
