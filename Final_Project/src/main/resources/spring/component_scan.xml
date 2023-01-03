@@ -11,6 +11,6 @@
 	<annotation-driven />
 	
 	<!-- @Controller, @Component 적용 클래스를 객체로 생성, @PostConstruct, @PreDestroy, @Resource, @Autowired, @Inject, @Value 자동 인식 -->
-	<context:component-scan base-package="com.mycompany.webapp"/>
+	<context:component-scan base-package="com.mycompany.webapp.place.controller"/>
 		
 </beans:beans>

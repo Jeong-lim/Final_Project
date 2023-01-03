@@ -21,7 +21,7 @@
 	2) 동일한 패키지에 둘 경우 다른 인터페이스 타입 주입에 
 	   org.apache.ibatis.binding.MapperProxy 가 대입되는 버그 발생
 	-->
-	<mybatis-spring:scan base-package="com.mycompany.webapp.dao"/>
+	<mybatis-spring:scan base-package="com.mycompany.webapp.place.dao"/>
 	
 </beans>
 
