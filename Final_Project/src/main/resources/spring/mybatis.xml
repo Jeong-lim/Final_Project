@@ -22,6 +22,9 @@
 	   org.apache.ibatis.binding.MapperProxy 가 대입되는 버그 발생
 	-->
 	<mybatis-spring:scan base-package="com.mycompany.webapp.place.dao"/>
+	<mybatis-spring:scan base-package="com.mycompany.webapp.file.dao"/>
+	<mybatis-spring:scan base-package="com.mycompany.webapp.travel.dao"/>
+	<mybatis-spring:scan base-package="com.mycompany.webapp.user.dao"/>
 	
 </beans>
 
