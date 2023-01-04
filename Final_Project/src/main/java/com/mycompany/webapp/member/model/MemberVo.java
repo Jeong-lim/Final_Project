@@ -13,8 +13,6 @@ public class MemberVo {
 	private String phoneNumber;
 	private String email;
 	private MultipartFile memberImage;
-	
-	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -51,7 +49,6 @@ public class MemberVo {
 	public void setMemberImage(MultipartFile memberImage) {
 		this.memberImage = memberImage;
 	}
-	
 	@Override
 	public String toString() {
 		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword

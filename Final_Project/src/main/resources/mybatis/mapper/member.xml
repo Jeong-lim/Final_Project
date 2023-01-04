@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.member.dao.MemberDao">
-
+	
+	<resultMap type="com.mycompany.webapp.member.model.MemberVo" id="selectMember">
+      <result column="MEMBER_ID" property="memberId"/>
+      <result column="MEMBER_NAME" property="memberName"/>
+      <result column="MEMBER_PASSWORD" property="memberPassword"/>
+      <result column="PHONE_NUMBER" property="phoneNumber"/>
+    </resultMap> 
+	
+	<!-- 유저 선택할 수 있는 쿼리문 -->
+	<select id="selectMember" parameterType="string" resultMap="selectMember">
+		SELECT
+			MEMBER_ID
+		  , MEMBER_NAME
+		  , MEMBER_PASSWORD
+		  , PHONE_NUMBER
+		  , EMAIL
+		FROM
+		   MEMBER
+		WHERE
+		     MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
+	</select>
+	
+	<!-- 유저 정보 수정할 수 있는 쿼리문 -->
+	<update id="updateMember" parameterType="member">
+	 	UPDATE MEMBER
+	 	SET
+	 		MEMBER_NAME=#{memberName}
+	 	  , MEMBER_PASSWORD=#{memberPassword}
+	 	  , PHONE_NUMBER=#{phoneNumber}
+	 	  , EMAIL=#{email}
+	 	  , MODIFIER=#{memberId}
+	 	  , MODIFY_DATE=SYSDATE
+	 	WHERE
+	 		MEMBER_ID=#{memberId}
+	 	  , MEMBER_STATUS='Y'
+	</update>
+	
+	<!-- 유저 삭제할 수 있는 쿼리문 -->
+	<update id="deleteMember" parameterType="member">
+		UPDATE MEMBER
+		SET
+		  , MODIFER=#{memberId}
+		  , MODIFY_DATE=SYSDATE
+		  , MEMBER_STATUS='N'
+		WHERE
+			MEMBER_ID=#{memberId}
+		  , MEMBER_STATUS='Y'
+	</update>
+	
+	<!-- 유저 가입할 수 있는 쿼리문 -->
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO
 			MEMBER (MEMBER_ID
@@ -13,7 +62,7 @@
 				  , WRITE_DATE
 				  , MODIFIER
 				  , MODIFY_DATE
-				  , USER_STATUS)
+				  , MEMBER_STATUS)
 			VALUES (#{memberId, jdbcType=VARCHAR}
 				 , #{memberPassword, jdbcType=VARCHAR}
 				 , #{memberName, jdbcType=VARCHAR}
@@ -25,5 +74,15 @@
 				 , NULL
 				 , 'Y')
 	</insert>
-
+	
+	<!-- 유저 비밀번호 조회할 수 있는 쿼리문 -->
+	<select id="getPassword" parameterType="string" resultType="string">
+		SELECT
+			MEMBER_PASSWORD
+		FROM
+			MEMBER
+		WHERE 
+			MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
+	</select>
+	
 </mapper>

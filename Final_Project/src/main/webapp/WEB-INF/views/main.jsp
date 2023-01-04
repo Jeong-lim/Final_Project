@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 </head>
@@ -55,12 +55,12 @@
 	
 	<a href="#" class="top"><img src="${pageContext.request.contextPath}/resources/images/topbutton.png"></a>
 	
-	<%@ include file="common/slider.jsp"%>	
-	<%@ include file="common/advertising.jsp"%>	
-	<%@ include file="common/information.jsp"%>
-	<%@ include file="common/sliderbanner.jsp"%>
-	<%@ include file="common/slidetravel.jsp"%>
-	<%@ include file="common/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/common/slider.jsp"%>	
+	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	
+	<%@ include file="/WEB-INF/views/common/information.jsp"%>
+	<%@ include file="/WEB-INF/views/common/sliderbanner.jsp"%>
+	<%@ include file="/WEB-INF/views/common/slidetravel.jsp"%>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
 
 </body>

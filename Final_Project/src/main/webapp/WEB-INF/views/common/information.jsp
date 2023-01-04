@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/information.css" />
 
 
-</head>
-<body>
 <div class="item" data-aos="fade-up" data-aos-anchor-placement="top-center">
 <div class="scroll__header">
 NEXT, 여행은 TRAVELY
@@ -25,7 +19,7 @@ NEXT, 여행은 TRAVELY
 앞으로의 여행은 TRAVELY입니다. <br />
 </div>
 </div>
-</body>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -35,4 +29,3 @@ AOS.init({
 	  duration: 1000
 	});
 </script> 
-</html>

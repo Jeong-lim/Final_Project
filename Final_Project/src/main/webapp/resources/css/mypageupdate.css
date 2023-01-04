@@ -52,6 +52,21 @@
 .imgBtn:hover {
 	background-color: #205295;
 }
+.imgBtn_delete {
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 100px;
+	height: 28px;
+	background-color: #EF4444;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+}
+.imgBtn_delete:hover {
+	background-color: #ab1325;
+}
 
 .img_button {
 	float: left;
