@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.member.dao.MemberDao">
+
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO
+			MEMBER (MEMBER_ID
+				  , MEMBER_PASSWORD
+				  , MEMBER_NAME
+				  , EMAIL
+				  , PHONE_NUMBER
+				  , WRITER
+				  , WRITE_DATE
+				  , MODIFIER
+				  , MODIFY_DATE
+				  , USER_STATUS)
+			VALUES (#{memberId, jdbcType=VARCHAR}
+				 , #{memberPassword, jdbcType=VARCHAR}
+				 , #{memberName, jdbcType=VARCHAR}
+				 , #{email, jdbcType=VARCHAR}
+				 , #{phoneNumber, jdbcType=VARCHAR}
+				 , NULL
+				 , SYSDATE
+				 , NULL
+				 , NULL
+				 , 'Y')
+	</insert>
+
+</mapper>

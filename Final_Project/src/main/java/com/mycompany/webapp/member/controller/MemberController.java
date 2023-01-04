@@ -1,4 +1,4 @@
-package com.mycompany.webapp.user.controller;
+package com.mycompany.webapp.member.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,15 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mycompany.webapp.user.model.UserVo;
-import com.mycompany.webapp.user.service.UserService;
+import com.mycompany.webapp.member.model.MemberVo;
+import com.mycompany.webapp.member.service.MemberService;
 
 @Controller
-public class UserController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class MemberController {
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	private UserService userService;
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/signup", method=RequestMethod.GET)
 	public String joinForm() {
@@ -25,8 +25,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/signup", method=RequestMethod.POST)
-	public String userInsert(UserVo user, HttpSession session) {
-		userService.insertUser(user);
+	public String memberInsert(MemberVo member, HttpSession session) {
+		memberService.insertMember(member);
 		session.invalidate();
 		return "auth/signin";
 	}

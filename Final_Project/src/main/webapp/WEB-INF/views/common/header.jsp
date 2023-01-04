@@ -90,7 +90,7 @@
 					class="user_img"
 					src="${pageContext.request.contextPath}/resources/images/default_user.png" />
 			</label> <label class="logout_wrapper"
-				onclick="location.href='<c:url value="/signin"/>'">로그아웃</label>
+				onclick="location.href='<c:url value="/signup"/>'">로그아웃</label>
 			</span>
 		</div>
 	</nav>
