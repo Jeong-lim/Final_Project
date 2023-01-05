@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/placelist.css" />
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
-
 <body>
-	<%@ include file="../common/header.jsp"%>
+	
 	<div class="container_top">
 		<div class="container">
 			<br>

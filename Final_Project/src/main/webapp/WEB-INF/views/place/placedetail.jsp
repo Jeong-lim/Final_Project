@@ -9,9 +9,9 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/placedetail.css" />
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
-	<%@ include file="../common/header.jsp"%>
 	
 	<div class="container_top">
 		<div class="container">

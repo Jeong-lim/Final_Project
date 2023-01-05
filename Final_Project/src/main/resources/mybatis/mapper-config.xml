@@ -7,8 +7,11 @@
 		<typeAlias type="com.mycompany.webapp.file.model.FileVo" alias="file"/>
 		<typeAlias type="com.mycompany.webapp.place.model.PlaceVo" alias="place"/>
 		<typeAlias type="com.mycompany.webapp.travel.model.TravelVo" alias="travel"/>
-		<typeAlias type="com.mycompany.webapp.user.model.UserVo" alias="user"/>
+
 		<typeAlias type="com.mycompany.webapp.place.model.PagerVo" alias="pager"/>
+
+		<typeAlias type="com.mycompany.webapp.member.model.MemberVo" alias="member"/>
+
 	</typeAliases>	
 </configuration>
 
