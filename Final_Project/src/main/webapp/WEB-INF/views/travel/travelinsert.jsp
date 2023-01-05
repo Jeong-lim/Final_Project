@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,109 +7,239 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
- <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
+	type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
 
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
 
-<div class="outer">
-	<div class="inner">
-		<div class="selectdiv1" >
-			<label class="top_title">여행 일정 등록하기</label>
-			<span>
-				<input type="radio" name="open_radio" class="open_radio" id="open_radio1" value="all" checked ><label for="open_radio1" class="open_radio_label">전체 공개</label>
-				<input type="radio" name="open_radio" class="open_radio" id="open_radio2" value="follow" ><label for="open_radio2" class="open_radio_label">팔로우 공개</label>
-				<input type="radio" name="open_radio" class="open_radio" id="open_radio3" value="private" ><label for="open_radio3" class="open_radio_label">비공개</label>
-			</span>
-			<input type="text" name="daterange" class="daterange" value="01/01/2023 - 01/02/2023" readonly/>
-	    </div>
-	    <div class="title_input_box"><input type="text" id="title_input"  class="title_input" placeholder="일정 제목을 입력해주세요"><img class="title_input_img" id="title_input_img" src="../resources/images/pen.png"></div>
-	    
-	    <hr class="uk-divider-icon">
-	    
-	    
-	    	
-	    		<div class="content_title"><label>DAY 1</label><label>- 2022.2.14</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		
-	    	
-	    	
-	    	
-	    	
-	    	
-	    			<div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		
-		    		<div class="schedule_box"><div class="insert_num">1</div><div class="schedule">경복궁</div></div>
-		    		<div class="schedule_box"><div class="insert_num">2</div><div class="schedule">남산타워</div></div>
-		    		<div class="schedule_box"><div class="insert_num">3</div><div class="schedule">청계천</div></div>
-		    		<div class="schedule_box"><div class="insert_num">4</div><div class="schedule">북촌한옥마을</div></div>
-		    		
-		    		
-		    		<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		
-	    	
-	    	
-	    	
-	    	
-	    	<div class="content_title"><label>DAY 3</label><label>- 2022.2.16</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		
-	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    	
-	    	
-	    	
-	    	<button class="save" onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>
-	    
-	    
-	    
-	    
-	    
-		<!-- 장소모달 -->
-<div class="black_bg" id="black_bg1"></div>
-<div class="modal_wrap">
-        <div>
-	        <div class="modal_wrap_box">
-		    	<div class="place_sel_box"><img src="../resources/images/logo.png" class="place_sel_logo"><label class="place_title">관광지 선택하기</label><img src="../resources/images/x.png" class="place_title_x" id="place_title_x"></div>
-		    	<div class="place_search_box"><span><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div></span> <button type="button" id="modal_close" class="place_btn">확인</button></div>
-	    	</div>          
-    	<div class="place_box">
-	        	  <div class="place"><img src="${pageContext.request.contextPath}/resources/images/경복궁.jpg"><div class="place_content"><div class="title"><label>경복궁</label><input type="checkbox"></div> <div class="title_s">경복궁입니댱~~</div></div>
-	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/남산타워.jpg"><div class="place_content"><div class="title"><label>남산타워</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
-	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/청계천.jpg"><div class="place_content"><div class="title"><label>청계천</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
-	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist1.jpg"><div class="place_content"><div class="title"><label>북촌한옥마을</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
-	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist2.jpg"><div class="place_content"><div class="title"><label>국립중앙박물관</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
-	        </div><div class="place"><img src="${pageContext.request.contextPath}/resources/images/travellist3.jpg"><div class="place_content"><div class="title"><label>남산타워</label><input type="checkbox"></div> <div class="title_s">소개글</div></div>
-	        </div>
-	    </div>
-    </div>
-</div>
+	<div class="outer">
+		<div class="inner">
+			<div class="selectdiv1">
+				<label class="top_title">여행 일정 등록하기</label> <span> <input
+					type="radio" name="open_radio" class="open_radio" id="open_radio1"
+					value="all" checked><label for="open_radio1"
+					class="open_radio_label">전체 공개</label> <input type="radio"
+					name="open_radio" class="open_radio" id="open_radio2"
+					value="follow"><label for="open_radio2"
+					class="open_radio_label">팔로우 공개</label> <input type="radio"
+					name="open_radio" class="open_radio" id="open_radio3"
+					value="private"><label for="open_radio3"
+					class="open_radio_label">비공개</label>
+				</span> <input type="text" name="daterange" class="daterange"
+					value="01/01/2023 - 01/02/2023" readonly />
+			</div>
+			<div class="title_input_box">
+				<input type="text" id="title_input" class="title_input"
+					placeholder="일정 제목을 입력해주세요"><img class="title_input_img"
+					id="title_input_img" src="../resources/images/pen.png">
+			</div>
 
-<!-- 메모모달 -->
-<div class="black_bg" id="black_bg2" ></div>
-<div class="modal_wrap2" id="modal_wrap2">
-    <div>
-    	<div class="memo_title"><img src="../resources/images/logo.png" class="memo_title_logo"><img src="../resources/images/x.png" class="memo_title_x" id="memo_title_x"></div>
-		<textarea class="memo_textarea" rows="10" cols="50" spellcheck="false"></textarea>
-		<button type="button" class="memo_btn" id="modal_close2" >확인</button>
+			<hr class="uk-divider-icon">
 
-    </div>
-</div>
+			<div class="content_wrap" id="test">
+				<div class="content_title">
+					<label class="dayseq1">DAY </label><label class="firstdate"></label>
+					<button type="button" id="modal_btn2">
+						<img
+							src="${pageContext.request.contextPath}/resources/images/note.png">
+					</button>
+				</div>
+				<button type="button" class="modal_btn" id="modal_btn">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
+						추가하기</label>
+				</button>
+
+			</div>
 
 
 
+
+
+
+			<div class="content_title">
+				<label>DAY 2</label><label>- 2022.2.15</label>
+				<button type="button" id="modal_btn2">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/note.png">
+				</button>
+			</div>
+
+			<div class="schedule_box">
+				<div class="insert_num">1</div>
+				<div class="schedule">경복궁</div>
+			</div>
+			<div class="schedule_box">
+				<div class="insert_num">2</div>
+				<div class="schedule">남산타워</div>
+			</div>
+			<div class="schedule_box">
+				<div class="insert_num">3</div>
+				<div class="schedule">청계천</div>
+			</div>
+			<div class="schedule_box">
+				<div class="insert_num">4</div>
+				<div class="schedule">북촌한옥마을</div>
+			</div>
+
+
+			<button type="button" class="modal_btn" id="modal_btn">
+				<img
+					src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
+					추가하기</label>
+			</button>
+
+
+
+
+
+			<div class="content_title">
+				<label>DAY 3</label><label>- 2022.2.16</label>
+				<button type="button" id="modal_btn2">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/note.png">
+				</button>
+			</div>
+
+			<button type="button" class="modal_btn" id="modal_btn">
+				<img
+					src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
+					추가하기</label>
+			</button>
+
+
+
+			<button class="save"
+				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>
+
+
+
+
+
+			<!-- 장소모달 -->
+			<div class="black_bg" id="black_bg1"></div>
+			<div class="modal_wrap">
+				<div>
+					<div class="modal_wrap_box">
+						<div class="place_sel_box">
+							<img src="../resources/images/logo.png" class="place_sel_logo"><label
+								class="place_title">관광지 선택하기</label><img
+								src="../resources/images/x.png" class="place_title_x"
+								id="place_title_x">
+						</div>
+						<div class="place_search_box">
+							<span><select name="sido1" id="sido1" class="sido1"></select>
+								<select name="gugun1" id="gugun1" class="gugun1"></select>
+								<div class="search">
+									<input type="text" class="select" spellcheck="false"> <img
+										src="../resources/images/search.png">
+								</div></span>
+							<button type="button" id="modal_close" class="place_btn">확인</button>
+						</div>
+					</div>
+					<div class="place_box">
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>경복궁</label><input type="checkbox">
+								</div>
+								<div class="title_s">경복궁입니댱~~</div>
+							</div>
+						</div>
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>남산타워</label><input type="checkbox">
+								</div>
+								<div class="title_s">소개글</div>
+							</div>
+						</div>
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/청계천.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>청계천</label><input type="checkbox">
+								</div>
+								<div class="title_s">소개글</div>
+							</div>
+						</div>
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/travellist1.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>북촌한옥마을</label><input type="checkbox">
+								</div>
+								<div class="title_s">소개글</div>
+							</div>
+						</div>
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/travellist2.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>국립중앙박물관</label><input type="checkbox">
+								</div>
+								<div class="title_s">소개글</div>
+							</div>
+						</div>
+						<div class="place">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/travellist3.jpg">
+							<div class="place_content">
+								<div class="title">
+									<label>남산타워</label><input type="checkbox">
+								</div>
+								<div class="title_s">소개글</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 메모모달 -->
+			<div class="black_bg" id="black_bg2"></div>
+			<div class="modal_wrap2" id="modal_wrap2">
+				<div>
+					<div class="memo_title">
+						<img src="../resources/images/logo.png" class="memo_title_logo"><img
+							src="../resources/images/x.png" class="memo_title_x"
+							id="memo_title_x">
+					</div>
+					<textarea class="memo_textarea" rows="10" cols="50"
+						spellcheck="false"></textarea>
+					<button type="button" class="memo_btn" id="modal_close2">확인</button>
+
+				</div>
+			</div>
+
+
+
+		</div>
 	</div>
-</div>
-
-	
 
 
 
-<%@ include file="../common/footer.jsp"%>
+
+
+	<%@ include file="../common/footer.jsp"%>
 </body>
 <script>
 $('document').ready(function() {
@@ -164,34 +294,75 @@ $('document').ready(function() {
 </script>
 <script>
 $(function() {
-	$(function() {
-		  $('input[name="daterange"]').daterangepicker({
-		    opens: 'left'
-		  }, function(start, end, label) {
-		    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-		    const getDateDiff = (start, end) => {
-		    	  const date1 = new Date(start);
-		    	  const date2 = new Date(end);
-		    	  
-		    	  const diffDate = date1.getTime() - date2.getTime();
-		    	  const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
-		    	  console.log(days); //일 수
-		    	  console.log(date1); //Date 형식으로
-		    	  const date=start.format('YYYYMMDD');
-		    	  console.log(date); //문자열식으로 가능
+	   $(function() {
+	      
+	        $('input[name="daterange"]').daterangepicker({
+	          opens: 'left'
+	       
+	        }, function(start, end, label) {
+	          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+	          const getDateDiff = (start, end) => {
+	               const date1 = new Date(start);
+	               const date2 = new Date(end);
+               
+	               const diffDate = date1.getTime() - date2.getTime();
+	               const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
+	      			
+	               
+	               //date2.setDate(date2.getDate()+1);
+	               //console.log(date2);
+	              
+	              
+	               //console.log(days); //일 수
+	               //console.log(date1); //Date 형식으로
+	               const date=end.format('YYYY-MM-DD');
+	            
+	               console.log(date); //문자열식으로 가능
+	               //document.querySelector(".dayseq1").append(days);
+	               //document.querySelector(".firstdate").append(date);
+	               
+	                //date2.setDate(date.getDate())
+	                
+	                
+	                
+	                
+	            
+	               
+	                 
+	           	for(var j=days; j>0; j--){
+	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" name="modal_btn2" id="modal_btn2" onclick="openModal()"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" id="modal_btn" name="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
+	                    const dayseqs=j;
+	                    document.querySelector(".dayseq").id=dayseqs;
+	                    document.querySelector(".dayseq").append(j);
+	                   
+	                    date22=date2.toISOString().substring(0,10);
+	                    document.querySelector(".date").append(date22);
+	                    date2.setDate(date2.getDate()-1);
+	                    
+	                    
+	                    console.log(date22);
+	                    //console.log(date2.toISOString().substring(0,10));
+	                  
+	                  
+	        		}
+	           		
+	              
+	             }
+	   
+	             getDateDiff(start, end);
+	        });
+	        
+	       
+	        
+	        
+	        
+	      });
 
-		    	 
-		    	}
-
-		    	getDateDiff(start, end);
-		  });
-		});
-
-	
-  
-});
-
-
+	   
+	     
+	   
+	    
+	});
 
 
 
@@ -243,5 +414,45 @@ window.onload = function() {
  
 };
 
+</script>
+<script type="text/javascript">
+   
+   
+   $(document).ready(function () {
+       $(document).on("click", "button[name='modal_btn2']", function () {
+           console.log("클릭됨");
+          $(".modal_wrap2").show();
+          $("#black_bg2").show();
+        });
+       
+       $(document).on("click", "button[name='modal_close2']", function () {
+           console.log("클릭됨");
+          $(".modal_wrap2").hide();
+          $("#black_bg2").hide();
+        });
+       
+      });
+   
+   
+   
+   $(document).ready(function () {
+       $(document).on("click", "button[name='modal_btn']", function () {
+           console.log("클릭됨");
+          $(".modal_wrap").show();
+          $(".black_bg").show();
+        });
+       
+       $(document).on("click", "button[name='modal_close']", function () {
+           console.log("클릭됨");
+          $(".modal_wrap").hide();
+          $(".black_bg").hide();
+        });
+       
+      });
+   
+   
+   
+   
+   
 </script>
 </html>
