@@ -27,13 +27,8 @@ public class PlaceService {
 		return placeDao.selectPlaceList(pager);
 	}
 	
-	public int categoryCountPlace() {
-		return placeDao.categoryCount();
-	}
 	
-	public List<PlaceVo> selectPlaceListByCategory(PagerVo pager){
-		return placeDao.selectPlaceListByCategory(pager);
-	}
+
 		
 		
 }

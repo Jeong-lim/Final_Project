@@ -9,11 +9,6 @@
 		from place
 	</select>
 	
-	<select id="categoryCount" resultType="int"> <!-- 카테고리별 관광지 총 개수 (중복없이) -->
-		select count(distinct place_name)
-		from place
-		where category=#{category};
-	</select>
 	
 	<select id="selectPlaceList" parameterType="pager" resultType="place">  <!-- 중복 관광지 제외 페이징 처리할 관광지 리스트 -->
 		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category
@@ -34,24 +29,7 @@
 		where rnum &gt;=#{startRowNo}
 	</select>
 	
-	<select id="selectPlaceListByCategory" parameterType="pager" resultType="place"> <!-- 중복 관광지 제외 페이징 처리할 카테고리별 관광지 리스트 -->
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category
-		from (
-			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name
-			from(
-				SELECT  p.place_name as place_name,p.area_name as area_name,d.detail_cd_name as detail_cd_name
-
-				FROM(
-    					SELECT ROW_NUMBER() OVER(PARTITION BY place.place_name ORDER BY place.area_name ) AS RNUM, place.*
-    					FROM place ) p,detail_code d
-
-				WHERE RNUM = 1 and #{category}=d.detail_cd_id
-				
-			)
-			where rownum &lt;=#{endRowNo}
-		)
-		where rnum &gt;=#{startRowNo}
-	</select>
+	
 	
 	
 </mapper>
