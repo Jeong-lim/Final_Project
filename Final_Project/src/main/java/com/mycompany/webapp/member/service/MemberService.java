@@ -45,5 +45,13 @@ public class MemberService  {
 		return memberDao.getPassword(memberId);
 	}
 
+	public int memberIdCheck(String memberId) {
+		return memberDao.checkOverId(memberId);
+	}
+
+	public int memberIdPwCheck(String memberId) {
+		return memberDao.checkOverIdPw(memberId);
+	}
+
 
 }

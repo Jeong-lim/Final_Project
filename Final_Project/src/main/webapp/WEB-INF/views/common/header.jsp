@@ -77,7 +77,7 @@
 			</div>
 
 			<span class="navbar__links"> <label class="navbar__links__li"
-				onclick="location.href='<c:url value="/mypage"/>'"> <img
+				onclick="location.href='<c:url value="/memberPage"/>'"> <img
 					class="user_img"
 					src="${pageContext.request.contextPath}/resources/images/default_user.png" />
 			</label> 
@@ -99,4 +99,3 @@
 	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit-icons.min.js"></script>
-</html>

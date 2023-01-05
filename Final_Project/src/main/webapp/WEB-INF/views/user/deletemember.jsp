@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <title>Insert title here</title>
+
 </head>
 <body>
-	<h1>유저 삭제 공간~</h1>
+	<form action="/mypage/delete" method="post">
+		<input type="hidden" name="memberId" id="memberId" />
+		<input type="password" name="memberPassword" id="password" />
+		<input type="submit" />
+	</form>
 </body>
 </html>

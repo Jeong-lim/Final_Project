@@ -14,7 +14,6 @@
 	<br>
 	<br>
 	<br>
-	<c:if test="${not empty sessionScope.memberId}">
 	<form action="<c:url value='/mypage/update' />" method="post">
 	<div class="container_top">
 		<div class="container">
@@ -32,18 +31,18 @@
 			</div>
 			<div class="update_form">
 				<p class="account_tit">계정</p>
-
+				<input type="hidden" class="input" name="memberId" value="${member['memberId']}" ${empty member.memberId ? "" : "readonly" } required>
 				<div class="input_div">
 					<label class="profile_lab">이름</label> 
-					<input type="text" class="input" name="memberId" value="${memberName}" required>
+					<input type="text" class="input" name="memberName"  value="${member.memberName}" required>
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">이메일</label> 
-					<input type="email" class="input" name="email" value="${email}">
+					<input type="email" class="input" name="email"  value="${member.email}">
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">비밀번호</label> 
-					<input type="password" class="input" value="${memberPassword}" required>
+					<input type="password" class="input" value="${member.memberPassword}" required>
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">비밀번호 확인</label> 
@@ -51,7 +50,7 @@
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">전화번호</label> 
-					<input type="text" class="input" name="phoneNumber" value="${phoneNumber}" required>
+					<input type="text" class="input" name="phoneNumber" value="${member.phoneNumber}" required>
 				</div>
 			</div>
 			<div class="input_div">
@@ -69,7 +68,6 @@
 		</div>
 	</div>
 </form>
-</c:if>
 
 </body>
 <%@ include file="../common/footer.jsp"%>
