@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<<<<<<< HEAD
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
@@ -20,9 +21,22 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
 
+=======
+ <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+>>>>>>> branch 'master' of https://github.com/Jeong-lim/Final_Project.git
 </head>
 <body>
+<<<<<<< HEAD
 	<%@ include file="../common/header.jsp"%>
+=======
+
+>>>>>>> branch 'master' of https://github.com/Jeong-lim/Final_Project.git
 
 	<div class="outer">
 		<div class="inner">

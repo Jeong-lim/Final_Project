@@ -11,7 +11,10 @@
 
 <body>
 
-
+	
+	<c:if test="${empty sessionScope.memberId}">
+	<form action="<c:url value='/signin'/>" method="post">
+	
 	<div class="container_top">
 		<div class="container">
 			<div class="title">
@@ -21,11 +24,11 @@
 			</div>
 			<div class="wrap_insert">
 				<div>
-					<input type="text" id="email" class="input_text"
+					<input type="text" id="email" class="input_text" name="memberId"
 						placeholder="사용자아이디" />
 				</div>
 				<div>
-					<input type="password" id="password" class="input_text password"
+					<input type="password" id="password" class="input_text password" name="memberPassword"
 						placeholder="비밀번호" />
 				</div>
 			</div>
@@ -40,10 +43,7 @@
 						class="signin">회원가입</a>
 				</div>
 				<div class="wrap_button">
-					<button class="btn_login">
-						<span>로그인</span>
-					</button>
-
+					<input type="submit" class="btn_login" value="로그인" />
 				</div>
 			</div>
 
@@ -77,6 +77,10 @@
 
 		</div>
 	</div>
+	</form>
+	</c:if>
+	
+
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/travellist.css" />
-<%@ include file="../common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
 	

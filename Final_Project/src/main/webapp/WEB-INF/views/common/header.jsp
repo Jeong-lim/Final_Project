@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css" />
-<title>Nav bar</title>
-</head>
 
-<body>
 	<nav class="navbar">
 
 		<div class="navbar__logo">
@@ -89,12 +80,21 @@
 				onclick="location.href='<c:url value="/mypage"/>'"> <img
 					class="user_img"
 					src="${pageContext.request.contextPath}/resources/images/default_user.png" />
-			</label> <label class="logout_wrapper"
-				onclick="location.href='<c:url value="/signin"/>'">로그아웃</label>
+			</label> 
+			<c:if test="${empty sessionScope.memberId}">
+			<label class="logout_wrapper"
+				onclick="location.href='<c:url value="/signin"/>'">로그인</label>
+			</c:if>
+			
+			<c:if test="${not empty sessionScope.memberId}">
+			<label class="logout_wrapper"
+				onclick="location.href='<c:url value="/logout"/>'">로그아웃</label>
+			</c:if>
 			</span>
+			
 		</div>
 	</nav>
-</body>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/js/uikit.min.js"></script>
 <script
