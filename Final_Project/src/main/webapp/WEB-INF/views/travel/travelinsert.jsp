@@ -35,15 +35,24 @@
 	    
 	    
 	    	
-	    		<div class="content_title"><label>DAY 1</label><label>- 2022.2.14</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
-	    		<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
-	    		
 	    	
 	    	
 	    	
 	    	
 	    	
-	    			<div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+
+
+
+	    			<%-- <div class="content_title"><label>DAY 2</label><label>- 2022.2.15</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		
 		    		<div class="schedule_box"><div class="insert_num">1</div><div class="schedule">경복궁</div></div>
 		    		<div class="schedule_box"><div class="insert_num">2</div><div class="schedule">남산타워</div></div>
@@ -59,7 +68,7 @@
 	    	
 	    	<div class="content_title"><label>DAY 3</label><label>- 2022.2.16</label><button type="button" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div>
 	    		
-	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>
+	    			<button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button> --%>
 	    	
 	    	
 	    	
@@ -70,10 +79,10 @@
 	    
 	    
 		<!-- 장소모달 -->
-<div class="black_bg" id="black_bg1"></div>
-<div class="modal_wrap">
+<div class="black_bg" id="black_bg1" name="black_bg1"></div>
+<div class="modal_wrap" name="modal_wrap">
         <div>
-	        <div class="modal_wrap_box">
+	        <div class="modal_wrap_box" >
 		    	<div class="place_sel_box"><img src="../resources/images/logo.png" class="place_sel_logo"><label class="place_title">관광지 선택하기</label><img src="../resources/images/x.png" class="place_title_x" id="place_title_x"></div>
 		    	<div class="place_search_box"><span><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select><div class="search"><input type="text" class="select" spellcheck="false"> <img src="../resources/images/search.png"></div></span> <button type="button" id="modal_close" class="place_btn">확인</button></div>
 	    	</div>          
@@ -90,12 +99,12 @@
 </div>
 
 <!-- 메모모달 -->
-<div class="black_bg" id="black_bg2" ></div>
-<div class="modal_wrap2" id="modal_wrap2">
+<div class="black_bg" id="black_bg2" name="black_bg2" ></div>
+<div class="modal_wrap2" id="modal_wrap2" name="modal_wrap2">
     <div>
     	<div class="memo_title"><img src="../resources/images/logo.png" class="memo_title_logo"><img src="../resources/images/x.png" class="memo_title_x" id="memo_title_x"></div>
 		<textarea class="memo_textarea" rows="10" cols="50" spellcheck="false"></textarea>
-		<button type="button" class="memo_btn" id="modal_close2" >확인</button>
+		<button type="button" class="memo_btn" id="modal_close2" name="modal_close2">확인</button>
 
     </div>
 </div>
@@ -165,6 +174,7 @@ $('document').ready(function() {
 <script>
 $(function() {
 	$(function() {
+		
 		  $('input[name="daterange"]').daterangepicker({
 		    opens: 'left'
 		  }, function(start, end, label) {
@@ -179,16 +189,27 @@ $(function() {
 		    	  console.log(date1); //Date 형식으로
 		    	  const date=start.format('YYYYMMDD');
 		    	  console.log(date); //문자열식으로 가능
-
+		    	    
+		    	    
+		    	    for(var i=1; i<=days; i++){
+		    	    	$(".uk-divider-icon").after('<div class="content_title"><label>DAY 1</label><label>- 2022.2.14</label><button type="button" name="modal_btn2" id="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" id="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button>'   );
+		    	    }
 		    	 
 		    	}
-
+	
 		    	getDateDiff(start, end);
 		  });
+		  
+		 
+		  
+		  
+		  
 		});
 
 	
-  
+	  
+	
+    
 });
 
 
@@ -196,12 +217,16 @@ $(function() {
 
 
 window.onload = function() {
+	
 	var btnClear = document.querySelector('#title_input_img');
 	btnClear.addEventListener('click', function(){
 		console.log("click");
 	    document.querySelector('#title_input').value="";
 	    
 	})
+	
+	
+
 	
 	 
     function onClick() {
@@ -226,16 +251,17 @@ window.onload = function() {
         document.body.style.overflow = "unset";
     }
 
-    document.getElementById('modal_btn').addEventListener('click', onClick);
+    /* document.getElementById('modal_btn').addEventListener('click', onClick);
     document.querySelector('#modal_close').addEventListener('click', offClick);
-    document.getElementById('modal_btn2').addEventListener('click', onClick2);
+    
+    document.getElementByName('modal_btn2').addEventListener('click', onClick2);
     document.querySelector('#modal_close2').addEventListener('click', offClick2);
     
     document.querySelector('#black_bg1').addEventListener('click', offClick);
     document.querySelector('#black_bg2').addEventListener('click', offClick2);
     
     document.querySelector('#memo_title_x').addEventListener('click',offClick2);
-    document.querySelector('#place_title_x').addEventListener('click',offClick);
+    document.querySelector('#place_title_x').addEventListener('click',offClick); */
     
     
 
@@ -243,5 +269,26 @@ window.onload = function() {
  
 };
 
+</script>
+<script type="text/javascript">
+	
+	
+	$(document).ready(function () {
+		 $(document).on("click", "button[name='modal_btn2']", function () {
+		    $(".modal_wrap2").show();
+		    $("#black_bg2").show();
+		  });
+		 
+		 $(document).on("click", "button[name='modal_close2']", function () {
+		    $(".modal_wrap2").hide();
+		    $("#black_bg2").hide();
+		  });
+		 
+	});
+	
+	
+	
+	
+	
 </script>
 </html>

@@ -46,64 +46,54 @@
 					name="category" value=""> <span>문화/예술</span>
 				</label>
 			</div>
+			
+			
 			<div class="place_list">
 
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
+				<c:forEach var="place" items="${placeList }">
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
+						</div>
+						<div class="place_info">
+							<a href='<c:url value="/place/detail"/>'>
+								<p class="place_name">${place.placeName}</p>
+							</a>
+							<p class="place_area">${place.areaName}</p>
+							<label class="category_label"> <span>${place.category}</span></label>
+						</div>
 					</div>
-					<div class="place_info">
-						<a href='<c:url value="/place/detail"/>'>
-							<p class="place_name">경복궁</p>
-						</a>
-						<p class="place_area">서울특별시 종로구</p>
-						<label class="category_label"> <span>종교/역사/전통</span></label>
-					</div>
-				</div>
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/place/detail"/>'>
-							<p class="place_name">남산타워</p>
-						</a>
-						<p class="place_area">서울특별시 용산구</p>
-						<label class="category_label"> <span>종교/역사/전통</span></label>
-					</div>
-				</div>
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/롯데월드.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/place/detail"/>'>
-							<p class="place_name">롯데월드</p>
-						</a>
-						<p class="place_area">서울특별시 송파구</p>
-						<label class="category_label"><span>쇼핑/놀이</span></label>
-					</div>
-				</div>
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/place/detail"/>'>
-							<p class="place_name">경복궁</p>
-						</a>
-						<p class="place_area">서울특별시 종로구</p>
-						<label class="category_label"><span>종교/역사/전통</span></label>
-					</div>
-				</div>
+				</c:forEach>
+				
 			</div>
+		<table>	
+			<tr>
+				<td colspan="4" class="text-center">
+					<div>
+						<a  href="/place?pageNo=1">처음</a>
+						<c:if test="${pager.groupNo>1}">
+							<a href="/place?pageNo=${pager.startPageNo-1}">이전</a>
+						</c:if>
+						
+						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+							<c:if test="${pager.pageNo != i}">
+								<a href="/place?pageNo=${i}">${i}</a>
+							</c:if>
+							<c:if test="${pager.pageNo == i}">
+								<a  href="/place?pageNo=${i}">${i}</a>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${pager.groupNo<pager.totalGroupNo}">
+							<a  href="/place?pageNo=${pager.endPageNo+1}">다음</a>
+						</c:if>
+						<a  href="/place?pageNo=${pager.totalPageNo}">맨끝</a>
+					</div>
+				</td>
+			</tr>
+			</table>
+			
 		</div>
 		<div></div>
 	</div>
