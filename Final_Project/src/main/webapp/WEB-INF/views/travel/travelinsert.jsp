@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
 	type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
@@ -159,56 +160,88 @@
 								<div class="title_s">경복궁입니댱~~</div>
 							</div>
 						</div>
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>남산타워</label><input type="checkbox">
-								</div>
-								<div class="title_s">소개글</div>
-							</div>
-						</div>
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/청계천.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>청계천</label><input type="checkbox">
-								</div>
-								<div class="title_s">소개글</div>
-							</div>
-						</div>
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/travellist1.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>북촌한옥마을</label><input type="checkbox">
-								</div>
-								<div class="title_s">소개글</div>
-							</div>
-						</div>
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/travellist2.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>국립중앙박물관</label><input type="checkbox">
-								</div>
-								<div class="title_s">소개글</div>
-							</div>
-						</div>
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/travellist3.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>남산타워</label><input type="checkbox">
-								</div>
-								<div class="title_s">소개글</div>
-							</div>
-						</div>
+						
+						<div class="container">
+
+		<div class="page_header">
+			<h2>
+				제목
+			</h2>
+		</div>
+		<div class="wrap_tabmenu01">
+			<ul class="area_flg">
+				<li class="kor"><a
+					href="<c:url value="/latestchart/song/kor"/>"><span
+						class="li_tit"><fmt:message key="DOMESTIC"/></span></a></li>
+				<li class="for"><a
+					href="<c:url value="/latestchart/song/for"/>"><span
+						class="li_tit"><fmt:message key="FOREIGN_COUNTRY"/></span></a></li>
+			</ul>
+		</div>
+
+		<table class="list"
+			style="margin-left: auto; margin-right: auto; border-spacing: 0;">
+			<tr class="th">
+				<td><input type="checkbox"></td>
+				<td>NO</td>
+				<td></td>
+				<td></td>
+				<td><fmt:message key="ABOUT_THE_SONG"/></td>
+				<td><fmt:message key="ALBUM"/></td>
+				<td><fmt:message key="LIKE"/></td>
+				<td><fmt:message key="LISTENING"/></td>
+				<td><fmt:message key="SHOPPING_BASKET"/></td>
+				<td><fmt:message key="DOWNLOAD_A_SONG2"/></td>
+				<td><fmt:message key="MV"/></td>
+			</tr>
+			<c:set var="album" value="${AlbumListOnTheLatestSongChart}" />
+			<c:set var="artist" value="${ArtistListOnTheLatestSongChart}" />
+			<c:forEach var="song" items="${ListOfTheLatestSongs}"
+				varStatus="status">
+
+				<tr>
+					<td rowspan="2"><input type="checkbox"></td>
+					<td rowspan="2" class="no" valign=top>${status.index+1}</td>
+					<td class="cover" rowspan="2"><img
+						src="<c:url value='/album/download/${album[status.index].albumId}'/>"
+						style="width: 60px; height: 60px;" /></td>
+					<td class="info" rowspan="2"><img width="18" height="22"
+						style="padding-top: 17px;"
+						src="<c:url value='/images/icon/info.png'/>"></td>
+					<td class="title" style="padding-bottom: 1px;"><a
+						href="<c:url value='/song/details/${song.songId}'/>"><nobr>${song.songName}</nobr></a></td>
+					<td class="album" rowspan="2"><nobr>${album[status.index].albumName}</nobr></td>
+					<td class="like_song" rowspan="2"><img width="21" height="24"
+						src="<c:url value='/images/icon/like1.png'/>">
+						<!--  
+						<button id ="likeSong" value=${song.songId}><span id="heart">♡</span></button>
+						-->
+						<span id="likeSongNumberOfCurrentSong${song.songId}">${song.likeSongCount}</span>
+						
+					
+					<td class="play" rowspan="2"><img width="21" height="24"
+						src="<c:url value='/images/icon/play.png'/>"></td>
+					<td class="add" rowspan="2"><img width="21" height="24"
+						src="<c:url value='/images/icon/add.png'/>"></td>
+					<td class="down" rowspan="2"><a
+						href="<c:url value='/songfiledownload/${SongFileListOnTheLatestSongChart[status.index].fileId}'/>">
+							<img width="21" height="24"
+							src="<c:url value='/images/icon/download.png'/>">
+					</a></td>
+					<td class="mv" rowspan="2"><img width="21" height="24"
+						src="<c:url value='/images/icon/mv.png'/>"></td>
+
+				</tr>
+				<tr>
+
+					<td class="artist">${artist[status.index].artistName}</td>
+
+				</tr>
+
+			</c:forEach>
+		</table>
+	</div>
+
 					</div>
 				</div>
 			</div>
