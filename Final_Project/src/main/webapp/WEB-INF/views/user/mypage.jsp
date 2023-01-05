@@ -8,10 +8,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
-<%@ include file="../common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 
 <body>
+	<c:if test="${not empty sessionScope.memberId}">
 	<br>
 	<br>
 	<br>
@@ -25,9 +26,9 @@
 						src="${pageContext.request.contextPath}/resources/images/profile.jpg" />
 				</div>
 				<div class="profile_info">
-					<p>홍길동</p>
-					<p>honggildong@gmail.com</p>
-					<p>010-1234-5678</p>
+					<p>${memberName}</p>
+					<p>${email}</p>
+					<p>${phoneNumber}</p>
 					<p>
 						게시글 수 4 <label class="openBtn">팔로워 9</label> 팔로우 3
 					</p>
@@ -170,6 +171,7 @@
 
 		</div>
 	</div>
+	</c:if>
 </body>
 <script>
   const open = () => {

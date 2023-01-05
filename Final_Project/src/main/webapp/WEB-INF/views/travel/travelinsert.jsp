@@ -13,10 +13,10 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
-
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
+
 
 <div class="outer">
 	<div class="inner">

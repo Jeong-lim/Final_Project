@@ -24,7 +24,7 @@
 	<mybatis-spring:scan base-package="com.mycompany.webapp.place.dao"/>
 	<mybatis-spring:scan base-package="com.mycompany.webapp.file.dao"/>
 	<mybatis-spring:scan base-package="com.mycompany.webapp.travel.dao"/>
-	<mybatis-spring:scan base-package="com.mycompany.webapp.user.dao"/>
+	<mybatis-spring:scan base-package="com.mycompany.webapp.member.dao"/>
 	
 </beans>
 

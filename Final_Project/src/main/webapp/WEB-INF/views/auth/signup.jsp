@@ -11,6 +11,8 @@
 
 
 <body>
+
+	<form action="<c:url value='/signup'/>" method="post">
 	<div class="container_top">
 		<div class="container">
 			<div class="title">
@@ -18,11 +20,12 @@
 					src="${pageContext.request.contextPath}/resources/images/logo.png" />
 				</a>
 			</div>
-
+			
+			
 			<div class="wrap_insert">
 				<span class="span">아이디 *</span>
 				<button class="idcheck" type="button">아이디 중복체크</button>
-				<div class="insert"><input type="text" id="userid" class="input_text"
+				<div class="insert"><input type="text" id="memberId" class="input_text" name="memberId"
 					placeholder="travely123" required="required" />
 				</div>
 
@@ -35,36 +38,36 @@
 
 				<span class="span">비밀번호 확인 *</span>
 				<div>
-					<input type="password" id="password_re" class="input_text"
+					<input type="password" name="memberPassword" id="password_re" class="input_text"
 						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required="required" />
 				</div>
 
 				<span class="span">이름 *</span>
 				<div>
-					<input type="text" id="name" class="input_text" required="required" />
+					<input type="text" name="memberName" id="name" class="input_text" required="required" />
 				</div>
 
 				<span class="span">전화번호 *</span>
 				<div>
-					<input type="text" id="phonenumber" class="input_text"
+					<input type="text" name="phoneNumber" id="phonenumber" class="input_text"
 						placeholder="01012345678" required="required" />
 				</div>
 
 				<span class="span">이메일</span>
 				<div>
-					<input type="email" id="email" class="input_text"
+					<input type="email" name="email" id="email" class="input_text"
 						placeholder="travel@travely.com" />
 				</div>
 
 			</div>
 			<div class="wrap_button">
-				<button class="btn_signup">
-					<span>회원가입하기</span>
-				</button>
+				<input type="submit" class="btn_signup" value="회원가입하기" />
+				
 
 			</div>
-
+		
 		</div>
 	</div>
+	</form>
 </body>
 </html>
