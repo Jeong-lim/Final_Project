@@ -12,5 +12,4 @@ public interface MemberDao {
 	public void deleteMember(MemberVo member);
 	public String getPassword(String memberId);
 	public int checkOverId(String memberId);
-	public int checkOverIdPw(String memberId);
 }

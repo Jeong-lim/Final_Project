@@ -26,7 +26,7 @@
 				<span class="span">아이디 *</span>
 				<button id="idcheckbutton" class="idcheck" type="button">아이디 중복체크</button>
 				<div class="insert"><input type="text" id="user_id" class="input_text" name="memberId"
-					placeholder="대소문자, 숫자 포함 4글자 이상 20글자까지" required="required" pattern="(?=.*[a-z])(?=.*[A-Z]).{4,20}"/>
+					placeholder="소문자 숫자 포함 4글자 이상 20글자까지" required="required" pattern="(?=.*[a-zA-Z]).{4,20}"/>
 				<div class="check_font" id="id_check"></div>
 				</div>
 

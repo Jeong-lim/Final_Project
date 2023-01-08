@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,15 +50,18 @@ public class MemberController {
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
+		
 		MemberVo member = memberService.selectMember(memberId);
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
 			String dbPassword = member.getMemberPassword(); // 데이터베이스에 있는 패스워드
 			logger.info(dbPassword);
 				if(dbPassword == null) { 
-					model.addAttribute("message", "아이디가 없습니다.");
+					model.addAttribute("resultMember", 0);
 				} else {
 					// 아이디가 있을 때
-					if(dbPassword.equals(memberPassword)) {
+					if(encoder.matches(memberPassword, dbPassword)) {
 						// 비밀번호 일치
 						session.setAttribute("memberId", memberId);
 						session.setAttribute("memberName", member.getMemberName());
@@ -66,11 +70,12 @@ public class MemberController {
 						return "redirect:/";
 					} else {
 						// 비밀번호 불일치
-						model.addAttribute("message", "비밀번호가 틀렸습니다.");
+						model.addAttribute("resultMember", 0);
 					}
 				}
 		} else {
 			model.addAttribute("message", "회원정보를 찾을 수 없습니다.");
+			return "auth/signup";
 		}
 		session.invalidate();
 		return "auth/signin";
@@ -153,11 +158,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/mypage/delete", method=RequestMethod.POST)
 	public String deleteMember(String memberPassword, HttpSession session, Model model) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		try {
 			MemberVo member = new MemberVo();
 			member.setMemberId((String)session.getAttribute("memberId"));
 			String dbPassword = memberService.getPassword(member.getMemberId());
-			if(memberPassword != null && memberPassword.equals(dbPassword)) {
+			if(memberPassword != null && encoder.matches(memberPassword, dbPassword)) {
 				member.setMemberPassword(memberPassword);
 				memberService.deleteMember(member);
 				session.invalidate(); // 삭제되었으면 로그아웃 처리
@@ -179,11 +187,7 @@ public class MemberController {
 		return memberService.memberIdCheck(memberId);
 	}
 	
-	@RequestMapping(value="/member/idPwCheck", method = RequestMethod.GET)
-	@ResponseBody
-	public int idPwCheck(@RequestParam("memberId") String memberId) {
-		return memberService.memberIdPwCheck(memberId);
-	}
+
 	
 	
 	

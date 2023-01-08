@@ -88,12 +88,5 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
-	
-	<select id="checkOverIdPw" parameterType="String" resultType="int">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE MEMBER_ID = #{memberId} 
-			  AND MEMBER_PASSWORD = #{memberPassword}                                                                                                                                                                                        KLML
-	</select>
-	
+
 </mapper>
