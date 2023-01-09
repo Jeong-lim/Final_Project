@@ -12,7 +12,6 @@
 </head>
 
 <body>
-	<c:if test="${not empty sessionScope.memberId}">
 	<br>
 	<br>
 	<br>
@@ -26,9 +25,9 @@
 						src="${pageContext.request.contextPath}/resources/images/profile.jpg" />
 				</div>
 				<div class="profile_info">
-					<p>${memberName}</p>
-					<p>${email}</p>
-					<p>${phoneNumber}</p>
+					<p>${member.memberName}</p>
+					<p>${member.email}</p>
+					<p>${member.phoneNumber}</p>
 					<p>
 						게시글 수 4 <label class="openBtn">팔로워 9</label> 팔로우 3
 					</p>
@@ -171,7 +170,6 @@
 
 		</div>
 	</div>
-	</c:if>
 </body>
 <script>
   const open = () => {

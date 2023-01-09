@@ -14,7 +14,6 @@
 	<br>
 	<br>
 	<br>
-	<c:if test="${not empty sessionScope.memberId}">
 	<form action="<c:url value='/mypage/update' />" method="post">
 	<div class="container_top">
 		<div class="container">
@@ -32,26 +31,27 @@
 			</div>
 			<div class="update_form">
 				<p class="account_tit">계정</p>
-
+				<input type="hidden" class="input" name="memberId" value="${member['memberId']}" ${empty member.memberId ? "" : "readonly" } required>
 				<div class="input_div">
 					<label class="profile_lab">이름</label> 
-					<input type="text" class="input" name="memberId" value="${memberName}" required>
+					<input type="text" class="input" name="memberName"  value="${member.memberName}" required>
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">이메일</label> 
-					<input type="email" class="input" name="email" value="${email}">
+					<input type="email" class="input" name="email"  value="${member.email}">
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">비밀번호</label> 
-					<input type="password" class="input" value="${memberPassword}" required>
+					<input type="password" id="pw"  class="input" value="${member.memberPassword}" onchange="check_pw()" required>
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">비밀번호 확인</label> 
-					<input type="password"class="input" name="memberPassword" required>
+					<input type="password" id="pw2" class="input" name="memberPassword" onchange="check_pw()" required>
+					&nbsp;<span id="check"></span>
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">전화번호</label> 
-					<input type="text" class="input" name="phoneNumber" value="${phoneNumber}" required>
+					<input type="text" class="input" name="phoneNumber" value="${member.phoneNumber}" required>
 				</div>
 			</div>
 			<div class="input_div">
@@ -69,8 +69,40 @@
 		</div>
 	</div>
 </form>
-</c:if>
 
 </body>
+<script type="text/javascript">
+function check_pw(){
+    var pw = document.getElementById('pw').value;
+    var SC = ["!","@","#","$","%"];
+    var check_SC = 0;
+
+    if(pw.length < 6 || pw.length>16){
+        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+        document.getElementById('pw').value='';
+    }
+    for(var i=0;i<SC.length;i++){
+        if(pw.indexOf(SC[i]) != -1){
+            check_SC = 1;
+        }
+    }
+    if(check_SC == 0){
+        window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+        document.getElementById('pw').value='';
+    }
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+            document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+            document.getElementById('check').style.color='blue';
+        }
+        else{
+            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+            document.getElementById('check').style.color='red';
+        }
+    }
+}
+</script>
+
 <%@ include file="../common/footer.jsp"%>
+
 </html>

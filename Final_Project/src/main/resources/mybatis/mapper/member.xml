@@ -34,20 +34,18 @@
 	 	  , MODIFIER=#{memberId}
 	 	  , MODIFY_DATE=SYSDATE
 	 	WHERE
-	 		MEMBER_ID=#{memberId}
-	 	  , MEMBER_STATUS='Y'
+	 		MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
 	</update>
 	
 	<!-- 유저 삭제할 수 있는 쿼리문 -->
 	<update id="deleteMember" parameterType="member">
 		UPDATE MEMBER
 		SET
-		  , MODIFER=#{memberId}
+		  	MODIFIER=#{memberId}
 		  , MODIFY_DATE=SYSDATE
 		  , MEMBER_STATUS='N'
 		WHERE
-			MEMBER_ID=#{memberId}
-		  , MEMBER_STATUS='Y'
+			MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
 	</update>
 	
 	<!-- 유저 가입할 수 있는 쿼리문 -->
@@ -85,4 +83,10 @@
 			MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
 	</select>
 	
+	<select id="checkOverId" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+
 </mapper>

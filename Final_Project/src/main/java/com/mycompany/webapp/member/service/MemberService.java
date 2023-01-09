@@ -21,10 +21,7 @@ public class MemberService  {
 	public void insertMember(MemberVo member) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(member.getMemberPassword());
-		member.setMemberPassword(securePw);
-		
-		/*encoder.matches(rawPassword, encodedPassword)*/
-		
+		member.setMemberPassword(securePw);		
 		
 		memberDao.insertMember(member);
 	}
@@ -44,6 +41,11 @@ public class MemberService  {
 	public String getPassword(String memberId) {
 		return memberDao.getPassword(memberId);
 	}
+
+	public int memberIdCheck(String memberId) {
+		return memberDao.checkOverId(memberId);
+	}
+
 
 
 }

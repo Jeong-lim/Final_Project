@@ -10,8 +10,6 @@
 </head>
 
 <body>
-
-	
 	<c:if test="${empty sessionScope.memberId}">
 	<form action="<c:url value='/signin'/>" method="post">
 	
@@ -42,6 +40,15 @@
 						class="bar"> |</span> <a href="<c:url value='/signup'/>"
 						class="signin">회원가입</a>
 				</div>
+				
+				<br />
+				<br />
+				
+				<c:if test = "${resultMember == 0 }">
+                	<div class = "login_warn">아이디 또는 비밀번호를 잘못 입력하셨습니다.</div>
+            	</c:if>
+				
+				<br />
 				<div class="wrap_button">
 					<input type="submit" class="btn_login" value="로그인" />
 				</div>
