@@ -11,5 +11,6 @@ public interface MemberDao {
 	public void updateMember(MemberVo member);
 	public void deleteMember(MemberVo member);
 	public String getPassword(String memberId);
+	public String getAccessToken(String authorize_code) throws Throwable;
 	public int checkOverId(String memberId);
 }
