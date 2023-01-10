@@ -47,6 +47,8 @@
 			</div>
 
 			<hr class="uk-divider-icon">
+		
+			<a href="<c:url value='/travel/placelist'/>">modal_btn</a>
 
 			<div class="content_wrap" id="test">
 				<div class="content_title">
@@ -56,11 +58,13 @@
 							src="${pageContext.request.contextPath}/resources/images/note.png">
 					</button>
 				</div>
+			
 				<button type="button" class="modal_btn" id="modal_btn">
 					<img
 						src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
 						추가하기</label>
 				</button>
+
 
 			</div>
 
@@ -114,11 +118,8 @@
 
 			<button class="save"
 				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>
-
-
-
-
-
+				
+				
 			<!-- 장소모달 -->
 			<div class="black_bg" id="black_bg1"></div>
 			<div class="modal_wrap">
@@ -151,27 +152,27 @@
 								<div class="title_s">경복궁입니댱~~</div>
 							</div>
 						</div>
-						
+
 						<div class="place_list">
 
-				<c:forEach var="place" items="${placeList }">
-					<div class="place">
-						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
+							<c:forEach var="place" items="${placeList}">
+								<div class="place">
+									<div class="image_wrap">
+										<img class="place_img"
+											src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
+									</div>
+									<div class="place_info">
+										<a href='<c:url value="/place/detail"/>'>
+											<p class="place_name">${place.placeName}</p>
+										</a>
+										<p class="place_area">${place.areaName}</p>
+										<label class="category_label"> <span>${place.category}</span></label>
+									</div>
+								</div>
+							</c:forEach>
+
 						</div>
-						<div class="place_info">
-							<a href='<c:url value="/place/detail"/>'>
-								<p class="place_name">${place.placeName}</p>
-							</a>
-							<p class="place_area">${place.areaName}</p>
-							<label class="category_label"> <span>${place.category}</span></label>
-						</div>
-					</div>
-				</c:forEach>
-				
-			</div>
-			
+
 					</div>
 				</div>
 			</div>
@@ -417,4 +418,5 @@ window.onload = function() {
    
    
 </script>
+
 </html>

@@ -1,22 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mapper.travel">
+<mapper namespace="com.mycompany.webapp.travel.dao.TravelDao">
 
-
-	<select id="selectPlaceList" 
-		resultType="place">  <!-- 중복 관광지 제외 페이징 처리할 관광지 리스트 -->
-
-		SELECT p.place_name as place_name,p.area_name as
-		area_name,d.detail_cd_name as detail_cd_name
-
+	<select id="selectPlaceList" resultType="place">
+		SELECT p.place_name as
+		placeName, p.area_name as areaName, d.detail_cd_name as category
 		FROM(
 		SELECT ROW_NUMBER() OVER(PARTITION BY place.place_name ORDER BY
-		place.area_name ) AS RNUM, place.*
-		FROM place ) p,detail_code d
+		place.area_name) AS RNUM, place.*
+		FROM place ) p, detail_code d
+		WHERE
+		RNUM = 1 and p.category=d.detail_cd_id
+	</select>
 
-		WHERE RNUM = 1 and p.category=d.detail_cd_id
-
+	<select id="selectPlaceListByArea" resultType="place">
 
 	</select>
+<!-- 
+	<select id="selectTravelList" resultType="travel">
+		SELECT travel_id as
+		travelId, travel_title as travelTitle, free as free, view_cnt as
+		viewCnt, share_cnt as shareCnt, writer as writer, write_date as
+		writeDate
+		FROM travel
+	</select> -->
+
+	<select id="selectTravelListyByKeyword" resultType="travel">
+		SELECT travel_id as travelId, travel_title as travelTitle, free as
+		free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer,
+		write_date as writeDate
+		FROM travel
+		where
+		<choose>
+			<when test="type == 'title'.toString()">travel_title like '%'||#{keyword}||'%'</when>
+			<when test="type == 'writer'.toString()">writer like '%'||#{keyword}||'%'</when>
+		</choose>
+
+	</select>
+
+	<select id="selectTravelList" resultType="travel" parameterType="pager">
+
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+				)
+			  WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+
+	</select>
+	
+	
+	<select id="countTravel" resultType="int">
+		select count(*)
+		from travel
+	</select>
+	
+	<select id="selectTravelListByView" resultType="travel" parameterType="pager">
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+                ORDER BY view_cnt desc
+				)
+			  WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+	</select>
+	
+	<select id="selectTravelListByShare" resultType="travel" parameterType="pager">
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+                ORDER BY share_cnt desc
+				)
+			  WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+	</select>
+	
+	<select id="selectTravelListByRecent" resultType="travel" parameterType="pager">
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+                ORDER BY travel_id desc
+				)
+			  WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+	</select>
+	
+
+
+
 
 </mapper>
