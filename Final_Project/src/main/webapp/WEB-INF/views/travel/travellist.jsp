@@ -1,16 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/travellist.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/travellist.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style type="text/css">
+.pageli {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
+</style>
 </head>
 <body>
-	
+
 	<div class="container_top">
 		<div class="container">
 			<br>
@@ -20,123 +29,117 @@
 			<div>
 				<p class="list_tit">여행 일정 리스트</p>
 			</div>
-			<div class="search">
-				<select class="select">
-					<option value="area">작성자</option>
-					<option value="place">제목</option>
-				</select> <input type="text" class="search_bar" value=""
-					placeholder="search..">
+			<div class="search_area">
+				<select class="select" name="type">
+					<option value="title"
+						<c:out value="${travel.type eq 'title'?'selected':'' }"/>>제목</option>
+					<option value="writer"
+						<c:out value="${travel.type eq 'writer'?'selected':'' }"/>>작성자</option>
+				</select>
+				<form id="search_form" method="get" class="search_bar" action>
+					<input type="hidden" name="keyword" value="${travel.keyword}">
+				</form>
 				<button class="search_btn">
 					<img class="search_img"
 						src="${pageContext.request.contextPath}/resources/images/search.png" />
 				</button>
 			</div>
 			<div class="category">
-				<label class="test_obj"> <input type="radio" name="category"
-					value=""> <span>최신순</span>
-				</label> <label class="test_obj"> <input type="radio"
-					name="category" value=""> <span>조회순</span>
-				</label> <label class="test_obj"> <input type="radio"
-					name="category" value=""> <span>인기순</span>
-				</label>
+				<a href='<c:url value="/travel/recent/list"/>'> <label
+					class="test_obj">
+						<button id="recent">최신순</button>
+				</label></a> <a href='<c:url value="/travel/shareCnt/list"/>'><label
+					class="test_obj">
+						<button id="shareCnt">인기순</button>
+
+				</label></a> <a href='<c:url value="/travel/viewCnt/list"/>'><label
+					class="test_obj">
+						<button id="viewCnt">조회순</button>
+				</label></a>
+
 			</div>
 			<div class="place_list">
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/travellist1.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/travel/detail"/>'>
-							<p class="travel_title">꼭 가봐야 할 3박4일 서울 여행</p>
-						</a> <a href='<c:url value="/mypage"/>'>
-							<p class="travel_writer">작성자 rkdudrhdwn99</p>
-						</a>
-						<button class="scrap"
-							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							114 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />11
+				<c:forEach var="travel" items="${travelList}">
+					<div class="place">
+						<div class="image_wrap">
+							<img class="place_img"
+								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
+						</div>
+						<div class="place_info">
+							<a href='<c:url value="/travel/detail"/>'>
+								<p class="travel_title">${travel.travelTitle} - <fmt:formatDate value="${travel.writeDate}" pattern="YYYY-MM-dd" />
+								</p>
+							</a> <a href='<c:url value="/mypage"/>'>
+								<p class="travel_writer">${travel.writer}</p>
+							</a>
+							<button class="scrap"
+								onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+							<div class="icons">
+								<img class="views"
+									src="${pageContext.request.contextPath}/resources/images/views.png" />
+								${travel.viewCnt} <img class="publish"
+									src="${pageContext.request.contextPath}/resources/images/publish.png" />${travel.shareCnt}
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/travellist2.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/travel/detail"/>'>
-							<p class="travel_title">아이들과 가기 좋은 역사 탐방</p>
-						</a> <a href='<c:url value="/mypage"/>'>
-							<p class="travel_writer">작성자 dudtjahdo98</p>
-						</a>
-						<button class="scrap"
-							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							218 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />17
-						</div>
-					</div>
-				</div>
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/travellist3.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/travel/detail"/>'>
-							<p class="travel_title">남산 타워 데이트 코스</p>
-						</a> <a href='<c:url value="/mypage"/>'>
-							<p class="travel_writer">작성자 wjdflarkwlak00</p>
-						</a>
-						<button class="scrap"
-							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							117 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />10
-						</div>
-					</div>
-				</div>
-
-				<div class="place">
-					<div class="image_wrap">
-						<img class="place_img"
-							src="${pageContext.request.contextPath}/resources/images/travellist4.jpg" />
-					</div>
-					<div class="place_info">
-						<a href='<c:url value="/travel/detail"/>'>
-							<p class="travel_title">제주도 먹방투어</p>
-						</a> <a href='<c:url value="/mypage"/>'>
-							<p class="travel_writer">작성자 helpmeee1717</p>
-						</a>
-						<button class="scrap"
-							onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							110 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />20
-						</div>
-					</div>
-				</div>
 
 			</div>
 		</div>
-		<div></div>
+		<table>
+		<td colspan="4" class="text-center">
+					<div>
+						<a class="btn btn-outline-primary btn-sm" href="list?pageNo=1">처음</a>
+						<c:if test="${pager.groupNo>1}">
+							<a class="btn btn-outline-info btn-sm" href="list?pageNo=${pager.startPageNo-1}">이전</a>
+						</c:if>
+						
+						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+							<c:if test="${pager.pageNo != i}">
+								<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}">${i}</a>
+							</c:if>
+							<c:if test="${pager.pageNo == i}">
+								<a class="btn btn-danger btn-sm" href="list?pageNo=${i}">${i}</a>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${pager.groupNo<pager.totalGroupNo}">
+							<a class="btn btn-outline-info btn-sm" href="list?pageNo=${pager.endPageNo+1}">다음</a>
+						</c:if>
+						<a class="btn btn-outline-primary btn-sm" href="list?pageNo=${pager.totalPageNo}">맨끝</a>
+					</div>
+				</td>
+			</tr>
+			</table>
+
+
+
+
+
 	</div>
 
 
 
 </body>
+<!-- <script>
+	$(".search_btn").on("click", function(e) {
+		e.preventDefault();
+
+		let type = $(".search_area select").val();
+		let keyword = $(".search_area input[name='keyword']").val();
+
+		if (!keyword) {
+			alert("키워드를 입력하세요.");
+			return false;
+		}
+
+		search_from.find("input[name='keyword']").val(keyword);
+		moveForm.submit();
+	});
+</script> -->
+</body>
+</html>
+
 <%@ include file="../common/footer.jsp"%>
 </html>

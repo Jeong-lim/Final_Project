@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
 import com.mycompany.webapp.travel.dao.TravelDao;
+import com.mycompany.webapp.travel.model.TravelVo;
 
 @Service
 public class TravelService {
@@ -20,11 +21,42 @@ public class TravelService {
 	private TravelDao travelDao;
 
 	public int countTravel() {
-		return travelDao.count();
+		return travelDao.countTravel();
 
 	}
-
-	public List<PlaceVo> selectPlaceList() { // 전체 관광지 리스트 (중복없이)
+	
+	public List<PlaceVo> selectPlaceList(){  //전체 관광지 리스트 
 		return travelDao.selectPlaceList();
 	}
+	
+/*	public List<TravelVo> selectTravelList(){  //전체 여행일정 리스트
+		return travelDao.selectTravelList();
+	}*/
+	
+	public List<TravelVo> selectTravelList(PagerVo pager){  //전체 여행일정 리스트
+		return travelDao.selectTravelList(pager);
+	}
+	
+	public List<PlaceVo> selectPlaceListByArea(String gugun1){
+		return travelDao.selectPlaceListByArea(gugun1);
+	}
+
+	public List<TravelVo> selectTravelListByView(PagerVo pager) {
+		return travelDao.selectTravelListByView(pager);
+	}
+
+	public List<TravelVo> selectTravelListByShare(PagerVo pager) {
+		return travelDao.selectTravelListByShare(pager);
+	}
+
+	public List<TravelVo> selectTravelListByRecent(PagerVo pager) {
+		return travelDao.selectTravelListByRecent(pager);
+	}
+
+	
+
+
+		
+	
+
 }
