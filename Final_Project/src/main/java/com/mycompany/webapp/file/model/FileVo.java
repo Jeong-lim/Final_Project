@@ -7,6 +7,7 @@ public class FileVo {
 	private String fileOriginalName;
 	private String fileSavedName;
 	private String fileName;
+	private String userName;
 	private MultipartFile attach;
 	
 	public String getUploadRoot() {
@@ -45,6 +46,12 @@ public class FileVo {
 	public String toString() {
 		return "FileVo [uploadRoot=" + uploadRoot + ", fileOriginalName=" + fileOriginalName + ", fileSavedName="
 				+ fileSavedName + ", fileName=" + fileName + ", attach=" + attach + "]";
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
