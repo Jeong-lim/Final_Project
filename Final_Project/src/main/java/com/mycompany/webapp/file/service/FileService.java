@@ -22,6 +22,10 @@ public class FileService {
 		fileDao.insertFile(file);
 		
 	}
+	
+	public void userImageFile(FileVo file) {
+		fileDao.userImageFile(file);
+	}
 		
 		
 		

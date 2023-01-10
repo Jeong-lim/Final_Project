@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,29 @@ public class FileController {
 		
 		
 		return "redirect:/fileuploadform";
+	}
+	
+	@RequestMapping("/userfileupload")
+	public String userImageFile(HttpSession session, FileVo file,Model model) throws IOException {
+		String userName = (String)session.getAttribute("memberId");
+		MultipartFile mf=file.getAttach();
+		if(!mf.isEmpty()) {
+			String originalName=mf.getOriginalFilename();
+			String savedFileName=UUID.randomUUID().toString()+"-"+originalName;
+			String uploadRoot="C:/Temp/projectfiles";
+			file.setFileOriginalName(originalName);
+			file.setFileSavedName(savedFileName);
+			file.setUploadRoot(uploadRoot);
+			file.setUserName(userName);
+			
+			File uploadfile=new File(uploadRoot+"/"+savedFileName);
+			mf.transferTo(uploadfile);
+		}
+		
+		fileService.userImageFile(file);
+		
+		
+		return "user/mypageupdate";
 	}
 	
 	
