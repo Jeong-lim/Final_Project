@@ -10,11 +10,12 @@
 </head>
 
 <body>
-	<c:if test="${empty sessionScope.memberId}">
-	<form action="<c:url value='/signin'/>" method="post">
+	
 	
 	<div class="container_top">
 		<div class="container">
+		<c:if test="${empty sessionScope.memberId}">
+	<form action="<c:url value='/signin'/>" method="post">
 			<div class="title">
 				<a href="<c:url value='/'/>"> <img class="logo_img"
 					src="${pageContext.request.contextPath}/resources/images/logo.png" />
@@ -53,14 +54,22 @@
 					<input type="submit" class="btn_login" value="로그인" />
 				</div>
 			</div>
+			
+				</form>
+	</c:if>
+
 
 			<div class="line"></div>
 			<div class="login_path">
+			
+			<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=0d1a65de77067d49a955bb898ba9109d&redirect_uri=	
+http://localhost:8080/kakaoLogin&response_type=code">
 				<button class="kakao">
 					<img class="kakao_img"
 						src="${pageContext.request.contextPath}/resources/images/speech-bubble.png"><span>
 						카카오로 쉬운 시작</span>
 				</button>
+			</a>
 
 				<div>
 					<button class="login_images">
@@ -82,10 +91,9 @@
 				</div>
 			</div>
 
+	
 		</div>
 	</div>
-	</form>
-	</c:if>
 	
 
 

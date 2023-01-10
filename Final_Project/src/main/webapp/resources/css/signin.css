@@ -16,6 +16,10 @@
     color : red;
 }
 
+a {
+	text-decoration: none;
+}
+
 * {
 	font-family: 'Pretendard-Regular';
 }
