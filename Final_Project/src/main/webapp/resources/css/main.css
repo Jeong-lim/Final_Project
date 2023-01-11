@@ -125,6 +125,11 @@
 	display: none;
 }
 
+.bx-wrapper img {
+	width: 1000px;
+	height: 480px;
+}
+
 .item {
 	width: 1000px;
 	height: 200px;

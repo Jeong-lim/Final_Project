@@ -57,9 +57,6 @@ public class MemberController {
 	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
 		
 		MemberVo member = memberService.selectMember(memberId); // 멤버 id가 있는 지 확인
-		
-		
-		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
 			String dbPassword = member.getMemberPassword(); // 데이터베이스에 있는 패스워드
@@ -146,7 +143,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/mypage/update", method=RequestMethod.POST)
-	public String updateMember(MemberVo member, HttpSession session, Model model) {
+	public String updateMember(MemberVo member, String memberPassword, HttpSession session, Model model) {
+		
 		try {
 			memberService.updateMember(member);
 			model.addAttribute("message", "회원정보가 수정되었습니다.");
