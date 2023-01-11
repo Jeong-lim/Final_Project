@@ -19,11 +19,11 @@
 			<div>
 				<p class="list_tit">우리나라 관광지 리스트</p>
 			</div>
-			<form action="/searchPlace" method="post">
+			<form action="/searchPlace" method="post" id="searchform">
 			<div class="search">
 				<select class="select" name="key">
-					<option value="area_name">지역명</option>
-					<option value="place_name">관광지명</option>
+					<option value="p.area_name">지역명</option>
+					<option value="p.place_name">관광지명</option>
 				</select> <input type="text" class="search_bar"  name="keyword" value=""
 					placeholder="search..">
 				<button type="submit" class="search_btn">
@@ -34,7 +34,7 @@
 			</form>
 			<div class="category">
 				<label class="test_obj"><a href="place?category=THE00030"> <input type="radio" name="category"
-					value="THE00030" checked > <span>자연/힐링</span>
+					value="THE00030"> <span>자연/힐링</span>
 				</a></label> <label class="test_obj"><a href="place?category=THE00050"> <input type="radio"
 					name="category" value="THE00050" ><span>종교/역사/전통</span>
 				</a></label><label class="test_obj"><a href="place?category=THE00020">  <input type="radio"
@@ -50,7 +50,7 @@
 			
 			
 			<div class="place_list" id="place_list">
-
+				
 				   <c:forEach var="place" items="${placeList}">
 					<div class="place">
 						<div class="image_wrap">
@@ -66,30 +66,32 @@
 						</div>
 					</div>
 				</c:forEach>  
-				
+					<c:if test="${placeList eq null }">
+						<p>${message }</p>
+					</c:if>
 			</div>
 			
 			
 		
 					 <div>
-						<a class="btn btn-outline-primary btn-sm" href="place?pageNo=1">처음</a>
+						<a  href="place?pageNo=1">처음</a>
 						<c:if test="${pager.groupNo>1}">
-							<a class="btn btn-outline-info btn-sm" href="place?pageNo=${pager.startPageNo-1}&category=${category}">이전</a>
+							<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}">이전</a>
 						</c:if>
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-outline-success btn-sm" href="place?pageNo=${i}&category=${category}">${i}</a>
+								<a  href="place?pageNo=${i}&category=${category}">${i}</a>
 							</c:if>
 							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-danger btn-sm" href="place?pageNo=${i}&category=${category}">${i}</a>
+								<a  href="place?pageNo=${i}&category=${category}">${i}</a>
 							</c:if>
 						</c:forEach>
 						
 						<c:if test="${pager.groupNo<pager.totalGroupNo}">
-							<a class="btn btn-outline-info btn-sm" href="place?pageNo=${pager.endPageNo+1}&category=${category}">다음</a>
+							<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}">다음</a>
 						</c:if>
-						<a class="btn btn-outline-primary btn-sm" href="place?pageNo=${pager.totalPageNo}&category=${category}">맨끝</a>
+						<a  href="place?pageNo=${pager.totalPageNo}&category=${category}">맨끝</a>
 					</div>
 				 
 			
@@ -118,6 +120,15 @@
 		
 		
 	});
+	
+	$('#searchform').submit(function(){
+		$('#categoryCheck').val('');
+		
+		$('[name="category"]').prop("checked",false);
+		
+	});
+	
+	
 </script>
 
 </html>

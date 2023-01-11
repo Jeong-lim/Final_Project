@@ -16,9 +16,9 @@ public interface PlaceDao {
 	 //전체관광지리스트페이징처리
 	public List<PlaceVo> selectPlaceList(@Param("category")String category, @Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
 	
-	public int countKeyword(@Param("key")String key, @Param("keyword")String keyword);
+	public int countKeyword(@Param("key")String key,@Param("keyword")String keyword);
 	
-	public List<PlaceVo> KeyworePlaceSearch(@Param("key")String key, @Param("keyword")String keyword,@Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
+	public List<PlaceVo> KeywordPlaceSearch(@Param("key")String key, @Param("keyword")String keyword,@Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
 	
 
 }

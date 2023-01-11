@@ -33,7 +33,8 @@
 		where rnum &gt;=#{startRowNo}
 	</select>  
 	
-	<select id="KeyworePlaceSearch" parameterType="map" resultType="place">
+	<select id="KeywordPlaceSearch" parameterType="map"  resultType="place">
+	
 		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category
 		from (
 			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name
@@ -41,20 +42,40 @@
 				select p.place_name,p.area_name,d.detail_cd_name
 				from ( select place_name,area_name,category,row_number() over(partition by place_name order by area_name desc)as rn
         				from place)p, detail_code d
-				where rn=1 and p.#{key} like '%#{keyword}%' and p.category=d.detail_cd_id
+				<trim prefix="where" prefixOverrides="AND|OR">
+				<if test="keyword != null and keyword !='' ">
+					<if test="key=='p.area_name'">
+						AND rn=1 and p.area_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+					</if>
+					<if test="key=='p.place_name'">
+						AND rn=1 and p.place_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+					</if>
+				</if>
+			</trim>
 
 				
 			)
 			where rownum &lt;=#{endRowNo}
 		)
 		where rnum &gt;=#{startRowNo}
+	
 	</select>
 	
 	<select id="countKeyword" parameterType="map" resultType="int">
-		select count(p.place_name)
-		from ( select place_name,area_name,category,row_number() over(partition by place_name order by area_name desc)as rn
-        		from place)p, detail_code d
-		where rn=1 and p.#{key} like '% #{keyword} %' and p.category=d.detail_cd_id
+		
+			select count(*)
+			from (select place_name,area_name,category,row_number() over(partition by place_name order by area_name desc)as rn from place)p, detail_code d
+			<trim prefix="where" prefixOverrides="AND|OR">
+				<if test="keyword != null and keyword !='' ">
+					<if test="key=='p.area_name'">
+						AND rn=1 and p.area_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+					</if>
+					<if test="key=='p.place_name'">
+						AND rn=1 and p.place_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+					</if>
+				</if>
+			</trim>
+		
 	</select>
 	
 	

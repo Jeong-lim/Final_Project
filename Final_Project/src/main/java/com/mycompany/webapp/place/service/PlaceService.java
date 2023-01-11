@@ -20,21 +20,21 @@ public class PlaceService {
 	@Resource
 	private PlaceDao placeDao;
 
-	public int countPlace(String category) { // 관광지 총 개수 (중복없이)
+	public int countPlace(String category) { // 카테고리별 관광지 총 개수 (중복없이)
 		return placeDao.count(category);
 	}
 
 	
-	public List<PlaceVo> selectPlaceList(String category, int endRowNo, int startRowNo){
+	public List<PlaceVo> selectPlaceList(String category, int endRowNo, int startRowNo){  //카테고리별 관광지 리스트
 		return placeDao.selectPlaceList(category, endRowNo, startRowNo);
 	}
 	
-	public int countKeyword(String key,String keyword) {
-		return placeDao.countKeyword(key, keyword);
+	public int countKeyword(String key,String keyword) {  //검색결과 총 개수 (중복없이)
+		return placeDao.countKeyword(key,keyword);
 	}
 
-	public List<PlaceVo> KeyworePlaceSearch(String key, String keyword, int endRowNo, int startRowNo){
-		return placeDao.KeyworePlaceSearch(key, keyword, endRowNo, startRowNo);
+	public List<PlaceVo> KeywordPlaceSearch( String key,String keyword,int endRowNo, int startRowNo){ //검색결과 리스트
+		return placeDao.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
 	}
 
 	
