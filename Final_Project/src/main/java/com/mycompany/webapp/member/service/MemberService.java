@@ -31,6 +31,10 @@ public class MemberService  {
 	}
 	
 	public void updateMember(MemberVo member) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePw = encoder.encode(member.getMemberPassword());
+		member.setMemberPassword(securePw);		
+		
 		memberDao.updateMember(member);
 	}
 	

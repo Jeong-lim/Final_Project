@@ -41,14 +41,18 @@
 						<button class="imgBtn">기본프로필</button>
 					</a>
 					
+					
+					
 					<br />
 					
-					<form class="img_input_form" method="post" action="<c:url value='/userfileupload' />" enctype="multipart/form-data">
+					<form class="img_input_form" name="userImageForm" method="post" action="<c:url value='/userfileupload' />" enctype="multipart/form-data">
+						<div class="file_update_container">
 						<label for="file">
-  							<div class="imgBtn">파일 업로드하기</div>
+  							<div class="imgBtn_update">파일 업로드</div>
 						</label>
-						<input class="imgBtn" id="file" type="file" name="attach" >
-						<input class="imgBtn" type="submit">
+						</div>
+						<input class="imgBtn" id="file" type="file" name="attach" onchange="imageSubmit()" />
+						<input class="imgBtn_submit" type="submit" />
 					</form>
 				</div>
 			</div>
@@ -71,7 +75,7 @@
 				</div>
 				<div class="input_div">
 					<label class="profile_lab">비밀번호 확인</label> 
-					<input type="password" id="pw2" class="input" name="memberPassword" onchange="check_pw()" required>
+					<input type="password" id="pw2" class="input" name="memberPassword" value="${member.memberPassword}" onchange="check_pw()" required>
 					&nbsp;<span id="check"></span>
 				</div>
 				<div class="input_div">
@@ -86,7 +90,7 @@
 					<input class="imgBtn_delete" value="회원 탈퇴"/>
 				</a>
 				<a href='/mypage'>
-					<input type="submit" class="imgBtn" value="수정 완료"/>
+					<input type="submit" class="user_update" value="수정 완료"/>
 				</a>
 				
 			</div>
@@ -101,6 +105,11 @@
 
 </body>
 <script type="text/javascript">
+
+function imageSubmit() {
+	document.userImageForm.submit();
+	}
+
 function check_pw(){
     var pw = document.getElementById('pw').value;
     var SC = ["!","@","#","$","%"];

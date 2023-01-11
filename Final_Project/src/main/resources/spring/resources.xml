@@ -8,4 +8,5 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/image/**" location="file:///C:/Temp/userImage/"/>
+	<mvc:resources mapping="/place/**" location="file:///C:/Temp/projectfiles/"/>
 </beans>
