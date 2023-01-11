@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/placelist.css" />
+
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
@@ -75,20 +76,21 @@
 		
 		
 					 <div>
+					 <ul class="pagebtn">
 						 <c:if test="${category eq null }">
-							<a  href="searchPlace?pageNo=1">처음</a>
+							<a  href="searchPlace?pageNo=1"><li class="pageli">처음</li></a>
 						</c:if>
 						<c:if test="${category ne null }">
-							<a  href="place?pageNo=1">처음</a>
+							<a  href="place?pageNo=1"><li class="pageli">처음</li></a>
 						</c:if>
 					
 					
 						<c:if test="${pager.groupNo>1}">
 							<c:if test="${category ne null }">
-								<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}">이전</a>
+								<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}"><li class="pageli">이전</li></a>
 							</c:if>
 							<c:if test="${category eq null }">
-								<a href="searchPlace?pageNo=${pager.startPageNo-1 }&key=${key}&keyword=${keyword}">이전</a>
+								<a href="searchPlace?pageNo=${pager.startPageNo-1 }&key=${key}&keyword=${keyword}"><li class="pageli">이전</li></a>
 							</c:if>
 						</c:if>
 						
@@ -97,20 +99,20 @@
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 							<c:if test="${pager.pageNo != i}">
 								<c:if test="${category ne null }">
-									<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+									<a  href="place?pageNo=${i}&category=${category}"><li class="pageli">${i}</li></a>
 								</c:if>
 								<c:if test="${category eq null }">
-									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}">${i}</a>
+									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 								</c:if>
 							</c:if>
 							
 							<c:if test="${pager.pageNo == i}">
 								<c:if test="${category ne null }">
-									<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+									<a  href="place?pageNo=${i}&category=${category}"><li class="pageli">${i}</li></a>
 								</c:if>
 								
 								 <c:if test="${catagory eq null }">
-									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}">${i}</a>
+									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 								</c:if> 
 								
 							</c:if>
@@ -120,19 +122,20 @@
 						
 						<c:if test="${pager.groupNo<pager.totalGroupNo}">
 							<c:if test="${category ne null }">
-								<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}">다음</a>
+								<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}"><li class="pageli">다음</li></a>
 							</c:if>
 							<c:if test="${category eq null }">
-								<a href="searchPlace?pageNo=${pager.endPageNo+1 }&key=${key}&keyword=${keyword}">다음</a>
+								<a href="searchPlace?pageNo=${pager.endPageNo+1 }&key=${key}&keyword=${keyword}"><li class="pageli">다음</li></a>
 							</c:if>
 						</c:if>
 						
 						<c:if test="${category ne null }">
-							<a  href="place?pageNo=${pager.totalPageNo}&category=${category}">맨끝</a>
+							<a  href="place?pageNo=${pager.totalPageNo}&category=${category}"><li class="pageli">맨끝</li></a>
 						</c:if>
 						<c:if test="${category eq null }">
-							<a href="searchPlace=${pager.totalPageNo }&key=${key}&keyword=${keyword}">맨끝</a>
+							<a href="searchPlace=${pager.totalPageNo }&key=${key}&keyword=${keyword}"><li class="pageli">맨끝</li></a>
 						</c:if>
+					</ul>
 					</div>
 				 
 			
