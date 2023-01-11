@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
 import com.mycompany.webapp.travel.dao.TravelDao;
+import com.mycompany.webapp.travel.model.Search;
 import com.mycompany.webapp.travel.model.TravelVo;
 
 @Service
@@ -51,6 +52,14 @@ public class TravelService {
 
 	public List<TravelVo> selectTravelListByRecent(PagerVo pager) {
 		return travelDao.selectTravelListByRecent(pager);
+	}
+	
+	public List<TravelVo> selectTravelListByKeyword(PagerVo pager, Search search){
+		return travelDao.selectTravelListByKeyword(pager, search);
+	}
+	
+	public int countTravelSearch(Search search) {
+		return travelDao.countTravelSearch(search);
 	}
 
 	

@@ -30,19 +30,18 @@
 				<p class="list_tit">여행 일정 리스트</p>
 			</div>
 			<div class="search_area">
-				<select class="select" name="type">
-					<option value="title"
-						<c:out value="${travel.type eq 'title'?'selected':'' }"/>>제목</option>
-					<option value="writer"
-						<c:out value="${travel.type eq 'writer'?'selected':'' }"/>>작성자</option>
-				</select>
-				<form id="search_form" method="get" class="search_bar" action>
-					<input type="hidden" name="keyword" value="${travel.keyword}">
-				</form>
-				<button class="search_btn">
+
+				<select class="select" name="searchType" id="searchType">
+					<option value="title">제목</option>
+					<option value="writer">작성자</option>
+				</select> <input type="text" name="keyword" id="keyword"
+					value="${travel.keyword}">
+				<button class="search_btn" name="btnSearch" id="btnSearch">
 					<img class="search_img"
 						src="${pageContext.request.contextPath}/resources/images/search.png" />
 				</button>
+
+
 			</div>
 			<div class="category">
 				<a href='<c:url value="/travel/recent/list"/>'> <label
@@ -67,7 +66,10 @@
 						</div>
 						<div class="place_info">
 							<a href='<c:url value="/travel/detail"/>'>
-								<p class="travel_title">${travel.travelTitle} - <fmt:formatDate value="${travel.writeDate}" pattern="YYYY-MM-dd" />
+								<p class="travel_title">${travel.travelTitle}
+									-
+									<fmt:formatDate value="${travel.writeDate}"
+										pattern="YYYY-MM-dd" />
 								</p>
 							</a> <a href='<c:url value="/mypage"/>'>
 								<p class="travel_writer">${travel.writer}</p>
@@ -88,30 +90,34 @@
 			</div>
 		</div>
 		<table>
-		<td colspan="4" class="text-center">
-					<div>
-						<a class="btn btn-outline-primary btn-sm" href="list?pageNo=1">처음</a>
-						<c:if test="${pager.groupNo>1}">
-							<a class="btn btn-outline-info btn-sm" href="list?pageNo=${pager.startPageNo-1}">이전</a>
+			<td colspan="4" class="text-center">
+				<div>
+					<a class="btn btn-outline-primary btn-sm" href="list?pageNo=1">처음</a>
+					<c:if test="${pager.groupNo>1}">
+						<a class="btn btn-outline-info btn-sm"
+							href="list?pageNo=${pager.startPageNo-1}">이전</a>
+					</c:if>
+
+					<c:forEach var="i" begin="${pager.startPageNo}"
+						end="${pager.endPageNo}">
+						<c:if test="${pager.pageNo != i}">
+							<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}">${i}</a>
 						</c:if>
-						
-						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-							<c:if test="${pager.pageNo != i}">
-								<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}">${i}</a>
-							</c:if>
-							<c:if test="${pager.pageNo == i}">
-								<a class="btn btn-danger btn-sm" href="list?pageNo=${i}">${i}</a>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${pager.groupNo<pager.totalGroupNo}">
-							<a class="btn btn-outline-info btn-sm" href="list?pageNo=${pager.endPageNo+1}">다음</a>
+						<c:if test="${pager.pageNo == i}">
+							<a class="btn btn-danger btn-sm" href="list?pageNo=${i}">${i}</a>
 						</c:if>
-						<a class="btn btn-outline-primary btn-sm" href="list?pageNo=${pager.totalPageNo}">맨끝</a>
-					</div>
-				</td>
+					</c:forEach>
+
+					<c:if test="${pager.groupNo<pager.totalGroupNo}">
+						<a class="btn btn-outline-info btn-sm"
+							href="list?pageNo=${pager.endPageNo+1}">다음</a>
+					</c:if>
+					<a class="btn btn-outline-primary btn-sm"
+						href="list?pageNo=${pager.totalPageNo}">맨끝</a>
+				</div>
+			</td>
 			</tr>
-			</table>
+		</table>
 
 
 
@@ -119,26 +125,26 @@
 
 	</div>
 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(document).on('click','#btnSearch',function(e){
 
+	e.preventDefault();
 
+	var url = "/travel/search/list";
+
+	url = url + "?searchType=" + $('#searchType').val();
+
+	url = url + "&keyword=" + $('#keyword').val();
+
+	location.href = url;
+
+	console.log(url);
+
+});	
+</script>
 </body>
-<!-- <script>
-	$(".search_btn").on("click", function(e) {
-		e.preventDefault();
 
-		let type = $(".search_area select").val();
-		let keyword = $(".search_area input[name='keyword']").val();
-
-		if (!keyword) {
-			alert("키워드를 입력하세요.");
-			return false;
-		}
-
-		search_from.find("input[name='keyword']").val(keyword);
-		moveForm.submit();
-	});
-</script> -->
-</body>
 </html>
 
 <%@ include file="../common/footer.jsp"%>
