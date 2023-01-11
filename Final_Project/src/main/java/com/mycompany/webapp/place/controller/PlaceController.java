@@ -46,7 +46,7 @@ public class PlaceController {
 	}  
 	
 	@RequestMapping("/searchPlace")
-	public String searchPlace(@RequestParam(required=false)String key,@RequestParam(required= false)String keyword,@RequestParam(defaultValue="2") int pageNo,Model model) {
+	public String searchPlace(@RequestParam(required=false)String key,@RequestParam(required= false)String keyword,@RequestParam(defaultValue="1") int pageNo,Model model) {
 		
 		int totalRows=placeService.countKeyword(key,keyword);
 		if(totalRows!=0) {
@@ -56,6 +56,8 @@ public class PlaceController {
 			List<PlaceVo> placeList=placeService.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
 			model.addAttribute("pager",pager);
 			model.addAttribute("placeList",placeList);
+			model.addAttribute("key",key);
+			model.addAttribute("keyword",keyword);
 		}
 		else {
 
