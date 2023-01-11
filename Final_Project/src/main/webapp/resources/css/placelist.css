@@ -86,6 +86,11 @@
 	background-color: #3B82F6;
 	color: #ffffff;
 }
+.test_obj a{
+	color:#666 !important;
+	text-decoration: none;
+	
+}
 
 .place {
 	border: 2px solid #BDBDBD;
