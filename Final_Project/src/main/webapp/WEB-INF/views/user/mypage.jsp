@@ -12,6 +12,7 @@
 </head>
 
 <body>
+	<img src="C:\Temp\...\image.jpg" alt="" />
 	<br>
 	<br>
 	<br>

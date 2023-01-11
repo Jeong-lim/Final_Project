@@ -51,13 +51,13 @@ public class MemberController {
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
 		
-		MemberVo member = memberService.selectMember(memberId);
+		MemberVo member = memberService.selectMember(memberId); // 멤버 id가 있는 지 확인
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
 			String dbPassword = member.getMemberPassword(); // 데이터베이스에 있는 패스워드
 			logger.info(dbPassword);
-				if(dbPassword == null) { 
+				if(dbPassword == null) {
 					model.addAttribute("resultMember", 0);
 				} else {
 					// 아이디가 있을 때
