@@ -102,7 +102,7 @@ public class MemberController {
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)
 			model.addAttribute("message", "로그인이 필요합니다.");
-			return "auth/login";
+			return "auth/signin";
 		}
 	}
 	
@@ -122,7 +122,7 @@ public class MemberController {
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)
 			model.addAttribute("message", "로그인이 필요합니다.");
-			return "auth/login";
+			return "auth/signin";
 		}
 	}
 	
