@@ -73,25 +73,66 @@
 			
 			
 		
+		
 					 <div>
-						<a  href="place?pageNo=1">처음</a>
-						<c:if test="${pager.groupNo>1}">
-							<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}">이전</a>
+						 <c:if test="${category eq null }">
+							<a  href="searchPlace?pageNo=1">처음</a>
 						</c:if>
+						<c:if test="${category ne null }">
+							<a  href="place?pageNo=1">처음</a>
+						</c:if>
+					
+					
+						<c:if test="${pager.groupNo>1}">
+							<c:if test="${category ne null }">
+								<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}">이전</a>
+							</c:if>
+							<c:if test="${category eq null }">
+								<a href="searchPlace?pageNo=${pager.startPageNo-1 }&key=${key}&keyword=${keyword}">이전</a>
+							</c:if>
+						</c:if>
+						
+						
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 							<c:if test="${pager.pageNo != i}">
-								<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+								<c:if test="${category ne null }">
+									<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+								</c:if>
+								<c:if test="${category eq null }">
+									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}">${i}</a>
+								</c:if>
 							</c:if>
+							
 							<c:if test="${pager.pageNo == i}">
-								<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+								<c:if test="${category ne null }">
+									<a  href="place?pageNo=${i}&category=${category}">${i}</a>
+								</c:if>
+								
+								 <c:if test="${catagory eq null }">
+									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}">${i}</a>
+								</c:if> 
+								
 							</c:if>
 						</c:forEach>
 						
+						
+						
 						<c:if test="${pager.groupNo<pager.totalGroupNo}">
-							<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}">다음</a>
+							<c:if test="${category ne null }">
+								<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}">다음</a>
+							</c:if>
+							<c:if test="${category eq null }">
+								<a href="searchPlace?pageNo=${pager.endPageNo+1 }&key=${key}&keyword=${keyword}">다음</a>
+							</c:if>
 						</c:if>
-						<a  href="place?pageNo=${pager.totalPageNo}&category=${category}">맨끝</a>
+						
+						<c:if test="${category ne null }">
+							<a  href="place?pageNo=${pager.totalPageNo}&category=${category}">맨끝</a>
+						</c:if>
+						<c:if test="${category eq null }">
+							<a href="searchPlace=${pager.totalPageNo }&key=${key}&keyword=${keyword}">맨끝</a>
+						</c:if>
 					</div>
 				 
 			
