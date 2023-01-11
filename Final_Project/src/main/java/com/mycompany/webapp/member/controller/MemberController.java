@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.webapp.file.model.FileVo;
+import com.mycompany.webapp.file.service.FileService;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.MemberService;
 
@@ -24,6 +26,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private FileService fileService;
 	
 	@RequestMapping(value = "/signup", method=RequestMethod.GET)
 	public String joinForm() {
@@ -53,6 +58,8 @@ public class MemberController {
 		
 		MemberVo member = memberService.selectMember(memberId); // 멤버 id가 있는 지 확인
 		
+		
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
 			String dbPassword = member.getMemberPassword(); // 데이터베이스에 있는 패스워드
@@ -66,7 +73,15 @@ public class MemberController {
 						session.setAttribute("memberId", memberId);
 						session.setAttribute("memberName", member.getMemberName());
 						session.setAttribute("email", member.getEmail());
+						
+						FileVo fileVo = fileService.selectUserImage(memberId);
+						if(fileVo != null && !fileVo.equals("")) {
+							String fileSavedName = fileVo.getFileSavedName();
+							session.setAttribute("fileSavedName", fileSavedName);
+						}
+						
 						logger.info("login 실행");
+						
 						return "redirect:/";
 					} else {
 						// 비밀번호 불일치
@@ -93,11 +108,13 @@ public class MemberController {
 	public String selectMember(HttpSession session, Model model) {
 		String memberId = (String)session.getAttribute("memberId");
 		logger.info(memberId);
+		
 		if(memberId != null && !memberId.equals("")) {
 			logger.info("회원정보 GET 실행");
 			MemberVo member = memberService.selectMember(memberId);
 			model.addAttribute("member", member);
 			logger.info(member.toString());
+
 			return "user/mypage";
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)
@@ -117,7 +134,9 @@ public class MemberController {
 			logger.info("회원정보 GET 실행");
 			MemberVo member = memberService.selectMember(memberId);
 			model.addAttribute("member", member);
+			
 			logger.info(member.toString());
+			
 			return "user/mypageupdate";
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)

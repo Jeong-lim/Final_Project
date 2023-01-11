@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,17 @@
 			<br>
 			<div class="profile">
 				<div class="profile_img">
-					<img class="profile_image"
-						src="${pageContext.request.contextPath}/resources/images/profile.jpg" />
+				
+					<c:if test="${empty sessionScope.fileSavedName}">
+						<img class="profile_image" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
+					</c:if>
+
+					<c:if test="${not empty sessionScope.fileSavedName}">
+						<img class="profile_image"
+							src="<spring:url value='/image/${fileSavedName}'/>" />
+					</c:if>
+			
+					
 				</div>
 				<div class="profile_info">
 					<p>${member.memberName}</p>
