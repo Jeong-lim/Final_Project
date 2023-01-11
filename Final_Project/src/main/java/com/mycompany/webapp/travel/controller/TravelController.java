@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
+import com.mycompany.webapp.travel.model.Search;
 import com.mycompany.webapp.travel.model.TravelVo;
 import com.mycompany.webapp.travel.service.TravelService;
 
@@ -109,6 +110,28 @@ public class TravelController {
 		model.addAttribute("travelList", travelList);
 
 		System.out.println("ddd4");
+		return "travel/travellist";
+	}
+	
+	
+	@RequestMapping(value="/travel/search/list", method = RequestMethod.GET)
+	public String getTravelListBySearch(@RequestParam(defaultValue = "1") int pageNo, 
+			@RequestParam(required = false, defaultValue = "title") String searchType, 
+			@RequestParam(required = false) String keyword, Model model) {
+
+		Search search = new Search();
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+
+		int totalRows = travelService.countTravelSearch(search);
+		PagerVo pager = new PagerVo(10, 5, totalRows, pageNo);
+
+		List<TravelVo> travelList =travelService.selectTravelListByKeyword(pager,search);
+		
+		model.addAttribute("pager",pager);
+		model.addAttribute("travelList",travelList);
+
+		System.out.println("ddd");
 		return "travel/travellist";
 	}
 	

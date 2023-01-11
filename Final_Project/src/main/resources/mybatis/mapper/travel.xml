@@ -25,16 +25,21 @@
 		FROM travel
 	</select> -->
 
-	<select id="selectTravelListyByKeyword" resultType="travel">
-		SELECT travel_id as travelId, travel_title as travelTitle, free as
-		free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer,
-		write_date as writeDate
-		FROM travel
-		where
+	<select id="selectTravelListyByKeyword" resultType="travel" parameterType="pager">
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+				WHERE
 		<choose>
-			<when test="type == 'title'.toString()">travel_title like '%'||#{keyword}||'%'</when>
-			<when test="type == 'writer'.toString()">writer like '%'||#{keyword}||'%'</when>
+			<when test="searchType == 'title'">travel_title like '%'||#{keyword}||'%'</when>
+			<when test="searchType == 'writer'">writer like '%'||#{keyword}||'%'</when>
 		</choose>
+				)WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+		
 
 	</select>
 
@@ -90,7 +95,7 @@
 				FROM( 
 				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
 				FROM travel
-                ORDER BY travel_id desc
+                ORDER BY write_date desc
 				)
 			  WHERE rownum &lt;=#{endRowNo}
 			  )

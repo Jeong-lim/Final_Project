@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
+import com.mycompany.webapp.travel.model.Search;
 import com.mycompany.webapp.travel.model.TravelVo;
 
 @Mapper
@@ -26,6 +27,9 @@ public interface TravelDao {
 	public List<TravelVo> selectTravelListByShare(PagerVo pager); //공유수 순 리스트
 
 	public List<TravelVo> selectTravelListByRecent(PagerVo pager); //최신순 리스트
+	
+	public List<TravelVo> selectTravelListByKeyword(PagerVo pager, Search search); //최신순 리스트
+	public int countTravelSearch(Search search);
 
 	
 
