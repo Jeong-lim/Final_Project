@@ -35,11 +35,16 @@
 					<option value="title">제목</option>
 					<option value="writer">작성자</option>
 				</select> <input type="text" name="keyword" id="keyword"
-					value="${travel.keyword}">
+					value="">
+				
 				<button class="search_btn" name="btnSearch" id="btnSearch">
 					<img class="search_img"
 						src="${pageContext.request.contextPath}/resources/images/search.png" />
 				</button>
+				<form name="readForm" method="post">
+				<input type="hidden" id="keyword2" name="keyword2" value="${keyword}"/>
+				<input type="hidden" id="searchType2" name="searchType2" value="${searchType}"/>
+				</form>
 
 
 			</div>
@@ -101,10 +106,10 @@
 					<c:forEach var="i" begin="${pager.startPageNo}"
 						end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo != i}">
-							<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}">${i}</a>
+							<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
 						</c:if>
 						<c:if test="${pager.pageNo == i}">
-							<a class="btn btn-danger btn-sm" href="list?pageNo=${i}">${i}</a>
+							<a class="btn btn-danger btn-sm" href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
 						</c:if>
 					</c:forEach>
 
@@ -131,9 +136,9 @@ $(document).on('click','#btnSearch',function(e){
 
 	e.preventDefault();
 
-	var url = "/travel/search/list";
+	var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
 
-	url = url + "?searchType=" + $('#searchType').val();
+	url = url + "&searchType=" + $('#searchType').val();
 
 	url = url + "&keyword=" + $('#keyword').val();
 
@@ -142,6 +147,52 @@ $(document).on('click','#btnSearch',function(e){
 	console.log(url);
 
 });	
+
+$(document).ready(function(){
+	var searchType2=$('#searchType2').val();
+	var keyword2=$('#keyword2').val();
+	
+	console.log(searchType2);
+	console.log(keyword2);
+	
+	
+	/*  $(document).on('click','.btn btn-outline-success btn-sm',function(e){
+
+			e.preventDefault();
+
+			var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
+
+			url = url + "&searchType=" + searchType2;
+
+			url = url + "&keyword=" + keyword2;
+
+			location.href = url;
+
+			console.log(url);
+
+		});	
+	 
+	 $(document).on('click','.btn btn-danger btn-sm',function(e){
+
+			e.preventDefault();
+
+			var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
+
+			url = url + "&searchType=" + searchType2;
+
+			url = url + "&keyword=" + keyword2;
+
+			location.href = url;
+
+			console.log(url);
+
+		});	 */
+});
+
+
+
+
+
 </script>
 </body>
 

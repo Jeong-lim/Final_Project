@@ -1,6 +1,8 @@
 package com.mycompany.webapp.travel.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -119,19 +121,22 @@ public class TravelController {
 			@RequestParam(required = false, defaultValue = "title") String searchType, 
 			@RequestParam(required = false) String keyword, Model model) {
 
-		Search search = new Search();
-		search.setSearchType(searchType);
-		search.setKeyword(keyword);
-
-		int totalRows = travelService.countTravelSearch(search);
+		int totalRows = travelService.countTravelSearch(searchType,keyword);
 		PagerVo pager = new PagerVo(10, 5, totalRows, pageNo);
-
-		List<TravelVo> travelList =travelService.selectTravelListByKeyword(pager,search);
+		int endRowNo=pager.getEndRowNo();
+		int startRowNo=pager.getStartRowNo();
+		System.out.println(totalRows);
 		
+		List<TravelVo> travelList =travelService.selectTravelListByKeyword(endRowNo,startRowNo,searchType,keyword);
+	
 		model.addAttribute("pager",pager);
 		model.addAttribute("travelList",travelList);
+		
+		model.addAttribute("searchType",searchType);
+		model.addAttribute("keyword",keyword);
+		
 
-		System.out.println("ddd");
+		System.out.println("ddd5");
 		return "travel/travellist";
 	}
 	

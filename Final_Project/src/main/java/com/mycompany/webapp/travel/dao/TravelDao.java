@@ -3,6 +3,7 @@ package com.mycompany.webapp.travel.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
@@ -28,8 +29,9 @@ public interface TravelDao {
 
 	public List<TravelVo> selectTravelListByRecent(PagerVo pager); //최신순 리스트
 	
-	public List<TravelVo> selectTravelListByKeyword(PagerVo pager, Search search); //최신순 리스트
-	public int countTravelSearch(Search search);
+	public int countTravelSearch(@Param("searchType")String searchType, @Param("keyword")String keyword);
+
+	public List<TravelVo> selectTravelListByKeyword(@Param("endRowNo")int endRowNo, @Param("startRowNo")int startRowNo, @Param("searchType")String searchType, @Param("keyword")String keyword); //검색 리스트
 
 	
 

@@ -53,14 +53,17 @@ public class TravelService {
 	public List<TravelVo> selectTravelListByRecent(PagerVo pager) {
 		return travelDao.selectTravelListByRecent(pager);
 	}
+
 	
-	public List<TravelVo> selectTravelListByKeyword(PagerVo pager, Search search){
-		return travelDao.selectTravelListByKeyword(pager, search);
+	public int countTravelSearch(String searchType, String keyword) {
+		return travelDao.countTravelSearch(searchType,keyword);
 	}
+
+	public List<TravelVo> selectTravelListByKeyword(int endRowNo, int startRowNo, String searchType, String keyword) {
+		return travelDao.selectTravelListByKeyword(endRowNo, startRowNo,searchType, keyword);
+	}
+
 	
-	public int countTravelSearch(Search search) {
-		return travelDao.countTravelSearch(search);
-	}
 
 	
 

@@ -16,32 +16,6 @@
 	<select id="selectPlaceListByArea" resultType="place">
 
 	</select>
-<!-- 
-	<select id="selectTravelList" resultType="travel">
-		SELECT travel_id as
-		travelId, travel_title as travelTitle, free as free, view_cnt as
-		viewCnt, share_cnt as shareCnt, writer as writer, write_date as
-		writeDate
-		FROM travel
-	</select> -->
-
-	<select id="selectTravelListyByKeyword" resultType="travel" parameterType="pager">
-		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
-		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
-				FROM( 
-				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
-				FROM travel
-				WHERE
-		<choose>
-			<when test="searchType == 'title'">travel_title like '%'||#{keyword}||'%'</when>
-			<when test="searchType == 'writer'">writer like '%'||#{keyword}||'%'</when>
-		</choose>
-				)WHERE rownum &lt;=#{endRowNo}
-			  )
-		WHERE rn &gt;=#{startRowNo}
-		
-
-	</select>
 
 	<select id="selectTravelList" resultType="travel" parameterType="pager">
 
@@ -61,6 +35,22 @@
 	<select id="countTravel" resultType="int">
 		select count(*)
 		from travel
+	</select>
+	
+	<select id="countTravelSearch" resultType="int" parameterType="map">
+		select count(*)
+		FROM travel
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchType=='title'">
+				 AND travel_title like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType=='writer'">
+				 AND writer like '%'||#{keyword}||'%'
+			</if>
+		</if>
+		</trim>
+				
 	</select>
 	
 	<select id="selectTravelListByView" resultType="travel" parameterType="pager">
@@ -102,6 +92,26 @@
 		WHERE rn &gt;=#{startRowNo}
 	</select>
 	
+	<select id="selectTravelListByKeyword" resultType="travel" parameterType="map">
+		SELECT rn, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		FROM (select rownum as rn, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM( 
+				select travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+				FROM travel
+				<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='title' and keyword != null and keyword != '' ">
+				 AND travel_title like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType=='writer' and keyword != null and keyword != '' ">
+				 AND writer like '%'||#{keyword}||'%'
+			</if>
+		</trim>
+				)WHERE rownum &lt;=#{endRowNo}
+			  )
+		WHERE rn &gt;=#{startRowNo}
+		
+
+	</select>
 
 
 
