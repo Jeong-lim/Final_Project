@@ -8,5 +8,6 @@ public interface FileDao {
 	
 	int count();
 	void insertFile(FileVo file);
-
+	void insertUserFile(FileVo file);
+	void userImageFile(FileVo file);
 }

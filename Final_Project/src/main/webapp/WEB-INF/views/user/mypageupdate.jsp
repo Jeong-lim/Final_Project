@@ -10,6 +10,13 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
+
+<form method="post" action="<c:url value='/userfileupload' />" enctype="multipart/form-data">
+
+	<input id="attach" type="file" name="attach" >
+	<input type="submit">
+	
+</form>
 	
 	<br>
 	<br>
