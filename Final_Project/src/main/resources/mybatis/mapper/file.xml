@@ -9,9 +9,50 @@
 		values(FILE_SEQ.nextval, #{uploadRoot}, #{fileOriginalName},#{fileSavedName},1,#{fileName},'Y' )
 	</insert>
 	
-	<insert id="userImageFile" parameterType="file">
-		insert into UPLOAD_FILE (FILE_ID,UPLOAD_ROOT,FILE_ORIGINAL_NAME,FILE_SAVED_NAME,VER_NO,FILE_CODE,FILE_STATUS)
-		values(FILE_SEQ.nextval, #{uploadRoot}, #{fileOriginalName},#{fileSavedName},1,#{userName},'Y' )
+	<insert id="insertUserImage" parameterType="file">
+		INSERT INTO 
+			UPLOAD_FILE (FILE_ID
+					   , UPLOAD_ROOT
+					   , FILE_ORIGINAL_NAME
+					   , FILE_SAVED_NAME
+					   , VER_NO
+					   , FILE_CODE
+					   , FILE_STATUS)
+			VALUES (FILE_SEQ.nextval
+				  , #{uploadRoot}
+				  , #{fileOriginalName}
+				  , #{fileSavedName}
+				  , 1
+				  , #{userName}
+				  , 'Y')
 	</insert>
+	
+	<update id="deleteUserImage" parameterType="file">
+	 	UPDATE UPLOAD_FILE
+	 	SET
+	 		FILE_STATUS='N'
+	 	WHERE
+	 		FILE_CODE = #{userName} AND FILE_STATUS='Y'
+	 	
+	</update>
+	
+	<resultMap type="com.mycompany.webapp.file.model.FileVo" id="selectUserImage">
+      <result column="FILE_ORIGINAL_NAME" property="fileOriginalName"/>
+      <result column="FILE_SAVED_NAME" property="fileSavedName"/>
+      <result column="FILE_CODE" property="userName"/>
+      <result column="UPLOAD_ROOT" property="uploadRoot"/>
+    </resultMap> 
+	
+	<select id="selectUserImage" parameterType="string" resultMap="selectUserImage">
+		SELECT
+			FILE_ORIGINAL_NAME
+		  , FILE_SAVED_NAME
+		  , UPLOAD_ROOT
+		  , FILE_CODE
+		FROM
+			UPLOAD_FILE
+		WHERE
+			FILE_CODE=#{userName} AND FILE_STATUS='Y'
+	</select>
 	
 </mapper>

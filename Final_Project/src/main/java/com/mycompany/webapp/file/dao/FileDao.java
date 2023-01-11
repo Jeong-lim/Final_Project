@@ -7,7 +7,8 @@ import com.mycompany.webapp.file.model.FileVo;
 public interface FileDao {
 	
 	int count();
-	void insertFile(FileVo file);
-	void insertUserFile(FileVo file);
-	void userImageFile(FileVo file);
+	public void insertFile(FileVo file);
+	public void insertUserImage(FileVo file);
+	public FileVo selectUserImage(String userName);
+	void deleteUserImage(String userName);
 }

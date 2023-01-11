@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,33 +12,50 @@
 </head>
 <body>
 
-<form method="post" action="<c:url value='/userfileupload' />" enctype="multipart/form-data">
-
-	<input id="attach" type="file" name="attach" >
-	<input type="submit">
+	 
+	<br>
+	<br>
+	<br>
 	
-</form>
-	
-	<br>
-	<br>
-	<br>
-	<form action="<c:url value='/mypage/update' />" method="post">
 	<div class="container_top">
 		<div class="container">
 			<h1 class="mypage_title">회원정보 수정</h1>
 			<br>
 			<div class="profile">
 				<div class="profile_img">
-					<img class="profile_image"
-						src="${pageContext.request.contextPath}/resources/images/profile.jpg" />
+				
+					<!-- file이 없으면 defalt user image 보여주기 -->
+				
+					<c:if test="${empty sessionScope.fileSavedName}">
+						<img class="profile_image" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
+					</c:if>
+
+					<c:if test="${not empty sessionScope.fileSavedName}">
+						<img class="profile_image"
+							src="<spring:url value='/image/${fileSavedName}'/>" />
+					</c:if>
+				
 				</div>
 				<div class="img_button">
-					<button class="imgBtn" type="button">기본프로필</button>
-					<button class="imgBtn" type="button">사진 불러오기</button>
+					<a href="<c:url value='/userfiledelete'/>">
+						<button class="imgBtn">기본프로필</button>
+					</a>
+					
+					<br />
+					
+					<form class="img_input_form" method="post" action="<c:url value='/userfileupload' />" enctype="multipart/form-data">
+						<label for="file">
+  							<div class="imgBtn">파일 업로드하기</div>
+						</label>
+						<input class="imgBtn" id="file" type="file" name="attach" >
+						<input class="imgBtn" type="submit">
+					</form>
 				</div>
 			</div>
+			<form action="<c:url value='/mypage/update' />" method="post">
 			<div class="update_form">
 				<p class="account_tit">계정</p>
+				
 				<input type="hidden" class="input" name="memberId" value="${member['memberId']}" ${empty member.memberId ? "" : "readonly" } required>
 				<div class="input_div">
 					<label class="profile_lab">이름</label> 
@@ -61,6 +79,7 @@
 					<input type="text" class="input" name="phoneNumber" value="${member.phoneNumber}" required>
 				</div>
 			</div>
+			
 			<div class="input_div">
 				
 				<a href="<c:url value='/mypage/delete'/>">
@@ -71,11 +90,14 @@
 				</a>
 				
 			</div>
+			</form>
+			
 
 
 		</div>
+		
 	</div>
-</form>
+
 
 </body>
 <script type="text/javascript">

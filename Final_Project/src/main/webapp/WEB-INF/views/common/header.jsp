@@ -5,6 +5,7 @@
 	href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/header.css" />
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 
 	<nav class="navbar">
 
@@ -75,12 +76,26 @@
 					</ul>
 				</div>
 			</div>
+			
 
 			<span class="navbar__links"> <label class="navbar__links__li"
-				onclick="location.href='<c:url value="/memberPage"/>'"> <img
-					class="user_img"
-					src="${pageContext.request.contextPath}/resources/images/default_user.png" />
+				onclick="location.href='<c:url value="/memberPage"/>'"> 
+				<div class="header_user_image">
+					<c:if test="${empty sessionScope.fileSavedName}">
+						<img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
+					</c:if>
+
+					<c:if test="${not empty sessionScope.fileSavedName}">
+						<img class="user_img" src="<spring:url value='/image/${fileSavedName}'/>" />
+					</c:if>
+				</div>
+				
+				
+				
 			</label> 
+			
+			
+			
 			<c:if test="${empty sessionScope.memberId}">
 			<label class="logout_wrapper"
 				onclick="location.href='<c:url value="/signin"/>'">로그인</label>
