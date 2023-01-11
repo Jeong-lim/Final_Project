@@ -31,8 +31,6 @@ public class PlaceController {
 
 	@RequestMapping("/place")
 	public String place(@RequestParam(defaultValue="THE00030")String category,@RequestParam(defaultValue="1") int pageNo,Model model) {
-		System.out.println(pageNo);
-		System.out.println(category);
 		int totalRows=placeService.countPlace(category); //카테고리별 전체 행
 		
 		
@@ -48,24 +46,25 @@ public class PlaceController {
 	}  
 	
 	@RequestMapping("/searchPlace")
-	public String searchPlace(HttpServletRequest request,@RequestParam(defaultValue="1") int pageNo,Model model) {
-		String key=request.getParameter("key");
-		String keyword="전주";
-		System.out.println(key);
-		System.out.println(keyword);
-		int totalRows=placeService.countKeyword(key, keyword);
-		System.out.println(totalRows);
-		PagerVo pager=new PagerVo(10,5,totalRows,pageNo);
-		int endRowNo=pager.getEndRowNo();
-		int startRowNo=pager.getStartRowNo();
-		List<PlaceVo> placeList=placeService.KeyworePlaceSearch(key, keyword, endRowNo, startRowNo);
-		model.addAttribute("pager",pager);
-		model.addAttribute("placeList",placeList);
+	public String searchPlace(@RequestParam(required=false)String key,@RequestParam(required= false)String keyword,@RequestParam(defaultValue="2") int pageNo,Model model) {
 		
+		int totalRows=placeService.countKeyword(key,keyword);
+		if(totalRows!=0) {
+			PagerVo pager=new PagerVo(10,5,totalRows,pageNo);
+			int endRowNo=pager.getEndRowNo();
+			int startRowNo=pager.getStartRowNo();
+			List<PlaceVo> placeList=placeService.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
+			model.addAttribute("pager",pager);
+			model.addAttribute("placeList",placeList);
+		}
+		else {
+
+			String message="검색하신 조건의 결과가 없습니다.";
+			model.addAttribute("message",message);
+		}
 		return "place/placelist";
 		
 	}
-	
 	
 	
 	
