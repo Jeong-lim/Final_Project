@@ -31,6 +31,15 @@
 						<img class="profile_image"
 							src="<spring:url value='/image/${fileSavedName}'/>" />
 					</c:if>
+					
+					<c:forEach items="${userTravelList}" var="val">
+						<h3><c:out value="${ travelTitle }"/></h3>
+						<h3><c:out value="${ travelStart }"/></h3>
+						<h3><c:out value="${ travelEnd }"/></h3>
+						<h3><c:out value="${ viewCount }"/></h3>
+						<h3><c:out value="${ shareCount }"/></h3>
+						<h3><c:out value="${ categoryName }"/></h3>
+					</c:forEach>
 			
 					
 				</div>

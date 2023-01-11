@@ -19,6 +19,8 @@ import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.file.service.FileService;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.MemberService;
+import com.sun.tools.classfile.Opcode.Set;
+import com.sun.tools.javac.util.List;
 
 @Controller
 public class MemberController {
@@ -111,6 +113,10 @@ public class MemberController {
 			MemberVo member = memberService.selectMember(memberId);
 			model.addAttribute("member", member);
 			logger.info(member.toString());
+			
+			List<MemberVo> userTravelList = memberService.userTravelList(memberId);
+			
+			model.addAttribute("userTravelList", userTravelList);
 
 			return "user/mypage";
 		} else {
