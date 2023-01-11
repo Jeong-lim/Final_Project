@@ -62,8 +62,8 @@ public class PlaceController {
 		model.addAttribute("pager",pager);
 		model.addAttribute("placeList",placeList);
 		
-		
 		return "place/placelist";
+		
 	}
 	
 	
