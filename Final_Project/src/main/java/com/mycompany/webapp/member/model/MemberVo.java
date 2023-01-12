@@ -92,6 +92,7 @@ public class MemberVo {
 				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
 				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + "]";
 	}
+
 	
 	
 	

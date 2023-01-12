@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,14 +33,14 @@
 							src="<spring:url value='/image/${fileSavedName}'/>" />
 					</c:if>
 					
-					<c:forEach items="${userTravelList}" var="val">
-						<h3><c:out value="${ travelTitle }"/></h3>
-						<h3><c:out value="${ travelStart }"/></h3>
-						<h3><c:out value="${ travelEnd }"/></h3>
-						<h3><c:out value="${ viewCount }"/></h3>
-						<h3><c:out value="${ shareCount }"/></h3>
-						<h3><c:out value="${ categoryName }"/></h3>
-					</c:forEach>
+					
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					
 			
 					
 				</div>
@@ -56,66 +57,24 @@
 						onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
 				</div>
 			</div>
+		
 			<div class="mytravel">
+				<c:forEach items="${userList}" var="travel">
 				<a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
-						<p class="travel_tit">서울 여행 코스</p>
-						<p>2022.12.23 - 25</p>
-						<p class="category a">체험/학습</p>
+						<p class="travel_tit">${ travel.travelTitle }</p>
+						<p>${ travel.travelStart }</p>
+						<p>${ travel.travelEnd }</p>
+						<p class="category a">${ travel.categoryName }</p>
 						<div class="icons">
 							<img class="views"
 								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							110 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />20
-						</div>
-					</div>
-				</a> <a href='<c:url value="/travel/detail"/>'>
-					<div class="card">
-						<p class="travel_tit">부산 여행 코스</p>
-						<p>2022.11.20 - 21</p>
-						<p class="category b">스포츠/문화</p>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							118 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />12
-						</div>
-					</div>
-				</a> <a href='<c:url value="/travel/detail"/>'>
-					<div class="card">
-						<p class="travel_tit">강원도 여행 코스</p>
-						<p>2022.8.13 - 17</p>
-						<p class="category">자연/힐링</p>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							225 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />33
-						</div>
-					</div>
-				</a> <a href='<c:url value="/travel/detail"/>'>
-					<div class="card">
-						<p class="travel_tit">경주 여행 코스</p>
-						<p>2022.5.21 - 22</p>
-						<p class="category a">체험/학습</p>
-						<div class="icons">
-							<img class="views"
-								src="${pageContext.request.contextPath}/resources/images/views.png" />
-							183 <img class="publish"
-								src="${pageContext.request.contextPath}/resources/images/publish.png" />29
-						</div>
-					</div>
-				</a> </a> <a href='<c:url value="/travel/insert"/>'>
-					<div class="card last">
-						<div class="add">
-							<button type="button" class="insert_btn">
-								<img class="add_img"
-									src="${pageContext.request.contextPath}/resources/images/add.png">
-							</button>
-							<label class="add_label">일정 추가하기</label>
+							${ travel.viewCount } <img class="publish"
+								src="${pageContext.request.contextPath}/resources/images/publish.png" />${ travel.shareCount }
 						</div>
 					</div>
 				</a>
+				</c:forEach>
 			</div>
 
 			<!-- 팔로워 모달 -->
