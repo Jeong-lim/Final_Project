@@ -7,6 +7,12 @@
       <result column="MEMBER_NAME" property="memberName"/>
       <result column="MEMBER_PASSWORD" property="memberPassword"/>
       <result column="PHONE_NUMBER" property="phoneNumber"/>
+      <result column="T.TRAVEL_TITLE" property="travelTitle"/>
+      <result column="T.TRAVEL_START" property="travelStart"/>
+      <result column="T.TRAVEL_END" property="travelEnd"/>
+      <result column="T.VIEW_CNT" property="viewCount"/>
+      <result column="T.SHARE_CNT" property="shareCount"/>
+      <result column="C.DETAIL_CD_NAME" property="categoryName"/>
     </resultMap> 
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
@@ -87,6 +93,31 @@
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	
+	
+	<!-- 유저 여행 일정 조회 쿼리문 -->
+	<select id="userTravelList" parameterType="string" resultMap="selectMember">
+		SELECT T.TRAVEL_TITLE
+			 , T.TRAVEL_START
+			 , T.TRAVEL_END
+			 , T.VIEW_CNT
+			 , T.SHARE_CNT
+			 , C.DETAIL_CD_NAME
+		FROM MEMBER M
+			 , TRAVEL T
+			 , TRAVEL_DETAIL D
+			 , PLACE P
+			 , DETAIL_CODE C 
+		WHERE #{memberId} = T.WRITER
+			  AND T.TRAVEL_ID = D.TRAVEL_ID
+			  AND D.PLACE_ID = P.PLACE_ID
+			  AND P.CATEGORY = C.DETAIL_CD_ID
+			  AND T.TRAVEL_STATUS='Y'
+			  AND D.TRAVEL_DETAIL_STATUS='Y'
+			  AND P.PLACE_STATUS='Y'
+			  AND C.DETAIL_CODE_STATUS='Y'
 	</select>
 
 </mapper>
