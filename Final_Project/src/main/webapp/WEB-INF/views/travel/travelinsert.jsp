@@ -49,6 +49,8 @@
 			<hr class="uk-divider-icon">
 		
 			<a href="<c:url value='/travel/placelist'/>">modal_btn</a>
+			<a href="<c:url value='/fileuploadform'/>">사진업로드</a>
+			
 
 			<div class="content_wrap" id="test">
 				<div class="content_title">

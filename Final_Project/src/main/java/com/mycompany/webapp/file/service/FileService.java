@@ -33,6 +33,10 @@ public class FileService {
 	public void deleteUserImage(String userName) {
 		fileDao.deleteUserImage(userName);
 	}
+	
+
+	
+
 		
 		
 		
