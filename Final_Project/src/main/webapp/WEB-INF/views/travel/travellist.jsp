@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +11,23 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/travellist.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<style type="text/css">
-.pageli {
+</head>
+<style>
+.page {
 	list-style: none;
-	float: left;
 	padding: 6px;
+	text-align:center;
+	width: fit-content;
+    margin: auto;
+
+} 
+.travel_title .date{
+	font-size:15px;
+	float:right;
+	margin-right:30px;
+	color:#666666;
 }
 </style>
-</head>
 <body>
 
 	<div class="container_top">
@@ -30,51 +40,53 @@
 				<p class="list_tit">여행 일정 리스트</p>
 			</div>
 			<div class="search_area">
+				<div class="search">
+					<select class="select" name="searchType" id="searchType">
+						<option value="title">제목</option>
+						<option value="writer">작성자</option>
+					</select> <input type="text" class="search_bar" name="keyword" id="keyword"
+						value="" placeholder="search..">
 
-				<select class="select" name="searchType" id="searchType">
-					<option value="title">제목</option>
-					<option value="writer">작성자</option>
-				</select> <input type="text" name="keyword" id="keyword"
-					value="">
-				
-				<button class="search_btn" name="btnSearch" id="btnSearch">
-					<img class="search_img"
-						src="${pageContext.request.contextPath}/resources/images/search.png" />
-				</button>
+					<button class="search_btn" name="btnSearch" id="btnSearch">
+						<img class="search_img"
+							src="${pageContext.request.contextPath}/resources/images/search.png" />
+					</button>
+				</div>
 				<form name="readForm" method="post">
-				<input type="hidden" id="keyword2" name="keyword2" value="${keyword}"/>
-				<input type="hidden" id="searchType2" name="searchType2" value="${searchType}"/>
+					<input type="hidden" id="keyword2" name="keyword2"
+						value="${keyword}" /> <input type="hidden" id="searchType2"
+						name="searchType2" value="${searchType}" />
 				</form>
 
 
 			</div>
 			<div class="category">
-				<a href='<c:url value="/travel/recent/list"/>'> <label
-					class="test_obj">
-						<button id="recent">최신순</button>
-				</label></a> <a href='<c:url value="/travel/shareCnt/list"/>'><label
-					class="test_obj">
-						<button id="shareCnt">인기순</button>
-
-				</label></a> <a href='<c:url value="/travel/viewCnt/list"/>'><label
-					class="test_obj">
-						<button id="viewCnt">조회순</button>
-				</label></a>
+				<label class="test_obj"><a
+					href='<c:url value="/travel/recent/list"/>'> <input
+						type="radio" name="category" id="recent"><span>최신순</span></a>
+				</label> <label class="test_obj"><a
+					href='<c:url value="/travel/shareCnt/list"/>'> <input
+						type="radio" name="category" id="shareCnt"><span>인기순</span></a>
+				</label> <label class="test_obj"><a
+					href='<c:url value="/travel/viewCnt/list"/>'> <input
+						type="radio" name="category" id="viewCnt"><span>조회순</span></a>
+				</label>
 
 			</div>
 			<div class="place_list">
 				<c:forEach var="travel" items="${travelList}">
+				<input type="hidden" id="travelId" value="${travel.travelId}">
 					<div class="place">
 						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/남산타워.jpg" />
+						<img class="place_img"
+							src="<spring:url value='/place/${travel.fileSavedName}'/>" />
 						</div>
 						<div class="place_info">
 							<a href='<c:url value="/travel/detail"/>'>
 								<p class="travel_title">${travel.travelTitle}
-									-
-									<fmt:formatDate value="${travel.writeDate}"
-										pattern="YYYY-MM-dd" />
+									
+									<label class="date">작성일 : <fmt:formatDate value="${travel.writeDate}"
+										pattern="YYYY/MM/dd" /></label>
 								</p>
 							</a> <a href='<c:url value="/mypage"/>'>
 								<p class="travel_writer">${travel.writer}</p>
@@ -94,6 +106,7 @@
 
 			</div>
 		</div>
+		<div class="page">
 		<table>
 			<td colspan="4" class="text-center">
 				<div>
@@ -106,10 +119,12 @@
 					<c:forEach var="i" begin="${pager.startPageNo}"
 						end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo != i}">
-							<a class="btn btn-outline-success btn-sm" href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
+							<a class="btn btn-outline-success btn-sm"
+								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
 						</c:if>
 						<c:if test="${pager.pageNo == i}">
-							<a class="btn btn-danger btn-sm" href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
+							<a class="btn btn-danger btn-sm"
+								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
 						</c:if>
 					</c:forEach>
 
@@ -123,77 +138,94 @@
 			</td>
 			</tr>
 		</table>
+		</div>
 
 
 
 
 
 	</div>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-$(document).on('click','#btnSearch',function(e){
-
-	e.preventDefault();
-
-	var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
-
-	url = url + "&searchType=" + $('#searchType').val();
-
-	url = url + "&keyword=" + $('#keyword').val();
-
-	location.href = url;
-
-	console.log(url);
-
-});	
-
-$(document).ready(function(){
-	var searchType2=$('#searchType2').val();
-	var keyword2=$('#keyword2').val();
+	<input type="hidden" id="categoryCheck" value="${category}">
 	
-	console.log(searchType2);
-	console.log(keyword2);
-	
-	
-	/*  $(document).on('click','.btn btn-outline-success btn-sm',function(e){
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script>
+		$(document).on('click', '#btnSearch', function(e) {
+			
+			console.log("click in")
 
 			e.preventDefault();
 
-			var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
+			var url = "/travel/search/list" + "?pageNo=" + ${pager.pageNo};
 
-			url = url + "&searchType=" + searchType2;
+			url = url + "&searchType=" + $('#searchType').val();
 
-			url = url + "&keyword=" + keyword2;
+			url = url + "&keyword=" + $('#keyword').val();
 
 			location.href = url;
 
 			console.log(url);
 
-		});	
-	 
-	 $(document).on('click','.btn btn-danger btn-sm',function(e){
+		});
 
-			e.preventDefault();
+		/* $(document).ready(function() {
+			var searchType2 = $('#searchType2').val();
+			var keyword2 = $('#keyword2').val();
 
-			var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
+			console.log(searchType2);
+			console.log(keyword2); 
 
-			url = url + "&searchType=" + searchType2;
+		  $(document).on('click','.btn btn-outline-success btn-sm',function(e){
 
-			url = url + "&keyword=" + keyword2;
+					e.preventDefault();
 
-			location.href = url;
+					var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
 
-			console.log(url);
+					url = url + "&searchType=" + searchType2;
 
-		});	 */
-});
+					url = url + "&keyword=" + keyword2;
 
+					location.href = url;
 
+					console.log(url);
 
+				});	
+			 
+			 $(document).on('click','.btn btn-danger btn-sm',function(e){
 
+					e.preventDefault();
 
-</script>
+					var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
+
+					url = url + "&searchType=" + searchType2;
+
+					url = url + "&keyword=" + keyword2;
+
+					location.href = url;
+
+					console.log(url);
+
+				});	 
+		});*/
+
+		$(document).ready(function() {
+			var category = $("#categoryCheck").val();
+			var categorylength = $("[name='category']").length;
+			var categoryarr = new Array(categorylength);
+			console.log(category);
+			for (var i = 0; i < categorylength; i++) {
+				categoryarr[i] = $("[name='category']").eq(i).val();
+				if (category == categoryarr[i]) {
+					$('[name="category"]').eq(i).attr("checked", true);
+
+				}
+				console.log(category);
+
+			}
+			console.log(category);
+
+		});
+	</script>
 </body>
 
 </html>

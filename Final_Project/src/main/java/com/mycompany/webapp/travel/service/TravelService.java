@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
 import com.mycompany.webapp.travel.dao.TravelDao;
@@ -62,6 +63,8 @@ public class TravelService {
 	public List<TravelVo> selectTravelListByKeyword(int endRowNo, int startRowNo, String searchType, String keyword) {
 		return travelDao.selectTravelListByKeyword(endRowNo, startRowNo,searchType, keyword);
 	}
+	
+
 
 	
 

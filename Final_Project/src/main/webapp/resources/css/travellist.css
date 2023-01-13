@@ -91,6 +91,12 @@
 	color: #ffffff;
 }
 
+.test_obj a{
+	color:#666 !important;
+	text-decoration: none;
+	
+}
+
 .place {
 	border: 2px solid #BDBDBD;
 	margin-top: 20px;
@@ -165,6 +171,21 @@ a {
 
 .views {
 	padding-bottom: 6px
+}
+
+.page {
+	list-style: none;
+	padding: 6px;
+	text-align:center;
+	width: fit-content;
+    margin: auto;
+
+} 
+.travel_title .date{
+	font-size:15px;
+	float:right;
+	margin-right:30px;
+	color:#666666;
 }
 
 ::-webkit-scrollbar {
