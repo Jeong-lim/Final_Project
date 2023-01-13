@@ -1,11 +1,17 @@
 package com.mycompany.webapp.place.model;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class PlaceVo {
 	private String placeId;
 	private String placeName;
 	private String areaName;
 	private String category;
 	private String fileNo;
+	private String fileSavedName;
+	private String placeDetail;
 	
 	
 	
@@ -39,11 +45,30 @@ public class PlaceVo {
 	public void setFileNo(String fileNo) {
 		this.fileNo = fileNo;
 	}
+	public String getFileSavedName() {
+		return fileSavedName;
+	}
+	public void setFileSavedName(String fileSavedName) {
+		this.fileSavedName = fileSavedName;
+	}
+	
+	public String getPlaceDetail() {
+		return placeDetail;
+	}
+	public void setPlaceDetail(String placeDetail) {
+		this.placeDetail = placeDetail;
+	}
 	@Override
 	public String toString() {
 		return "PlaceVo [placeId=" + placeId + ", placeName=" + placeName + ", areaName=" + areaName + ", category="
-				+ category + ", fileNo=" + fileNo + "]";
+				+ category + ", fileNo=" + fileNo + ", fileSavedName=" + fileSavedName + ", placeDetail=" + placeDetail
+				+ "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 

@@ -5,27 +5,26 @@
 <mapper namespace="com.mycompany.webapp.place.dao.PlaceDao">
 
 	<select id="count" parameterType="String" resultType="int">  <!-- 관광지 총 개수 (중복없이)-->
-		select count(distinct place_name)
-		from place
-		where category=#{category}
+		SELECT COUNT(DISTINCT place_name)
+		  FROM PLACE
+		 WHERE CATEGORY=#{category}
 	</select>
 	
 
 	
 	
 	<select id="selectPlaceList" parameterType="map" resultType="place">  <!-- 중복 관광지 제외 페이징 처리할 관광지 리스트 -->
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category
+		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSaved_name
 		from (
-			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name
+			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
 			from(
-				SELECT  p.place_name as place_name,p.area_name as area_name,d.detail_cd_name as detail_cd_name
-
-				FROM(
-    					SELECT ROW_NUMBER() OVER(PARTITION BY place.place_name ORDER BY place.area_name ) AS RNUM, place.*
-    					FROM place where category=#{category} ) p,detail_code d
-                        
-
-				WHERE RNUM = 1 and d.detail_cd_id=p.category
+				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
+				from(select distinct place_name, area_name , category , file_saved_name
+    				from place full outer join upload_file
+    				on place.place_name = upload_file.file_code
+    				where place.category=#{category})m, detail_code d
+				where m.category=d.detail_cd_id
+				order by m.place_name
 				
 			)
 			where rownum &lt;=#{endRowNo}
@@ -35,20 +34,25 @@
 	
 	<select id="KeywordPlaceSearch" parameterType="map"  resultType="place">
 	
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category
+		select rnum,place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
 		from (
-			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name
+			select ROWNUM as rnum, place_name,area_name,detail_cd_name,file_saved_name
 			from(
-				select p.place_name,p.area_name,d.detail_cd_name
-				from ( select place_name,area_name,category,row_number() over(partition by place_name order by area_name desc)as rn
-        				from place)p, detail_code d
+				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
+				from(select p.place_name,p.area_name,p.category, f.file_saved_name,row_number() over(partition by place_name order by area_name)as rn
+   					 from (select place_name, area_name,category
+         				   from place)p full outer join 
+          				  (select file_code,file_saved_name
+           				   from upload_file)f
+    				on p.place_name=f.file_code
+    				order by place_name)m, detail_code d
 				<trim prefix="where" prefixOverrides="AND|OR">
 				<if test="keyword != null and keyword !='' ">
 					<if test="key=='p.area_name'">
-						AND rn=1 and p.area_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+						AND rn=1 and area_name like '%'||#{keyword}||'%' and m.category=d.detail_cd_id
 					</if>
 					<if test="key=='p.place_name'">
-						AND rn=1 and p.place_name like '%'||#{keyword}||'%' and p.category=d.detail_cd_id
+						AND rn=1 and place_name like '%'||#{keyword}||'%' and m.category=d.detail_cd_id
 					</if>
 				</if>
 			</trim>
@@ -77,6 +81,21 @@
 			</trim>
 		
 	</select>
+	
+	<select id="detailPlaceInfo" parameterType="String" resultType="place">
+		select distinct m.place_name as placeName,m.area_name as areaName,d.detail_cd_name as category,m.file_saved_name as fileSavedName,m.place_detail as placeDetail
+		from(select p.place_name,p.area_name,p.category,p.place_detail,f.file_saved_name
+    		from (select place_name, area_name,category,place_detail
+          			from place)p full outer join 
+          	(select file_code, file_saved_name
+           	from upload_file)f
+    	on p.place_name=f.file_code
+    	order by place_name)m, detail_code d
+		where place_name=#{placeName} and m.category=d.detail_cd_id
+	</select>
+	
+	
+	
 	
 	
 	
