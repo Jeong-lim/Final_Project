@@ -120,8 +120,8 @@ public class MemberController {
 			List<MemberVo> userList = memberService.userTravelList(memberId);
 			
 			logger.info(userList.toString());
-			model.addAttribute("userList", userList);
 			
+			model.addAttribute("userList", userList);
 			return "user/mypage";
 			
 		} else {

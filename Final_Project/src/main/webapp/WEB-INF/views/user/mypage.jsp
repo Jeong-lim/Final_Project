@@ -11,6 +11,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/mypage.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 </head>
 
 <body>
@@ -57,14 +58,21 @@
 						onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
 				</div>
 			</div>
-		
+		 
 			<div class="mytravel">
 				<c:forEach items="${userList}" var="travel">
+				<fmt:parseDate var="date_date" value="${ travel.travelStart }" pattern="yyyy-MM-dd" />
+				<fmt:formatDate value="${date_date}" pattern="yyyy/MM/dd" var="start_date"/>
+				<fmt:parseDate var="date_date2" value="${ travel.travelEnd }" pattern="yyyy-MM-dd" />
+				<fmt:formatDate value="${date_date2}" pattern="dd" var="end_date"/>
 				<a href='<c:url value="/travel/detail"/>'>
 					<div class="card">
 						<p class="travel_tit">${ travel.travelTitle }</p>
-						<p>${ travel.travelStart }</p>
-						<p>${ travel.travelEnd }</p>
+						
+						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>
+						
+						
+						<br />
 						<p class="category a">${ travel.categoryName }</p>
 						<div class="icons">
 							<img class="views"

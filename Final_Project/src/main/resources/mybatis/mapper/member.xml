@@ -102,22 +102,17 @@
 	
 	<!-- 유저 여행 일정 조회 쿼리문 -->
 	<select id="userTravelList" parameterType="string" resultMap="selectTravel">
-		SELECT DISTINCT T.TRAVEL_TITLE
-			 , T.TRAVEL_START
-			 , T.TRAVEL_END
-			 , T.VIEW_CNT
-			 , T.SHARE_CNT
-			 , C.DETAIL_CD_NAME
-		FROM MEMBER M
-			 , TRAVEL T
-			 , TRAVEL_DETAIL D
-			 , PLACE P
-			 , DETAIL_CODE C 
-
-		WHERE T.WRITER = #{memberId}
-			  AND T.TRAVEL_ID = D.TRAVEL_ID
-			  AND D.PLACE_ID = P.PLACE_ID
-			  AND P.CATEGORY = C.DETAIL_CD_ID
+		SELECT B.*, Dc.Detail_Cd_Name FROM
+  (SELECT A.* 
+     FROM
+        (SELECT ROW_NUMBER() OVER(PARTITION BY Trv.Travel_Id ORDER BY Trvde.Travel_Date) AS rn, TRV.TRAVEL_TITLE,TRVDE.Place_Id, TRV.TRAVEL_START, TRV.TRAVEL_END, TRV.VIEW_CNT,
+           TRV.SHARE_CNT
+           FROM Travel TRV, TRAVEL_DETAIL TRVDE
+          WHERE  TRV.TRAVEL_ID = Trvde.Travel_Id
+            AND TRV.WRITER = #{memberId}) A
+    WHERE A.RN = 1 ) B, PLACE PLC, DETAIL_CODE DC
+WHERE B.PLACE_ID = PLC.PLACE_ID
+AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 			  
 	</select>
 
