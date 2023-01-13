@@ -74,24 +74,32 @@
 						
 						<br />
 						
-						<c:if test="${travel.categoryName eq '자연/휴양'}">
-							<p class="category a">${ travel.categoryName }</p> 
-						</c:if>
-						<c:if test="${travel.categoryName eq '문화/예술'}">
-							<p class="category b">${ travel.categoryName }</p> 
-						</c:if>
-						<c:if test="${travel.categoryName eq '체험/학습/산업'}">
-							<p class="category c">${ travel.categoryName }</p> 
-						</c:if>
-						<c:if test="${travel.categoryName eq '캠핑/스포츠'}">
-							<p class="category d">${ travel.categoryName }</p> 
-						</c:if>
-						<c:if test="${travel.categoryName eq '종교/역사/전통'}">
-							<p class="category e">${ travel.categoryName }</p> 
-						</c:if>
-						<c:if test="${travel.categoryName eq '쇼핑/놀이'}">
-							<p class="category f">${ travel.categoryName }</p> 
-						</c:if>
+						<c:choose>
+							<c:when test="${travel.categoryName eq '자연/휴양'}" >
+								<p class="category a">${ travel.categoryName }</p> 
+							</c:when>
+							
+							<c:when test="${travel.categoryName eq '문화/예술'}">
+								<p class="category b">${ travel.categoryName }</p>
+							</c:when>
+							
+							<c:when test="${travel.categoryName eq '체험/학습/산업'}">
+								<p class="category c">${ travel.categoryName }</p>
+							</c:when>
+							
+							<c:when test="${travel.categoryName eq '캠핑/스포츠'}">
+								<p class="category d">${ travel.categoryName }</p> 
+							</c:when>
+							
+							<c:when test="${travel.categoryName eq '종교/역사/전통'}">
+								<p class="category e">${ travel.categoryName }</p> 
+							</c:when>
+							
+							<c:when test="${travel.categoryName eq '쇼핑/놀이'}">
+								<p class="category f">${ travel.categoryName }</p> 
+							</c:when>
+						</c:choose>
+					
 						
 						
 						
