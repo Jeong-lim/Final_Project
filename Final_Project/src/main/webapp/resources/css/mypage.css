@@ -131,11 +131,24 @@ a {
 }
 
 .category.a {
-	background-color: #FED049;
+	background-color: green;
 }
 
 .category.b {
-	background-color: #3D5656;
+	background-color: yellow;
+}
+
+.category.c {
+	background-color: grey;
+}
+.category.d {
+	background-color: blue;
+}
+.category.e {
+	background-color: red;
+}
+.category.f {
+	background-color: orange;
 }
 
 .icons {
