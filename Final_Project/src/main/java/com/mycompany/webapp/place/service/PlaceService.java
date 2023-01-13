@@ -37,6 +37,9 @@ public class PlaceService {
 		return placeDao.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
 	}
 
+	public List<PlaceVo> detailPlaceInfo(String placeName){
+		return placeDao.detailPlaceInfo(placeName);
+	}
 	
 	
 

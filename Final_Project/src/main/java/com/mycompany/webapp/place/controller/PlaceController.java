@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,7 +57,7 @@ public class PlaceController {
 			List<PlaceVo> placeList=placeService.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
 			model.addAttribute("pager",pager);
 			model.addAttribute("placeList",placeList);
-			model.addAttribute("key",key);
+			model.addAttribute("key",key); 
 			model.addAttribute("keyword",keyword);
 		}
 		else {
@@ -74,8 +75,12 @@ public class PlaceController {
 
 	
 	
-	@RequestMapping("/place/detail")
-	public String placeDetail() {
+	@RequestMapping("/place/detail/{placeName}")
+	public String placeDetail(@PathVariable String placeName,Model model) {
+		
+		List<PlaceVo> placeInfoList=placeService.detailPlaceInfo(placeName);
+		model.addAttribute("placeInfoList",placeInfoList);
+		
 		return "place/placedetail";
 	}
 	

@@ -55,11 +55,20 @@
 				   <c:forEach var="place" items="${placeList}">
 					<div class="place">
 						<div class="image_wrap">
-							<img class="place_img"
-								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
+						<c:choose>
+							<c:when test="${place.fileSavedName eq null }">
+								<img class="place_img"
+									src="${pageContext.request.contextPath}/resources/images/default.png" />
+							</c:when>
+							<c:when test="${place.fileSavedName ne null }">
+								<img class="place_img"
+                     				src="<spring:url value='/place/${place.fileSavedName}'/>" />
+							</c:when>
+						</c:choose>
+							
 						</div>
 						<div class="place_info">
-							<a href='<c:url value="/place/detail"/>'>
+							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
 								<p class="place_name" id="place_name">${place.placeName}</p>
 							</a>
 							<p class="place_area" id="place_area">${place.areaName}</p>
@@ -77,7 +86,7 @@
 		
 					 <div>
 					 <ul class="pagebtn">
-						 <c:if test="${category eq null }">
+						 <c:if test="${keyword ne null }">
 							<a  href="searchPlace?pageNo=1"><li class="pageli">처음</li></a>
 						</c:if>
 						<c:if test="${category ne null }">
@@ -89,7 +98,7 @@
 							<c:if test="${category ne null }">
 								<a  href="place?pageNo=${pager.startPageNo-1}&category=${category}"><li class="pageli">이전</li></a>
 							</c:if>
-							<c:if test="${category eq null }">
+							<c:if test="${keyword ne null  }">
 								<a href="searchPlace?pageNo=${pager.startPageNo-1 }&key=${key}&keyword=${keyword}"><li class="pageli">이전</li></a>
 							</c:if>
 						</c:if>
@@ -101,7 +110,7 @@
 								<c:if test="${category ne null }">
 									<a  href="place?pageNo=${i}&category=${category}"><li class="pageli">${i}</li></a>
 								</c:if>
-								<c:if test="${category eq null }">
+								<c:if test="${keyword ne null }">
 									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 								</c:if>
 							</c:if>
@@ -111,7 +120,7 @@
 									<a  href="place?pageNo=${i}&category=${category}"><li class="pageli">${i}</li></a>
 								</c:if>
 								
-								 <c:if test="${catagory eq null }">
+								 <c:if test="${keyword ne null }">
 									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 								</c:if> 
 								
@@ -124,7 +133,7 @@
 							<c:if test="${category ne null }">
 								<a  href="place?pageNo=${pager.endPageNo+1}&category=${category}"><li class="pageli">다음</li></a>
 							</c:if>
-							<c:if test="${category eq null }">
+							<c:if test="${keyword ne null  }">
 								<a href="searchPlace?pageNo=${pager.endPageNo+1 }&key=${key}&keyword=${keyword}"><li class="pageli">다음</li></a>
 							</c:if>
 						</c:if>
@@ -132,8 +141,8 @@
 						<c:if test="${category ne null }">
 							<a  href="place?pageNo=${pager.totalPageNo}&category=${category}"><li class="pageli">맨끝</li></a>
 						</c:if>
-						<c:if test="${category eq null }">
-							<a href="searchPlace=${pager.totalPageNo }&key=${key}&keyword=${keyword}"><li class="pageli">맨끝</li></a>
+						<c:if test="${keyword ne null }">
+							<a href="searchPlace?pageNo=${pager.totalPageNo }&key=${key}&keyword=${keyword}"><li class="pageli">맨끝</li></a>
 						</c:if>
 					</ul>
 					</div>
