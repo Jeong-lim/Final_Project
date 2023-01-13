@@ -1,7 +1,6 @@
 package com.mycompany.webapp.member.model;
 
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -12,7 +11,14 @@ public class MemberVo {
 	private String memberPassword;
 	private String phoneNumber;
 	private String email;
-	private MultipartFile memberImage;
+	private String travelTitle;
+	private String travelStart;
+	private String travelEnd;
+	private String viewCount;
+	private String shareCount;
+	private String categoryName;
+	
+	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -43,17 +49,53 @@ public class MemberVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public MultipartFile getMemberImage() {
-		return memberImage;
+	public String getTravelTitle() {
+		return travelTitle;
 	}
-	public void setMemberImage(MultipartFile memberImage) {
-		this.memberImage = memberImage;
+	public void setTravelTitle(String travelTitle) {
+		this.travelTitle = travelTitle;
+	}
+	public String getTravelStart() {
+		return travelStart;
+	}
+	public void setTravelStart(String travelStart) {
+		this.travelStart = travelStart;
+	}
+	public String getTravelEnd() {
+		return travelEnd;
+	}
+	public void setTravelEnd(String travelEnd) {
+		this.travelEnd = travelEnd;
+	}
+	public String getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(String viewCount) {
+		this.viewCount = viewCount;
+	}
+	public String getShareCount() {
+		return shareCount;
+	}
+	public void setShareCount(String shareCount) {
+		this.shareCount = shareCount;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	@Override
 	public String toString() {
 		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", memberImage=" + memberImage + "]";
+				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", travelTitle=" + travelTitle
+				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
+				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + "]";
 	}
+
 	
+	
+	
+
 	
 }

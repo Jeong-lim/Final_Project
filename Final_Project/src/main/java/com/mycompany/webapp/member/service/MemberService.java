@@ -1,6 +1,8 @@
 package com.mycompany.webapp.member.service;
 
 import java.beans.Encoder;
+import java.lang.reflect.Member;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.member.dao.MemberDao;
 import com.mycompany.webapp.member.model.MemberVo;
+import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
 @Service
 public class MemberService  {
@@ -34,7 +37,6 @@ public class MemberService  {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(member.getMemberPassword());
 		member.setMemberPassword(securePw);		
-		
 		memberDao.updateMember(member);
 	}
 	
@@ -49,6 +51,13 @@ public class MemberService  {
 	public int memberIdCheck(String memberId) {
 		return memberDao.checkOverId(memberId);
 	}
+	
+	public List<MemberVo> userTravelList(String memberId) throws Exception{
+		return memberDao.userTravelList(memberId);
+	}
+	
+	
+	
 
 
 

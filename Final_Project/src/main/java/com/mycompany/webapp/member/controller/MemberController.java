@@ -1,6 +1,8 @@
 package com.mycompany.webapp.member.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -73,6 +75,9 @@ public class MemberController {
 						
 						FileVo fileVo = fileService.selectUserImage(memberId);
 						if(fileVo != null && !fileVo.equals("")) {
+							
+							//"".equals(fileVo)
+							
 							String fileSavedName = fileVo.getFileSavedName();
 							session.setAttribute("fileSavedName", fileSavedName);
 						}
@@ -102,7 +107,7 @@ public class MemberController {
 	
 
 	@RequestMapping(value="/memberPage", method=RequestMethod.GET)
-	public String selectMember(HttpSession session, Model model) {
+	public String selectMember(HttpSession session, Model model) throws Exception {
 		String memberId = (String)session.getAttribute("memberId");
 		logger.info(memberId);
 		
@@ -111,8 +116,14 @@ public class MemberController {
 			MemberVo member = memberService.selectMember(memberId);
 			model.addAttribute("member", member);
 			logger.info(member.toString());
-
+			
+			List<MemberVo> userList = memberService.userTravelList(memberId);
+			
+			logger.info(userList.toString());
+			
+			model.addAttribute("userList", userList);
 			return "user/mypage";
+			
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)
 			model.addAttribute("message", "로그인이 필요합니다.");

@@ -88,5 +88,32 @@
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	
+	<resultMap type="com.mycompany.webapp.member.model.MemberVo" id="selectTravel">
+      <result column="TRAVEL_TITLE" property="travelTitle"/>
+      <result column="TRAVEL_START" property="travelStart"/>
+      <result column="TRAVEL_END" property="travelEnd"/>
+      <result column="VIEW_CNT" property="viewCount"/>
+      <result column="SHARE_CNT" property="shareCount"/>
+      <result column="DETAIL_CD_NAME" property="categoryName"/>
+    </resultMap> 
+	
+	
+	<!-- 유저 여행 일정 조회 쿼리문 -->
+	<select id="userTravelList" parameterType="string" resultMap="selectTravel">
+		SELECT B.*, Dc.Detail_Cd_Name FROM
+  (SELECT A.* 
+     FROM
+        (SELECT ROW_NUMBER() OVER(PARTITION BY Trv.Travel_Id ORDER BY Trvde.Travel_Date) AS rn, TRV.TRAVEL_TITLE,TRVDE.Place_Id, TRV.TRAVEL_START, TRV.TRAVEL_END, TRV.VIEW_CNT,
+           TRV.SHARE_CNT
+           FROM Travel TRV, TRAVEL_DETAIL TRVDE
+          WHERE  TRV.TRAVEL_ID = Trvde.Travel_Id
+            AND TRV.WRITER = #{memberId}) A
+    WHERE A.RN = 1 ) B, PLACE PLC, DETAIL_CODE DC
+WHERE B.PLACE_ID = PLC.PLACE_ID
+AND   PLC.CATEGORY = DC.DETAIL_CD_ID
+			  
+	</select>
 
 </mapper>
