@@ -130,25 +130,25 @@ a {
 	border-radius: 15px;
 }
 
-.category.a {
-	background-color: green;
+.category.a { /* 자연 힐링 */
+	background-color: #06b66c;
 }
 
-.category.b {
-	background-color: yellow;
+.category.b { /* 문화/예술 */
+	background-color: #faa04b;
 }
 
-.category.c {
-	background-color: grey;
+.category.c { /* 체험/학습/산업 */
+	background-color: #f4495d;
 }
-.category.d {
-	background-color: blue;
+.category.d { /* 캠핑/스포츠 */
+	background-color: #3B82F6;
 }
-.category.e {
-	background-color: red;
+.category.e { /* 종교/역사/전통 */
+	background-color: #8b949e;
 }
-.category.f {
-	background-color: orange;
+.category.f { /* 쇼핑/놀이 */
+	background-color: #f778ba;
 }
 
 .icons {
