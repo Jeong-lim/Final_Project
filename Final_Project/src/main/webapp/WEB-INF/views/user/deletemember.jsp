@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="delete_form_container">
-		<a href="<c:url value='/'/>"> <img class="logo_img"
+		<a href="<c:url value='/'/>"> <img class="logo_img_delete"
 			src="${pageContext.request.contextPath}/resources/images/logo.png" />
 		</a>
 		<form action="/mypage/delete" method="post">
