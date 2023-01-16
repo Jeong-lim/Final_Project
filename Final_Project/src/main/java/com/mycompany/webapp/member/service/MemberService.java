@@ -4,6 +4,7 @@ import java.beans.Encoder;
 import java.lang.reflect.Member;
 import java.util.List;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class MemberService  {
 
 	@Autowired
 	private MemberDao memberDao;
+	
+	public int userTravelCount(String memberId) {
+		return memberDao.userTravelCount(memberId);
+	}
 	
 	public void insertMember(MemberVo member) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

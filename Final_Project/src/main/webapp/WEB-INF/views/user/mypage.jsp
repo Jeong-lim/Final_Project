@@ -50,7 +50,7 @@
 					<p>${member.email}</p>
 					<p>${member.phoneNumber}</p>
 					<p>
-						게시글 수 4 <label class="openBtn">팔로워 9</label> 팔로우 3
+						게시글 수 ${travelCount} <label class="openBtn">팔로워 9</label> 팔로우 3
 					</p>
 				</div>
 				<div class="profile_update">
@@ -69,11 +69,29 @@
 					<div class="card">
 						<p class="travel_tit">${ travel.travelTitle }</p>
 						
-						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>
-						
+						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>		
 						
 						<br />
-						<p class="category a">${ travel.categoryName }</p>
+						
+							<c:if test="${travel.categoryName eq '자연/힐링'}" >
+								<p class="category a">${ travel.categoryName }</p> 
+							</c:if>
+							<c:if test="${travel.categoryName eq '문화/예술'}" >
+								<p class="category b">${ travel.categoryName }</p> 
+							</c:if>
+							<c:if test="${travel.categoryName eq '체험/학습/산업'}" >
+								<p class="category c">${ travel.categoryName }</p> 
+							</c:if>
+							<c:if test="${travel.categoryName eq '캠핑/스포츠'}" >
+								<p class="category d">${ travel.categoryName }</p> 
+							</c:if>
+							<c:if test="${travel.categoryName eq '종교/역사/전통'}" >
+								<p class="category e">${ travel.categoryName }</p> 
+							</c:if>
+							<c:if test="${travel.categoryName eq '쇼핑/놀이'}" >
+								<p class="category f">${ travel.categoryName }</p> 
+							</c:if>
+
 						<div class="icons">
 							<img class="views"
 								src="${pageContext.request.contextPath}/resources/images/views.png" />

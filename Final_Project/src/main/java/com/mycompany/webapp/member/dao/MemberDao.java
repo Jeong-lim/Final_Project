@@ -8,6 +8,7 @@ import com.mycompany.webapp.member.model.MemberVo;
 
 @Mapper
 public interface MemberDao {
+	
 	public MemberVo selectMember(String memberId);
 	public void insertMember(MemberVo member);
 	public void updateMember(MemberVo member);
@@ -16,4 +17,5 @@ public interface MemberDao {
 	public String getAccessToken(String authorize_code) throws Throwable;
 	public int checkOverId(String memberId);
 	public List<MemberVo> userTravelList(String memberId) throws Exception;
+	public int userTravelCount(String memberId);
 }
