@@ -38,7 +38,8 @@ public class TravelController {
 	private FileService fileService;
 
 	@RequestMapping("/travel/detail")
-	public String place() {
+	public String travelDetail() {
+		
 		System.out.println("check");
 		return "travel/traveldetail";
 	}
