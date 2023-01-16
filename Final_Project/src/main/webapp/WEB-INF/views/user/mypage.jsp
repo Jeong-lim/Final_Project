@@ -26,15 +26,18 @@
 				<div class="profile_img">
 					<c:if test="${member.memberId == sessionScope.memberId }">
 						<c:if test="${empty sessionScope.fileSavedName}">
+						1
 							<img class="profile_image" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
 						</c:if>
 	
 						<c:if test="${not empty sessionScope.fileSavedName}">
+						2
 							<img class="profile_image"
 								src="<spring:url value='/image/${fileSavedName}'/>" />
 						</c:if>
 					</c:if>	
 						<c:if test="${member.memberId != sessionScope.memberId }">
+						3
 							<img class="profile_image" src="<spring:url value='/image/${member.fileSavedName }'/>"/>
 						</c:if>
 					
