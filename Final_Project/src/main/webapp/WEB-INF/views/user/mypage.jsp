@@ -50,7 +50,7 @@
 					<p>${member.email}</p>
 					<p>${member.phoneNumber}</p>
 					<p>
-						게시글 수 4 <label class="openBtn">팔로워 9</label> 팔로우 3
+						게시글 수 ${member.travelCount } <label class="openBtn">팔로워 9</label> 팔로우 3
 					</p>
 				</div>
 				<div class="profile_update">
@@ -69,11 +69,9 @@
 					<div class="card">
 						<p class="travel_tit">${ travel.travelTitle }</p>
 						
-						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>
-						
+						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>		
 						
 						<br />
-						
 						
 							<c:if test="${travel.categoryName eq '자연/힐링'}" >
 								<p class="category a">${ travel.categoryName }</p> 
@@ -93,13 +91,7 @@
 							<c:if test="${travel.categoryName eq '쇼핑/놀이'}" >
 								<p class="category f">${ travel.categoryName }</p> 
 							</c:if>
-							
-							
-					
-						
-						
-						
-						
+
 						<div class="icons">
 							<img class="views"
 								src="${pageContext.request.contextPath}/resources/images/views.png" />

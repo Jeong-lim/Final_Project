@@ -118,7 +118,9 @@ public class MemberController {
 			logger.info(member.toString());
 			
 			List<MemberVo> userList = memberService.userTravelList(memberId);
+			int travelCount = memberService.userTravelCount(memberId);
 			
+			model.addAttribute("travelCount", travelCount);
 			logger.info(userList.toString());
 			model.addAttribute("userList", userList);
 			
