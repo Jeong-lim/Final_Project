@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,8 +53,12 @@ public class MemberController {
 	
 	@RequestMapping(value = "/mypage", method=RequestMethod.GET)
 	public String memberPage() {
+		
 		return "user/mypage";
 	}
+	
+	
+	
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
@@ -132,6 +137,23 @@ public class MemberController {
 			return "auth/signin";
 		}
 	}
+	
+	@RequestMapping(value="/mypage/{memberId}")
+	public String memberPage(@PathVariable("memberId")String memberId,Model model)throws Exception {
+		MemberVo member=memberService.selectMember(memberId);
+		model.addAttribute("member",member);
+		
+		List<MemberVo> userList=memberService.userTravelList(memberId);
+		int travelCount=memberService.userTravelCount(memberId);
+		
+		model.addAttribute("travelCount",travelCount);
+		model.addAttribute("userList",userList);
+		
+		
+		return "user/mypage";
+	}
+	
+	
 	
 		
 	

@@ -11,16 +11,9 @@
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
 	<select id="selectMember" parameterType="string" resultMap="selectMember">
-		SELECT
-			MEMBER_ID
-		  , MEMBER_NAME
-		  , MEMBER_PASSWORD
-		  , PHONE_NUMBER
-		  , EMAIL
-		FROM
-		   MEMBER
-		WHERE
-		     MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
+		select member_id as memberId, member_name as memberName,member_password as memberPassword,phone_number as phoneNumber,email as email,file_saved_name as fileSavedName
+        from member, upload_file
+        where member_id=#{memberId} and file_code=#{memberId} and file_status='Y'
 	</select>
 	
 	<!-- 유저 정보 수정할 수 있는 쿼리문 -->
