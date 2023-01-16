@@ -17,6 +17,7 @@ public class MemberVo {
 	private String viewCount;
 	private String shareCount;
 	private String categoryName;
+	private String fileSavedName;
 	
 	
 	public String getMemberId() {
@@ -85,13 +86,22 @@ public class MemberVo {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
+	public String getFileSavedName() {
+		return fileSavedName;
+	}
+	public void setFileSavedName(String fileSavedName) {
+		this.fileSavedName = fileSavedName;
+	}
 	@Override
 	public String toString() {
 		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
 				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", travelTitle=" + travelTitle
 				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
-				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + "]";
+				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + ", fileSavedName=" + fileSavedName
+				+ "]";
 	}
+	
 
 	
 	
