@@ -138,7 +138,7 @@ public class MemberController {
 		}
 	}
 	
-/*	@RequestMapping(value="/mypage/{memberId}")
+	@RequestMapping(value="/mypage/{memberId}")
 	public String memberPage(@PathVariable("memberId")String memberId,Model model)throws Exception {
 		MemberVo member=memberService.selectMember(memberId);
 		model.addAttribute("member",member);
@@ -151,7 +151,7 @@ public class MemberController {
 		
 		
 		return "user/mypage";
-	}*/
+	}
 	
 	
 	
