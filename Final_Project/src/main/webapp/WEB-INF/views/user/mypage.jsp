@@ -50,7 +50,7 @@
 					<p>${member.email}</p>
 					<p>${member.phoneNumber}</p>
 					<p>
-						게시글 수 ${member.travelCount } <label class="openBtn">팔로워 9</label> 팔로우 3
+						게시글 수 ${travelCount} <label class="openBtn">팔로워 9</label> 팔로우 3
 					</p>
 				</div>
 				<div class="profile_update">

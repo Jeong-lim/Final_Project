@@ -34,7 +34,11 @@
 
 		<div class="menu">
 			<div class="items"><input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked><label for="radio1" class="radiolabel" >일정</label>
-			</div><div class="items"><input type="radio" id="radio2" class="radiobtn" name="radio1" value="weather"><label for="radio2" class="radiolabel">날씨</label>
+			</div><div class="items">
+				<input type="radio" id="radio2" class="radiobtn" name="radio1" value="weather">
+					<label for="radio2" class="radiolabel">
+						<a href="<c:url value="/api/weather"/>">날씨</a>
+					</label>
 			</div><div class="items"><input type="radio" id="radio3" class="radiobtn" name="radio1" value="traffic"><label for="radio3" class="radiolabel">교통</label></div>
 		</div>
 		
@@ -100,7 +104,8 @@
 				
 			</div>
 			<div class="weather" id="weather">
-				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> <select name="gugun1" id="gugun1" class="gugun1"></select></div>
+				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> 
+				<select name="gugun1" id="gugun1" class="gugun1"></select></div>
 				<img src="../resources/images/weather.png" class="weather_sample">
 			</div>
 			<div class="traffic" id="traffic">
@@ -217,6 +222,8 @@ $('document').ready(function() {
 
 	});
 	
+	
+
 
 </script>
 </html>
