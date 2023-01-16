@@ -41,6 +41,10 @@ public class PlaceService {
 		return placeDao.detailPlaceInfo(placeName);
 	}
 	
+	public PlaceVo placeInfo(String placeName) {
+		return placeDao.placeInfo(placeName);
+	}
+	
 	
 
 		

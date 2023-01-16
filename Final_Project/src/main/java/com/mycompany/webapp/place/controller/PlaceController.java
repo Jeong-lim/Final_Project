@@ -57,7 +57,7 @@ public class PlaceController {
 			List<PlaceVo> placeList=placeService.KeywordPlaceSearch(key,keyword,endRowNo, startRowNo);
 			model.addAttribute("pager",pager);
 			model.addAttribute("placeList",placeList);
-			model.addAttribute("key",key); 
+			model.addAttribute("key",key);                                                                                                                                                                                                                                                                                                                            
 			model.addAttribute("keyword",keyword);
 		}
 		else {
@@ -76,12 +76,14 @@ public class PlaceController {
 	
 	
 	@RequestMapping("/place/detail/{placeName}")
-	public String placeDetail(@PathVariable String placeName,Model model) {
-		
+	public String placeDetail(@PathVariable("placeName") String placeName,Model model) {
 		List<PlaceVo> placeInfoList=placeService.detailPlaceInfo(placeName);
+		PlaceVo place=placeService.placeInfo(placeName);
 		model.addAttribute("placeInfoList",placeInfoList);
+		model.addAttribute("place",place);
 		
 		return "place/placedetail";
+		
 	}
 	
 	

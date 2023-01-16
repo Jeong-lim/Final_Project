@@ -21,6 +21,8 @@ public interface PlaceDao {
 	
 	public List<PlaceVo> KeywordPlaceSearch(@Param("key")String key, @Param("keyword")String keyword,@Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
 	
-	public List<PlaceVo> detailPlaceInfo(@Param ("placeName")String placeName);
+	public List<PlaceVo> detailPlaceInfo(String placeName);
+	
+	public PlaceVo placeInfo(String placeName);
 
 }
