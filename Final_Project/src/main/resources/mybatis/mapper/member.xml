@@ -11,7 +11,7 @@
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
 	<select id="selectMember" parameterType="string" resultMap="selectMember">
-		select member_id as memberId, member_name as memberName,member_password as memberPassword,phone_number as phoneNumber,email as email,file_saved_name as fileSavedName
+		select member_id , member_name ,member_password ,phone_number ,email ,file_saved_name
         from member, upload_file
         where member_id=#{memberId} and file_code=#{memberId} and file_status='Y'
 	</select>
