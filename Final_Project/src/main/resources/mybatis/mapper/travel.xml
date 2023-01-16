@@ -19,20 +19,23 @@
 
 	<select id="selectTravelList" resultType="travel" parameterType="pager">
 
-		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
 		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
                   
-		    select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-		from upload_file f, 
-   			 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    		  from place p, 
-      				  (select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
-     				   from travel t, travel_detail d
-        			   where t.travel_id=d.travel_id) a
-  			  where p.place_id=a.place_id) b 
-		where f.file_code like '%'||b.place_name||'%'     
+		    select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
+			from 
+			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					from upload_file f, 
+   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					  from place p, 
+      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+     				  			 from travel t, travel_detail d
+        			  			 where t.travel_id=d.travel_id) a
+  			 		 where p.place_id=a.place_id) b 
+			where f.file_code like '%'||b.place_name||'%')c     
             
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
@@ -64,21 +67,24 @@
 	</select>
 	
 	<select id="selectTravelListByView" resultType="travel" parameterType="pager">
-		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
 		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
                   
-		    select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-		from upload_file f, 
-   			 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    		  from place p, 
-      				  (select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
-     				   from travel t, travel_detail d
-        			   where t.travel_id=d.travel_id) a
-  			  where p.place_id=a.place_id) b 
-		where f.file_code like '%'||b.place_name||'%'
-		ORDER BY view_cnt desc
+		    select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
+			from 
+			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					from upload_file f, 
+   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					  from place p, 
+      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+     				  			 from travel t, travel_detail d
+        			  			 where t.travel_id=d.travel_id) a
+  			 		 where p.place_id=a.place_id) b 
+			where f.file_code like '%'||b.place_name||'%')c    
+			ORDER BY c.view_cnt desc
                
             
 		  )
@@ -88,21 +94,24 @@
 	</select>
 	
 	<select id="selectTravelListByShare" resultType="travel" parameterType="pager">
-		  SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		  SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
 		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
                   
-		    select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-		from upload_file f, 
-   			 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    		  from place p, 
-      				  (select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
-     				   from travel t, travel_detail d
-        			   where t.travel_id=d.travel_id) a
-  			  where p.place_id=a.place_id) b 
-		where f.file_code like '%'||b.place_name||'%'
-		ORDER BY share_cnt desc
+		    select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
+			from 
+			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					from upload_file f, 
+   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					  from place p, 
+      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+     				  			 from travel t, travel_detail d
+        			  			 where t.travel_id=d.travel_id) a
+  			 		 where p.place_id=a.place_id) b 
+			where f.file_code like '%'||b.place_name||'%')c    
+			ORDER BY original_Travel_Id desc
                
             
 		  )
@@ -112,21 +121,24 @@
 	</select>
 	
 	<select id="selectTravelListByRecent" resultType="travel" parameterType="pager">
-		       SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		       SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
 		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
                   
-		    select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-		from upload_file f, 
-   			 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    		  from place p, 
-      				  (select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
-     				   from travel t, travel_detail d
-        			   where t.travel_id=d.travel_id) a
-  			  where p.place_id=a.place_id) b 
-		where f.file_code like '%'||b.place_name||'%'
-		ORDER BY write_date desc
+		     select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
+			from 
+			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					from upload_file f, 
+   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					  from place p, 
+      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+     				  			 from travel t, travel_detail d
+        			  			 where t.travel_id=d.travel_id) a
+  			 		 where p.place_id=a.place_id) b 
+			where f.file_code like '%'||b.place_name||'%')c    
+			ORDER BY c.write_date desc
                
             
 		  )
@@ -136,25 +148,30 @@
 	</select>
 	
 	<select id="selectTravelListByKeyword" resultType="travel" parameterType="map">
-		  SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate
+		  SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
 		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date
+		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
-           select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-		from upload_file f, 
-   			 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    		  from place p, 
-      				  (select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
-     				   from travel t, travel_detail d
-        			   where t.travel_id=d.travel_id) a
-  			  where p.place_id=a.place_id) b 
-		where f.file_code like '%'||b.place_name||'%'
+		  
+		  
+           select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
+			from 
+			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					from upload_file f, 
+   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					  from place p, 
+      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+     				  			 from travel t, travel_detail d
+        			  			 where t.travel_id=d.travel_id) a
+  			 		 where p.place_id=a.place_id) b 
+			where f.file_code like '%'||b.place_name||'%'    
 			<if test="searchType=='title' and keyword != null and keyword != '' ">
 				 AND travel_title like '%'||#{keyword}||'%'
 			</if>
 			<if test="searchType=='writer' and keyword != null and keyword != '' ">
 				 AND writer like '%'||#{keyword}||'%'
-			</if>
+			</if>)c
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
 		)
@@ -163,20 +180,11 @@
 
 	</select>
 	
-<!-- 	<select id="selectTravelImage" parameterType="string" resultMap="selectTravelImage">
-		select f.file_saved_name as fileSavedName
-		from upload_file f
-		where(select p.place_name
-		from travel_detail d, place p, upload_file f
-		where (select d.place_id
-		from travel t, travel_detail d
-		where t.travel_id=d.travel_id and t.travel_id=#{travelId} and rownum=1)=p.place_id and rownum=1)=f.file_code;
-	</select>
-	 -->
-<!-- 	<select id="selectTravelId" parameterType="string">
-		select travel_id as travelId
-		from travel
-	</select> -->
+     <update id="viewCount">
+	UPDATE travel
+	SET view_cnt = view_cnt + 1
+	WHERE travel_id = #{travelId}
+	</update>
 
 
 
