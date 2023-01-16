@@ -23,20 +23,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             클라이언트에게 JSON 객체를 받아야 할 경우는 @RequestBody, 자바 객체를 클라이언트에게 JSON으로 전달해야할 경우에는 @ResponseBody 어노테이션을 붙여주면 된다. 
     @ResponseBody를 사용한 경우 View가 아닌 자바 객체를 리턴해주면 된다.
 */
+
+/* 
+@ API LIST ~
+
+getUltraSrtNcst 초단기실황조회 
+getUltraSrtFcst 초단기예보조회 
+getVilageFcst 동네예보조회 
+getFcstVersion 예보버전조회
+*/
 @RestController
 @RequestMapping("/api")
 public class WeatherApiController {
     
     @GetMapping("/weather")
     public String restApiGetWeather() throws Exception {
-        /* 
-            @ API LIST ~
-            
-            getUltraSrtNcst 초단기실황조회 
-            getUltraSrtFcst 초단기예보조회 
-            getVilageFcst 동네예보조회 
-            getFcstVersion 예보버전조회
-        */
+        
         String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
             + "?serviceKey=eYxy%2BFWb2RXHCKaOnmpTvXqXYqSq2t79Rn9K8Nr0yIJw2%2FjYpABGjQKAdK7WFKA0ov2KsKCIh2cbPyLaNNRXMQ%3D%3D"
             + "&dataType=JSON"            // JSON, XML

@@ -7,10 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/traveldetail.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
@@ -33,13 +32,19 @@
 		</div>
 
 		<div class="menu">
-			<div class="items"><input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked><label for="radio1" class="radiolabel" >일정</label>
+			<div class="items">
+				<input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked>
+				<label for="radio1" class="radiolabel" >일정</label>
 			</div><div class="items">
 				<input type="radio" id="radio2" class="radiobtn" name="radio1" value="weather">
-					<label for="radio2" class="radiolabel">
-						<a href="<c:url value="/api/weather"/>">날씨</a>
+					<label id="weather_radio_button" for="radio2" class="radiolabel">
+						날씨
 					</label>
-			</div><div class="items"><input type="radio" id="radio3" class="radiobtn" name="radio1" value="traffic"><label for="radio3" class="radiolabel">교통</label></div>
+			</div>
+			<div class="items">
+			<input type="radio" id="radio3" class="radiobtn" name="radio1" value="traffic">
+			<label for="radio3" class="radiolabel">교통</label>
+			</div>
 		</div>
 		
 		<div class="contentdiv">
@@ -156,9 +161,35 @@ $(document).ready(function(){
 		}	
 		
 		else if($("input[name='radio1']:checked").val() == 'weather'){
-			$('#schedule').hide();
+			
+			
+			jQuery.ajax({
+		        url : "${pageContext.request.contextPath}/api/weather",
+		        type : "get",
+		        timeout: 30000,
+		        contentType: "application/json",
+		        dataType : "json",
+		        success : function(data, status, xhr) {
+
+		            let dataHeader = data.result.response.header.resultCode;
+
+		            if (dataHeader == "00") {
+		               console.log("success == >");
+		               console.log(data);
+		            } else {
+		               console.log("fail == >");
+		               console.log(data);               
+		            }
+		        },
+		        error : function(e, status, xhr, data) {
+		            console.log("error == >");
+		            console.log(e);
+		        }
+		    });
 			$('#weather').show();
+			$('#schedule').hide();
 			$('#traffic').hide();
+			
 		}
 		
 		else if($("input[name='radio1']:checked").val() == 'traffic'){
@@ -170,8 +201,13 @@ $(document).ready(function(){
 		
 });
 
+
+
+
 </script>
 <script>
+
+
 	
 	
 $('document').ready(function() {
