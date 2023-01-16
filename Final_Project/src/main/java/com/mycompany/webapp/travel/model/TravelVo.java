@@ -20,6 +20,8 @@ public class TravelVo {
 	private String memo;
 	private String placeName;
 	private String fileSavedName;
+	private String originalTravelId;
+	private String originalWriter;
 	public String getTravelId() {
 		return travelId;
 	}
@@ -110,14 +112,29 @@ public class TravelVo {
 	public void setFileSavedName(String fileSavedName) {
 		this.fileSavedName = fileSavedName;
 	}
+	public String getOriginalTravelId() {
+		return originalTravelId;
+	}
+	public void setOriginalTravelId(String originalTravelId) {
+		this.originalTravelId = originalTravelId;
+	}
+	public String getOriginalWriter() {
+		return originalWriter;
+	}
+	public void setOriginalWriter(String originalWriter) {
+		this.originalWriter = originalWriter;
+	}
 	@Override
 	public String toString() {
 		return "TravelVo [travelId=" + travelId + ", travelTitle=" + travelTitle + ", travelStart=" + travelStart
 				+ ", travelEnd=" + travelEnd + ", travelPrivacy=" + travelPrivacy + ", free=" + free + ", viewCnt="
 				+ viewCnt + ", shareCnt=" + shareCnt + ", writer=" + writer + ", writeDate=" + writeDate
 				+ ", travelDate=" + travelDate + ", placeId=" + placeId + ", memo=" + memo + ", placeName=" + placeName
-				+ ", fileSavedName=" + fileSavedName + "]";
+				+ ", fileSavedName=" + fileSavedName + ", originalTravelId=" + originalTravelId + ", originalWriter="
+				+ originalWriter + "]";
 	}
-
+	
+	
+	
 	
 }

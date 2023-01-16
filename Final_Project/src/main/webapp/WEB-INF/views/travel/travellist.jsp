@@ -75,7 +75,6 @@
 			</div>
 			<div class="place_list">
 				<c:forEach var="travel" items="${travelList}">
-				<input type="hidden" id="travelId" value="${travel.travelId}">
 					<div class="place">
 						<div class="image_wrap">
 						<img class="place_img"
@@ -88,19 +87,21 @@
 									<label class="date">작성일 : <fmt:formatDate value="${travel.writeDate}"
 										pattern="YYYY/MM/dd" /></label>
 								</p>
-							</a> <a href='<c:url value="/mypage"/>'>
+							</a> <a href='<c:url value="/mypage/${travel.writer}"/>'>
 								<p class="travel_writer">${travel.writer}</p>
 							</a>
+							<a href='<c:url value="/travel/insert"/>'>
 							<button class="scrap"
-								onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+								onclick="scrap(); return false;">스크랩</button></a>
 							<div class="icons">
 								<img class="views"
 									src="${pageContext.request.contextPath}/resources/images/views.png" />
 								${travel.viewCnt} <img class="publish"
-									src="${pageContext.request.contextPath}/resources/images/publish.png" />${travel.shareCnt}
+									src="${pageContext.request.contextPath}/resources/images/publish.png" />${travel.originalTravelId}
 							</div>
 						</div>
 					</div>
+					
 				</c:forEach>
 
 
@@ -225,6 +226,30 @@
 			console.log(category);
 
 		});
+	</script>
+	<script>
+	 function scrap(){ 
+	     $.ajax({
+	            type : "POST",  
+	            url : "/travel/scrap",       
+	            dataType : "json",   
+	            data : {'bno' : bno, 'Id' : memberId },
+	            error : function(){
+	               alert("통신 에러");
+	            },
+	            success : function(scrap) {
+	                
+	                     if(scrap == 0){
+	                    	alert("스크랩완료");
+	                    	location.reload();
+	                     }else if(scrap == 1){
+	                    	 alert("스크랩취소");
+	                    	 location.reload();
+	                     }
+	                    
+	            }
+	        });
+	 }
 	</script>
 </body>
 
