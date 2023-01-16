@@ -68,6 +68,7 @@
 							
 						</div>
 						<div class="place_info">
+						
 							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
 								<p class="place_name" id="place_name">${place.placeName}</p>
 							</a>

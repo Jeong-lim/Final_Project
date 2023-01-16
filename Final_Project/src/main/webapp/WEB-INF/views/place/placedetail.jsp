@@ -16,9 +16,9 @@
 	<div class="container_top">
 		<div class="container">
 			<div class="place_info">
-				<p class="place_name">${placeInfoList.placeName }</p>
-				<p class="place_area">${placeInfoList.areaName }</p>
-				<label class="category_label"> <span>${placeInfoList.category }</span></label>
+				<p class="place_name">${place.placeName}</p>
+				<p class="place_area">${place.areaName}</p>
+				<label class="category_label"> <span>${place.category}</span></label>
 			</div>
 			
 			
@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="content">
-				<p>${placeInfoList.placeDetail}</p>
+				<p>${place.placeDetail}</p>
 			</div>
 		</div>
 	</div>

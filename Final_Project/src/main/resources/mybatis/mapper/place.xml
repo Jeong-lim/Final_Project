@@ -91,7 +91,15 @@
            	from upload_file)f
     	on p.place_name=f.file_code
     	order by place_name)m, detail_code d
-		where place_name=#{placeName} and m.category=d.detail_cd_id
+
+    		where place_name=#{placeName} and m.category=d.detail_cd_id
+		
+	</select>
+	
+	<select id="placeInfo" parameterType="String" resultType="place">
+		 select distinct p.place_name as placeName, p.area_name as areaName, d.detail_cd_name as category,p.place_detail as placeDetail
+        from place p,detail_code d
+        where place_name=#{placeName} and p.category=d.detail_cd_id
 	</select>
 	
 	
