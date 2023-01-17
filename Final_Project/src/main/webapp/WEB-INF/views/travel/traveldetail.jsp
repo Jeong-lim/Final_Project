@@ -207,27 +207,30 @@ $(document).ready(function(){
 <script>
 
 $(document).ready(function(){
-
 	
+	$("#sido1").change(function(){
+		 sido = $('#sido1').find(":selected").text();
+	});
 	  $("#gugun1").change(function(){
-		 var var1 = $('#gugun1').find(":selected").val();
-		 $.ajax({
-				url : '${pageContext.request.contextPath}/api/weather?si='+ var1,
-				type : 'get',
-				data : var1,
-				success : function() {
-					console.log(data);								
-					}, error : function() {
-							console.log("실패");
-					}
-				});
-	     });
-	  
-	  $("#sido1").change(function(){
-		var var2 = $('#sido1').find(":selected").val();
-		     
-	     });
-	  
+		 gugun = $('#gugun1').find(":selected").text();
+		 
+		 var allData = {"do": sido, "si": gugun};
+
+	});
+	
+
+ 	  
+	   
+/* 	  $.ajax({
+			url : '${pageContext.request.contextPath}/api/weather?si='+ var1,
+			type : 'get',
+			data : var1,
+			success : function() {
+				console.log(data);								
+				}, error : function() {
+						console.log("실패");
+				}
+			}); */
 	  
 });
 
