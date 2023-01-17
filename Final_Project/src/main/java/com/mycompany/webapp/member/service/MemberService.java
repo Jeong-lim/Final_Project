@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.member.dao.MemberDao;
+import com.mycompany.webapp.member.model.AlarmVo;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
@@ -71,6 +72,22 @@ public class MemberService  {
 	
 	public int countFollowing(String memberId) {
 		return memberDao.countFollowing(memberId);
+	}
+	
+	public void requestFollow(String memberId, String sessionId) {
+		memberDao.requestFollow(memberId, sessionId);
+	}
+	
+	public String checkFollowStatus(String memberId, String sessionId) {
+		return memberDao.checkFollowStatus(memberId, sessionId);
+	}
+	
+	public void insertAlarm(String memberId, String sessionId,String alarmCode) {
+		memberDao.insertAlarm(memberId, sessionId, alarmCode);
+	}
+	
+	public List<AlarmVo> selectAlarms(String sessionId){
+		return memberDao.selectAlarms(sessionId);
 	}
 	
 	

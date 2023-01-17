@@ -11,6 +11,7 @@
 		<typeAlias type="com.mycompany.webapp.place.model.PagerVo" alias="pager"/>
 
 		<typeAlias type="com.mycompany.webapp.member.model.MemberVo" alias="member"/>
+		<typeAlias type="com.mycompany.webapp.member.model.AlarmVo" alias="alarm"/>
 
 	</typeAliases>	
 </configuration>

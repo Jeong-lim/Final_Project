@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.file.service.FileService;
+import com.mycompany.webapp.member.model.AlarmVo;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.MemberService;
 
@@ -62,7 +65,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
 	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
-		
+		logger.info("sign in post ?????????????????????");
 		MemberVo member = memberService.selectMember(memberId); // 멤버 id가 있는 지 확인
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
@@ -111,6 +114,7 @@ public class MemberController {
 	}
 	
 
+	//자신의 마이페이지로 이동할 때
 	@RequestMapping(value="/memberPage", method=RequestMethod.GET)
 	public String selectMember(HttpSession session, Model model) throws Exception {
 		String memberId = (String)session.getAttribute("memberId");
@@ -140,8 +144,9 @@ public class MemberController {
 		}
 	}
 	
+	//다른유저의 마이페이지로 이동할 때
 	@RequestMapping(value="/mypage/{memberId}")
-	public String memberPage(@PathVariable("memberId")String memberId,Model model)throws Exception {
+	public String memberPage(HttpServletRequest request,@PathVariable("memberId")String memberId,Model model)throws Exception {
 		MemberVo member=memberService.selectMemberInfo(memberId);
 		model.addAttribute("member",member);
 		
@@ -151,10 +156,45 @@ public class MemberController {
 		model.addAttribute("followingNum",memberService.countFollowing(memberId));
 		model.addAttribute("travelCount",travelCount);
 		model.addAttribute("userList",userList);
-		
+		System.out.println(memberId);
+		HttpSession session=request.getSession();
+		String sessionId=(String)session.getAttribute("memberId");
+		System.out.println(sessionId);
+		//팔로우상태 체크 
+		String status=memberService.checkFollowStatus(memberId, sessionId);
+		System.out.println(status);
+		model.addAttribute("followStatus",status);
 		
 		return "user/mypage";
 	}
+	
+
+	//팔로우 신청
+	@ResponseBody
+	@PostMapping("/follow/{member.memberId}/{sessionScope.memberId}")
+	public String follow(@PathVariable("member.memberId") String memberId,@PathVariable("sessionScope.memberId")String sessionId)throws Exception {
+		System.out.println("팔로우 신청");
+		System.out.println(memberId);
+		System.out.println(sessionId);
+		String alarmCode="f";
+		memberService.requestFollow(memberId, sessionId);
+		System.out.println("팔로우신청완료");
+		memberService.insertAlarm(memberId, sessionId, alarmCode);
+		System.out.println("알람전송");
+		return "followOk";
+	}
+	
+	//알림
+	@ResponseBody
+	@PostMapping("/follow/{sessionScope.memberId}")
+	public List<AlarmVo> selectAlarms(@PathVariable("sessionScope.memberId")String sessionId,Model model) {
+		System.out.println("알림창");
+		System.out.println(sessionId);
+		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
+		
+		return alarmList;
+	}
+	
 	
 	
 	

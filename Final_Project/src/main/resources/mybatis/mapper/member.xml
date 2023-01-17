@@ -151,6 +151,29 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
         where from_id=#{memberId}
 	</select>
 	
+	<!-- 팔로우 요청 -->
+	<insert id="requestFollow" parameterType="map">
+		 insert into follow(follow_seq,to_id,from_id,follow_date,follow_status)
+        values('FOL'||LPAD(follow_seq.nextval,5,0),#{memberId},#{sessionId},sysdate,'N')
+	</insert>
 	
+	<!-- 팔로우 상태 체크 -->
+	<select id="checkFollowStatus" parameterType="map" resultType="string">
+		select follow_status
+        from follow
+        where to_id=#{memberId} and from_id=#{sessionId}
+	</select>	
+	
+	<!-- 알림추가 -->
+	<insert id="insertAlarm" parameterType="map">
+		insert into alarm(alarm_seq,alarm_to_id,alarm_from_id,alarm_code,alarm_status)
+        values('ALA'||LPAD(alarm_seq.nextval,5,0),#{memberId},#{sessionId},#{alarmCode},'Y')
+	</insert>	
+	
+	<select id="selectAlarms" parameterType="String" resultType="alarm">
+		select alarm_code as alarmCode, alarm_to_id as alarmToId, alarm_from_id as alarmFromId, alarm_status as alarmStatus
+        from alarm
+        where alarm_to_id=#{sessionId}
+	</select>
 
 </mapper>
