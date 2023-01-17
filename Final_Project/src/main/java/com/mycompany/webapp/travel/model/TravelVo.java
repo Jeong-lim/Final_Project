@@ -22,6 +22,13 @@ public class TravelVo {
 	private String fileSavedName;
 	private String originalTravelId;
 	private String originalWriter;
+	
+	// weather vo
+	private String lat;
+	private String lon;
+	private String locationSi;
+	
+	
 	public String getTravelId() {
 		return travelId;
 	}
@@ -124,6 +131,25 @@ public class TravelVo {
 	public void setOriginalWriter(String originalWriter) {
 		this.originalWriter = originalWriter;
 	}
+	
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLon() {
+		return lon;
+	}
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+	public String getLocationSi() {
+		return locationSi;
+	}
+	public void setLocationSi(String locationSi) {
+		this.locationSi = locationSi;
+	}
 	@Override
 	public String toString() {
 		return "TravelVo [travelId=" + travelId + ", travelTitle=" + travelTitle + ", travelStart=" + travelStart
@@ -131,7 +157,7 @@ public class TravelVo {
 				+ viewCnt + ", shareCnt=" + shareCnt + ", writer=" + writer + ", writeDate=" + writeDate
 				+ ", travelDate=" + travelDate + ", placeId=" + placeId + ", memo=" + memo + ", placeName=" + placeName
 				+ ", fileSavedName=" + fileSavedName + ", originalTravelId=" + originalTravelId + ", originalWriter="
-				+ originalWriter + "]";
+				+ originalWriter + ", lat=" + lat + ", lon=" + lon + ", locationSi=" + locationSi + "]";
 	}
 	
 	

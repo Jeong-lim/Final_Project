@@ -61,6 +61,10 @@ public class TravelService {
 		return travelDao.selectTravelListByArea(searchType, keyword);
 	}
 	
+	public TravelVo selectLocationInfo(String locationSi) {
+		return travelDao.selectLocationInfo(locationSi);
+	}
+	
 	
 
 
