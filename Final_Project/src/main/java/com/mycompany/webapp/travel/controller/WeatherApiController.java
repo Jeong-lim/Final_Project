@@ -1,25 +1,30 @@
 package com.mycompany.webapp.travel.controller;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
+import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import org.json.JSONObject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycompany.webapp.member.controller.MemberController;
+import com.mycompany.webapp.travel.model.TravelVo;
+import com.mycompany.webapp.travel.model.Weather;
+import com.mycompany.webapp.travel.service.TravelService;
+
 
 /*
     @RestController : 기본으로 하위에 있는 메소드들은 모두 @ResponseBody를 가지게 된다.
@@ -37,104 +42,143 @@ getUltraSrtFcst 초단기예보조회
 getVilageFcst 동네예보조회 
 getFcstVersion 예보버전조회
 */
+
+
 @RestController
 @RequestMapping("/api")
 public class WeatherApiController {
 	
+	enum WeatherValue {
+        PTY, REH, RN1, T1H, UUU, VEC, VVV, WSD
+    }
+
+	
 	private static final Logger logger = LoggerFactory.getLogger(WeatherApiController.class);
-    
+	
+	@Autowired
+	private TravelService travelService;
+	
     @GetMapping("/weather")
     @ResponseBody
-    public String restApiGetWeather(@RequestParam("do")String lo_do, @RequestParam("si")String lo_si) throws Exception {
-        
-    	logger.info(lo_do);
-    	logger.info(lo_si);
+    public Weather restApiGetWeather(@RequestParam("si")String lo_si) throws Exception {
     	
-        String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
-            + "?serviceKey=eYxy%2BFWb2RXHCKaOnmpTvXqXYqSq2t79Rn9K8Nr0yIJw2%2FjYpABGjQKAdK7WFKA0ov2KsKCIh2cbPyLaNNRXMQ%3D%3D"
-            + "&dataType=JSON"            // JSON, XML
-            + "&numOfRows=10"             // 페이지 ROWS
-            + "&pageNo=1"                 // 페이지 번호
-            + "&base_date=20230115"       // 발표일자
-            + "&base_time=0800"           // 발표시각
-            + "&nx=60"                    // 예보지점 X 좌표
-            + "&ny=127";                  // 예보지점 Y 좌표
-        
-        HashMap<String, Object> resultMap = getDataFromJson(url, "UTF-8", "get", "");
-        
-        System.out.println("# RESULT : " + resultMap);
+    	
+    	TravelVo travelVo = travelService.selectLocationInfo(lo_si);
 
-        JSONObject jsonObj = new JSONObject();
+    	
+    	String lat = travelVo.getLat();
+    	String lon = travelVo.getLon();
+    	
+    	 // 입력받을 weather 객체
+        Weather weather = new Weather();
+        // 변수 설정
+        String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
+        String authKey = "eYxy%2BFWb2RXHCKaOnmpTvXqXYqSq2t79Rn9K8Nr0yIJw2%2FjYpABGjQKAdK7WFKA0ov2KsKCIh2cbPyLaNNRXMQ%3D%3D"; // 본인 서비스 키 입력
         
-        jsonObj.put("result", resultMap);
+        // 2. 요청 시각 조회
+        LocalDateTime now = LocalDateTime.now();
+        String yyyyMMdd = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        int hour = now.getHour();
+        int min = now.getMinute();
+        if(min <= 30) { // 해당 시각 발표 전에는 자료가 없음 - 이전시각을 기준으로 해야함
+            hour -= 1;
+        }
+        String hourStr = hour + "00"; // 정시 기준
         
-        return jsonObj.toString();
-    }
-    
-    public HashMap<String, Object> getDataFromJson(String url, String encoding, String type, String jsonStr) throws Exception {
-        boolean isPost = false;
+        String nx = lat;
+        String ny = lon;
+        String baseDate = yyyyMMdd;
+        String baseTime = hourStr;
+        String dataType = "JSON";
 
-        if ("post".equals(type)) {
-            isPost = true;
+        StringBuilder urlBuilder = new StringBuilder(apiURL);
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + authKey);
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows=10", "UTF-8"));    // 숫자 표
+        urlBuilder.append("&" + URLEncoder.encode("pageNo=1", "UTF-8"));    // 페이지 수
+        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode(dataType, "UTF-8")); // 받으려는 타입
+        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /* 조회하고싶은 날짜*/
+        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); /* 조회하고싶은 시간 AM 02시부터 3시간 단위 */
+        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode(nx, "UTF-8")); //경도
+        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode(ny, "UTF-8")); //위도
+
+        URL url = new URL(urlBuilder.toString());
+        System.out.println(url);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         } else {
-            url = "".equals(jsonStr) ? url : url + "?request=" + jsonStr;
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
         }
-
-        return getStringFromURL(url, encoding, isPost, jsonStr, "application/json");
-    }
-    
-    public HashMap<String, Object> getStringFromURL(String url, String encoding, boolean isPost, String parameter, String contentType) throws Exception {
-        URL apiURL = new URL(url);
-
-        HttpURLConnection conn = null;
-        BufferedReader br = null;
-        BufferedWriter bw = null;
-
-        HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-        try {
-            conn = (HttpURLConnection) apiURL.openConnection();
-            conn.setConnectTimeout(5000);
-            conn.setReadTimeout(5000);
-            conn.setDoOutput(true);
-
-            if (isPost) {
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", contentType);
-                conn.setRequestProperty("Accept", "*/*");
-            } else {
-                conn.setRequestMethod("GET");
-            }
-
-            conn.connect();
-
-            if (isPost) {
-                bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
-                bw.write(parameter);
-                bw.flush();
-                bw = null;
-            }
-
-            br = new BufferedReader(new InputStreamReader(conn.getInputStream(), encoding));
-
-            String line = null;
-
-            StringBuffer result = new StringBuffer();
-
-            while ((line=br.readLine()) != null) result.append(line);
-
-            ObjectMapper mapper = new ObjectMapper();
-
-            resultMap = mapper.readValue(result.toString(), HashMap.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception(url + " interface failed" + e.toString());
-        } finally {
-            if (conn != null) conn.disconnect();
-            if (br != null) br.close();
-            if (bw != null) bw.close();
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
         }
+        rd.close();
+        conn.disconnect();
+        String result = sb.toString();
 
-        return resultMap;
+        System.out.println(result);
+
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
+        JSONObject parse_response = (JSONObject) jsonObject.get("response");
+        JSONObject parse_body = (JSONObject) parse_response.get("body"); // response 로 부터 body 찾아오기
+        JSONObject parse_items = (JSONObject) parse_body.get("items"); // body 로 부터 items 받아오기
+        // items 로 부터 itemList : 뒤에 [ 로 시작하므로 jsonArray 이다.
+        JSONArray parse_item = (JSONArray) parse_items.get("item");
+        System.out.println("--------------------------");
+
+        // item 들을 담은 List 를 반복자 안에서 사용하기 위해 미리 명시
+        JSONObject object;
+        // item 내부의 category 를 보고 사용하기 위해서 사용
+        String category;
+        Double value;
+
+       
+        // jsonArray를 반복자로 반복
+        for (int temp = 0; temp < parse_item.size(); temp++) {
+            object = (JSONObject) parse_item.get(temp);
+            category = (String) object.get("category"); // item 에서 카테고리를 검색
+
+            // Error 발생할수도 있으며 받아온 정보를 double이 아니라 문자열로 읽으면 오류
+            value = Double.parseDouble((String) object.get("obsrValue"));
+            
+            WeatherValue weatherValue = WeatherValue.valueOf(category);
+
+            switch (weatherValue) {
+            case PTY:
+                weather.setRainState(value);
+                break;
+            case REH:
+                weather.setHumid(value);
+                break;
+            case RN1:
+                weather.setRainAmount(value);
+                break;
+            case T1H:
+                weather.setTemp(value);
+                break;
+            
+            case VEC:
+                weather.setWindDir(value);
+                break;
+        
+            case WSD:
+                weather.setWindSpd(value);
+                break;
+            default:
+                break;
+            }
+        }
+        weather.setDate(baseDate);
+        weather.setTime(baseTime);
+        System.out.println(weather);
+		return weather;
+
     }
 }
