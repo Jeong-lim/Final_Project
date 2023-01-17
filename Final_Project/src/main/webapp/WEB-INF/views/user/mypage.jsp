@@ -75,10 +75,10 @@
 					</c:if>
 					<c:if test="${followStatus != null }">
 						<c:if test="${followStatus =='N' }">
-							<button class="updateBtn" id="followBtn">신청완료</button>
+							<button class="updateBtn" id="notfollowBtn">신청완료</button>
 						</c:if>
 						<c:if test="${followStatus =='Y' }">
-							<button class="updateBtn" id="followBtn">언팔하기</button>
+							<button class="updateBtn" id="unfollowBtn">언팔하기</button>
 						</c:if>
 					</c:if>
 				</div>
@@ -144,12 +144,14 @@
 					<div class="box">
 
 						<ul class="modal_ul">
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">dudtj1234</label></a>
-								<button class="block">차단</button></li>
-							
+						
+							<c:forEach var="follower" items="followerList">
+								<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
+										class="follower_img"
+										src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
+										class="follower_id">dudtj1234</label></a>
+									<button class="block">차단</button></li>
+							</c:forEach>
 						</ul>
 					</div>
 

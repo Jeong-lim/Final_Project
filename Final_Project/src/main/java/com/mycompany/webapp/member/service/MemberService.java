@@ -90,6 +90,10 @@ public class MemberService  {
 		return memberDao.selectAlarms(sessionId);
 	}
 	
+	public List<MemberVo> selectFollowerList(String sessionId){
+		return memberDao.selectFollowerList(sessionId);
+	}
+	
 	
 	
 
