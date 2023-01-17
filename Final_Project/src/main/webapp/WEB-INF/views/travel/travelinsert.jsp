@@ -169,7 +169,7 @@
 							</c:when>
 							<c:when test="${place.fileSavedName ne null }">
 								<img class="place_img"
-                     				src="<spring:url value='/place/${place.fileSavedName}'/>" />
+                     				src="/place/${place.fileSavedName}" />
 							</c:when>
 						</c:choose>
 							
@@ -301,12 +301,7 @@ $(function() {
 	               //document.querySelector(".firstdate").append(date);
 	               
 	                //date2.setDate(date.getDate())
-	                
-	                
-	                
-	                
-	            
-	               
+           
 	                 
 	           	for(var j=days; j>0; j--){
 	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" name="modal_btn2" id="modal_btn2" onclick="openModal()"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" id="modal_btn" name="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
@@ -428,86 +423,65 @@ window.onload = function() {
         });
        
       });
-   
-   
-   
-   
-   
+ 
 </script>
 
 <script>
-// 검색
-$(document).on('click', '#btnSearch', function(e){
-	e.preventDefault();
-	var searchType= $('#searchType').val();
-	var keyword= $('#keyword').val();
-	
-/* 	url = url + "?searchType=" +
-	url = url + "&keyword=" +
-	location.href = url;
-	console.log(url); */
-	
-	console.log(searchType);
-	console.log(keyword);
-
-	$.ajax({
-		type:'post',
-		//url:'<c:url value="/travel/insert"/>',
-		url : '${pageContext.request.contextPath}/travel/insert?searchType='+searchType+'&keyword='+keyword,
-		data:{
-			searchType:searchType,
-			keyword:keyword
-			
-		}
-	})
-	
-
-});	
-
-
 
 $(function(){
 	// 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
 	// console.log("Hello")
-	var btnSearch=$("#btnSearch")
-	var searchType= $('#searchType').val();
-	var keyword= $('#keyword').val();
+	
 	//https://mchch.tistory.com/85
 	//https://wonpaper.tistory.com/420
 	//https://codenbike.tistory.com/112
-	//https://ssoonidev.tistory.com/61
 	//https://take-it-into-account.tistory.com/123
 	
-	likeSongBtn.click(function(){
+	$('#btnSearch').click(function(){
+		
+		var searchType= $('#searchType').val();
+		var keyword= $('#keyword').val();
 
 		console.log(searchType);
 		console.log(keyword);
 		
 		//비동기 요청을 함
-		$.ajax({
-			type: "POST",
-			//url:"<c:url value='/insert/likesong/'/>"+songId,
-			url:"/travel/insert",
-			dataType:"json",
-			success: function(result, status, xhr){
-				//resultE1.text(JSON.strigify(result));
-				console.log("여기는 왔니");
-				//console.log(result);
-				console.log(JSON.stringify(result));
-				resultLikeSong.text(JSON.stringify(result));
-				resultLikeSong.text(result['email']);
-				likeSongNumber.text(result['likeSongCount']);
-				if(result['email'] == 'EMPTY')
-				{//좋아요가 취소되었으므로 
-					console.log('빈 하트가 들어갈 차례지롱');
-				}
-				else{
-					console.log('색칠한 하트가 들어갈 차례지롱');
-				}
-				
-			}
+		var request=$.ajax({
+			url:"/travel/insert/placelist",
+			method: "POST",
+			data:{searchType,keyword}
 			
-		})
+		});
+		request.done(function(data){
+			console.log(data);
+			 var leng=data.length;
+		     console.log(leng);
+		     //console.log(data[1]);
+		     $('#place_list').empty(); 
+		     
+		     
+		      for(i=0; i <leng; i++){
+		    	  
+		    	  var str="";																												
+				    str+='<div><a href=\'<c:url value="/place/detail/'+data[i].placeName+'"/>\'>'+data[i].placeName+'</a>';
+				   	str+=data[i].fileSavedName;
+
+		    	    $('#place_list').append('<div>'+data[i].placeId+'</div>'+str); 
+		    	  
+		    	  	
+		 	}
+		      
+		});
+	    request.fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+        request.always(function() {
+            console.log('완료');
+        });
+        
+        
+		
+		
 	});
 });
 
