@@ -135,10 +135,12 @@
 						</div>
 						<div class="place_search_box">
 							<span><select name="sido1" id="sido1" class="sido1"></select>
-								<select name="gugun1" id="gugun1" class="gugun1"></select>
+								<select name="searchType" id="searchType" class="gugun1"></select>
 								<div class="search">
-									<input type="text" class="select" spellcheck="false"> <img
-										src="../resources/images/search.png">
+									<input type="text" class="select" spellcheck="false" name="keyword" id="keyword" value="${Search.keyword}"> 
+									<button id="btnSearch">
+									<img 
+										src="../resources/images/search.png"></button>
 								</div></span>
 							<button type="button" id="modal_close" class="place_btn">확인</button>
 						</div>
@@ -155,25 +157,36 @@
 							</div>
 						</div>
 
-						<div class="place_list">
-
-							<c:forEach var="place" items="${placeList}">
-								<div class="place">
-									<div class="image_wrap">
-										<img class="place_img"
-											src="${pageContext.request.contextPath}/resources/images/경복궁.jpg" />
-									</div>
-									<div class="place_info">
-										<a href='<c:url value="/place/detail"/>'>
-											<p class="place_name">${place.placeName}</p>
-										</a>
-										<p class="place_area">${place.areaName}</p>
-										<label class="category_label"> <span>${place.category}</span></label>
-									</div>
-								</div>
-							</c:forEach>
-
+						<div class="place_list" id="place_list">
+				
+				   <c:forEach var="place" items="${placeList}">
+					<div class="place">
+						<div class="image_wrap">
+						<c:choose>
+							<c:when test="${place.fileSavedName eq null }">
+								<img class="place_img"
+									src="${pageContext.request.contextPath}/resources/images/default.png" />
+							</c:when>
+							<c:when test="${place.fileSavedName ne null }">
+								<img class="place_img"
+                     				src="<spring:url value='/place/${place.fileSavedName}'/>" />
+							</c:when>
+						</c:choose>
+							
 						</div>
+						<div class="place_info">
+							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
+								<p class="place_name" id="place_name">${place.placeName}</p>
+							</a>
+							<p class="place_area" id="place_area">${place.areaName}</p>
+							<label class="category_label"> <span id="category_label">${place.category}</span></label>
+						</div>
+					</div>
+				</c:forEach>  
+					<c:if test="${placeList eq null }">
+						<p>${message }</p>
+					</c:if>
+			</div>
 
 					</div>
 				</div>
@@ -265,6 +278,7 @@ $(function() {
 	          opens: 'left'
 	       
 	        }, function(start, end, label) {
+	        	$('.content_wrap').empty();
 	          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 	          const getDateDiff = (start, end) => {
 	               const date1 = new Date(start);
@@ -419,6 +433,84 @@ window.onload = function() {
    
    
    
+</script>
+
+<script>
+// 검색
+$(document).on('click', '#btnSearch', function(e){
+	e.preventDefault();
+	var searchType= $('#searchType').val();
+	var keyword= $('#keyword').val();
+	
+/* 	url = url + "?searchType=" +
+	url = url + "&keyword=" +
+	location.href = url;
+	console.log(url); */
+	
+	console.log(searchType);
+	console.log(keyword);
+
+	$.ajax({
+		type:'post',
+		//url:'<c:url value="/travel/insert"/>',
+		url : '${pageContext.request.contextPath}/travel/insert?searchType='+searchType+'&keyword='+keyword,
+		data:{
+			searchType:searchType,
+			keyword:keyword
+			
+		}
+	})
+	
+
+});	
+
+
+
+$(function(){
+	// 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
+	// console.log("Hello")
+	var btnSearch=$("#btnSearch")
+	var searchType= $('#searchType').val();
+	var keyword= $('#keyword').val();
+	//https://mchch.tistory.com/85
+	//https://wonpaper.tistory.com/420
+	//https://codenbike.tistory.com/112
+	//https://ssoonidev.tistory.com/61
+	//https://take-it-into-account.tistory.com/123
+	
+	likeSongBtn.click(function(){
+
+		console.log(searchType);
+		console.log(keyword);
+		
+		//비동기 요청을 함
+		$.ajax({
+			type: "POST",
+			//url:"<c:url value='/insert/likesong/'/>"+songId,
+			url:"/travel/insert",
+			dataType:"json",
+			success: function(result, status, xhr){
+				//resultE1.text(JSON.strigify(result));
+				console.log("여기는 왔니");
+				//console.log(result);
+				console.log(JSON.stringify(result));
+				resultLikeSong.text(JSON.stringify(result));
+				resultLikeSong.text(result['email']);
+				likeSongNumber.text(result['likeSongCount']);
+				if(result['email'] == 'EMPTY')
+				{//좋아요가 취소되었으므로 
+					console.log('빈 하트가 들어갈 차례지롱');
+				}
+				else{
+					console.log('색칠한 하트가 들어갈 차례지롱');
+				}
+				
+			}
+			
+		})
+	});
+});
+
 </script>
 
 </html>
