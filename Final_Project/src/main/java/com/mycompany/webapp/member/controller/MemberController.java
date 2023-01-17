@@ -192,7 +192,9 @@ public class MemberController {
 		System.out.println(sessionId);
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
 		
+		
 		return alarmList;
+		
 	}
 	
 	

@@ -27,4 +27,5 @@ public interface MemberDao {
 	public String checkFollowStatus(@Param("memberId")String memberId,@Param("sessionId")String sessionId);
 	public void insertAlarm(@Param("memberId")String memberId,@Param("sessionId")String sessionId,@Param("alarmCode")String alarmCode);
 	public List<AlarmVo> selectAlarms(@Param("sessionId")String sessionId);
+	
 }
