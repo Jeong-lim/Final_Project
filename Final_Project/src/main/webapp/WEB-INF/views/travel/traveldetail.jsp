@@ -111,7 +111,7 @@
 			<div class="weather" id="weather">
 				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> 
 				<select name="gugun1" id="gugun1" class="gugun1"></select></div>
-				<img src="../resources/images/weather.png" class="weather_sample">
+				<div id="weatherInfoText"></div>
 			</div>
 			<div class="traffic" id="traffic">
 				<img src="../resources/images/traffic_sample.png" class="traffic_sample">
@@ -163,10 +163,9 @@ $(document).ready(function(){
 		else if($("input[name='radio1']:checked").val() == 'weather'){
 			
 			
-			jQuery.ajax({
+			/* jQuery.ajax({
 		        url : "${pageContext.request.contextPath}/api/weather",
 		        type : "get",
-		        timeout: 30000,
 		        contentType: "application/json",
 		        dataType : "json",
 		        success : function(data, status, xhr) {
@@ -185,7 +184,7 @@ $(document).ready(function(){
 		            console.log("error == >");
 		            console.log(e);
 		        }
-		    });
+		    }); */
 			$('#weather').show();
 			$('#schedule').hide();
 			$('#traffic').hide();
@@ -206,19 +205,16 @@ $(document).ready(function(){
 
 </script>
 <script>
-
-
-	
 	
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
-	  var area1 = ["서울"];
-	   var area2 = ["인천"];
-	   var area3 = ["대전"];
-	   var area4 = ["광주"];
-	   var area5 = ["대구"];
-	   var area6 = ["울산"];
-	   var area7 = ["부산"];
+	  var area1 = ["시 선택", "서울특별시"];
+	   var area2 = ["시 선택", "인천광역시"];
+	   var area3 = ["시 선택", "대전광역시"];
+	   var area4 = ["시 선택", "광주광역시"];
+	   var area5 = ["시 선택", "대구광역시"];
+	   var area6 = ["시 선택", "울산광역시"];
+	   var area7 = ["시 선택", "부산광역시"];
 	   var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
 	   var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
 	   var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
@@ -227,7 +223,43 @@ $('document').ready(function() {
 	   var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
 	   var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
 	   var area15 = ["거제시","김해시","밀양시","사천시","양산시","진주시","창원시","통영시","거창군","산청군","의령군","창녕군","하동군","합천군"];
-	   var area16 = ["제주","서귀포"];
+	   var area16 = ["제주"];
+	   
+
+	   
+	   $("select[name^=gugun]").change(function getItem(){
+
+		   gugun = $("select[name=gugun1]").val();
+			
+		   $.ajax({
+				url : '${pageContext.request.contextPath}/api/weather?si='+ gugun,
+				type : 'get',
+		
+				success : function(data) {
+					
+					if(data == null) {
+						$("#weatherInfoText").text("날씨를 불러오는 중 오류가 발생했습니다.");
+					} else {
+						var lastUpdateTime = data.time;
+						var temp = data.temp;
+						var rainAmount = data.rainAmount;
+						var humid = data.humid;
+						var rainState = data.rainState;
+						var windDir = data.windDir;
+						var windSpd = data.windSpd;
+						
+						$("#weatherInfoText").text(" 온도: " + temp + "℃, 습도: " + humid
+		                        + "%, 강수량: " + rainAmount + "mm (기준 시점: " + lastUpdateTime + "시)"
+		                        + "강수 형태: " + rainState + "풍향 : " + windDir + "풍속: " + windSpd);
+					}
+					
+					}, error : function() {
+							console.log("실패");
+					}
+				});
+		  	
+		 });
+	   
 
 
 
@@ -235,14 +267,18 @@ $('document').ready(function() {
 	  $selsido = $(this);
 	  $.each(eval(area0), function() {
 	   $selsido.append("<option value='"+this+"'>"+this+"</option>");
+	
 	  });
 	  $selsido.next().append("<option value=''>구/군 선택</option>");
+	 
 	 });
 
 	 
 
 	 $("select[name^=sido]").change(function() {
 	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+
+
 	  var $gugun = $(this).next(); // 선택영역 군구 객체
 	  $("option",$gugun).remove(); // 구군 초기화
 

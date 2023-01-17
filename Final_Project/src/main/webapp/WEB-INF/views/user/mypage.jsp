@@ -67,8 +67,19 @@
 						<button class="updateBtn"
 							onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
 					</c:if>
-					<c:if test="${member.memberId != sessionScope.memberId }">
-						<button class="updateBtn">팔로우</button>
+					
+					<c:if test="${followStatus == null }">
+						<c:if test="${member.memberId != sessionScope.memberId }">
+							<button class="updateBtn" id="followBtn">팔로우</button>
+						</c:if>
+					</c:if>
+					<c:if test="${followStatus != null }">
+						<c:if test="${followStatus =='N' }">
+							<button class="updateBtn" id="followBtn">신청완료</button>
+						</c:if>
+						<c:if test="${followStatus =='Y' }">
+							<button class="updateBtn" id="followBtn">언팔하기</button>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
@@ -178,6 +189,7 @@
 		</div>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
   const open = () => {
     document.querySelector("#modal1").classList.remove("hidden");
@@ -207,6 +219,26 @@
   
   document.body.style.overflow = "unset";
 
+</script>
+<script>
+	$("#followBtn").click(function(){
+		console.log("클릭됨");
+		follow(true);
+	});
+	
+	function follow(){
+		$.ajax({
+			type:"POST",
+			url:'/follow/${member.memberId}/${sessionScope.memberId}',
+			success:function(result){
+				console.log("성공"+result);
+				if(result == "followOk"){
+					$("#followBtn").html("신청완료");
+					
+				}
+			}
+		});
+	}
 </script>
 
 <%@ include file="../common/footer.jsp"%>

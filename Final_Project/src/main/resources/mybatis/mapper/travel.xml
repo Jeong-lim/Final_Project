@@ -214,6 +214,17 @@
 	WHERE travel_id = #{travelId}
 	</update>
 	
+	<resultMap type="com.mycompany.webapp.travel.model.TravelVo" id="selectWeather">
+      <result column="lat" property="lat"/>
+      <result column="lon" property="lon"/>
+    </resultMap> 
+	
+	<!-- weather mapper -->
+	<select id="selectLocationInfo" parameterType="string" resultMap="selectWeather">
+	select lat, lon
+	from location
+	where location_si = #{locationSi}
+	</select>
 
 
 
