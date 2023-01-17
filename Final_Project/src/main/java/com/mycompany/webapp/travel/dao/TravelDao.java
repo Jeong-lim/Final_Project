@@ -17,8 +17,6 @@ public interface TravelDao {
 	public int countTravel();
 	
 	public List<PlaceVo> selectPlaceList();
-
-	public List<PlaceVo> selectPlaceListByArea(String gugun1);
 	
 	//public List<TravelVo> selectTravelList(); //글 목록
 	
@@ -33,6 +31,8 @@ public interface TravelDao {
 	public int countTravelSearch(@Param("searchType")String searchType, @Param("keyword")String keyword);
 
 	public List<TravelVo> selectTravelListByKeyword(@Param("endRowNo")int endRowNo, @Param("startRowNo")int startRowNo, @Param("searchType")String searchType, @Param("keyword")String keyword); //검색 리스트
+
+	public List<PlaceVo> selectTravelListByArea(@Param("searchType")String searchType, @Param("keyword")String keyword); //모달 장소리스트
 
 
 

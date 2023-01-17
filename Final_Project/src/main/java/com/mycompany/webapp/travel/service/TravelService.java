@@ -34,10 +34,6 @@ public class TravelService {
 	public List<TravelVo> selectTravelList(PagerVo pager){  //전체 여행일정 리스트
 		return travelDao.selectTravelList(pager);
 	}
-	
-	public List<PlaceVo> selectPlaceListByArea(String gugun1){
-		return travelDao.selectPlaceListByArea(gugun1);
-	}
 
 	public List<TravelVo> selectTravelListByView(PagerVo pager) {
 		return travelDao.selectTravelListByView(pager);
@@ -58,6 +54,11 @@ public class TravelService {
 
 	public List<TravelVo> selectTravelListByKeyword(int endRowNo, int startRowNo, String searchType, String keyword) {
 		return travelDao.selectTravelListByKeyword(endRowNo, startRowNo,searchType, keyword);
+	}
+
+	public List<PlaceVo> selectTravelListByArea(String searchType, String keyword) {
+		
+		return travelDao.selectTravelListByArea(searchType, keyword);
 	}
 	
 	

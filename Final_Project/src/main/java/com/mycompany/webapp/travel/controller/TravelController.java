@@ -44,25 +44,33 @@ public class TravelController {
 		return "travel/traveldetail";
 	}
 
-	@RequestMapping("/travel/insert")
-	public String travelInsert() {
+/*	@RequestMapping("/travel/placelist")
+	public String travelInsert(Model model) {
+		List<PlaceVo> placeList = travelService.selectPlaceList();
+		model.addAttribute("placeList", placeList);
+		System.out.println("www");
+		return "travel/travelinsert";
+	}*/
 
+	@RequestMapping("/travel/insert")
+	public String travelInsert(@RequestParam(required = false) String searchType,
+			@RequestParam(required = false) String keyword,Model model) {
+		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType,keyword);
+		model.addAttribute("placeList", placeList);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("keyword", keyword);
 		return "travel/travelinsert";
 	}
 
-	@RequestMapping("/travel/placelist")
-	public String getPlaceList(Model model) {
-		List<PlaceVo> placeList = travelService.selectPlaceList();
-		model.addAttribute("placeList", placeList);
-		return "travel/travelplacelist";
-	}
-
-	@RequestMapping("/travel/placelist/search")
-	public String selectPlaceListByArea(@RequestParam(required = false, defaultValue = "") String gugun1, Model model) {
-		List<PlaceVo> placeListByArea = travelService.selectPlaceListByArea(gugun1);
+/*	@RequestMapping("/travel/placelist")
+	public String selectPlaceListByArea(@RequestParam(required = false, defaultValue = "title") String searchType,
+			@RequestParam(required = false) String keyword, Model model) {
+		List<PlaceVo> placeListByArea = travelService.selectPlaceListByArea(searchType,keyword);
 		model.addAttribute("placeList", placeListByArea);
-		return "travel/travelplacelist";
-	}
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("keyword", keyword);
+		return "travel/travelinsert";
+	}*/
 
 	@RequestMapping(value = "/travel/list", method = RequestMethod.GET)
 	public String getTravelList(@RequestParam(defaultValue = "1") int pageNo, Model model) {

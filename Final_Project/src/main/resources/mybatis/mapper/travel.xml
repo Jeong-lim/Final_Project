@@ -2,19 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.travel.dao.TravelDao">
 
-	<select id="selectPlaceList" resultType="place">
-		SELECT p.place_name as
-		placeName, p.area_name as areaName, d.detail_cd_name as category
-		FROM(
-		SELECT ROW_NUMBER() OVER(PARTITION BY place.place_name ORDER BY
-		place.area_name) AS RNUM, place.*
-		FROM place ) p, detail_code d
-		WHERE
-		RNUM = 1 and p.category=d.detail_cd_id
+	<select id="selectTravelListByArea" resultType="place" parameterType="map">
+		select rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSaved_name
+		from (
+			select ROWNUM as rnum, place_id, place_name  , area_name  , detail_cd_name, place_detail, file_saved_name
+			from(
+				select m.place_id, m.place_name,m.area_name,d.detail_cd_name, m.place_detail, m.file_saved_name
+				from(select distinct place_id, place_name, area_name , category , place_detail, file_saved_name
+    				from place full outer join upload_file
+    				on place.place_name = upload_file.file_code
+    				)m, detail_code d
+				where m.category=d.detail_cd_id
+				order by m.place_name	
+			)
+		)
+        where 
+        <if test="searchType!= null and searchType!='' and keyword != null and keyword != '' ">
+                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+        </if>
+         <if test="searchType== null or searchType=='' and keyword != null and keyword != '' ">
+                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+        </if>
+         <if test="searchType!= null and searchType!='' and keyword == null or keyword == '' ">
+                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+        </if>
 	</select>
-
-	<select id="selectPlaceListByArea" resultType="place">
-
+	
+	<select id="selectPlaceList" resultType="place">
+		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSaved_name
+		from (
+			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
+			from(
+				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
+				from(select distinct place_name, area_name , category , file_saved_name
+    				from place full outer join upload_file
+    				on place.place_name = upload_file.file_code
+    				)m, detail_code d
+				where m.category=d.detail_cd_id
+				order by m.place_name	
+			)
+		)
+		
 	</select>
 
 	<select id="selectTravelList" resultType="travel" parameterType="pager">
@@ -185,6 +213,7 @@
 	SET view_cnt = view_cnt + 1
 	WHERE travel_id = #{travelId}
 	</update>
+	
 
 
 
