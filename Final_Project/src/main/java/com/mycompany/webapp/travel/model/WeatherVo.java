@@ -1,6 +1,6 @@
 package com.mycompany.webapp.travel.model;
 
-public class Weather {
+public class WeatherVo {
 	private String locationId;
 	private String locationDo;
 	private String locationSi;

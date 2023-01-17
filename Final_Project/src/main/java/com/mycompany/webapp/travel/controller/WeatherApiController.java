@@ -9,12 +9,17 @@ import java.net.URL;
 import java.util.HashMap;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycompany.webapp.member.controller.MemberController;
 
 /*
     @RestController : 기본으로 하위에 있는 메소드들은 모두 @ResponseBody를 가지게 된다.
@@ -35,10 +40,16 @@ getFcstVersion 예보버전조회
 @RestController
 @RequestMapping("/api")
 public class WeatherApiController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(WeatherApiController.class);
     
     @GetMapping("/weather")
-    public String restApiGetWeather() throws Exception {
+    @ResponseBody
+    public String restApiGetWeather(@RequestParam("do")String lo_do, @RequestParam("si")String lo_si) throws Exception {
         
+    	logger.info(lo_do);
+    	logger.info(lo_si);
+    	
         String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"
             + "?serviceKey=eYxy%2BFWb2RXHCKaOnmpTvXqXYqSq2t79Rn9K8Nr0yIJw2%2FjYpABGjQKAdK7WFKA0ov2KsKCIh2cbPyLaNNRXMQ%3D%3D"
             + "&dataType=JSON"            // JSON, XML

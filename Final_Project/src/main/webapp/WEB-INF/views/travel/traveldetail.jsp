@@ -166,7 +166,6 @@ $(document).ready(function(){
 			jQuery.ajax({
 		        url : "${pageContext.request.contextPath}/api/weather",
 		        type : "get",
-		        timeout: 30000,
 		        contentType: "application/json",
 		        dataType : "json",
 		        success : function(data, status, xhr) {
@@ -207,8 +206,37 @@ $(document).ready(function(){
 </script>
 <script>
 
-
+$(document).ready(function(){
 	
+	$("#sido1").change(function(){
+		 sido = $('#sido1').find(":selected").text();
+	});
+	  $("#gugun1").change(function(){
+		 gugun = $('#gugun1').find(":selected").text();
+		 
+		 var allData = {"do": sido, "si": gugun};
+
+	});
+	
+
+ 	  
+	   
+/* 	  $.ajax({
+			url : '${pageContext.request.contextPath}/api/weather?si='+ var1,
+			type : 'get',
+			data : var1,
+			success : function() {
+				console.log(data);								
+				}, error : function() {
+						console.log("실패");
+				}
+			}); */
+	  
+});
+
+
+
+
 	
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
@@ -227,7 +255,7 @@ $('document').ready(function() {
 	   var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
 	   var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
 	   var area15 = ["거제시","김해시","밀양시","사천시","양산시","진주시","창원시","통영시","거창군","산청군","의령군","창녕군","하동군","합천군"];
-	   var area16 = ["제주","서귀포"];
+	   var area16 = ["제주"];
 
 
 
@@ -235,8 +263,10 @@ $('document').ready(function() {
 	  $selsido = $(this);
 	  $.each(eval(area0), function() {
 	   $selsido.append("<option value='"+this+"'>"+this+"</option>");
+	
 	  });
 	  $selsido.next().append("<option value=''>구/군 선택</option>");
+	 
 	 });
 
 	 
