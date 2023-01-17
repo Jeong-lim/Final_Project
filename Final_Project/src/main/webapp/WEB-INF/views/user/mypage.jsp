@@ -26,20 +26,22 @@
 				<div class="profile_img">
 					<c:if test="${member.memberId == sessionScope.memberId }">
 						<c:if test="${empty sessionScope.fileSavedName}">
-						1
 							<img class="profile_image" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
 						</c:if>
 	
 						<c:if test="${not empty sessionScope.fileSavedName}">
-						2
 							<img class="profile_image"
 								src="<spring:url value='/image/${fileSavedName}'/>" />
 						</c:if>
 					</c:if>	
-						<c:if test="${member.memberId != sessionScope.memberId }">
-						3
+					<c:if test="${member.memberId != sessionScope.memberId }">
+						<c:if test="${member.fileSavedName ne null }">
 							<img class="profile_image" src="<spring:url value='/image/${member.fileSavedName }'/>"/>
 						</c:if>
+						<c:if test="${member.fileSavedName eq null }">
+							<img class="profile_image" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
+						</c:if>
+					</c:if>
 					
 					
 						<div></div>
@@ -57,12 +59,17 @@
 					<p>${member.email}</p>
 					<p>${member.phoneNumber}</p>
 					<p>
-						게시글 수 ${travelCount} <label class="openBtn">팔로워 9</label> 팔로우 3
+						게시글 수 ${travelCount} <label class="openBtnFollower">팔로워 ${followerNum}</label ><label class="openBtnFollowing">팔로우  ${followingNum}</label>
 					</p>
 				</div>
 				<div class="profile_update">
-					<button class="updateBtn"
-						onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
+					<c:if test="${member.memberId == sessionScope.memberId }">
+						<button class="updateBtn"
+							onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
+					</c:if>
+					<c:if test="${member.memberId != sessionScope.memberId }">
+						<button class="updateBtn">팔로우</button>
+					</c:if>
 				</div>
 			</div>
 		 
@@ -111,13 +118,13 @@
 			</div>
 
 			<!-- 팔로워 모달 -->
-			<div class="modal hidden">
+			<div class="modal hidden" id="modal1">
 				<div class="bg"></div>
 				<div class="modalBox">
 					<div class="follower">
 						<img class="modal_logo" src="../resources/images/logo.png">
 						<label class="follower_tit">팔로워</label>
-						<div class="close closeBtn"></div>
+						<div class="close closeBtnFollower">x</div>
 					</div>
 					<div class="search">
 						<input type="text" class="select" spellcheck="false"> <img
@@ -131,46 +138,35 @@
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
 									class="follower_id">dudtj1234</label></a>
 								<button class="block">차단</button></li>
+							
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			
+			<!-- 팔로우 모달 -->
+			<div class="modal hidden" id="modal2">
+				<div class="bg" id="bg"></div>
+				<div class="modalBox">
+					<div class="follower">
+						<img class="modal_logo" src="../resources/images/logo.png">
+						<label class="follower_tit">팔로우</label>
+						<div class="close closeBtnFollowing">x</div>
+					</div>
+					<div class="search">
+						<input type="text" class="select" spellcheck="false"> <img
+							src="../resources/images/search.png">
+					</div>
+					<div class="box">
+
+						<ul class="modal_ul">
 							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
 									class="follower_img"
 									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">moomoogayoung</label></a>
+									class="follower_id">dudtj1234</label></a>
 								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">jungrimlee</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">youngseo98</label></a>
-								<button class="block">차단</button></li>
+							
 						</ul>
 					</div>
 
@@ -184,17 +180,31 @@
 </body>
 <script>
   const open = () => {
-    document.querySelector(".modal").classList.remove("hidden");
+    document.querySelector("#modal1").classList.remove("hidden");
     document.body.style.overflow = "hidden";
+  }
+  
+  const open2 = () => {
+	  document.querySelector("#modal2").classList.remove("hidden");
+	    document.body.style.overflow = "hidden";
   }
 
   const close = () => {
-    document.querySelector(".modal").classList.add("hidden");
+    document.querySelector("#modal1").classList.add("hidden");
+  }
+  
+  const close2 = () => {
+	  document.querySelector("#modal2").classList.add("hidden");
   }
 
-  document.querySelector(".openBtn").addEventListener("click", open);
-  document.querySelector(".closeBtn").addEventListener("click", close);
+  document.querySelector(".openBtnFollower").addEventListener("click", open);
+  document.querySelector(".closeBtnFollower").addEventListener("click", close);
   document.querySelector(".bg").addEventListener("click", close);
+  
+  document.querySelector(".openBtnFollowing").addEventListener("click", open2);
+  document.querySelector(".closeBtnFollowing").addEventListener("click", close2);
+  document.querySelector("#bg").addEventListener("click", close2);
+  
   document.body.style.overflow = "unset";
 
 </script>

@@ -23,6 +23,12 @@
            MEMBER_ID=#{memberId} AND MEMBER_STATUS='Y'
 	</select>
 	
+	<select id="selectMemberInfo" parameterType="string" resultType="member">
+		select member_id as memberId, member_name as memberName,member_password as memberPassword,phone_number as phoneNumber,email as email,file_saved_name as fileSavedName
+        from member, upload_file
+        where member_id=#{memberId} and file_code=#{memberId} and file_status='Y'
+	</select>
+	
 	<!-- 유저 정보 수정할 수 있는 쿼리문 -->
 	<update id="updateMember" parameterType="member">
 	 	UPDATE MEMBER
@@ -131,6 +137,18 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		    WHERE A.RN = 1 ) B, PLACE PLC, DETAIL_CODE DC
 		WHERE B.PLACE_ID = PLC.PLACE_ID
 		AND   PLC.CATEGORY = DC.DETAIL_CD_ID
+	</select>
+	
+	<select id="countFollower" parameterType="String" resultType="int">
+		select count(*)
+        from follow
+        where to_id=#{memberId}
+	</select>
+	
+	<select id="countFollowing" parameterType="String" resultType="int">
+		select count(*)
+        from follow
+        where from_id=#{memberId}
 	</select>
 	
 	

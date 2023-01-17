@@ -38,6 +38,10 @@ public class MemberService  {
 		return memberDao.selectMember(memberId);
 	}
 	
+	public MemberVo selectMemberInfo(String memberId) {
+		return memberDao.selectMemberInfo(memberId);
+	}
+	
 	public void updateMember(MemberVo member) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(member.getMemberPassword());
@@ -59,6 +63,14 @@ public class MemberService  {
 	
 	public List<MemberVo> userTravelList(String memberId) throws Exception{
 		return memberDao.userTravelList(memberId);
+	}
+	
+	public int countFollower(String memberId) {
+		return memberDao.countFollower(memberId);
+	}
+	
+	public int countFollowing(String memberId) {
+		return memberDao.countFollowing(memberId);
 	}
 	
 	
