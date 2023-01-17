@@ -170,10 +170,17 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
         values('ALA'||LPAD(alarm_seq.nextval,5,0),#{memberId},#{sessionId},#{alarmCode},'Y')
 	</insert>	
 	
+	<!-- 알림 리스트 -->
 	<select id="selectAlarms" parameterType="String" resultType="alarm">
 		select alarm_code as alarmCode, alarm_to_id as alarmToId, alarm_from_id as alarmFromId, alarm_status as alarmStatus
         from alarm
         where alarm_to_id=#{sessionId}
 	</select>
-
+	
+	<!-- 팔로워 리스트 -->
+	<select id="selectFollowerList" parameterType="String" resultType="member">
+		select from_id
+        from follow
+        where to_id=#{sessionId} and follow_status='Y'
+	</select>
 </mapper>

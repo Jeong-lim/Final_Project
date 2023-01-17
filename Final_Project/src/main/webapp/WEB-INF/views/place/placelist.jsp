@@ -122,7 +122,7 @@
 								</c:if>
 								
 								 <c:if test="${keyword ne null }">
-									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}"><li class="pageli">${i}</li></a>
+									<a href="searchPlace?pageNo=${i}&key=${key}&keyword=${keyword}" ><li class="pageli">${i}</li></a>
 								</c:if> 
 								
 							</c:if>

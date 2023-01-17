@@ -7,10 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
 <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
-
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet"
@@ -164,7 +162,7 @@
 							</c:when>
 							<c:when test="${place.fileSavedName ne null }">
 								<img class="place_img"
-                     				src="<spring:url value='/place/${place.fileSavedName}'/>" />
+                     				src="/place/${place.fileSavedName}" />
 							</c:when>
 						</c:choose>
 							
@@ -430,74 +428,74 @@ window.onload = function() {
 <script>
 
 $(function(){
-	// 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
-	// console.log("Hello")
-	
-	//https://mchch.tistory.com/85
-	//https://wonpaper.tistory.com/420
-	//https://codenbike.tistory.com/112
-	//https://take-it-into-account.tistory.com/123
-	
-	$('#btnSearch').click(function(){
-		
-		var searchType= $('#searchType').val();
-		var keyword= $('#keyword').val();
+	   // 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
+	   // console.log("Hello")
+	   
+	   //https://mchch.tistory.com/85
+	   //https://wonpaper.tistory.com/420
+	   //https://codenbike.tistory.com/112
+	   //https://take-it-into-account.tistory.com/123
+	   
+	   $('#btnSearch').click(function(){
+	      
+	      var searchType= $('#searchType').val();
+	      var keyword= $('#keyword').val();
 
-		console.log(searchType);
-		console.log(keyword);
-		
-		//비동기 요청을 함
-		var request=$.ajax({
-			url:"/travel/insert/placelist",
-			method: "POST",
-			data:{searchType,keyword}
-			
-		});
-		request.done(function(data){
-			console.log(data);
-			 var leng=data.length;
-		     console.log(leng);
-		     //console.log(data[1]);
-		     $('#place_list').empty(); 
-		     
-		     
-		      for(i=0; i <leng; i++){
-		    	  
-		    	  var str="";
-		    	  var fileSavedName=data[i].fileSavedName;
-		    	  var filestr="";
-		    	  if (fileSavedName===null){
-		    		  filestr+='<img class="place_img" src="${pageContext.request.contextPath}/resources/images/default.png"/>';
-		    	  }
-		    	  if (fileSavedName!==null){
-		    		  filestr+='<img class="place_img" src="/place/'+data[i].fileSavedName+'" />';
-		    	  }
-		    	  
-				  str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
-				  str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
-				  str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
-				  str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
-				   	
+	      console.log(searchType);
+	      console.log(keyword);
+	      
+	      //비동기 요청을 함
+	      var request=$.ajax({
+	         url:"/travel/insert/placelist",
+	         method: "POST",
+	         data:{searchType,keyword}
+	         
+	      });
+	      request.done(function(data){
+	         console.log(data);
+	          var leng=data.length;
+	           console.log(leng);
+	           //console.log(data[1]);
+	           $('#place_list').empty(); 
+	           
+	           
+	            for(i=0; i <leng; i++){
+	               
+	               var str="";
+	               var fileSavedName=data[i].fileSavedName;
+	               var filestr="";
+	               if (fileSavedName===null){
+	                  filestr+='<img class="place_img" src="${pageContext.request.contextPath}/resources/images/default.png"/>';
+	               }
+	               if (fileSavedName!==null){
+	                  filestr+='<img class="place_img" src="/place/'+data[i].fileSavedName+'" />';
+	               }
+	               
+	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
+	              str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
+	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
+	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
+	                  
 
-		    	    $('#place_list').append(str); 
-		      }
-		    	  
-		    	  	
-		 	
-		      
-		});
-	    request.fail(function( jqXHR, textStatus ) {
-            alert( "Request failed: " + textStatus );
-        });
-        request.always(function() {
-            console.log('완료');
-        });
-        
-        
-		
-		
+	                 $('#place_list').append(str); 
+	            }
+	               
+	                  
+	          
+	            
+	      });
+	       request.fail(function( jqXHR, textStatus ) {
+	            alert( "Request failed: " + textStatus );
+	        });
+	        request.always(function() {
+	            console.log('완료');
+	        });
+	        
+	        
+	      
+	      
+	   });
 	});
-});
 
 </script>
 
