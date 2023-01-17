@@ -128,6 +128,8 @@ public class MemberController {
 			model.addAttribute("travelCount", travelCount);
 			logger.info(userList.toString());
 			model.addAttribute("userList", userList);
+			model.addAttribute("followerNum",memberService.countFollower(memberId));
+			model.addAttribute("followingNum",memberService.countFollowing(memberId));
 			
 			return "user/mypage";
 			
@@ -140,12 +142,13 @@ public class MemberController {
 	
 	@RequestMapping(value="/mypage/{memberId}")
 	public String memberPage(@PathVariable("memberId")String memberId,Model model)throws Exception {
-		MemberVo member=memberService.selectMember(memberId);
+		MemberVo member=memberService.selectMemberInfo(memberId);
 		model.addAttribute("member",member);
 		
 		List<MemberVo> userList=memberService.userTravelList(memberId);
 		int travelCount=memberService.userTravelCount(memberId);
-		
+		model.addAttribute("followerNum",memberService.countFollower(memberId));
+		model.addAttribute("followingNum",memberService.countFollowing(memberId));
 		model.addAttribute("travelCount",travelCount);
 		model.addAttribute("userList",userList);
 		

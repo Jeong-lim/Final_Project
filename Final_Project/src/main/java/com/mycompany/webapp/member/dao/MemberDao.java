@@ -10,6 +10,7 @@ import com.mycompany.webapp.member.model.MemberVo;
 public interface MemberDao {
 	
 	public MemberVo selectMember(String memberId);
+	public MemberVo selectMemberInfo(String memberId);
 	public void insertMember(MemberVo member);
 	public void updateMember(MemberVo member);
 	public void deleteMember(MemberVo member);
@@ -18,4 +19,6 @@ public interface MemberDao {
 	public int checkOverId(String memberId);
 	public List<MemberVo> userTravelList(String memberId) throws Exception;
 	public int userTravelCount(String memberId);
+	public int countFollower(String memberId);
+	public int countFollowing(String memberId);
 }
