@@ -135,6 +135,8 @@ public class MemberController {
 			model.addAttribute("followerNum",memberService.countFollower(memberId));
 			model.addAttribute("followingNum",memberService.countFollowing(memberId));
 			
+			List<MemberVo> followerList=memberService.selectFollowerList(memberId);
+			model.addAttribute("followerList",followerList);
 			return "user/mypage";
 			
 		} else {
@@ -192,7 +194,9 @@ public class MemberController {
 		System.out.println(sessionId);
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
 		
+		
 		return alarmList;
+		
 	}
 	
 	

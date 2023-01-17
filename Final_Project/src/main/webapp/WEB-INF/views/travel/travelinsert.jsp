@@ -6,16 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
-	type="text/javascript"></script>
+
 <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet"
@@ -219,6 +212,12 @@
 
 	<%@ include file="../common/footer.jsp"%>
 </body>
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
@@ -429,61 +428,74 @@ window.onload = function() {
 <script>
 
 $(function(){
-	// 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
-	// console.log("Hello")
-	
-	//https://mchch.tistory.com/85
-	//https://wonpaper.tistory.com/420
-	//https://codenbike.tistory.com/112
-	//https://take-it-into-account.tistory.com/123
-	
-	$('#btnSearch').click(function(){
-		
-		var searchType= $('#searchType').val();
-		var keyword= $('#keyword').val();
+	   // 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
+	   // console.log("Hello")
+	   
+	   //https://mchch.tistory.com/85
+	   //https://wonpaper.tistory.com/420
+	   //https://codenbike.tistory.com/112
+	   //https://take-it-into-account.tistory.com/123
+	   
+	   $('#btnSearch').click(function(){
+	      
+	      var searchType= $('#searchType').val();
+	      var keyword= $('#keyword').val();
 
-		console.log(searchType);
-		console.log(keyword);
-		
-		//비동기 요청을 함
-		var request=$.ajax({
-			url:"/travel/insert/placelist",
-			method: "POST",
-			data:{searchType,keyword}
-			
-		});
-		request.done(function(data){
-			console.log(data);
-			 var leng=data.length;
-		     console.log(leng);
-		     //console.log(data[1]);
-		     $('#place_list').empty(); 
-		     
-		     
-		      for(i=0; i <leng; i++){
-		    	  
-		    	  var str="";																												
-				    str+='<div><a href=\'<c:url value="/place/detail/'+data[i].placeName+'"/>\'>'+data[i].placeName+'</a>';
-				   	str+=data[i].fileSavedName;
+	      console.log(searchType);
+	      console.log(keyword);
+	      
+	      //비동기 요청을 함
+	      var request=$.ajax({
+	         url:"/travel/insert/placelist",
+	         method: "POST",
+	         data:{searchType,keyword}
+	         
+	      });
+	      request.done(function(data){
+	         console.log(data);
+	          var leng=data.length;
+	           console.log(leng);
+	           //console.log(data[1]);
+	           $('#place_list').empty(); 
+	           
+	           
+	            for(i=0; i <leng; i++){
+	               
+	               var str="";
+	               var fileSavedName=data[i].fileSavedName;
+	               var filestr="";
+	               if (fileSavedName===null){
+	                  filestr+='<img class="place_img" src="${pageContext.request.contextPath}/resources/images/default.png"/>';
+	               }
+	               if (fileSavedName!==null){
+	                  filestr+='<img class="place_img" src="/place/'+data[i].fileSavedName+'" />';
+	               }
+	               
+	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
+	              str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
+	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
+	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
+	                  
 
-		    	    $('#place_list').append('<div>'+data[i].placeId+'</div>'+str); 
-		    	  
-		    	  	
-		 	}
-		      
-		});
-	    request.fail(function( jqXHR, textStatus ) {
-            alert( "Request failed: " + textStatus );
-        });
-        request.always(function() {
-            console.log('완료');
-        });
-        
-        
-		
-		
+	                 $('#place_list').append(str); 
+	            }
+	               
+	                  
+	          
+	            
+	      });
+	       request.fail(function( jqXHR, textStatus ) {
+	            alert( "Request failed: " + textStatus );
+	        });
+	        request.always(function() {
+	            console.log('완료');
+	        });
+	        
+	        
+	      
+	      
+	   });
 	});
-});
 
 </script>
 
