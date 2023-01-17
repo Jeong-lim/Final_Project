@@ -3,7 +3,7 @@
 <mapper namespace="com.mycompany.webapp.travel.dao.TravelDao">
 
 	<select id="selectTravelListByArea" resultType="place" parameterType="map">
-		select rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSaved_name
+		select rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSavedName
 		from (
 			select ROWNUM as rnum, place_id, place_name  , area_name  , detail_cd_name, place_detail, file_saved_name
 			from(
@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="selectPlaceList" resultType="place">
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSaved_name
+		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
 		from (
 			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
 			from(

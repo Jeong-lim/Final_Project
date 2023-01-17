@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.file.service.FileService;
@@ -44,22 +45,26 @@ public class TravelController {
 		return "travel/traveldetail";
 	}
 
-/*	@RequestMapping("/travel/placelist")
+	@RequestMapping("/travel/insert")
 	public String travelInsert(Model model) {
 		List<PlaceVo> placeList = travelService.selectPlaceList();
 		model.addAttribute("placeList", placeList);
 		System.out.println("www");
 		return "travel/travelinsert";
-	}*/
+	}
 
-	@RequestMapping("/travel/insert")
-	public String travelInsert(@RequestParam(required = false) String searchType,
-			@RequestParam(required = false) String keyword,Model model) {
-		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType,keyword);
-		model.addAttribute("placeList", placeList);
+	@RequestMapping(value="/travel/insert/placelist")
+	public @ResponseBody List<PlaceVo> travelInsert(@RequestParam("searchType") String searchType,
+			@RequestParam("keyword") String keyword,Model model) {
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("keyword", keyword);
-		return "travel/travelinsert";
+		System.out.println(searchType);
+		System.out.println(keyword);
+		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType,keyword);
+		model.addAttribute("placeList", placeList);
+		System.out.println(placeList);
+		
+		return placeList;
 	}
 
 /*	@RequestMapping("/travel/placelist")
