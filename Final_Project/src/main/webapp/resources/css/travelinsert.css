@@ -183,7 +183,7 @@
     align-items: center;
     cursor:pointer;
     }
-    #modal_btn{
+    .modal_btn{
     width:130px;
     margin-top:20px;
     	border: none;
@@ -199,12 +199,12 @@
                     border-color: #0d6efd;
                     margin-left:10px;
     }
-    #modal_btn:hover {
+    .modal_btn:hover {
                         color: #fff;
                         background-color: #0d6efd;
                         border-color: #0d6efd;
                     }
-    #modal_btn img{
+    .modal_btn img{
     	width:35px;
     	height:35px;
     }
