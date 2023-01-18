@@ -83,8 +83,13 @@ public class WeatherApiController {
         if(min <= 30) { // 해당 시각 발표 전에는 자료가 없음 - 이전시각을 기준으로 해야함
             hour -= 1;
         }
-        String hourStr = hour + "00"; // 정시 기준
-        
+        String hourStr = "";
+        if (hour < 10) {
+			hourStr = "0" + hour + "00";
+		} else {
+			hourStr = hour + "00"; // 정시 기준
+		}
+
         String nx = lat;
         String ny = lon;
         String baseDate = yyyyMMdd;
