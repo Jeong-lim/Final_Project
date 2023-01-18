@@ -21,11 +21,12 @@
                 area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
         </if>
          <if test="searchType== null or searchType=='' and keyword != null and keyword != '' ">
-                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+                place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
         </if>
          <if test="searchType!= null and searchType!='' and keyword == null or keyword == '' ">
-                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+                area_name like #{searchType, jdbcType=VARCHAR}
         </if>
+        
 	</select>
 	
 	<select id="selectPlaceList" resultType="place">

@@ -41,7 +41,7 @@
 
 			<hr class="uk-divider-icon">
 		
-			<a href="<c:url value='/travel/placelist'/>">modal_btn</a>
+			
 			<a href="<c:url value='/fileuploadform'/>">사진업로드</a>
 			
 
@@ -169,7 +169,7 @@
 						</div>
 						<div class="place_info">
 							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
-								<p class="place_name" id="place_name">${place.placeName}</p>
+								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" name="checkbox" value="${place.placeName}">
 							</a>
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
@@ -286,11 +286,6 @@ $(function() {
 	               const diffDate = date1.getTime() - date2.getTime();
 	               const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
 	      			
-	               
-	               //date2.setDate(date2.getDate()+1);
-	               //console.log(date2);
-	              
-	              
 	               //console.log(days); //일 수
 	               //console.log(date1); //Date 형식으로
 	               const date=end.format('YYYY-MM-DD');
@@ -303,10 +298,16 @@ $(function() {
            
 	                 
 	           	for(var j=days; j>0; j--){
-	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" name="modal_btn2" id="modal_btn2" onclick="openModal()"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" id="modal_btn" name="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
+	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" id="modal_btn2" onclick="openModal()"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><div class="travelselected">여행일정추가추가추가추가추</div><button type="button" class="modal_btn" name="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
 	                    const dayseqs=j;
+	                    const travelselected='travelselected'+j;
 	                    document.querySelector(".dayseq").id=dayseqs;
 	                    document.querySelector(".dayseq").append(j);
+	                    //document.querySelector(".travelselected").id=travelselected;
+	                    document.querySelector(".modal_btn").id=travelselected;
+	                   
+	                   
+	                    
 	                   
 	                    date22=date2.toISOString().substring(0,10);
 	                    document.querySelector(".date").append(date22);
@@ -370,7 +371,7 @@ window.onload = function() {
         document.body.style.overflow = "unset";
     }
 
-    document.getElementById('modal_btn').addEventListener('click', onClick);
+    document.getElementByClassName('modal_btn').addEventListener('click', onClick);
     document.querySelector('#modal_close').addEventListener('click', offClick);
     document.getElementById('modal_btn2').addEventListener('click', onClick2);
     document.querySelector('#modal_close2').addEventListener('click', offClick2);
@@ -392,13 +393,13 @@ window.onload = function() {
    
    
    $(document).ready(function () {
-       $(document).on("click", "button[name='modal_btn2']", function () {
+       $(document).on("click", "button[id='modal_btn2']", function () {
            console.log("클릭됨");
           $(".modal_wrap2").show();
           $("#black_bg2").show();
         });
        
-       $(document).on("click", "button[name='modal_close2']", function () {
+       $(document).on("click", "button[id='modal_close2']", function () {
            console.log("클릭됨");
           $(".modal_wrap2").hide();
           $("#black_bg2").hide();
@@ -413,12 +414,20 @@ window.onload = function() {
            console.log("클릭됨");
           $(".modal_wrap").show();
           $(".black_bg").show();
+          $("#black_bg2").hide();
         });
        
-       $(document).on("click", "button[name='modal_close']", function () {
+       $(document).on("click", "button[id='modal_close']", function () {
+    	   var array=new Array();
+    	   $('input:chekbox[name=checkbox]:checked').each(function(){
+    		   array.push(this.value);
+    	   });
+    	   //content_title.after
+    	   
            console.log("클릭됨");
           $(".modal_wrap").hide();
           $(".black_bg").hide();
+          
         });
        
       });
@@ -431,14 +440,10 @@ $(function(){
 	   // 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
 	   // console.log("Hello")
 	   
-	   //https://mchch.tistory.com/85
-	   //https://wonpaper.tistory.com/420
-	   //https://codenbike.tistory.com/112
-	   //https://take-it-into-account.tistory.com/123
-	   
 	   $('#btnSearch').click(function(){
 	      
-	      var searchType= $('#searchType').val();
+	      var searchType0= $('#searchType').val();
+	      var searchType=searchType0.substr(0,2);
 	      var keyword= $('#keyword').val();
 
 	      console.log(searchType);
@@ -495,6 +500,8 @@ $(function(){
 	      
 	      
 	   });
+   
+	   
 	});
 
 </script>
