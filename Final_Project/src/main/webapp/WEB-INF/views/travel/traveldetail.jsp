@@ -108,24 +108,41 @@
 				
 				
 			</div>
+			</div>
 			<div class="weather" id="weather">
 				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> 
 				<select name="gugun1" id="gugun1" class="gugun1"></select></div>
 				<div id="weatherInfoContainer">
-					<div id="weatherImg"></div>
+					<div class="weatherImgWrapper">
+						<div id="weatherImg"></div>
+						
+						<div class="weatherTemp"></div>
+					</div>
 					
-					<div id="weatherTemp"></div>
-					<div id="weatherHumid"></div>
+					
 					<div id="weatherRainamount"></div>
 					<div id="weatherWindSpd"></div>
+					
+					
+					<br /><br /><br />
+					
+					<div id="gauge_wrapper">
+						<div class="gauge_title">습도</div>
+						<br /><br /><br /><br />
+						<span id="gauge"></span>
+						<div id="weatherHumid"></div>
+					</div>
+					<br />
+					<br />
+					
 				</div>
 			</div>
 			<div class="traffic" id="traffic">
 				<img src="../resources/images/traffic_sample.png" class="traffic_sample">
 			</div>
-		</div>
+		
 	</div>
-</div>
+
 
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -168,30 +185,6 @@ $(document).ready(function(){
 		}	
 		
 		else if($("input[name='radio1']:checked").val() == 'weather'){
-			
-			
-			/* jQuery.ajax({
-		        url : "${pageContext.request.contextPath}/api/weather",
-		        type : "get",
-		        contentType: "application/json",
-		        dataType : "json",
-		        success : function(data, status, xhr) {
-
-		            let dataHeader = data.result.response.header.resultCode;
-
-		            if (dataHeader == "00") {
-		               console.log("success == >");
-		               console.log(data);
-		            } else {
-		               console.log("fail == >");
-		               console.log(data);               
-		            }
-		        },
-		        error : function(e, status, xhr, data) {
-		            console.log("error == >");
-		            console.log(e);
-		        }
-		    }); */
 			$('#weather').show();
 			$('#schedule').hide();
 			$('#traffic').hide();
@@ -214,6 +207,7 @@ $(document).ready(function(){
 <script>
 	
 $('document').ready(function() {
+	 
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 	  var area1 = ["시 선택", "서울특별시"];
 	   var area2 = ["시 선택", "인천광역시"];
@@ -230,11 +224,18 @@ $('document').ready(function() {
 	   var area13 = ["구/군 선택", "광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
 	   var area14 = ["구/군 선택", "경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
 	   var area15 = ["구/군 선택", "거제시","김해시","밀양시","사천시","양산시","진주시","창원시","통영시","거창군","산청군","의령군","창녕군","하동군","합천군"];
-	   var area16 = ["시 선택", "제주"];
+	   var area16 = ["시 선택", "제주특별자치도"];
 	   
-
 	   
+	   $(".gauge_title").css("display", "none");
 	   $("select[name^=gugun]").change(function getItem(){
+		   $("#weatherImg *").remove();
+		   $(".weatherTemp *").remove();
+		   $("#weatherRainamount *").remove();
+		   $("#weatherWindSpd *").remove();
+		   $("#gauge *").remove();
+		   $(".gauge_title").css("display", "block");
+		   
 
 		   gugun = $("select[name=gugun1]").val();
 			
@@ -273,12 +274,21 @@ $('document').ready(function() {
 							$(snowImg).appendTo('#weatherImg');
 						}
 						
-						$("weatherTemp").text(temp+"°C");
-						$("weatherHumid").text("습도 " + humid + "%");
-						$("weatherRainamount").text(rainAmount);
-						$("weatherWindSpd").text(windSpd);
+						$(".weatherTemp").text(temp+"°");
+						$('#gauge').each(function () {
+					        var $this = $(this);
+					        $this.animate({
+					            width: humid + "%"
+					        });
+					    });
+						
+						$('#weatherHumid').text(humid+"%");
+						
+						$("#weatherRainamount").text("💧  " + rainAmount+"mm");
+						$("#weatherWindSpd").text("🚩  " + windSpd + "m/s");
 						
 						
+						 
 						
 					}
 					
