@@ -10,7 +10,6 @@ import com.mycompany.webapp.file.model.FileVo;
 
 @Service
 public class FileService {	
-	
 	@Resource
 	private FileDao fileDao;
 	
@@ -33,13 +32,4 @@ public class FileService {
 	public void deleteUserImage(String userName) {
 		fileDao.deleteUserImage(userName);
 	}
-	
-
-	
-
-		
-		
-		
-		
-
 }

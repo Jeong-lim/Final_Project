@@ -2,7 +2,9 @@ package com.mycompany.webapp.member.service;
 
 import java.beans.Encoder;
 import java.lang.reflect.Member;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.slf4j.Logger;
@@ -79,7 +81,10 @@ public class MemberService  {
 	}
 	
 	public String checkFollowStatus(String memberId, String sessionId) {
-		return memberDao.checkFollowStatus(memberId, sessionId);
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		return memberDao.checkFollowStatus(map);
 	}
 	
 	public void insertAlarm(String memberId, String sessionId,String alarmCode) {

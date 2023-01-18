@@ -5,10 +5,9 @@ import com.mycompany.webapp.file.model.FileVo;
 
 @Mapper
 public interface FileDao {
-	
 	int count();
-	public void insertFile(FileVo file);
-	public void insertUserImage(FileVo file);
-	public FileVo selectUserImage(String userName);
+	void insertFile(FileVo file);
+	void insertUserImage(FileVo file);
+	FileVo selectUserImage(String userName);
 	void deleteUserImage(String userName);
 }
