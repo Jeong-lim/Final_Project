@@ -136,7 +136,12 @@ public class MemberController {
 			model.addAttribute("followingNum",memberService.countFollowing(memberId));
 			
 			List<MemberVo> followerList=memberService.selectFollowerList(memberId);
+			List<MemberVo> followList=memberService.selectFollowList(memberId);
+			String msg="결과가 없습니다.";
 			model.addAttribute("followerList",followerList);
+			model.addAttribute("followList",followList);
+			model.addAttribute("msg",msg);
+			
 			return "user/mypage";
 			
 		} else {

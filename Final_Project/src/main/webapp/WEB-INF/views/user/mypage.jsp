@@ -145,13 +145,27 @@
 
 						<ul class="modal_ul">
 						
-							<c:forEach var="follower" items="followerList">
-								<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-										class="follower_img"
-										src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-										class="follower_id">dudtj1234</label></a>
-									<button class="block">차단</button></li>
+						<c:if test="${not empty followerList}">
+							<c:forEach var="follower" items="${followerList}">
+								<li class="modal_li"><a href='<c:url value="/mypage/${follower.memberId }"/>'>
+									<c:if test="${follower.fileSavedName eq null }">
+										<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />
+									</c:if>
+									<c:if test="${follower.fileSavedName ne null }">
+										 <img class="follower_img"  src="<spring:url value='/image/${follower.fileSavedName}'/>" /> 
+									</c:if>							
+								<label class="follower_id">${follower.memberId }</label></a>
+									
+										<button class="block">삭제</button></li>
 							</c:forEach>
+						</c:if>
+						<c:if test="${empty followerList }">
+							${msg}
+						</c:if>
+									
+									
+									
+						
 						</ul>
 					</div>
 
@@ -174,12 +188,22 @@
 					<div class="box">
 
 						<ul class="modal_ul">
-							<li class="modal_li"><a href='<c:url value="/mypage"/>'><img
-									class="follower_img"
-									src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" /><label
-									class="follower_id">dudtj1234</label></a>
-								<button class="block">차단</button></li>
-							
+							<c:if test="${not empty followList}">
+								<c:forEach var="follow" items="${followList }">
+									<li class="modal_li"><a href='<c:url value="/mypage/${follow.memberId }"/>'>
+										<c:if test="${follow.fileSavedName eq null }">
+											<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />
+										</c:if>
+										<c:if test="${follow.fileSavedName ne null }">
+											 <img class="follower_img"  src="<spring:url value='/image/${follow.fileSavedName}'/>" /> 
+										</c:if>
+									<label class="follower_id">${follow.memberId }</label></a>
+										<button class="block">언팔로우</button></li>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty followList }">
+								${msg}
+							</c:if>
 						</ul>
 					</div>
 
