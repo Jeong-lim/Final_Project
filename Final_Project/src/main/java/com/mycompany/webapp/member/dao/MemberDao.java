@@ -27,5 +27,6 @@ public interface MemberDao {
 	public String checkFollowStatus(@Param("memberId")String memberId,@Param("sessionId")String sessionId); //팔로우 상태체크
 	public void insertAlarm(@Param("memberId")String memberId,@Param("sessionId")String sessionId,@Param("alarmCode")String alarmCode); //알림 추가
 	public List<AlarmVo> selectAlarms(@Param("sessionId")String sessionId); //알림 리스트
-	public List<MemberVo> selectFollowerList(@Param("sessionId")String sessionId);
+	public List<MemberVo> selectFollowerList(@Param("memberId")String memberId);
+	public List<MemberVo> selectFollowList(@Param("memberId")String memberId);
 }

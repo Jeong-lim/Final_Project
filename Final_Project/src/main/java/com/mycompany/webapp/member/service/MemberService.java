@@ -90,8 +90,12 @@ public class MemberService  {
 		return memberDao.selectAlarms(sessionId);
 	}
 	
-	public List<MemberVo> selectFollowerList(String sessionId){
-		return memberDao.selectFollowerList(sessionId);
+	public List<MemberVo> selectFollowerList(String memberId){
+		return memberDao.selectFollowerList(memberId);
+	}
+	
+	public List<MemberVo> selectFollowList(String memberId){
+		return memberDao.selectFollowList(memberId);
 	}
 	
 	
