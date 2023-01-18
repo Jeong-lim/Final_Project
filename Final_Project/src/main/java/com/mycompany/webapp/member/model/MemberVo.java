@@ -18,6 +18,7 @@ public class MemberVo {
 	private String shareCount;
 	private String categoryName;
 	private String fileSavedName;
+	private String status;
 	
 	
 	public String getMemberId() {
@@ -93,14 +94,22 @@ public class MemberVo {
 	public void setFileSavedName(String fileSavedName) {
 		this.fileSavedName = fileSavedName;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
 				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", travelTitle=" + travelTitle
 				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
 				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + ", fileSavedName=" + fileSavedName
-				+ "]";
+				+ ", status=" + status + "]";
 	}
+	
 	
 
 	

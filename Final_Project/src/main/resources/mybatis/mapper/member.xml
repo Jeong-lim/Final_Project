@@ -139,16 +139,18 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 	</select>
 	
+	<!-- 팔로워 수 -->
 	<select id="countFollower" parameterType="String" resultType="int">
 		select count(*)
         from follow
-        where to_id=#{memberId}
+        where to_id=#{memberId} and follow_status='Y'
 	</select>
 	
+	<!-- 팔로우 수 -->
 	<select id="countFollowing" parameterType="String" resultType="int">
 		select count(*)
         from follow
-        where from_id=#{memberId}
+        where from_id=#{memberId} and follow_status='Y'
 	</select>
 	
 	<!-- 팔로우 요청 -->
@@ -179,8 +181,17 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 	
 	<!-- 팔로워 리스트 -->
 	<select id="selectFollowerList" parameterType="String" resultType="member">
-		select from_id
-        from follow
-        where to_id=#{sessionId} and follow_status='Y'
+		select from_id as memberId, follow_status as status, file_saved_name as fileSavedName
+		from follow left outer join (select file_saved_name,file_code,file_status from upload_file where file_status='Y')upload_file
+		on follow.from_id=upload_file.file_code
+		where follow.to_id=#{memberId} and follow_status='Y'
+	</select>
+	
+	<!-- 팔로우 리스트 -->
+	<select id="selectFollowList" parameterType="String" resultType="member">
+		select to_id as memberId, follow_status as status, file_saved_name as fileSavedName
+		from follow left outer join (select file_saved_name,file_code,file_status from upload_file where file_status='Y')upload_file
+		on follow.to_id=upload_file.file_code
+		where follow.from_id=#{memberId} and follow_status='Y'
 	</select>
 </mapper>
