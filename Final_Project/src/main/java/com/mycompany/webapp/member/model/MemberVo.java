@@ -1,10 +1,5 @@
 package com.mycompany.webapp.member.model;
 
-
-
-import lombok.Data;
-
-@Data
 public class MemberVo {
 	private String memberId;
 	private String memberName;

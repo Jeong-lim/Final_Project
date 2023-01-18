@@ -77,8 +77,8 @@ public class TravelController {
 		return "travel/travelinsert";
 	}*/
 
-	@RequestMapping(value = "/travel/list", method = RequestMethod.GET)
-	public String getTravelList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+	@RequestMapping(value="/travel/list", method=RequestMethod.GET)
+	public String getTravelList(@RequestParam(defaultValue="1") int pageNo, Model model) {
 		// 페이징 대상이 되는 전체 행 수
 		int totalRows = travelService.countTravel();
 		// 페이징 정보가 담긴 pager 객체 생성

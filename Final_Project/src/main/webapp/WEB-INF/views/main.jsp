@@ -64,8 +64,9 @@
 	
 
 </body>
+
 	<script>
-	 $( document ).ready( function() {
+		$(function(){
 	        $( window ).scroll( function() {
 	          if ( $( this ).scrollTop() > 200 ) {
 	            $( '.top' ).fadeIn();
@@ -78,7 +79,7 @@
 	          return false;
 	        } );
 	      } );
-	 $(function(){
+		$(function(){
 	        $('#news-container').vTicker({ 
 	            speed: 500,
 	            pause: 3000,

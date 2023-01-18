@@ -42,11 +42,6 @@ public class FileVo {
 	public void setAttach(MultipartFile attach) {
 		this.attach = attach;
 	}
-	@Override
-	public String toString() {
-		return "FileVo [uploadRoot=" + uploadRoot + ", fileOriginalName=" + fileOriginalName + ", fileSavedName="
-				+ fileSavedName + ", fileName=" + fileName + ", attach=" + attach + "]";
-	}
 	public String getUserName() {
 		return userName;
 	}
@@ -54,8 +49,9 @@ public class FileVo {
 		this.userName = userName;
 	}
 	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "FileVo [uploadRoot=" + uploadRoot + ", fileOriginalName=" + fileOriginalName + ", fileSavedName="
+				+ fileSavedName + ", fileName=" + fileName + ", attach=" + attach + "]";
+	}	
 }

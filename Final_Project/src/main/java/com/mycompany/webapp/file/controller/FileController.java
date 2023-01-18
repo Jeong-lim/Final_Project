@@ -22,14 +22,14 @@ import com.mycompany.webapp.member.controller.MemberController;
 @Controller
 public class FileController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	
 	@Autowired
 	private FileService fileService;
 
 	@RequestMapping("/file")
 	public String place() {
-		System.out.println("check");
+		logger.info("check");
 		fileService.countFile();
 		return "place/placelist";
 	}
@@ -64,7 +64,7 @@ public class FileController {
 	}
 	
 	@RequestMapping("/userfileupload")
-	public String userImageFile(HttpSession session, FileVo file,Model model) throws IOException {
+	public String userImageFile(HttpSession session, FileVo file, Model model) throws IOException {
 		
 		String memberId = (String)session.getAttribute("memberId");
 		MultipartFile mf=file.getAttach();
@@ -86,16 +86,17 @@ public class FileController {
 		}
 		
 		
-		if(fileVo != null && !fileVo.equals("")) {
+		if(fileVo != null) {
 			fileService.deleteUserImage(memberId); // db에 filevo가 있을 때 delete & insert
 			fileService.insertUserImage(file);
 			
 		} else {
 			fileService.insertUserImage(file); // db에 filevo가 없을 때 insert
 		}
+		
 		return "redirect:/mypage/update";
 		
-		}
+	}
 	
 	@RequestMapping("/userfiledelete")
 	public String userImageDelete(HttpSession session, FileVo file, Model model) {
