@@ -20,7 +20,12 @@
 	<br>
 	<div class="container_top">
 		<div class="container">
-			<h1 class="mypage_title">마이페이지</h1>
+			<c:if test="${member.memberId eq sessionScope.memberId}">
+				<h1 class="mypage_title">마이페이지</h1>
+			</c:if>
+			<c:if test="${member.memberId ne sessionScope.memberId}">
+				<h1 class="mypage_title">프로필</h1>
+			</c:if>
 			<br>
 			<div class="profile">
 				<div class="profile_img">
@@ -57,7 +62,9 @@
 				<div class="profile_info">
 					<p>${member.memberName}</p>
 					<p>${member.email}</p>
-					<p>${member.phoneNumber}</p>
+					<c:if test="${member.memberId == sessionScope.memberId }">
+						<p>${member.phoneNumber}</p>
+					</c:if>
 					<p>
 						게시글 수 ${travelCount} <label class="openBtnFollower">팔로워 ${followerNum}</label ><label class="openBtnFollowing">팔로우  ${followingNum}</label>
 					</p>
@@ -138,12 +145,12 @@
 						<div class="close closeBtnFollower">x</div>
 					</div>
 					<div class="search">
-						<input type="text" class="select" spellcheck="false"> <img
+						<input type="text" class="select" id="select1" spellcheck="false"> <img
 							src="../resources/images/search.png">
 					</div>
 					<div class="box">
 
-						<ul class="modal_ul">
+						<ul class="modal_ul" id="modal_ul_follower">
 						
 						<c:if test="${not empty followerList}">
 							<c:forEach var="follower" items="${followerList}">
@@ -182,12 +189,12 @@
 						<div class="close closeBtnFollowing">x</div>
 					</div>
 					<div class="search">
-						<input type="text" class="select" spellcheck="false"> <img
+						<input type="text" class="select" id="select2" spellcheck="false"> <img
 							src="../resources/images/search.png">
 					</div>
 					<div class="box">
 
-						<ul class="modal_ul">
+						<ul class="modal_ul" id="modal_ul_follow">
 							<c:if test="${not empty followList}">
 								<c:forEach var="follow" items="${followList }">
 									<li class="modal_li"><a href='<c:url value="/mypage/${follow.memberId }"/>'>
@@ -229,10 +236,12 @@
 
   const close = () => {
     document.querySelector("#modal1").classList.add("hidden");
+    location.reload();
   }
   
   const close2 = () => {
 	  document.querySelector("#modal2").classList.add("hidden");
+	  location.reload();
   }
 
   document.querySelector(".openBtnFollower").addEventListener("click", open);
@@ -265,6 +274,79 @@
 			}
 		});
 	}
+	
+	$("#select1").keyup(function(){
+		var keyword=$("#select1").val();
+		if(keyword ==''){
+			$('#modal_ul_follower').html('');
+			$('#modal_ul_follower').append("검색어를 입력해주세요");
+		}
+		else{
+			$.ajax({
+				type:"POST",
+				url:'/userSearch?value='+keyword,
+				success:function(result){
+					$('#modal_ul_follower').html('');
+					
+					var length= result.length;
+					for(var i=0;i<length; i++){
+						var str='';
+						str+=`<li class="modal_li"><a href='<c:url value="/mypage/`+result[i].memberId+`"/>'>`;
+						console.log(result[i].fileSavedName);
+						if(result[i].fileSavedName == null){
+							console.log(result[i].memberId);
+							console.log("사진없음");
+							str+=`<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />`;
+						}
+						if(result[i].fileSavedName!=null){
+							console.log("사진있음");
+							str+=`<img class="follower_img"  src="<spring:url value='/image/` + result[i].fileSavedName + `'/>" />`;
+						}
+						str+='<label class="follower_id">'+result[i].memberId+'</label></a>';
+						
+						$('#modal_ul_follower').append(str);
+					}
+				}
+				
+			});
+		}
+	});
+	  
+	$("#select2").keyup(function(){
+		var keyword=$("#select2").val();
+		if(keyword ==''){
+			$('#modal_ul_follow').html('');
+			$('#modal_ul_follow').append("검색어를 입력해주세요");
+		}
+		else{
+			$.ajax({
+				type:"POST",
+				url:'/userSearch?value='+keyword,
+				success:function(result){
+					$('#modal_ul_follow').html('');
+					
+					var length= result.length;
+					for(var i=0;i<length; i++){
+						var str='';
+						str+=`<li class="modal_li"><a href='<c:url value="/mypage/`+result[i].memberId+`"/>'>`;
+						console.log(result[i].fileSavedName);
+						if(result[i].fileSavedName == null){
+							console.log(result[i].memberId);
+							console.log("사진없음");
+							str+=`<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />`;
+						}
+						if(result[i].fileSavedName!=null){
+							str+=`<img class="follower_img"  src="<spring:url value='/image/` + result[i].fileSavedName + `'/>" />`;
+						}
+						str+='<label class="follower_id">'+result[i].memberId+'</label></a>';
+						
+						$('#modal_ul_follow').append(str);
+					}
+				}
+				
+			});
+		}
+	});
 </script>
 
 <%@ include file="../common/footer.jsp"%>

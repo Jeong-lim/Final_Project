@@ -31,14 +31,19 @@
 						src="${pageContext.request.contextPath}/resources/images/alarm_full.png">
 				</button>
 				
-				<!-- <div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">
-				<ul class="uk-nav uk-dropdown-nav">
+				
+				 <div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">
+					<ul class="uk-nav uk-dropdown-nav">
 						
+						<!-- 알림 리스트 -->
 						
-
-				</ul>
-				</div> -->
-			</div>
+					</ul>
+				</div> 
+				
+				
+				
+				
+		    </div>
 			
 
 			<span class="navbar__links"> <label class="navbar__links__li"
@@ -79,28 +84,30 @@
 	$('document').ready(
 		
 		
-			$.ajax({
+			 $.ajax({
 				type:"POST",
 				url:'/follow/${sessionScope.memberId}',
 				success:function(result){
 					var length=result.length;
 					if(length >0){
-					var str='';
-					str+='<div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">';
-					str+='<ul class="uk-nav uk-dropdown-nav">'; 
+					
+					/* str+='<div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700"><ul class="uk-nav uk-dropdown-nav">'; */
 					for(var i=0; i<length; i++){
 						if(result[i].alarmCode=='f'){
-						str+='<div class="follow__wrapper">';
-						str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
-						str+='<div class="follow_button__">';
-						str+=`<a href="<c:url value='/mypage'/>"><img class="follow_check" src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>`;
-						str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>`;
-						str+='</div></div>'; 
+							var str='';
+								if(result[i].followStatus=='N'){
+									str+='<div class="follow__wrapper">';
+									str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
+									str+='<div class="follow_button__">';
+									str+=`<a href="<c:url value='/mypage'/>"><img class="follow_check" src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>`;
+									str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>`;
+									str+='</div></div>'; 
+								}
 						}
 						
 					}
-					str+='</ul></div>'; 
-					$('.uk-button').after(str);
+					/* str+='</ul></div>';  */
+					$('.uk-nav').append(str);
 					}else if(length==0 ){
 						var str='';
 						str+='<div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">';
@@ -108,10 +115,10 @@
 						str+='<div class="follow__wrapper">';
 						str+='<li class="uk-active">알림이 없습니다.</li></div>';
 						str+='</ul></div>'; 
-						$('.uk-button').after(str);
+						$('.uk-nav').append(str);
 					}
 				}
-			})
+			}) 
 			
 			
 		
