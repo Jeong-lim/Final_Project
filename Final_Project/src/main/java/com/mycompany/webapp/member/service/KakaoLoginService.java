@@ -158,21 +158,15 @@ public class KakaoLoginService  implements IKakaoLoginService {
 	
 	@Override
     public void getLogout(String access_token) {
-		logger.info(access_token);
-		
         String reqURL ="https://kapi.kakao.com/v1/user/logout";
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             
-            
-            
             conn.setRequestProperty("Authorization", "Bearer " + access_token);
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
-            
-            logger.info(access_token);
  
             if(responseCode ==400)
                 throw new RuntimeException("카카오 로그아웃 도중 오류 발생");
@@ -191,6 +185,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
             
         }
     }
+
 
 	
 	public MemberVo selectKaKao(String email) {
