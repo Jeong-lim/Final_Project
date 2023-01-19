@@ -1,45 +1,56 @@
-.outer{
-		text-align: center;
-	}
-	.inner{
-		width:1000px;
-		margin:60px auto; 
-		height:auto;
-		min-height:1000px;
-		
-	}
-	
-	#weatherImg img {
-		width: 300px;
-		height: 300px;
-		float: left;
-	}
-	
-	.weatherTemp {
-		float: left;
-		font-size: 100px;
-		padding-top: 70px;
-		padding-left: 70px;
-	}
-	
-	.weatherImgWrapper {
-		margin: auto;
-		width: 600px;
-		height: 310px;
-	}
+.outer {
+	text-align: center;
+}
 
-	
+input:focus {
+	outline: none;
+	spellCheck: false;
+}
+
+.search_button {
+	border: none;
+	color: white;
+	background-color: #60A5FA;
+	border: 2px solid #60A5FA;
+}
+
+.inner {
+	width: 1000px;
+	margin: 60px auto;
+	height: auto;
+	min-height: 1000px;
+}
+
+#weatherImg img {
+	width: 300px;
+	height: 300px;
+	float: left;
+}
+
+.weatherTemp {
+	float: left;
+	font-size: 100px;
+	padding-top: 70px;
+	padding-left: 70px;
+}
+
+.weatherImgWrapper {
+	margin: auto;
+	width: 600px;
+	height: 310px;
+}
+
 #weatherHumid {
 	float: left;
-}	
-	
- #gauge {
-    display: inline-block;
-    height: 21px;
-    background-color: #3abff7;
-    border-radius: 10px;
-    transition: 1s linear;
-    float: left;    
+}
+
+#gauge {
+	display: inline-block;
+	height: 21px;
+	background-color: #3abff7;
+	border-radius: 10px;
+	transition: 1s linear;
+	float: left;
 }
 
 .gauge_title {
@@ -49,7 +60,7 @@
 }
 
 #gauge_wrapper {
-	margin-right: 200px; 
+	margin-right: 200px;
 	height: 21px;
 	margin-left: 240px;
 	margin-top: 60px;
@@ -72,248 +83,456 @@
 	margin-left: 100px;
 	font-size: 40px;
 }
-	
-	
-	#weatherHumid {
-		margin-left: 5px;
-	}
-	.menu{
-		text-align: left;
-	}
-	.items{
-		display:inline-block;
-	}
-	.radiobtn{
-		display:none;
-	}
-	.radiolabel{
-	display: inline-block;
-    border: 2px solid #E6E6E6;
-    border-bottom: none;
-    text-align: center;
-    border-radius: 16px 16px 0 0;
-    background-color: rgb(229, 236, 255);
-    font-size: 20px;
-    width: 130px;
-    height: 42px;
-    line-height: 42px;
-    margin: 0 1px;
-     cursor:pointer;
-	}
-	.radiobtn:hover + label{
-		background-color: #3B82F6;
-		color:white;
-	}
-	.radiobtn:checked + label{
-		background-color: #3B82F6;
-	    color: white;
-	   
-	}
-	.schedule{
-		position:absolute;
-		width:1000px;
-		margin:auto;
-		border: 2px solid #E6E6E6;
-	}
-	.days:hover{
-		box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
-	}
-	
-	.weather{
-		display:none;
-		position: absolute;
-    margin: auto;
-    width: 1000px;
-    height: 800px;
-    border: 2px solid #E6E6E6;
-	}
-	.traffic{
-		display:none;
-		position:absolute;
-		margin:auto;
-		width:1000px;
-		height:800px;
-		border: 2px solid #E6E6E6;
-	}
-	.profile__img {
-		width: 30px;
-		height:30px;
-	}
-	
-	.note__img {
-		width: 30px;
-		height:30px;
-	}
-	.content_title{
-		text-align: left;
-		margin-left:40px;
-		padding:20px;
-	}
-	.contentdiv{
-		text-align: left;
-	}
-	.memo{
-		text-align: left;
-		margin-left:50px;
-		padding:10px;
-		height:40px;
-	}
-	.memo_content{
-		position: absolute;
-    	display: inline-block;
-   		line-height: 30px;
-	}
 
-	.day{
-		font-size: 20px;
-    	font-weight: bold;
-	}
-	.date{
-		font-size:18px;
-	}
-	.content{
-		width:800px;
-		padding:10px;
-		border: 2px solid gray;
-		border-radius: 30px;
-		margin:0 auto 15px;
-	}
-	.content_num{
-		display: inline-block;
-    width: 30px;
-    height: 30px;
-    border: 2px solid gray;
-    border-radius: 50%;
-    line-height: 30px;
-    text-align: center;
-    font-weight: bold;
-    color: gray;
-    	
-	}
-	.place{
-		font-size: 18px;
-    margin-left: 10px;
-	}
-	.days{
-		border:1px solid #E6E6E6;
-		padding-bottom:10px;
-	}
-	.profile{
-		height: 50px;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-	}
-	.profile img{
-		width: 45px;
-    height: 45px;
-     cursor:pointer;
-	}
-	.profile_label{
-		display: inline-block;
-    line-height: 50px;
-    margin-left: 20px;
-    font-size: 19px;
-     cursor:pointer;
-	}
-	.view-info{
-		font-size: 13px;
-    margin-left: 25px;
-    }
-	.top_title{
-		text-align: left;
-    align-items: center;
-    justify-content: unset;
-    display: flex;
-	}
-	.top_tit{
-		font-size: 35px;
-	}
-	.top_date{
-		font-size:18px;
-		display: inline-block;
-    	margin-left: 20px;
-	}
-	.share_btn{
-		border: none;
-    box-shadow: 1px 1px 1px 0 black;
-    border-radius: 3px;
-    width: 70px;
-    height: 35px;
-    margin:0 30px;
-    background-color: #3B82F6;
-    color: white;
-    font-weight: bold;
-    font-size: 17px;
-    cursor:pointer;
-	}
-	.top_title button:hover{
-		background-color:#205295;
-	}
-	 ::-webkit-scrollbar {
-  		display: none;
-	}
-	
-	.weather_sample{
-		width:800px;
-		height:700px;
-		margin:auto;
-	}
-	
-	.traffic_sample{
-		width:900px;
-		height:800px;
-		margin:auto;
-	}
-	.sido1,.gugun1{
-		background-color: white;
-    cursor: pointer;
-    width: 100px;
-    height: 35px;
-    border-radius: 27px;
-    text-align: center;
-    margin-right: 10px;
-	}
-	
-	
-	
-	.sido1 + .gugun1:focus{
-		outline:0;
-	}
-	
-	.sido1:focus {
-		outline:0;
-	}
-	
-	
-	
-	.weather_select{
-		display: flex;
-    height: 65px;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    padding: 15px;
-	}
-	
-	.uk-divider-vertical  {
-    width: max-content;
-    height: 25px !important;
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-    border-left: 2px solid lightgray !important;
+#weatherHumid {
+	margin-left: 5px;
 }
 
-	.update_btn, .delete_btn{
-	cursor:pointer;
-		font-size: 18px;
-    border: none;
-    background: none;
-    font-weight: bold;
-    color: dimgray;
-	}
-	
-	.update_btn:hover, .delete_btn:hover{
-		background:none !important;
-	}
+.menu {
+	text-align: left;
+}
+
+.items {
+	display: inline-block;
+}
+
+.radiobtn {
+	display: none;
+}
+
+.radiolabel {
+	display: inline-block;
+	border: 2px solid #E6E6E6;
+	border-bottom: none;
+	text-align: center;
+	border-radius: 16px 16px 0 0;
+	background-color: rgb(229, 236, 255);
+	font-size: 20px;
+	width: 130px;
+	height: 42px;
+	line-height: 42px;
+	margin: 0 1px;
+	cursor: pointer;
+}
+
+.radiobtn:hover+label {
+	background-color: #3B82F6;
+	color: white;
+}
+
+.radiobtn:checked+label {
+	background-color: #3B82F6;
+	color: white;
+}
+
+.schedule {
+	position: absolute;
+	width: 1000px;
+	margin: auto;
+	border: 2px solid #E6E6E6;
+}
+
+.days:hover {
+	box-shadow: 0 3.2px 7.2px 0 rgb(0 0 0/ 13%), 0 0.6px 1.8px 0
+		rgb(0 0 0/ 11%);
+}
+
+.weather {
+	display: none;
+	position: absolute;
+	margin: auto;
+	width: 1000px;
+	height: 800px;
+	border: 2px solid #E6E6E6;
+}
+
+.traffic {
+	position: absolute;
+	margin: auto;
+	width: 1000px;
+	height: 800px;
+	border: 2px solid #E6E6E6;
+}
+
+.profile__img {
+	width: 30px;
+	height: 30px;
+}
+
+.note__img {
+	width: 30px;
+	height: 30px;
+}
+
+.content_title {
+	text-align: left;
+	margin-left: 40px;
+	padding: 20px;
+}
+
+.contentdiv {
+	text-align: left;
+}
+
+.memo {
+	text-align: left;
+	margin-left: 50px;
+	padding: 10px;
+	height: 40px;
+}
+
+.memo_content {
+	position: absolute;
+	display: inline-block;
+	line-height: 30px;
+}
+
+.day {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.date {
+	font-size: 18px;
+}
+
+.content {
+	width: 800px;
+	padding: 10px;
+	border: 2px solid gray;
+	border-radius: 30px;
+	margin: 0 auto 15px;
+}
+
+.content_num {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 2px solid gray;
+	border-radius: 50%;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: gray;
+}
+
+.place {
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.days {
+	border: 1px solid #E6E6E6;
+	padding-bottom: 10px;
+}
+
+.profile {
+	height: 50px;
+	margin: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.profile img {
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+}
+
+.profile_label {
+	display: inline-block;
+	line-height: 50px;
+	margin-left: 20px;
+	font-size: 19px;
+	cursor: pointer;
+}
+
+.view-info {
+	font-size: 13px;
+	margin-left: 25px;
+}
+
+.top_title {
+	text-align: left;
+	align-items: center;
+	justify-content: unset;
+	display: flex;
+}
+
+.top_tit {
+	font-size: 35px;
+}
+
+.top_date {
+	font-size: 18px;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.share_btn {
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 70px;
+	height: 35px;
+	margin: 0 30px;
+	background-color: #3B82F6;
+	color: white;
+	font-weight: bold;
+	font-size: 17px;
+	cursor: pointer;
+}
+
+.top_title button:hover {
+	background-color: #205295;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.weather_sample {
+	width: 800px;
+	height: 700px;
+	margin: auto;
+}
+
+.traffic_sample {
+	width: 900px;
+	height: 800px;
+	margin: auto;
+}
+
+.sido1, .gugun1 {
+	background-color: white;
+	cursor: pointer;
+	width: 100px;
+	height: 35px;
+	border-radius: 27px;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.sido1+.gugun1:focus {
+	outline: 0;
+}
+
+.sido1:focus {
+	outline: 0;
+}
+
+.weather_select {
+	display: flex;
+	height: 65px;
+	align-items: center;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	padding: 15px;
+}
+
+.uk-divider-vertical {
+	width: max-content;
+	height: 25px !important;
+	margin-left: 10px !important;
+	margin-right: 10px !important;
+	border-left: 2px solid lightgray !important;
+}
+
+.update_btn, .delete_btn {
+	cursor: pointer;
+	font-size: 18px;
+	border: none;
+	background: none;
+	font-weight: bold;
+	color: dimgray;
+}
+
+.update_btn:hover, .delete_btn:hover {
+	background: none !important;
+}
+
+map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+	color: #000;
+	text-decoration: none;
+}
+
+.map_wrap {
+	position: relative;
+	width: 100%;
+	height: 800px;
+}
+
+#menu_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 250px;
+	margin: 10px 0 30px 10px;
+	padding: 5px;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size: 12px;
+	border-radius: 10px;
+}
+
+.bg_white {
+	background: #fff;
+}
+
+#menu_wrap hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
+}
+
+#menu_wrap .option {
+	text-align: center;
+}
+
+#menu_wrap .option p {
+	margin: 10px 0;
+}
+
+#menu_wrap .option button {
+	margin-left: 5px;
+}
+
+#placesList li {
+	list-style: none;
+}
+
+#placesList .item {
+	position: relative;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+
+#placesList .item span {
+	display: block;
+	margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#placesList .item .info {
+	padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+	color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+	padding-left: 26px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+		no-repeat;
+}
+
+#placesList .info .tel {
+	color: #009900;
+}
+
+#placesList .item .markerbg {
+	float: left;
+	position: absolute;
+	width: 36px;
+	height: 37px;
+	margin: 10px 0 0 10px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+		no-repeat;
+}
+
+#placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+
+#placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+
+#placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+
+#placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+
+#placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+
+#placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+
+#placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+
+#placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+
+#placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+
+#placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+
+#placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+
+#placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+
+#placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+
+#placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+
+#placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+
+#pagination {
+	margin: 10px auto;
+	text-align: center;
+}
+
+#pagination a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#pagination .on {
+	font-weight: bold;
+	cursor: default;
+	color: #777;
+}
