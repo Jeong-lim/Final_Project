@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.file.service.FileService;
@@ -176,6 +177,13 @@ public class MemberController {
 		logger.info(status);
 		model.addAttribute("followStatus",status);
 		
+		List<MemberVo> followerList=memberService.selectFollowerList(memberId);
+		List<MemberVo> followList=memberService.selectFollowList(memberId);
+		String msg="결과가 없습니다.";
+		model.addAttribute("followerList",followerList);
+		model.addAttribute("followList",followList);
+		model.addAttribute("msg",msg);
+		
 		return "user/mypage";
 	}
 	
@@ -202,11 +210,11 @@ public class MemberController {
 		System.out.println("알림창");
 		System.out.println(sessionId);
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
-		
-		
 		return alarmList;
 		
 	}
+	
+	
 	
 	
 	

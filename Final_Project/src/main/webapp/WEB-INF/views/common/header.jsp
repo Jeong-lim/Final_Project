@@ -31,13 +31,22 @@
 						src="${pageContext.request.contextPath}/resources/images/alarm_full.png">
 				</button>
 				
-				<!-- <div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">
-				<ul class="uk-nav uk-dropdown-nav">
-						
-						
-
-				</ul>
-				</div> -->
+				
+				 <div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">
+					<ul class="uk-nav uk-dropdown-nav">
+						<div class="follow__wrapper">
+							<li class="uk-active">(내용)</li>
+							<div class="follow_button__">
+							<a href="<c:url value='/mypage'/>"><img class="follow_check" src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>
+							<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>
+							</div>
+						</div>
+					</ul>
+				</div> 
+				
+				
+				
+				
 			</div>
 			
 
@@ -79,7 +88,7 @@
 	$('document').ready(
 		
 		
-			$.ajax({
+			 $.ajax({
 				type:"POST",
 				url:'/follow/${sessionScope.memberId}',
 				success:function(result){
@@ -111,7 +120,7 @@
 						$('.uk-button').after(str);
 					}
 				}
-			})
+			}) 
 			
 			
 		
