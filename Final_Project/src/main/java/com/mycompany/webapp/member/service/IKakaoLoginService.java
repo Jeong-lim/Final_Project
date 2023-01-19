@@ -9,5 +9,6 @@ public interface IKakaoLoginService {
 	public HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
 
 
+
 	void getLogout(String access_token);
 }
