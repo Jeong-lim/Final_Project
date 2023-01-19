@@ -174,9 +174,15 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 	
 	<!-- 알림 리스트 -->
 	<select id="selectAlarms" parameterType="String" resultType="alarm">
-		select alarm_code as alarmCode, alarm_to_id as alarmToId, alarm_from_id as alarmFromId, alarm_status as alarmStatus
-        from alarm
-        where alarm_to_id=#{sessionId}
+		select a.alarm_seq as alarmSeq
+				,f.follow_seq as followSeq
+				,a.alarm_from_id as alarmFromId
+				,a.alarm_to_id as alarmToId
+				,a.alarm_code as alarmCode
+				,f.follow_status as followStatus
+				,a.alarm_status as alarmStatus
+		from alarm a,(select follow_seq,to_id,from_id,follow_status from follow where to_id=#{sessionId})f
+		where a.alarm_from_id=f.from_id and a.alarm_to_id=f.to_id
 	</select>
 	
 	<!-- 팔로워 리스트 -->
@@ -193,5 +199,15 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		from follow left outer join (select file_saved_name,file_code,file_status from upload_file where file_status='Y')upload_file
 		on follow.to_id=upload_file.file_code
 		where follow.from_id=#{memberId} and follow_status='Y'
+	</select>
+	
+	<!-- 유저 검색 -->
+	<select id="searchUser" parameterType="String" resultType="member">
+		select member_id as memberId, file_saved_name as fileSavedName
+		from(select member_id
+   			 from member
+    	where member_id like '%'||#{keyword}||'%')m left outer join (select file_code,file_saved_name,file_status from upload_file where file_status='Y')f
+		on m.member_id=f.file_code
+		where member_id like '%'||#{keyword}||'%'
 	</select>
 </mapper>

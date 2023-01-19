@@ -203,12 +203,19 @@ public class MemberController {
 		return "followOk";
 	}
 	
+	//사용자검색결과리스트
+	@ResponseBody
+	@PostMapping("/userSearch")
+	public List<MemberVo> userSearch(@RequestParam("value")String keyword) {
+		System.out.println(keyword);
+		List<MemberVo> searchUserList=memberService.searchUser(keyword);
+		return searchUserList;
+	}
+	
 	//알림
 	@ResponseBody
 	@PostMapping("/follow/{sessionScope.memberId}")
 	public List<AlarmVo> selectAlarms(@PathVariable("sessionScope.memberId")String sessionId,Model model) {
-		System.out.println("알림창");
-		System.out.println(sessionId);
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
 		return alarmList;
 		

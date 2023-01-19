@@ -7,6 +7,8 @@ public class AlarmVo {
 	private String alarmFromId;
 	private String alarmCode;
 	private String alarmStatus;
+	private String followStatus;
+	private String followSeq;
 	public String getAlarmSeq() {
 		return alarmSeq;
 	}
@@ -37,11 +39,26 @@ public class AlarmVo {
 	public void setAlarmStatus(String alarmStatus) {
 		this.alarmStatus = alarmStatus;
 	}
+	public String getFollowStatus() {
+		return followStatus;
+	}
+	public void setFollowStatus(String followStatus) {
+		this.followStatus = followStatus;
+	}
+	public String getFollowSeq() {
+		return followSeq;
+	}
+	public void setFollowSeq(String followSeq) {
+		this.followSeq = followSeq;
+	}
 	@Override
 	public String toString() {
 		return "AlarmVo [alarmSeq=" + alarmSeq + ", alarmToId=" + alarmToId + ", alarmFromId=" + alarmFromId
-				+ ", alarmCode=" + alarmCode + ", alarmStatus=" + alarmStatus + "]";
+				+ ", alarmCode=" + alarmCode + ", alarmStatus=" + alarmStatus + ", followStatus=" + followStatus
+				+ ", followSeq=" + followSeq + "]";
 	}
+	
+	
 	
 	
 
