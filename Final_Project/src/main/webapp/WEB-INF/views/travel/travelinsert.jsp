@@ -48,13 +48,13 @@
 			<div class="content_wrap" id="test">
 				<div class="content_title">
 					<label class="dayseq1">DAY </label><label class="firstdate"></label>
-					<button type="button" id="modal_btn2">
+					<button type="button" class="modal_btn2" name="modal_btn2">
 						<img
 							src="${pageContext.request.contextPath}/resources/images/note.png">
 					</button>
 				</div>
 			
-				<button type="button" class="modal_btn" id="modal_btn">
+				<button type="button" class="modal_btn" name="modal_btn">
 					<img
 						src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
 						추가하기</label>
@@ -66,7 +66,7 @@
 
 			<div class="content_title">
 				<label>DAY 2</label><label>- 2022.2.15</label>
-				<button type="button" id="modal_btn2">
+				<button type="button" class="modal_btn2" name="modal_btn2">
 					<img
 						src="${pageContext.request.contextPath}/resources/images/note.png">
 				</button>
@@ -90,7 +90,7 @@
 			</div>
 
 
-			<button type="button" class="modal_btn" id="modal_btn">
+			<button type="button" class="modal_btn" name="modal_btn">
 				<img
 					src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
 					추가하기</label>
@@ -99,7 +99,7 @@
 
 			<div class="content_title">
 				<label>DAY 3</label><label>- 2022.2.16</label>
-				<button type="button" id="modal_btn2">
+				<button type="button" name="modal_btn2">
 					<img
 						src="${pageContext.request.contextPath}/resources/images/note.png">
 				</button>
@@ -135,7 +135,7 @@
 									<img 
 										src="../resources/images/search.png"></button>
 								</div></span>
-							<button type="button" id="modal_close" class="place_btn">확인</button>
+							<button type="button" id="modal_close" class="place_btn" onClick="closeModal()">확인</button>
 						</div>
 					</div>
 					<div class="place_box">
@@ -169,7 +169,7 @@
 						</div>
 						<div class="place_info">
 							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
-								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" name="checkbox" value="${place.placeName}">
+								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
 							</a>
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
@@ -298,17 +298,16 @@ $(function() {
            
 	                 
 	           	for(var j=days; j>0; j--){
-	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" id="modal_btn2" onclick="openModal()"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><div class="travelselected">여행일정추가추가추가추가추</div><button type="button" class="modal_btn" name="modal_btn"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
+	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" class="modal_btn2" name="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><div class="travelselected">여행일정추가추가추가추가추</div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
 	                    const dayseqs=j;
-	                    const travelselected='travelselected'+j;
+	                    const placemodal='placemodal'+j;
+	                    const memomodal='memomodal'+j;
 	                    document.querySelector(".dayseq").id=dayseqs;
 	                    document.querySelector(".dayseq").append(j);
-	                    //document.querySelector(".travelselected").id=travelselected;
-	                    document.querySelector(".modal_btn").id=travelselected;
-	                   
-	                   
-	                    
-	                   
+	                    document.querySelector(".modal_btn").id=placemodal;
+	                    document.querySelector(".modal_btn2").id=memomodal;
+	                   	
+	              
 	                    date22=date2.toISOString().substring(0,10);
 	                    document.querySelector(".date").append(date22);
 	                    date2.setDate(date2.getDate()-1);
@@ -322,6 +321,7 @@ $(function() {
 	           		
 	              
 	             }
+	          
 	   
 	             getDateDiff(start, end);
 	        });
@@ -337,6 +337,7 @@ $(function() {
 	   
 	    
 	});
+	
 
 
 
@@ -371,9 +372,9 @@ window.onload = function() {
         document.body.style.overflow = "unset";
     }
 
-    document.getElementByClassName('modal_btn').addEventListener('click', onClick);
+    document.querySelector('.modal_btn').addEventListener('click', onClick);
     document.querySelector('#modal_close').addEventListener('click', offClick);
-    document.getElementById('modal_btn2').addEventListener('click', onClick2);
+    document.querySelector('.modal_btn2').addEventListener('click', onClick2);
     document.querySelector('#modal_close2').addEventListener('click', offClick2);
     
     document.querySelector('#black_bg1').addEventListener('click', offClick);
@@ -392,14 +393,14 @@ window.onload = function() {
 <script type="text/javascript">
    
    
-   $(document).ready(function () {
-       $(document).on("click", "button[id='modal_btn2']", function () {
+   $(function () {
+       $(document).on("click", "button[name='modal_btn2']", function () {
            console.log("클릭됨");
           $(".modal_wrap2").show();
           $("#black_bg2").show();
         });
        
-       $(document).on("click", "button[id='modal_close2']", function () {
+       $(document).on("click", "button[name='modal_close2']", function () {
            console.log("클릭됨");
           $(".modal_wrap2").hide();
           $("#black_bg2").hide();
@@ -409,32 +410,88 @@ window.onload = function() {
    
    
    
-   $(document).ready(function () {
+   $(function () {
+	   
        $(document).on("click", "button[name='modal_btn']", function () {
            console.log("클릭됨");
           $(".modal_wrap").show();
           $(".black_bg").show();
           $("#black_bg2").hide();
-        });
-       
-       $(document).on("click", "button[id='modal_close']", function () {
-    	   var array=new Array();
-    	   $('input:chekbox[name=checkbox]:checked').each(function(){
-    		   array.push(this.value);
-    	   });
-    	   //content_title.after
-    	   
-           console.log("클릭됨");
-          $(".modal_wrap").hide();
-          $(".black_bg").hide();
           
-        });
+         
+         
+ 
+        }); 
+       
+  
        
       });
  
 </script>
 
+
 <script>
+	var id;
+	var value;
+	var arr= new Array();
+	function openModal(clicked_id){
+	//console.log(clicked_id);
+	id=clicked_id;
+	
+     
+	}
+	function boxChecked(checked_value){
+		value=checked_value;
+		console.log(value);
+		arr.push(value);
+	}
+	//var arrlength=arr.length;
+	//console.log(arrlength);
+	
+
+/* 	
+	 function test() {
+        var obj_length = document.getElementsByName("checkbox").length;
+  
+        for (var i=0; i<obj_length; i++) {
+            if (document.getElementsByName("checkbox")[i].checked == true) {
+               console.log(document.getElementsByName("fruit")[i].value);
+            }
+        }
+    }
+	var vvalue=$("input[type=checkbox][name=checkbox]:checked").val();
+	console.log(vvalue); */
+	/*  const query = 'input[name="checkbox"]:checked';
+ 	  const selectedEls = 
+ 	      document.querySelectorAll(query);
+ 	  
+ 	  // 선택된 목록에서 value 찾기
+ 	  let result = '';
+ 	  selectedEls.forEach((el) => {
+ 	    result += el.value + ' ';
+ 	  }); */
+  	  
+	function closeModal() {
+    console.log("클릭됨22");
+    console.log(id);
+    console.log(arr[0]);
+    	for(var i=0; i<arr.length; i++){
+    		document.getElementById(id).before(arr[i]);
+    	} 
+    
+  	 $(".modal_wrap").hide();
+  	 $(".black_bg").hide();
+ 
+  	  // 출력
+  	 
+   
+ 	}
+	/* var array=new Array();
+	$('input:checkbox[name=checkbox]:checked').each(function(){
+		console.log(this.value);
+		array.push(this.value);
+	});
+ */
 
 $(function(){
 	   // 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
@@ -478,6 +535,7 @@ $(function(){
 	               
 	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
 	              str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
+	              str+='<input type="checkbox" name="checkbox" value="'+data[i].placeName+'" onClick="boxChecked(this.value)>';
 	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
 	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
 	                  
@@ -494,6 +552,7 @@ $(function(){
 	        });
 	        request.always(function() {
 	            console.log('완료');
+	           
 	        });
 	        
 	        

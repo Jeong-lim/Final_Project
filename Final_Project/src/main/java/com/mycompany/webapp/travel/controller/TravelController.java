@@ -67,15 +67,6 @@ public class TravelController {
 		return placeList;
 	}
 
-/*	@RequestMapping("/travel/placelist")
-	public String selectPlaceListByArea(@RequestParam(required = false, defaultValue = "title") String searchType,
-			@RequestParam(required = false) String keyword, Model model) {
-		List<PlaceVo> placeListByArea = travelService.selectPlaceListByArea(searchType,keyword);
-		model.addAttribute("placeList", placeListByArea);
-		model.addAttribute("searchType", searchType);
-		model.addAttribute("keyword", keyword);
-		return "travel/travelinsert";
-	}*/
 
 	@RequestMapping(value="/travel/list", method=RequestMethod.GET)
 	public String getTravelList(@RequestParam(defaultValue="1") int pageNo, Model model) {
