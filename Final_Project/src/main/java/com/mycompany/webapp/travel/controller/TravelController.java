@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.file.model.FileVo;
-import com.mycompany.webapp.file.service.FileService;
+import com.mycompany.webapp.member.controller.MemberController;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
@@ -31,17 +31,13 @@ import com.mycompany.webapp.travel.service.TravelService;
 
 @Controller
 public class TravelController {
-	private static final Logger log = LoggerFactory.getLogger(TravelController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TravelController.class);
 
 	@Autowired
 	private TravelService travelService;
-	@Autowired
-	private FileService fileService;
 
 	@RequestMapping("/travel/detail")
 	public String travelDetail() {
-		
-		System.out.println("check");
 		return "travel/traveldetail";
 	}
 
@@ -49,27 +45,24 @@ public class TravelController {
 	public String travelInsert(Model model) {
 		List<PlaceVo> placeList = travelService.selectPlaceList();
 		model.addAttribute("placeList", placeList);
-		System.out.println("www");
 		return "travel/travelinsert";
 	}
 
-	@RequestMapping(value="/travel/insert/placelist")
+	@RequestMapping(value = "/travel/insert/placelist")
 	public @ResponseBody List<PlaceVo> travelInsert(@RequestParam("searchType") String searchType,
-			@RequestParam("keyword") String keyword,Model model) {
+			@RequestParam("keyword") String keyword, Model model) {
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("keyword", keyword);
-		System.out.println(searchType);
-		System.out.println(keyword);
-		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType,keyword);
+		logger.info(searchType);
+		logger.info(keyword);
+		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType, keyword);
 		model.addAttribute("placeList", placeList);
-		System.out.println(placeList);
-		
+
 		return placeList;
 	}
 
-
-	@RequestMapping(value="/travel/list", method=RequestMethod.GET)
-	public String getTravelList(@RequestParam(defaultValue="1") int pageNo, Model model) {
+	@RequestMapping(value = "/travel/list", method = RequestMethod.GET)
+	public String getTravelList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		// 페이징 대상이 되는 전체 행 수
 		int totalRows = travelService.countTravel();
 		// 페이징 정보가 담긴 pager 객체 생성
@@ -81,8 +74,8 @@ public class TravelController {
 		// JSP에서 사용할 데이터를 저장
 		model.addAttribute("pager", pager);
 		model.addAttribute("travelList", travelList);
-		
-		System.out.println("ddd");
+
+		logger.info("여행리스트");
 		return "travel/travellist";
 	}
 
@@ -97,9 +90,9 @@ public class TravelController {
 
 		String category = "viewCnt";
 		model.addAttribute(category);
-		System.out.println(category);
+		logger.info(category);
 
-		System.out.println("ddd2");
+		logger.info("조회수");
 		return "travel/travellist";
 	}
 
@@ -113,9 +106,9 @@ public class TravelController {
 		model.addAttribute("travelList", travelList);
 		String category = "shareCnt";
 		model.addAttribute(category);
-		System.out.println(category);
+		logger.info(category);
 
-		System.out.println("ddd3");
+		logger.info("공유수");
 		return "travel/travellist";
 	}
 
@@ -130,9 +123,9 @@ public class TravelController {
 
 		String category = "recent";
 		model.addAttribute(category);
-		System.out.println(category);
+		logger.info(category);
 
-		System.out.println("ddd4");
+		logger.info("최신순");
 		return "travel/travellist";
 	}
 
@@ -145,7 +138,6 @@ public class TravelController {
 		PagerVo pager = new PagerVo(10, 5, totalRows, pageNo);
 		int endRowNo = pager.getEndRowNo();
 		int startRowNo = pager.getStartRowNo();
-		System.out.println(totalRows);
 
 		List<TravelVo> travelList = travelService.selectTravelListByKeyword(endRowNo, startRowNo, searchType, keyword);
 
@@ -155,7 +147,7 @@ public class TravelController {
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("keyword", keyword);
 
-		System.out.println("ddd5");
+		logger.info("검색리스트");
 		return "travel/travellist";
 	}
 

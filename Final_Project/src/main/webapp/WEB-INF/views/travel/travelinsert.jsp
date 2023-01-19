@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +21,11 @@
 	<div class="outer">
 		<div class="inner">
 			<div class="selectdiv1">
-				<label class="top_title">여행 일정 등록하기</label> <span> <input
-					type="radio" name="open_radio" class="open_radio" id="open_radio1"
-					value="all" checked><label for="open_radio1"
-					class="open_radio_label">전체 공개</label> <input type="radio"
-					name="open_radio" class="open_radio" id="open_radio2"
-					value="follow"><label for="open_radio2"
-					class="open_radio_label">팔로우 공개</label> <input type="radio"
-					name="open_radio" class="open_radio" id="open_radio3"
-					value="private"><label for="open_radio3"
-					class="open_radio_label">비공개</label>
-				</span> <input type="text" name="daterange" class="daterange"
+				<label class="top_title">여행 일정 등록하기</label> <span> 
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio1" value="a" checked><label for="open_radio1" class="open_radio_label">전체 공개</label> 
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio2" value="f"><label for="open_radio2" class="open_radio_label">팔로우 공개</label> 
+				<input type="radio" name="open_radio" class="open_radio" id="open_radio3"value="p"><label for="open_radio3" class="open_radio_label">비공개</label></span> 
+				<input type="text" name="daterange" class="daterange"
 					value="01/01/2023 - 01/02/2023" readonly />
 			</div>
 			<div class="title_input_box">
@@ -41,8 +36,6 @@
 
 			<hr class="uk-divider-icon">
 		
-			
-			<a href="<c:url value='/fileuploadform'/>">사진업로드</a>
 			
 
 			<div class="content_wrap" id="test">
@@ -168,9 +161,7 @@
 							
 						</div>
 						<div class="place_info">
-							<a href='<c:url value="/place/detail/${place.placeName}"/>'>
-								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
-							</a>
+								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
 						</div>
@@ -298,14 +289,16 @@ $(function() {
            
 	                 
 	           	for(var j=days; j>0; j--){
-	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" class="modal_btn2" name="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><div class="travelselected">여행일정추가추가추가추가추</div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
+	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><button type="button" class="modal_btn2" name="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
 	                    const dayseqs=j;
 	                    const placemodal='placemodal'+j;
 	                    const memomodal='memomodal'+j;
+	                    
 	                    document.querySelector(".dayseq").id=dayseqs;
 	                    document.querySelector(".dayseq").append(j);
 	                    document.querySelector(".modal_btn").id=placemodal;
 	                    document.querySelector(".modal_btn2").id=memomodal;
+	                    
 	                   	
 	              
 	                    date22=date2.toISOString().substring(0,10);
@@ -437,6 +430,10 @@ window.onload = function() {
 	function openModal(clicked_id){
 	//console.log(clicked_id);
 	id=clicked_id;
+	document.querySelectorAll(".checkbox").forEach(function(v, i) {
+	v.checked = false;
+		}); 
+	arr=[];
 	
      
 	}
@@ -445,9 +442,6 @@ window.onload = function() {
 		console.log(value);
 		arr.push(value);
 	}
-	//var arrlength=arr.length;
-	//console.log(arrlength);
-	
 
 /* 	
 	 function test() {
@@ -474,24 +468,26 @@ window.onload = function() {
 	function closeModal() {
     console.log("클릭됨22");
     console.log(id);
-    console.log(arr[0]);
+    //console.log(arr[0]);
     	for(var i=0; i<arr.length; i++){
-    		document.getElementById(id).before(arr[i]);
+    		var placename="";
+    		var num=i+1;
+    		
+    		placename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><div class="schedule">'+arr[i]+'</div></div>';
+    		document.getElementById(id).insertAdjacentHTML("beforeBegin",placename);
+    		
     	} 
-    
+    	//document.getElementByName("checkbox").checked = false;
+    	
+    	
   	 $(".modal_wrap").hide();
   	 $(".black_bg").hide();
  
-  	  // 출력
+  
   	 
    
  	}
-	/* var array=new Array();
-	$('input:checkbox[name=checkbox]:checked').each(function(){
-		console.log(this.value);
-		array.push(this.value);
-	});
- */
+
 
 $(function(){
 	   // 여기에 코드를 작성하면 HTML 문서가 로드된 후 실행
@@ -535,12 +531,13 @@ $(function(){
 	               
 	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
 	              str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
-	              str+='<input type="checkbox" name="checkbox" value="'+data[i].placeName+'" onClick="boxChecked(this.value)>';
+	              str+='<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="'+data[i].placeName+'">'
 	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
 	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
 	                  
 
 	                 $('#place_list').append(str); 
+	            
 	            }
 	               
 	                  
