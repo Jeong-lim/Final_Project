@@ -70,9 +70,20 @@
 			</c:if>
 			
 			<c:if test="${not empty sessionScope.memberId}">
-			<label class="logout_wrapper"
+				<c:if test="${empty sessionScope.access_Token}">
+					<label class="logout_wrapper"
 				onclick="location.href='<c:url value="/logout"/>'">로그아웃</label>
+				</c:if>
+				
+				<c:if test="${not empty sessionScope.access_Token}">
+					<label class="logout_wrapper"
+				onclick="location.href='<c:url value="/kakaologout"/>'">로그아웃</label>
+				
+				</c:if>
+			
 			</c:if>
+			
+			
 			</span>
 			
 		</div>
