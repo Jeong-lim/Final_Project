@@ -89,13 +89,15 @@ public class WeatherApiController {
 		} else {
 			hourStr = hour + "00"; // 정시 기준
 		}
-
+        
+        
         String nx = lat;
         String ny = lon;
         String baseDate = yyyyMMdd;
         String baseTime = hourStr;
         String dataType = "JSON";
-
+        
+        
         StringBuilder urlBuilder = new StringBuilder(apiURL);
         urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=" + authKey);
         urlBuilder.append("&" + URLEncoder.encode("numOfRows=10", "UTF-8"));    // 숫자 표
@@ -143,7 +145,7 @@ public class WeatherApiController {
         // item 내부의 category 를 보고 사용하기 위해서 사용
         String category;
         Double value;
-
+        
        
         // jsonArray를 반복자로 반복
         for (int temp = 0; temp < parse_item.size(); temp++) {

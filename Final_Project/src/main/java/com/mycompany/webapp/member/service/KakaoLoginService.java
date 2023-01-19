@@ -10,18 +10,28 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycompany.webapp.member.controller.KakaoController;
+import com.mycompany.webapp.member.dao.KakaoDao;
 import com.mycompany.webapp.member.dao.MemberDao;
+import com.mycompany.webapp.member.model.MemberVo;
 
 @Service
-public class kakaoLoginService  implements IKakaoLoginService {
+public class KakaoLoginService  implements IKakaoLoginService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(KakaoLoginService.class);
 
 	@Autowired
-	public MemberDao dao;
+	public KakaoDao dao;
 
 	@Override
 	public String getAccessToken(String authorize_code) throws Exception {
@@ -144,6 +154,55 @@ public class kakaoLoginService  implements IKakaoLoginService {
 			e.printStackTrace();
 		}
 		return userInfo;
+	}
+	
+	@Override
+    public void getLogout(String access_token) {
+		logger.info(access_token);
+		
+        String reqURL ="https://kapi.kakao.com/v1/user/logout";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            
+            
+            
+            conn.setRequestProperty("Authorization", "Bearer " + access_token);
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+            
+            logger.info(access_token);
+ 
+            if(responseCode ==400)
+                throw new RuntimeException("카카오 로그아웃 도중 오류 발생");
+            
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            
+            String br_line = "";
+            String result = "";
+            while ((br_line = br.readLine()) != null) {
+                result += br_line;
+            }
+            System.out.println("결과");
+            System.out.println(result);
+        }catch(IOException e) {
+            
+        }
+    }
+
+	
+	public MemberVo selectKaKao(String email) {
+		return dao.selectKakaoInfo(email);
+	}
+	
+	public void insertKakao(MemberVo member) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String securePw = encoder.encode(member.getMemberPassword());
+		member.setMemberPassword(securePw);
+		
+		dao.insertKakao(member);
 	}
 
 }

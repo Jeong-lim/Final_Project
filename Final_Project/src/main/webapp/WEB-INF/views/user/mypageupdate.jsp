@@ -65,10 +65,19 @@
 					<label class="profile_lab">이름</label> 
 					<input type="text" class="input" name="memberName"  value="${member.memberName}" required>
 				</div>
-				<div class="input_div">
-					<label class="profile_lab">이메일</label> 
-					<input type="email" class="input" name="email"  value="${member.email}">
-				</div>
+				
+				<c:if test="${empty sessionScope.access_Token}">
+					 <div class="input_div">
+						<label class="profile_lab">이메일</label> 
+						<input type="email" class="input" name="email"  value="${member.email}">
+					</div>
+				</c:if>
+				
+				<c:if test="${not empty sessionScope.access_Token}">
+						<input type="hidden" class="input" name="email"  value="${member.email}">
+				</c:if>
+				
+				
 				<div class="input_div">
 					<label class="profile_lab">비밀번호</label> 
 					<input type="password" id="pw"  class="input" value="${member.memberPassword}" onchange="check_pw()" required>
