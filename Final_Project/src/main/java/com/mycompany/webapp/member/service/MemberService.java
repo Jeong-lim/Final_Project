@@ -103,6 +103,10 @@ public class MemberService  {
 		return memberDao.selectFollowList(memberId);
 	}
 	
+	public List<MemberVo> searchUser (String keyword){
+		return memberDao.searchUser(keyword);
+	}
+	
 	
 	
 

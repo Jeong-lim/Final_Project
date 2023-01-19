@@ -17,7 +17,6 @@ public interface MemberDao {
 	public void updateMember(MemberVo member);
 	public void deleteMember(MemberVo member);
 	public String getPassword(String memberId);
-	public String getAccessToken(String authorize_code) throws Throwable;
 	public int checkOverId(String memberId);
 	public List<MemberVo> userTravelList(String memberId) throws Exception;
 	public int userTravelCount(String memberId);
@@ -27,6 +26,7 @@ public interface MemberDao {
 	public String checkFollowStatus(Map<String, String> map); //팔로우 상태체크
 	public void insertAlarm(String memberId, String sessionId, String alarmCode); //알림 추가
 	public List<AlarmVo> selectAlarms(String sessionId); //알림 리스트
-	public List<MemberVo> selectFollowerList(String memberId);
-	public List<MemberVo> selectFollowList(String memberId);
+	public List<MemberVo> selectFollowerList(String memberId); //팔로워 리스트
+	public List<MemberVo> selectFollowList(String memberId); //팔로우 리스트
+	public List<MemberVo> searchUser(String keyword); //유저검색결과리스트
 }
