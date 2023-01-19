@@ -69,7 +69,8 @@ public class KakaoController {
 			session.setAttribute("memberName", member.getMemberName());
 			session.setAttribute("email", member.getEmail());
 			session.setAttribute("access_Token", access_Token);
-			logger.info((String)session.getAttribute("access_Token"));
+			
+		
 			} else {
 			session.setAttribute("email", email);
 			logger.info(email);
@@ -89,14 +90,16 @@ public class KakaoController {
 	}
 	
 	@RequestMapping(value="/login/logout_proc")
-    public String logout(ModelMap modelMap, HttpSession session)throws IOException {
-        if((String)session.getAttribute("kakaoToken") != ""){
+    public String logout(HttpSession session)throws IOException {
+        if((String)session.getAttribute("access_Token") != ""){
         	kakaoService.getLogout((String)session.getAttribute("access_Token"));
         	session.invalidate();
+			 return "redirect:/";
         }else {
             logger.info("카카오 로그인 유저 없음~");
+            return "redirect:/";
         }
         
-        return "redirect://";
+       
     }
 }
