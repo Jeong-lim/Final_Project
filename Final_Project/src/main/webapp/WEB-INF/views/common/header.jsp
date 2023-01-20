@@ -111,8 +111,8 @@ $('document').ready(
 										str+='<div class="follow__wrapper">';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
-										str+='<button class="alarm_accept_btn" id="follow_accept" name="follow_accept" onclick="follow_accept(this)" value='+result[i].alarmFromId+'>수락</button>';
-										str+='<button class="alarm_reject_btn">거절</button>';
+										str+='<button class="alarm_accept_btn" name.="follow_accept" id='+result[i].alarmSeq+' onclick="follow_accept(this)" value='+result[i].alarmFromId+'>수락</button>';
+										str+='<button class="alarm_reject_btn" onclick="follow_reject(this)" value='+result[i].alarmFromId+'>거절</button>';
 										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
 										str+='</div></div>'; 
 									}
@@ -120,7 +120,7 @@ $('document').ready(
 										str+='<div class="follow__wrapper">';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
-										str+='<label class="follow_status">수락됨</button>';
+										str+='<button class="follow_status" disabled="disabled">수락됨</button>';
 										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
 										str+='</div></div>'; 
 									}
@@ -155,13 +155,26 @@ function follow_accept(e){
 		type:'POST',
 		url:'/acceptFollow/${sessionScope.memberId}?value='+memberId,
 		success:function(result){
-			console.log("okokok");
+			console.log("승낙완료");
+			$(e).html("승낙됨");
+			
 		}
 	})
-	
-	
-	
+		
 }	
+
+function follow_reject(e){
+	var memberId=$(e).attr('value');
+	var alarmSeq=$(e).attr('id');
+	$.ajax({
+		type:'POST',
+		url:'/rejectFollow/${sessionScope.memberId}?value='+memberId+'&value2='+alarmSeq,
+		success:function(result){
+			console.log("거절완료");
+			$(e).html("거절됨");
+		}
+	})
+}
 	
 	
 	

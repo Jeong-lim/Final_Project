@@ -30,4 +30,8 @@ public interface MemberDao {
 	public List<MemberVo> selectFollowerList(String memberId); //팔로워 리스트
 	public List<MemberVo> selectFollowList(String memberId); //팔로우 리스트
 	public List<MemberVo> searchUser(String keyword); //유저검색결과리스트
+	public void acceptFollow(String followSeq);//팔로우 허용
+	public void rejectFollow(String followSeq);//팔로우 거절
+	public void changeStatusN(String alarmSeq);//알림 상태 변경
+	
 }

@@ -225,11 +225,23 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/acceptFollow/{sessionScope.memberId}")
 	public String acceptFollow(@PathVariable("sessionScope.memberId")String sessionId,@RequestParam("value")String memberId)throws Exception {
-		System.out.println(memberId);
-		System.out.println(sessionId);
 		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
-		System.out.println(followSeq);
-		return "ok";
+		memberService.acceptFollow(followSeq);
+		System.out.println("팔로우승낙완료");
+		return "승낙완료";
+	}
+	
+	//팔로우 거절
+	@ResponseBody
+	@PostMapping("/rejectFollow/{sessionScope.memberId}")
+	public String rejectFollow(@PathVariable("sessionScope.memberId")String sessionId,@RequestParam("value")String memberId,@RequestParam("value2")String alarmSeq)throws Exception{
+		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		memberService.changeStatusN(alarmSeq);
+		System.out.println("알림상태변경완료");
+		memberService.rejectFollow(followSeq);
+		System.out.println("팔로우신청삭제완료");
+		return "거절완료";
+		
 	}
 	
 	
