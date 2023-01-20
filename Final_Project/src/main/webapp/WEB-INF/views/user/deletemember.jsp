@@ -15,9 +15,9 @@
 			src="${pageContext.request.contextPath}/resources/images/logo.png" />
 		</a>
 		<form action="/mypage/delete" method="post">
-			<input type="hidden" name="memberId" id="memberId" /> <input
-				type="password" name="memberPassword" id="password" /> <input
-				type="submit" />
+			<input type="hidden" name="memberId" id="memberId" /> 
+			<input type="password" name="memberPassword" id="password" class="password_delete"/> 
+			<input class="submit_delete_member" type="submit" />
 		</form>
 	</div>
 

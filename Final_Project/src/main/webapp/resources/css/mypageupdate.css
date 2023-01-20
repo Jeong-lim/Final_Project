@@ -16,6 +16,10 @@
 	text-align: center;
 }
 
+.imgBtn_delete:focus {
+	outline: none;
+}
+
 .profile {
 	width: 980px;
 	border-bottom: 2px solid #A4A4A4;

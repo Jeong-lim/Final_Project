@@ -71,7 +71,7 @@ http://localhost:8080/kakaoLogin&response_type=code">
 				</button>
 			</a>
 
-				<div>
+				<%-- <div>
 					<button class="login_images">
 						<img width="100%"
 							src="${pageContext.request.contextPath}/resources/images/email.png">
@@ -88,7 +88,7 @@ http://localhost:8080/kakaoLogin&response_type=code">
 						<img width="100%"
 							src="${pageContext.request.contextPath}/resources/images/google.png">
 					</button>
-				</div>
+				</div> --%>
 			</div>
 
 	
