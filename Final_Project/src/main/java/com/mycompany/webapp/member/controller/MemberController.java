@@ -280,7 +280,7 @@ public class MemberController {
 			model.addAttribute("member", member);
 			session.setAttribute("email", member.getEmail());
 			logger.info(member.toString());
-			return "user/mypageupdate";
+			return "user/mypage";
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
