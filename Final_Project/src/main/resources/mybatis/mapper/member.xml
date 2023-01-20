@@ -182,7 +182,7 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 				,f.follow_status as followStatus
 				,a.alarm_status as alarmStatus
 		from alarm a,(select follow_seq,to_id,from_id,follow_status from follow where to_id=#{sessionId})f
-		where a.alarm_from_id=f.from_id and a.alarm_to_id=f.to_id
+		where a.alarm_from_id=f.from_id and a.alarm_to_id=f.to_id and a.alarm_status='Y'
 	</select>
 	
 	<!-- 팔로워 리스트 -->
@@ -216,5 +216,22 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		select follow_seq
 		from follow
 		where to_id=#{sessionId} and from_id=#{memberId}
+	</select>
+	
+	<!-- 팔로우 허용 -->
+	<select id="acceptFollow" parameterType="String">
+		update follow set follow_status='Y'
+		where follow_seq=#{followSeq}
+	</select>
+	
+	<!-- 팔로우 거절 -->
+	<select id="rejectFollow" parameterType="String">
+		delete from follow where follow_seq=#{followSeq}
+	</select>
+	
+	<!-- 알림 상태변경 -->
+	<select id="changeStatusN" parameterType="String">
+		update alarm set alarm_status='N'
+		where alarm_seq=#{alarmSeq}
 	</select>
 </mapper>

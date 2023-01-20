@@ -121,6 +121,18 @@ public class MemberService  {
 		return memberDao.searchFollowSeq(map);
 	}
 	
+	public void acceptFollow(String followSeq) {
+		memberDao.acceptFollow(followSeq);
+	}
+	
+	public void rejectFollow(String followSeq) {
+		memberDao.rejectFollow(followSeq);
+	}
+	
+	public void changeStatusN(String alarmSeq) {
+		memberDao.changeStatusN(alarmSeq);
+	}
+	
 	
 	
 
