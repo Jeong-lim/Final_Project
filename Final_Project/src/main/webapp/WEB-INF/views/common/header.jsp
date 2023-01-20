@@ -108,20 +108,21 @@ $('document').ready(
 								
 								var str='';
 									if(result[i].followStatus=='N'){
-										str+='<div class="follow__wrapper">';
+										str+='<div class="follow__wrapper" id='+i+'>';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
 										str+='<button class="alarm_accept_btn" name.="follow_accept" id='+result[i].alarmSeq+' onclick="follow_accept(this)" value='+result[i].alarmFromId+'>수락</button>';
 										str+='<button class="alarm_reject_btn" onclick="follow_reject(this)" value='+result[i].alarmFromId+'>거절</button>';
-										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
+										str+='<img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" value='+i+' onclick="closeAlarm(this)"/>';
 										str+='</div></div>'; 
 									}
 									if(result[i].followStatus=='Y'){
-										str+='<div class="follow__wrapper">';
+										str+='<div class="follow__wrapper" id='+i+'>';
+										str+='<input type="hidden" id='+i+' value='+result[i].alarmSeq+'>';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
 										str+='<button class="follow_status" disabled="disabled">수락됨</button>';
-										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
+										str+='<img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" value='+i+' onclick="closeAlarm(this)" />';
 										str+='</div></div>'; 
 									}
 							}
@@ -174,6 +175,22 @@ function follow_reject(e){
 			$(e).html("거절됨");
 		}
 	})
+}
+
+function closeAlarm(e){
+	var liId=$(e).attr('value');
+	var alarmSeq=$('input[id='+liId+']').val();
+	
+	 $.ajax({
+		type:'POST',
+		url:'/removeAlarm?value='+alarmSeq,
+		success:function(result){
+			$('div[id='+liId+']').remove();
+			console.log("알림 삭제완료");
+			
+		}
+	}) 
+	
 }
 	
 	

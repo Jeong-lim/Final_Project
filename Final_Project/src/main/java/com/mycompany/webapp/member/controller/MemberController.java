@@ -244,6 +244,15 @@ public class MemberController {
 		
 	}
 	
+	//알림 삭제
+	@ResponseBody
+	@PostMapping("/removeAlarm")
+	public String removeAlarm(@RequestParam("value")String alarmSeq)throws Exception{
+		memberService.changeStatusN(alarmSeq);
+		System.out.println("알림 삭제완료");
+		return "삭제완료";
+	}
+	
 	
 	
 	
