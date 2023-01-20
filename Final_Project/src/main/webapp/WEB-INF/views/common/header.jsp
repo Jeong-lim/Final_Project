@@ -77,7 +77,7 @@
 				
 				<c:if test="${not empty sessionScope.access_Token}">
 					<label class="logout_wrapper"
-				onclick="location.href='<c:url value="/kakaologout"/>'">로그아웃</label>
+				onclick="location.href='<c:url value="/login/logout_proc"/>'">로그아웃</label>
 				
 				</c:if>
 			
