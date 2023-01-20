@@ -206,19 +206,30 @@ public class MemberController {
 	//사용자검색결과리스트
 	@ResponseBody
 	@PostMapping("/userSearch")
-	public List<MemberVo> userSearch(@RequestParam("value")String keyword) {
+	public List<MemberVo> userSearch(@RequestParam("value")String keyword)throws Exception {
 		System.out.println(keyword);
 		List<MemberVo> searchUserList=memberService.searchUser(keyword);
 		return searchUserList;
 	}
 	
-	//알림
+	//알림 리스트
 	@ResponseBody
 	@PostMapping("/follow/{sessionScope.memberId}")
-	public List<AlarmVo> selectAlarms(@PathVariable("sessionScope.memberId")String sessionId,Model model) {
+	public List<AlarmVo> selectAlarms(@PathVariable("sessionScope.memberId")String sessionId,Model model)throws Exception {
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
 		return alarmList;
 		
+	}
+	
+	//팔로우 허용
+	@ResponseBody
+	@PostMapping("/acceptFollow/{sessionScope.memberId}")
+	public String acceptFollow(@PathVariable("sessionScope.memberId")String sessionId,@RequestParam("value")String memberId)throws Exception {
+		System.out.println(memberId);
+		System.out.println(sessionId);
+		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		System.out.println(followSeq);
+		return "ok";
 	}
 	
 	
