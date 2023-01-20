@@ -210,4 +210,11 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		on m.member_id=f.file_code
 		where member_id like '%'||#{keyword}||'%'
 	</select>
+	
+	<!-- 팔로우 시퀀스 찾기 -->
+	<select id="searchFollowSeq" parameterType="map" resultType="String">
+		select follow_seq
+		from follow
+		where to_id=#{sessionId} and from_id=#{memberId}
+	</select>
 </mapper>

@@ -43,7 +43,7 @@ body {
 
 .uk-dropdown {
 	padding: 0px;
-	width: 280px;
+	width: 330px;
 }
 
 
@@ -58,8 +58,12 @@ body {
 
 .follow_button__ {
 	float: right;
-	padding-top: 20px;
-	padding-right: 10px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    width: 115px;
+    justify-content: space-between;
+    margin-right: 5px;
 }
 
 .follow__wrapper {
@@ -78,8 +82,8 @@ body {
 }
 
 .follow_cancel  {
-	width: 20px;
-	height: 20px;}
+	width: 15px;
+	height: 15px;}
 
 a {
 	text-decoration: none !important;
@@ -216,4 +220,18 @@ a {
 .header__alarm__img {
 	width: 60px;
 	height: 60px;
+}
+
+.alarm_accept_btn{
+	border: none;
+    width: 45px;
+    height: 30px;
+    background-color: #3B82F6;
+    color: white;
+}
+
+.alarm_reject_btn{
+	border: none;
+    width: 45px;
+    height: 30px;
 }

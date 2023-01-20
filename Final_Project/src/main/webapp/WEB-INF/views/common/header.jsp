@@ -92,7 +92,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <script>
-	$('document').ready(
+$('document').ready(
 		
 		
 			 $.ajax({
@@ -102,39 +102,68 @@
 					var length=result.length;
 					if(length >0){
 					
-					/* str+='<div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700"><ul class="uk-nav uk-dropdown-nav">'; */
-					for(var i=0; i<length; i++){
-						if(result[i].alarmCode=='f'){
-							var str='';
-								if(result[i].followStatus=='N'){
-									str+='<div class="follow__wrapper">';
-									str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
-									str+='<div class="follow_button__">';
-									str+=`<a href="<c:url value='/mypage'/>"><img class="follow_check" src="${pageContext.request.contextPath}/resources/images/follow_check.png" /></a>`;
-									str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/follow_cancel.png" /></a>`;
-									str+='</div></div>'; 
-								}
+					
+						for(var i=0; i<length; i++){
+							if(result[i].alarmCode=='f'){
+								
+								var str='';
+									if(result[i].followStatus=='N'){
+										str+='<div class="follow__wrapper">';
+										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
+										str+='<div class="follow_button__">';
+										str+='<button class="alarm_accept_btn" id="follow_accept" name="follow_accept" onclick="follow_accept(this)" value='+result[i].alarmFromId+'>수락</button>';
+										str+='<button class="alarm_reject_btn">거절</button>';
+										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
+										str+='</div></div>'; 
+									}
+									if(result[i].followStatus=='Y'){
+										str+='<div class="follow__wrapper">';
+										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
+										str+='<div class="follow_button__">';
+										str+='<label class="follow_status">수락됨</button>';
+										str+=`<a href="<c:url value='/'/>"><img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" /></a>`;
+										str+='</div></div>'; 
+									}
+							}
+							$('.uk-nav').append(str);
 						}
+					
 						
-					}
-					/* str+='</ul></div>';  */
-					$('.uk-nav').append(str);
-					}else if(length==0 ){
+						
+					}else if(length == 0 ){
+						console.log('알림없음');
 						var str='';
-						str+='<div class="uk-dropdown-large" uk-dropdown="animation: slide-top; animate-out: true; mode: click; offset: 20; bg-scroll: true; duration: 700">';
-						str+='<ul class="uk-nav uk-dropdown-nav">'; 
 						str+='<div class="follow__wrapper">';
-						str+='<li class="uk-active">알림이 없습니다.</li></div>';
+						str+='<li class="uk-active"> 알림이 없습니다. </li></div>';
 						str+='</ul></div>'; 
 						$('.uk-nav').append(str);
 					}
 				}
-			}) 
+			})
+			//ajax 끝
 			
+					
 			
 		
 		
-	)
+)
+
+function follow_accept(e){
+	var memberId=$(e).attr('value');
+	
+	$.ajax({
+		type:'POST',
+		url:'/acceptFollow/${sessionScope.memberId}?value='+memberId,
+		success:function(result){
+			console.log("okokok");
+		}
+	})
+	
+	
+	
+}	
+	
+	
 	
 	
 </script>

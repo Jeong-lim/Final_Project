@@ -77,7 +77,10 @@ public class MemberService  {
 	}
 	
 	public void requestFollow(String memberId, String sessionId) {
-		memberDao.requestFollow(memberId, sessionId);
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		memberDao.requestFollow(map);
 	}
 	
 	public String checkFollowStatus(String memberId, String sessionId) {
@@ -88,7 +91,11 @@ public class MemberService  {
 	}
 	
 	public void insertAlarm(String memberId, String sessionId,String alarmCode) {
-		memberDao.insertAlarm(memberId, sessionId, alarmCode);
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		map.put("alarmCode", alarmCode);
+		memberDao.insertAlarm(map);
 	}
 	
 	public List<AlarmVo> selectAlarms(String sessionId){
@@ -105,6 +112,13 @@ public class MemberService  {
 	
 	public List<MemberVo> searchUser (String keyword){
 		return memberDao.searchUser(keyword);
+	}
+	
+	public String searchFollowSeq(String memberId, String sessionId) {
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		return memberDao.searchFollowSeq(map);
 	}
 	
 	
