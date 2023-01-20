@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.webapp.file.model.FileVo;
+import com.mycompany.webapp.file.service.FileService;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.IKakaoLoginService;
 import com.mycompany.webapp.member.service.KakaoLoginService;
@@ -40,6 +42,9 @@ public class KakaoController {
 	// 1번 카카오톡에 사용자 코드 받기(jsp의 a태그 href에 경로 있음)
 	// 2번 받은 code를 iKakaoS.getAccessToken로 보냄 ###access_Token###로 찍어서 잘 나오면은 다음단계진행
 	// 3번 받은 access_Token를 iKakaoS.getUserInfo로 보냄 userInfo받아옴, userInfo에 nickname, email정보가 담겨있음
+	
+	@Autowired
+	private FileService fileService;
 	
 	
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.GET)
@@ -63,18 +68,22 @@ public class KakaoController {
 		logger.info(email);
 		
 		MemberVo member = kakaoService.selectKaKao(email);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		if(member != null) {
 			session.setAttribute("memberId", member.getMemberId());
 			session.setAttribute("memberName", member.getMemberName());
 			session.setAttribute("email", member.getEmail());
 			session.setAttribute("access_Token", access_Token);
 			
-		
+			FileVo fileVo = fileService.selectUserImage(member.getMemberId());
+			if(fileVo != null && !fileVo.equals("")) {
+								
+				String fileSavedName = fileVo.getFileSavedName();
+				session.setAttribute("fileSavedName", fileSavedName);
 			} else {
 			session.setAttribute("email", email);
 			logger.info(email);
 			return "auth/signupkakao";
+			}
 		}
 		return "main";
 	}

@@ -171,6 +171,10 @@ input[type="checkbox" i] {
 	justify-content: center;
 }
 
+.kakao:hover {
+	cursor: pointer;
+}
+
 .kakao_img {
 	width: 15px;
 	height: 15px;

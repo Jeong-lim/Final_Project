@@ -118,10 +118,12 @@ function check_pw(){
     }
     if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
         if(document.getElementById('pw').value==document.getElementById('pw2').value){
+        	$("#reg_submit").attr("disabled", false);
             document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
             document.getElementById('check').style.color='blue';
         }
         else{
+        	$("#reg_submit").attr("disabled", true);
             document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
             document.getElementById('check').style.color='red';
         }

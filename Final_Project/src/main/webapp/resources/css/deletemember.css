@@ -2,4 +2,56 @@
 
 .delete_form_container {
 	text-align: center;
+	margin-top: 150px;
+}
+
+.password_delete {
+	margin: auto;
+	font-size: 14px;
+	border-radius: 6px;
+	line-height: 1.5;
+	padding: 5px 10px;
+	transition: box-shadow 100ms ease-in, border 100ms ease-in,
+		background-color 100ms ease-in;
+	border: 2px solid #dee1e2;
+	color: rgb(14, 14, 16);
+	background: #dee1e2;
+	display: block;
+	height: 36px;
+	width: 300px;
+}
+
+.password_delete:hover {
+	border-color: #ccc;
+}
+
+.password_delete:focus {
+	border-color: #7c8aff;
+	background: #fff;
+	outline: none;
+}
+
+.logo_img_delete {
+	width: 300px;
+	height: 110px;
+}
+
+.submit_delete_member {
+	display: inline-block;
+	outline: 0;
+	border: none;
+	cursor: pointer;
+	font-weight: 600;
+	border-radius: 4px;
+	font-size: 13px;
+	height: 30px;
+	background-color: #7c8aff;
+	color: white;
+	padding: 0 30px;
+	margin-top: 20px;
+
+
+}
+.submit_delete_member:hover {
+	background-color: #5468ff;
 }
