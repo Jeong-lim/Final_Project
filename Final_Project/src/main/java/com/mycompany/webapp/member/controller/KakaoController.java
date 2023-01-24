@@ -52,7 +52,7 @@ public class KakaoController {
 			, Model model, HttpSession session) throws Throwable {
 
 		// 1번
-		System.out.println("code:" + code);
+		logger.info("code:" + code);
 		
 		// 2번
 		String access_Token = iKakaoS.getAccessToken(code);
@@ -105,7 +105,7 @@ public class KakaoController {
         	session.invalidate();
 			 return "redirect:/";
         }else {
-            logger.info("카카오 로그인 유저 없음~");
+            logger.info("카카오 로그인 유저 없음");
             return "redirect:/";
         }
         
