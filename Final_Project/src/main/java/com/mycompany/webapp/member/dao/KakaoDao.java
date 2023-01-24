@@ -10,6 +10,4 @@ public interface KakaoDao {
 	public MemberVo selectKakaoInfo(String email);
 	public void insertKakao(MemberVo member);
 	public String getAccessToken(String authorize_code) throws Throwable;
-	
-
 }

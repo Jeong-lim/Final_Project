@@ -39,8 +39,6 @@ public class KakaoLoginService  implements IKakaoLoginService {
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 
-		
-		
 		try {
 			URL url = new URL(reqURL);
 
@@ -55,16 +53,16 @@ public class KakaoLoginService  implements IKakaoLoginService {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 
-			sb.append("&client_id=0d1a65de77067d49a955bb898ba9109d"); // REST_API키 본인이 발급받은 key 넣어주기
+			sb.append("&client_id=110271dec09056611bcbe1a2a9834384"); // REST_API키 본인이 발급받은 key 넣어주기
 			sb.append("&redirect_uri=http://localhost:8080/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
-
+			sb.append("&redirect_uri=http://localhost:8080/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
 
 			// 결과 코드가 200이라면 성공
 			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode : " + responseCode);
+			logger.info("responseCode : " + responseCode);
 
 			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -74,7 +72,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
+			logger.info("response body : " + result);
 
 			// jackson objectmapper 객체 생성
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -85,8 +83,8 @@ public class KakaoLoginService  implements IKakaoLoginService {
 			access_Token = jsonMap.get("access_token").toString();
 			refresh_Token = jsonMap.get("refresh_token").toString();
 
-			System.out.println("access_token : " + access_Token);
-			System.out.println("refresh_token : " + refresh_Token);
+			logger.info("access_token : " + access_Token);
+			logger.info("refresh_token : " + refresh_Token);
 
 			br.close();
 			bw.close();
@@ -112,7 +110,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
 			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 
 			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode : " + responseCode);
+			logger.info("responseCode : " + responseCode);
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
@@ -122,8 +120,8 @@ public class KakaoLoginService  implements IKakaoLoginService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
-			System.out.println("result type" + result.getClass().getName()); // java.lang.String
+			logger.info("response body : " + result);
+			logger.info("result type" + result.getClass().getName()); // java.lang.String
 
 			try {
 				// jackson objectmapper 객체 생성
@@ -132,7 +130,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
 				Map<String, Object> jsonMap = objectMapper.readValue(result, new TypeReference<Map<String, Object>>() {
 				});
 
-				System.out.println(jsonMap.get("properties"));
+				logger.info(jsonMap.get("properties").toString());
 
 				Map<String, Object> properties = (Map<String, Object>) jsonMap.get("properties");
 				Map<String, Object> kakao_account = (Map<String, Object>) jsonMap.get("kakao_account");
@@ -166,11 +164,10 @@ public class KakaoLoginService  implements IKakaoLoginService {
             
             conn.setRequestProperty("Authorization", "Bearer " + access_token);
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+            logger.info("responseCode : " + responseCode);
  
             if(responseCode ==400)
                 throw new RuntimeException("카카오 로그아웃 도중 오류 발생");
-            
             
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             
@@ -179,8 +176,8 @@ public class KakaoLoginService  implements IKakaoLoginService {
             while ((br_line = br.readLine()) != null) {
                 result += br_line;
             }
-            System.out.println("결과");
-            System.out.println(result);
+            logger.info("결과");
+            logger.info(result);
         }catch(IOException e) {
             
         }
