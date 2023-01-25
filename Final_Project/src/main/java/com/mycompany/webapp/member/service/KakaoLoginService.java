@@ -55,7 +55,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
 
 			sb.append("&client_id=110271dec09056611bcbe1a2a9834384"); // REST_API키 본인이 발급받은 key 넣어주기
 			sb.append("&redirect_uri=http://localhost:8080/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
-			sb.append("&redirect_uri=http://localhost:8080/kakaoLogin"); // REDIRECT_URI 본인이 설정한 주소 넣어주기
+
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -169,6 +169,7 @@ public class KakaoLoginService  implements IKakaoLoginService {
             if(responseCode ==400)
                 throw new RuntimeException("카카오 로그아웃 도중 오류 발생");
             
+            
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             
             String br_line = "";
@@ -185,16 +186,17 @@ public class KakaoLoginService  implements IKakaoLoginService {
 
 
 	
-	public MemberVo selectKaKao(String email) {
-		return dao.selectKakaoInfo(email);
-	}
-	
 	public void insertKakao(MemberVo member) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String securePw = encoder.encode(member.getMemberPassword());
 		member.setMemberPassword(securePw);
 		
 		dao.insertKakao(member);
+	}
+
+	public MemberVo selectKakaoInfo(String email) {
+		logger.info("selectKakaoInfo 실행");
+		return dao.selectKakaoInfo(email);
 	}
 
 }
