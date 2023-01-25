@@ -63,11 +63,11 @@ public class KakaoController {
 		HashMap<String, Object> userInfo = iKakaoS.getUserInfo(access_Token);
 		String email = userInfo.get("email").toString();
 		
-		
-		
 		logger.info(email);
 		
-		MemberVo member = kakaoService.selectKaKao(email);
+		MemberVo member = kakaoService.selectKakaoInfo(email);
+		
+		
 		if(member != null) {
 			session.setAttribute("memberId", member.getMemberId());
 			session.setAttribute("memberName", member.getMemberName());
@@ -76,14 +76,15 @@ public class KakaoController {
 			
 			FileVo fileVo = fileService.selectUserImage(member.getMemberId());
 			if(fileVo != null && !fileVo.equals("")) {
-								
 				String fileSavedName = fileVo.getFileSavedName();
 				session.setAttribute("fileSavedName", fileSavedName);
 			} else {
+				logger.info("사진없음");
+			}
+		} else {
 			session.setAttribute("email", email);
 			logger.info(email);
 			return "auth/signupkakao";
-			}
 		}
 		return "main";
 	}
