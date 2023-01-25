@@ -63,7 +63,7 @@
 			<div class="login_path">
 			
 			<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=0d1a65de77067d49a955bb898ba9109d&redirect_uri=	
-http://localhost:8080/kakaoLogin&response_type=code">
+http://192.168.0.29/kakaoLogin&response_type=code">
 				<button class="kakao">
 					<img class="kakao_img"
 						src="${pageContext.request.contextPath}/resources/images/speech-bubble.png"><span>
