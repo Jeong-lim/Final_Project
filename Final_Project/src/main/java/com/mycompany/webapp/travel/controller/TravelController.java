@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +42,64 @@ public class TravelController {
 		return "travel/traveldetail";
 	}
 
+	@ResponseBody
+	@PostMapping(value = "/travel/insert1")
+	public String insertTravel(Model model, HttpSession session,
+			@RequestParam(value = "value", required = false) String travelStart,
+			@RequestParam(value = "value2", required = false) String travelEnd,
+			@RequestParam(value = "value3", required = false) String travelTitle,
+			@RequestParam(value = "value4", required = false) char travelPrivacy) {
+
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info(memberId);
+		if (memberId != null && !memberId.equals("")) {
+
+			System.out.println(travelTitle);
+			System.out.println(travelPrivacy);
+			System.out.println(travelStart);
+			System.out.println(travelEnd);
+			System.out.println(memberId);
+			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
+			System.out.println("왜입력안댐???");
+			//https://conanglog.tistory.com/120
+			return "travel/traveldetail";
+
+		} else {
+			// userid가 세션에 없을 때 (로그인하지 않았을 때)
+			model.addAttribute("message", "로그인이 필요합니다.");
+			return "auth/signin";
+
+		}
+
+	}
+
+	/*
+	 * @ResponseBody
+	 * 
+	 * @PostMapping(value = "/travel/insert/test") public String
+	 * insertTest(@ModelAttribute TravelVo model, HttpSession session, Model model3,
+	 * 
+	 * @ModelAttribute TravelVo model2, @RequestParam(value = "value", required =
+	 * false) String travelStart,
+	 * 
+	 * @RequestParam(value = "value2", required = false) String travelEnd) {
+	 * 
+	 * String memberId = (String) session.getAttribute("memberId");
+	 * logger.info(memberId); if (memberId != null && !memberId.equals("")) { String
+	 * travelTitle = model.getTravelTitle(); char travelPrivacy =
+	 * model2.getTravelPrivacy(); logger.info(travelTitle);
+	 * System.out.println(travelPrivacy); System.out.println(travelStart);
+	 * System.out.println(travelEnd); // TravelService.insertTravel(traveltitle);
+	 * return "ok";
+	 * 
+	 * } else { // userid가 세션에 없을 때 (로그인하지 않았을 때) model3.addAttribute("message",
+	 * "로그인이 필요합니다."); return "auth/signin";
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
+
 	@RequestMapping("/travel/insert")
 	public String travelInsert(Model model) {
 		List<PlaceVo> placeList = travelService.selectPlaceList();
@@ -48,6 +107,7 @@ public class TravelController {
 		return "travel/travelinsert";
 	}
 
+	// 여행 입력 페이지의 관광지 선택 모달 검색
 	@RequestMapping(value = "/travel/insert/placelist")
 	public @ResponseBody List<PlaceVo> travelInsert(@RequestParam("searchType") String searchType,
 			@RequestParam("keyword") String keyword, Model model) {
@@ -61,6 +121,7 @@ public class TravelController {
 		return placeList;
 	}
 
+	// 여행 일정 리스트
 	@RequestMapping(value = "/travel/list", method = RequestMethod.GET)
 	public String getTravelList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 		// 페이징 대상이 되는 전체 행 수
@@ -79,6 +140,7 @@ public class TravelController {
 		return "travel/travellist";
 	}
 
+	// 여행 일정 리스트의 조회수 순 정렬
 	@RequestMapping(value = "/travel/viewCnt/list", method = RequestMethod.GET)
 	public String getTravelListByView(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 
@@ -96,6 +158,7 @@ public class TravelController {
 		return "travel/travellist";
 	}
 
+	// 여행 일정 리스트 인기 순 정렬
 	@RequestMapping(value = "/travel/shareCnt/list", method = RequestMethod.GET)
 	public String getTravelListByShare(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 
@@ -112,6 +175,7 @@ public class TravelController {
 		return "travel/travellist";
 	}
 
+	// 여행 일정 리스트 최신 순 정렬
 	@RequestMapping(value = "/travel/recent/list", method = RequestMethod.GET)
 	public String getTravelListByRecent(@RequestParam(defaultValue = "1") int pageNo, Model model) {
 
@@ -129,6 +193,7 @@ public class TravelController {
 		return "travel/travellist";
 	}
 
+	// 여행 일정 리스트 검색
 	@RequestMapping(value = "/travel/search/list", method = RequestMethod.GET)
 	public String getTravelListBySearch(@RequestParam(defaultValue = "1") int pageNo,
 			@RequestParam(required = false, defaultValue = "title") String searchType,

@@ -1,6 +1,7 @@
 package com.mycompany.webapp.travel.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -64,6 +65,12 @@ public class TravelService {
 	public TravelVo selectLocationInfo(String locationSi) {
 		return travelDao.selectLocationInfo(locationSi);
 	}
+
+	public int insertTravel(String memberId, String travelTitle, char travelPrivacy, String travelStart, String travelEnd) {
+		return travelDao.insertTravel(memberId, travelTitle, travelPrivacy,travelStart,travelEnd);
+		
+	}
+
 	
 	
 

@@ -226,6 +226,13 @@
 	from location
 	where location_si = #{locationSi} 
 	</select>
+	
+	<insert id="insertTravel" parameterType="map">
+		insert into travel (travel_id, travel_title, travel_start, travel_end, travel_privacy, free, 
+		view_cnt, share_cnt, writer, write_date, ver_no, travel_status)
+		values('TRV' || LPAD(TRAVEL_SEQ.nextval, 5, 0), #{travelTitle}, #{travelStart}, #{travelEnd}, #{travelPrivacy}, 'Y', 
+		0, 0, #{memberId}, to_date(sysdate,'yyyy-mm-dd'), 1, 'Y')
+	</insert>
 
 
 

@@ -1,6 +1,7 @@
 package com.mycompany.webapp.travel.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,8 +19,6 @@ public interface TravelDao {
 	
 	public List<PlaceVo> selectPlaceList();
 	
-	//public List<TravelVo> selectTravelList(); //글 목록
-	
 	public List<TravelVo> selectTravelList(PagerVo pager); //페이징처리 글 목록
 
 	public List<TravelVo> selectTravelListByView(PagerVo pager); //조회수 순 리스트
@@ -33,10 +32,14 @@ public interface TravelDao {
 	public List<TravelVo> selectTravelListByKeyword(@Param("endRowNo")int endRowNo, @Param("startRowNo")int startRowNo, @Param("searchType")String searchType, @Param("keyword")String keyword); //검색 리스트
 
 	public List<PlaceVo> selectTravelListByArea(@Param("searchType")String searchType, @Param("keyword")String keyword); //모달 장소리스트
-
+	
 	
 	// weather dao
 	public TravelVo selectLocationInfo(String locationSi);
+
+	public int insertTravel(@Param("memberId")String memberId, @Param("travelTitle")String travelTitle, @Param("travelPrivacy")char travelPrivacy, @Param("travelStart")String travelStart, @Param("travelEnd")String travelEnd);
+
+	
 	
 
 
