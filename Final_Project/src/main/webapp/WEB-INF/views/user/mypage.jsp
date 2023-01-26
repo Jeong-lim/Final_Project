@@ -70,12 +70,12 @@
 					</p>
 				</div>
 				<div class="profile_update">
-					<c:if test="${member.memberId == sessionScope.memberId }">
+					<c:if test="${member.memberId == sessionScope.memberId}">
 						<button class="updateBtn"
 							onclick="location.href='<c:url value="/mypage/update"/>'">회원정보수정</button>
 					</c:if>
 					
-					<c:if test="${followStatus == null }">
+					<c:if test="${followStatus == null || followStatus =='U' }">
 						<c:if test="${member.memberId != sessionScope.memberId }">
 							<button class="updateBtn" id="followBtn">팔로우</button>
 						</c:if>
@@ -162,8 +162,9 @@
 										 <img class="follower_img"  src="<spring:url value='/image/${follower.fileSavedName}'/>" /> 
 									</c:if>							
 								<label class="follower_id">${follower.memberId }</label></a>
-									
-										<button class="block">삭제</button></li>
+									<c:if test="${member.memberId == sessionScope.memberId}">
+										<button class="block" id="deleteBlock" value="${follower.memberId}" onclick="deleteBlock(this)" >삭제</button></li>
+									</c:if>
 							</c:forEach>
 						</c:if>
 						<c:if test="${empty followerList }">
@@ -205,7 +206,10 @@
 											 <img class="follower_img"  src="<spring:url value='/image/${follow.fileSavedName}'/>" /> 
 										</c:if>
 									<label class="follower_id">${follow.memberId }</label></a>
-										<button class="block">언팔로우</button></li>
+									
+									<c:if test="${member.memberId == sessionScope.memberId}">
+										<button class="block" id="unFollowBlock" value="${follow.memberId }" onclick="unFollowBlock(this)">언팔로우</button></li>
+									</c:if>
 								</c:forEach>
 							</c:if>
 							<c:if test="${empty followList }">
@@ -347,6 +351,38 @@
 			});
 		}
 	});
+	
+	function deleteBlock(e){
+		var deleteUserName=$('#deleteBlock').val();
+		console.log(deleteUserName);
+		$.ajax({
+			type:"POST",
+			url:'/deleteBlock?value='+deleteUserName,
+			success:function(result){
+				$(e).html("삭제됨");
+				$(e).prop("disabled",true);
+				console.log("성공");
+			}
+			
+		}); 
+		
+	}
+	
+	function unFollowBlock(e){
+		var unFollowName=$('#unFollowBlock').val();
+		console.log(unFollowName);
+		$.ajax({
+			type:"POST",
+			url:'/unFollowBlock?value='+unFollowName,
+			success:function(result){
+				$(e).html("팔로우");
+				$(e).prop("disabled",true);
+			}
+		});
+	}
+	
+	
+
 </script>
 
 <%@ include file="../common/footer.jsp"%>

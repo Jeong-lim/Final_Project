@@ -174,15 +174,9 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 	
 	<!-- 알림 리스트 -->
 	<select id="selectAlarms" parameterType="String" resultType="alarm">
-		select a.alarm_seq as alarmSeq
-				,f.follow_seq as followSeq
-				,a.alarm_from_id as alarmFromId
-				,a.alarm_to_id as alarmToId
-				,a.alarm_code as alarmCode
-				,f.follow_status as followStatus
-				,a.alarm_status as alarmStatus
-		from alarm a,(select follow_seq,to_id,from_id,follow_status from follow where to_id=#{sessionId})f
-		where a.alarm_from_id=f.from_id and a.alarm_to_id=f.to_id and a.alarm_status='Y'
+		select a.alarm_seq as alarmSeq, f.follow_seq as followSeq, a.alarm_from_id as alarmFromId, a.alarm_to_id alarmToId,a.alarm_code as alarmCode,f.follow_status followStatus,a.alarm_status as alarmStatus
+		from (select * from alarm where alarm_to_id=#{sessionId})a,follow f
+		where a.alarm_status='Y'
 	</select>
 	
 	<!-- 팔로워 리스트 -->
@@ -211,27 +205,42 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		where member_id like '%'||#{keyword}||'%'
 	</select>
 	
-	<!-- 팔로우 시퀀스 찾기 -->
-	<select id="searchFollowSeq" parameterType="map" resultType="String">
+	<!-- 팔로워 시퀀스 찾기 -->
+	<select id="searchFollowerSeq" parameterType="map" resultType="String">
 		select follow_seq
 		from follow
 		where to_id=#{sessionId} and from_id=#{memberId}
 	</select>
 	
-	<!-- 팔로우 허용 -->
-	<select id="acceptFollow" parameterType="String">
-		update follow set follow_status='Y'
-		where follow_seq=#{followSeq}
+	<!--팔로우 시퀀스 찾기  -->
+	<select id="searchFollowSeq" parameterType="map" resultType="String">
+		select follow_seq
+		from follow
+		where to_id=#{memberId} and from_id=#{sessionId}
 	</select>
+	<!-- 팔로우 허용 -->
+	<update id="acceptFollow" parameterType="String">
+		update follow set follow_status='Y',
+						follow_date=sysdate
+		where follow_seq=#{followSeq}
+	</update>
 	
 	<!-- 팔로우 거절 -->
-	<select id="rejectFollow" parameterType="String">
+	<delete id="rejectFollow" parameterType="String">
 		delete from follow where follow_seq=#{followSeq}
-	</select>
+	</delete>
 	
 	<!-- 알림 상태변경 -->
-	<select id="changeStatusN" parameterType="String">
+	<update id="changeStatusN" parameterType="String">
 		update alarm set alarm_status='N'
 		where alarm_seq=#{alarmSeq}
-	</select>
+	</update>
+	
+	<!-- 언팔로우하기(팔로우상태==U) -->
+	<update id="unFollow" parameterType="String">
+		update follow set follow_status='U',
+						unfollow_date=sysdate
+		where follow_seq=#{followSeq}
+	</update>
+	
 </mapper>

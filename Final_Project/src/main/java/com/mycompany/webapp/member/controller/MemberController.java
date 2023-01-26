@@ -196,9 +196,16 @@ public class MemberController {
 		System.out.println(memberId);
 		System.out.println(sessionId);
 		String alarmCode="f";
-		memberService.requestFollow(memberId, sessionId);
+		String followSeq=memberService.searchFollowSeq(memberId, sessionId);                                            
+		System.out.println(followSeq);
+		if(followSeq==null) {
+		memberService.requestFollow(memberId, sessionId); //팔로우 요청
 		System.out.println("팔로우신청완료");
-		memberService.insertAlarm(memberId, sessionId, alarmCode);
+		memberService.insertAlarm(memberId, sessionId, alarmCode); //알림 전송
+		}
+		else if(followSeq !=null) {
+			memberService.insertAlarm(memberId, sessionId, alarmCode); //알림 전송
+		}
 		System.out.println("알람전송");
 		return "followOk";
 	}
@@ -216,6 +223,7 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/follow/{sessionScope.memberId}")
 	public List<AlarmVo> selectAlarms(@PathVariable("sessionScope.memberId")String sessionId,Model model)throws Exception {
+		System.out.println(sessionId);
 		List<AlarmVo> alarmList=memberService.selectAlarms(sessionId);
 		return alarmList;
 		
@@ -225,7 +233,7 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/acceptFollow/{sessionScope.memberId}")
 	public String acceptFollow(@PathVariable("sessionScope.memberId")String sessionId,@RequestParam("value")String memberId)throws Exception {
-		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		String followSeq=memberService.searchFollowerSeq(memberId, sessionId);
 		memberService.acceptFollow(followSeq);
 		System.out.println("팔로우승낙완료");
 		return "승낙완료";
@@ -235,7 +243,7 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/rejectFollow/{sessionScope.memberId}")
 	public String rejectFollow(@PathVariable("sessionScope.memberId")String sessionId,@RequestParam("value")String memberId,@RequestParam("value2")String alarmSeq)throws Exception{
-		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		String followSeq=memberService.searchFollowerSeq(memberId, sessionId);
 		memberService.changeStatusN(alarmSeq);
 		System.out.println("알림상태변경완료");
 		memberService.rejectFollow(followSeq);
@@ -252,6 +260,31 @@ public class MemberController {
 		System.out.println("알림 삭제완료");
 		return "삭제완료";
 	}
+	
+	//팔로워삭제
+	@ResponseBody
+	@PostMapping("/deleteBlock")
+	public String deleteBlock(@RequestParam("value")String memberId,HttpSession session)throws Exception{
+		String sessionId = (String)session.getAttribute("memberId");
+		System.out.println(sessionId);
+		System.out.println(memberId);
+		String followSeq=memberService.searchFollowerSeq(memberId, sessionId);
+		System.out.println(followSeq);
+		memberService.rejectFollow(followSeq);
+		return "팔로워삭제완료";
+	}
+	
+	//언팔로우하기
+	@ResponseBody
+	@PostMapping("/unFollowBlock")
+	public String unFollowBlock(@RequestParam("value")String memberId,HttpSession session)throws Exception{
+		String sessionId=(String)session.getAttribute("memberId");
+		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		System.out.println(followSeq);
+		memberService.unFollow(followSeq);
+		return "언팔로우완료";
+	}
+	
 	
 	
 	
