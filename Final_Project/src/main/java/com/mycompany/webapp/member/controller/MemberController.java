@@ -156,11 +156,9 @@ public class MemberController {
 	@RequestMapping(value="/mypage/{memberId}")
 	public String memberPage(HttpServletRequest request,@PathVariable("memberId")String memberId,Model model)throws Exception {
 		logger.info("실행");
-		logger.info(memberId);
 		
 		MemberVo member=memberService.selectMemberInfo(memberId);
 		model.addAttribute("member",member);
-		
 		List<MemberVo> userList=memberService.userTravelList(memberId);
 		int travelCount=memberService.userTravelCount(memberId);
 		
@@ -168,13 +166,10 @@ public class MemberController {
 		model.addAttribute("followingNum",memberService.countFollowing(memberId));
 		model.addAttribute("travelCount",travelCount);
 		model.addAttribute("userList",userList);
-		logger.info(memberId);
 		HttpSession session=request.getSession();
 		String sessionId=(String)session.getAttribute("memberId");
-		logger.info(sessionId);
 		//팔로우상태 체크 
 		String status=memberService.checkFollowStatus(memberId, sessionId);
-		logger.info(status);
 		model.addAttribute("followStatus",status);
 		
 		List<MemberVo> followerList=memberService.selectFollowerList(memberId);

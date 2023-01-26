@@ -107,7 +107,7 @@ $('document').ready(
 							if(result[i].alarmCode=='f'){
 								
 								var str='';
-									if(result[i].followStatus=='N' || result[i].followStatus=='U'){
+									if(result[i].followStatus=='N' ){
 										str+='<div class="follow__wrapper" id='+i+'>';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
@@ -122,6 +122,15 @@ $('document').ready(
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
 										str+='<button class="follow_status" disabled="disabled">수락됨</button>';
+										str+='<img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" value='+i+' onclick="closeAlarm(this)" />';
+										str+='</div></div>'; 
+									}
+									if(result[i].followStatus=='U'){
+										str+='<div class="follow__wrapper" id='+i+'>';
+										str+='<input type="hidden" id='+i+' value='+result[i].alarmSeq+'>';
+										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
+										str+='<div class="follow_button__">';
+										str+='<button class="follow_status" disabled="disabled">취소됨</button>';
 										str+='<img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" value='+i+' onclick="closeAlarm(this)" />';
 										str+='</div></div>'; 
 									}
@@ -157,7 +166,7 @@ function follow_accept(e){
 		url:'/acceptFollow/${sessionScope.memberId}?value='+memberId,
 		success:function(result){
 			console.log("승낙완료");
-			$(e).html("승낙됨");
+			$(e).html("수락됨");
 			
 		}
 	})
