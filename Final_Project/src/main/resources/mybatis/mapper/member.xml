@@ -104,6 +104,8 @@
       <result column="VIEW_CNT" property="viewCount"/>
       <result column="SHARE_CNT" property="shareCount"/>
       <result column="DETAIL_CD_NAME" property="categoryName"/>
+      <result column="WRITER" property="writer"/>
+      <result column="TRAVEL_ID" property="travelId"/>
     </resultMap> 
 	
 	
@@ -112,7 +114,7 @@
 		SELECT B.*, Dc.Detail_Cd_Name FROM
   (SELECT A.* 
      FROM
-        (SELECT ROW_NUMBER() OVER(PARTITION BY Trv.Travel_Id ORDER BY Trvde.Travel_Date) AS rn, TRV.TRAVEL_TITLE,TRVDE.Place_Id, TRV.TRAVEL_START, TRV.TRAVEL_END, TRV.VIEW_CNT,
+        (SELECT ROW_NUMBER() OVER(PARTITION BY Trv.Travel_Id ORDER BY Trvde.Travel_Date) AS rn, TRV.TRAVEL_TITLE,TRV.WRITER, TRV.TRAVEL_ID,TRVDE.Place_Id, TRV.TRAVEL_START, TRV.TRAVEL_END, TRV.VIEW_CNT,
            TRV.SHARE_CNT
            FROM Travel TRV, TRAVEL_DETAIL TRVDE
           WHERE  TRV.TRAVEL_ID = Trvde.Travel_Id

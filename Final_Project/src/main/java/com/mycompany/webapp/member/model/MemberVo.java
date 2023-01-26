@@ -15,6 +15,9 @@ public class MemberVo {
 	private String fileSavedName;
 	private String status;
 	
+	private String writer;
+	private String travelId;
+	
 	
 	public String getMemberId() {
 		return memberId;
@@ -103,6 +106,18 @@ public class MemberVo {
 				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
 				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + ", fileSavedName=" + fileSavedName
 				+ ", status=" + status + "]";
+	}
+	public String getTravelId() {
+		return travelId;
+	}
+	public void setTravelId(String travelId) {
+		this.travelId = travelId;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

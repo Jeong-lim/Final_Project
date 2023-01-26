@@ -10,6 +10,22 @@
 	margin: auto;
 }
 
+.openBtnFollower:hover {
+	cursor: pointer;
+}
+
+.openBtnFollowing:hover {
+	cursor:pointer;
+}
+
+.closeBtnFollower:hover {
+	cursor: pointer;
+}
+
+.closeBtnFollowing:hover {
+	cursor: pointer;
+}
+
 
 .mypage_title {
 	text-align: center;

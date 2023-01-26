@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +21,23 @@
 <div class="outer">
 	<div class="inner">
 		<div class="top_title">
-			<label class="top_tit">3박4일 서울여행</label>
-			<label class="top_date">2022.2.14 - 2022.2.16</label>
-			<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+			<label class="top_tit">${travelTitle}</label>
+			<label class="top_date">${startDate} - ${endDate}</label>
+			<c:if test="${follow eq 'Y' }">
+				<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+			</c:if>
+		
+			<c:if test="${writer == sessionScope.memberId }">
 			<button class="update_btn" onclick="location.href='<c:url value="/travel/insert"/>'">수정</button><hr class="uk-divider-vertical"><button id="delete_btn" class="delete_btn" >삭제</button>
+			</c:if>
+		
 		</div>
 		<div class="profile">
-			<img class="profile__img" src="${pageContext.request.contextPath}/resources/images/user.png" onclick="location.href='<c:url value="/mypage"/>'">
-			<label class="profile_label" onclick="location.href='<c:url value="/mypage"/>'" >cncnrkdud99</label><label class="view-info">스크랩 &nbsp; 8</label><label class="view-info">조회 수&nbsp; 15</label>
+			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/mypage"/>'">
+			<label class="profile_label" onclick="location.href='<c:url value="/mypage"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
 		</div>
-
+		
+		<c:if test="${follow eq 'Y' or writer == sessionScope.memberId }">
 		<div class="menu">
 			<div class="items">
 				<input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked>
@@ -49,66 +56,43 @@
 		
 		<div class="contentdiv">
 			<div class="schedule" id="schedule">
-			
+				
+				
+			 <c:forEach var="detailList" items="${detailList}" varStatus="status">
 				<div class="days">
 					<div class="content_title">
-						<label class="day">Day 1</label>
-						<label class="date">- 2022.2.14</label>
+						<label class="day">Day ${status.count}</label>
+						<label class="date">- ${detailList.travelDate}</label>
 					</div>
-					<div class="content">
-						<span class="content_num">1</span>
-						<span class="place">남산타워</span>
-					</div>
-					<div class="content">
-						<span class="content_num">2</span>
-						<span class="place">국립 중앙 박물관</span>
-					</div>
+					
+					<c:set var="num1" value="${detailList.travelDate}"></c:set>
+					
+					
+						<c:forEach var="detailTravel" items="${detailTravel}" varStatus="statusNm">
+						<c:set var="num2" value="${detailTravel.travelDate }"></c:set>
+						<c:if test="${num1 eq num2 }">
+						<div class="content">
+							<span class="content_num">${detailTravel.NUM}</span>
+							<span class="place">${detailTravel.placeName}</span>
+						</div>
+						
+						</c:if>
+						
+						</c:forEach>
+						
+					
+					
+					
 					<div class="memo">
-						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">남산타워에서 자물쇠 걸기💑</label>
+						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">${detailList.travelMemo}</label>
 					</div>
 				</div>	
-					
-					
-				<div class="days">	
-					<div class="content_title">
-						<label class="day">Day 2</label>
-						<label class="date">- 2022.2.15</label>
-					</div>
-					<div class="content">
-						<span class="content_num">1</span>
-						<span class="place">북촌 한옥마을</span>
-					</div>
-					<div class="content">
-						<span class="content_num">2</span>
-						<span class="place">경복궁</span>
-					</div>
-					<div class="memo">
-						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">경복궁에서 한복 빌리기🎀</label>
-					</div>
-				</div>	
-					
-					
-				<div class="days">	
-					<div class="content_title">
-						<label class="day">Day 3</label>
-						<label class="date">- 2022.2.16</label>
-					</div>
-					<div class="content">
-						<span class="content_num">1</span>
-						<span class="place">청계천</span>
-					</div>
-					<div class="content">
-						<span class="content_num">2</span>
-						<span class="place">광화문</span>
-					</div>
-					<div class="memo">
-						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">광화문에서 태극기 들고 있기🙌🙌🙌🙌</label>
-					</div>
+				
+			</c:forEach>
+				
 				</div>
-				
-				
-			</div>
-			</div>
+			</div>		
+			
 			<div class="weather" id="weather">
 				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> 
 				<select name="gugun1" id="gugun1" class="gugun1"></select></div>
@@ -156,8 +140,15 @@
 				    </div>
 				</div>
 			</div>
+			
+			</c:if>
+			
+			<c:if test="${follow eq 'N' }">
+				<div>팔로우한 유저만 볼 수 있는 페이지 입니다.</div>
+			</c:if>
 		
 	</div>
+	
 
 
 <div class="modal" tabindex="-1">

@@ -66,7 +66,7 @@
 						<p>${member.phoneNumber}</p>
 					</c:if>
 					<p>
-						게시글 수 ${travelCount} <label class="openBtnFollower">팔로워 ${followerNum}</label ><label class="openBtnFollowing">팔로우  ${followingNum}</label>
+						게시글 수 ${travelCount} <label class="openBtnFollower"> 팔로워 ${followerNum}</label ><label class="openBtnFollowing"> 팔로우  ${followingNum}</label>
 					</p>
 				</div>
 				<div class="profile_update">
@@ -97,9 +97,10 @@
 				<fmt:formatDate value="${date_date}" pattern="yyyy/MM/dd" var="start_date"/>
 				<fmt:parseDate var="date_date2" value="${ travel.travelEnd }" pattern="yyyy-MM-dd" />
 				<fmt:formatDate value="${date_date2}" pattern="dd" var="end_date"/>
-				<a href='<c:url value="/travel/detail"/>'>
+				<a href='<c:url value="/travel/${travel.travelId}/${travel.writer}"/>'>
 					<div class="card">
 						<p class="travel_tit">${ travel.travelTitle }</p>
+						
 						
 						<p class="start_date_mypage">${ start_date } ~ ${ end_date }</p>		
 						
