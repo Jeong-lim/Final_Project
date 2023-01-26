@@ -248,6 +248,73 @@
 		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')
 	</insert>
 	
+	
+	<resultMap type="com.mycompany.webapp.travel.model.TravelVo" id="selectTravel">
+      <result column="TRAVEL_ID" property="travelId"/>
+      <result column="TRAVEL_TITLE" property="travelTitle"/>
+      <result column="TRAVEL_START" property="travelStart"/>
+      <result column="TRAVEL_END" property="travelEnd"/>
+      <result column="VIEW_CNT" property="viewCnt"/>
+      <result column="SHARE_CNT" property="shareCnt"/>
+      <result column="WRITER" property="writer"/>
+      <result column="WRITE_DATE" property="writeDate"/>
+    </resultMap> 
+	
+	<!-- 유저 선택할 수 있는 쿼리문 -->
+	<select id="selectTravel" parameterType="string" resultMap="selectTravel">
+		SELECT
+         TRAVEL_ID
+        , TRAVEL_TITLE
+        , TRAVEL_START
+        , TRAVEL_END
+        , VIEW_CNT
+        , SHARE_CNT
+        , WRITER
+        , WRITE_DATE
+      FROM
+         TRAVEL
+      WHERE
+           TRAVEL_ID=#{travelId} AND WRITER=#{memberId} AND TRAVEL_STATUS='Y'
+	</select>
+	
+	
+	<!-- travel detail 날짜에 따른 장소 불러오는 SQL -->
+	<resultMap type="HashMap" id="selectTravelDetail">
+      <result column="TRAVEL_DATE" property="travelDate"/>
+      <result column="MEMO" property="travelMemo"/>
+    </resultMap> 
+	
+	<!-- 유저 선택할 수 있는 쿼리문 -->
+	<select id="selectTravelDetail" parameterType="string" resultMap="selectTravelDetail">
+		SELECT DISTINCT
+		    TRAVEL_DATE
+		  , MEMO
+	    FROM
+	        TRAVEL_DETAIL
+        WHERE TRAVEL_ID=#{travelId} AND TRAVEL_DETAIL_STATUS='Y' 
+        ORDER BY TRAVEL_DATE ASC
+	</select>
+	
+	<resultMap type="HashMap" id="selectTravelPlace">
+      <result column="TRAVEL_DATE" property="travelDate"/>
+      <result column="PLACE_NAME" property="placeName"/>
+    </resultMap> 
+	
+	<select id="selectTravelPlace" parameterType="string" resultMap="selectTravelPlace">
+		SELECT 
+			ROW_NUMBER() OVER (PARTITION BY T.TRAVEL_DATE
+	        ORDER BY T.TRAVEL_DATE) AS NUM
+		  , T.TRAVEL_DATE
+		  , P.PLACE_NAME
+	    FROM
+	        TRAVEL_DETAIL T
+	      , PLACE P
+        WHERE T.TRAVEL_ID=#{travelId}
+        AND T.PLACE_ID = P.PLACE_ID
+        AND TRAVEL_DETAIL_STATUS='Y'
+	</select>
+	
+	
 
 
 
