@@ -53,8 +53,8 @@
 			</div>	
 
 			<%-- <button class="save"
-				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button> --%>
-				<button type="submit" class="save">확인</button>
+				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>  onClick="submitForm()"--%>
+				<button class="save">확인</button>
 				
 		
 				
@@ -137,7 +137,7 @@
 					</div>
 					<textarea class="memo_textarea" rows="10" cols="50"
 						spellcheck="false"></textarea>
-					<button type="button" class="memo_btn" id="modal_close2">확인</button>
+					<button type="button" class="memo_btn" id="modal_close2" onClick="closeModal2()">확인</button>
 
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 
 
 
-	<%@ include file="../common/footer.jsp"%>
+<%@ include file="../common/footer.jsp"%>
 </body>
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"
 	type="text/javascript"></script>
@@ -208,154 +208,7 @@ $('document').ready(function() {
 
 	});
 	
-
-</script>
-<script>
-var travelStart;
-var travelEnd;
-$(function() {
-	   $(function() {
-	      
-	        $('input[name="daterange"]').daterangepicker({
-	          opens: 'left'
-	       
-	        }, function(start, end, label) {
-	        	$('.content_wrap').empty();
-	          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-	          const getDateDiff = (start, end) => {
-	               const date1 = new Date(start);
-	               const date2 = new Date(end);
-	               const datearr=new Array();
-               
-	               const diffDate = date1.getTime() - date2.getTime();
-	               const days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
-	      			
-	               //console.log(days); //일 수
-	               //console.log(date1); //Date 형식으로
-	               const date=end.format('YYYY-MM-DD');
-	               travelStart=start.format('YYYY-MM-DD');
-	               travelEnd=end.format('YYYY-MM-DD');
-	            
-	               //console.log(date); //문자열식으로 가능
-	               //document.querySelector(".dayseq1").append(days);
-	               //document.querySelector(".firstdate").append(date);
-	               
-	                //date2.setDate(date.getDate())
-           
-	                 
-	           	for(var j=days; j>0; j--){
-	           			
-	           			date22=date2.toISOString().substring(0,10);
-	           			
-	                    $(".uk-divider-icon").after('<div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date" value="'+date22+'"></label><button type="button" class="modal_btn2" name="modal_btn2"><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div>'   );
-	                    const dayseqs=j;
-	                    const placemodal='placemodal'+j;
-	                    const memomodal='memomodal'+j;
-	                    
-	                    document.querySelector(".dayseq").id=dayseqs;
-	                    document.querySelector(".dayseq").append(j);
-	                    document.querySelector(".modal_btn").id=placemodal;
-	                    document.querySelector(".modal_btn2").id=memomodal;
-	                    
-	                   	
-	              
-	                    
-	                    document.querySelector(".date").append(date22);
-	                    date2.setDate(date2.getDate()-1);
-	                    datearr.push(date22);
-	                    
-	                    
-	                    console.log(date22);
-	                    //console.log(date2.toISOString().substring(0,10));
-	                  
-	                  
-	        		}
-       
-	             }
-	          
-	   
-	             getDateDiff(start, end);
-	        });
-	        
-	       
-	        
-	        
-	        
-	      });
-	   
-	   
-	   
-
-	   
-	     
-	   
-	    
-	});
 	
-	
-	
- $(function () {
-	
-    $(document).on("click", "button[class='save']", function () {
-        console.log("날짜 전송");
-        var travelStart1=travelStart.toString();
-        var travelEnd1=travelEnd.toString();
-        var travelPrivacy= $('.open_radio:checked').val();
-        var travelTitle= $('.title_input').val();
-        
-        console.log(travelPrivacy);
-        console.log(travelTitle);
-        
-      //비동기 요청을 함
-        $.ajax({
-           url:"/travel/insert1?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy,
-           method: "POST",
-           success:function(result){
-        	   console.log("성공");
-           }
-           
-        });
-       /*  request.done(function(data){
-           console.log(travelStart1);
-           console.log(travelEnd1);
-          }); */
-         /*  request.fail(function( jqXHR, textStatus ) {
-              alert( "Request failed: " + textStatus );
-          });
-          request.always(function() {
-              console.log('완료');
-             
-          }); */
-      	
-
-     });
-}); 
-    
-/*     
-//비동기 요청을 함
-  var request=$.ajax({
-     url:"/travel/insert/test",
-     method: "POST",
-     data:{
-    	 travelStart: travelStart,
-    	 travelEnd: travelEnd
-    	 }
-     
-  });
-  request.done(function(data){
-     console.log(travelStart);
-     console.log(travelEnd);
-    });
-    request.fail(function( jqXHR, textStatus ) {
-        alert( "Request failed: " + textStatus );
-    });
-    request.always(function() {
-        console.log('완료');
-       
-    });
-	 */
-
-
 
 window.onload = function() {
 	var btnClear = document.querySelector('#title_input_img');
@@ -405,8 +258,7 @@ window.onload = function() {
  
 };
 
-</script>
-<script type="text/javascript">
+
    
    
    $(function () {
@@ -442,24 +294,169 @@ window.onload = function() {
   
        
       });
- 
+	
 </script>
-
-
 <script>
-	var id;
-	var value;
-	var arr= new Array();
+var travelStart;
+var travelEnd;
+var datearr=new Array();
+var days;
+var id; //일정 추가버튼 아이디
+var id2; //메모버튼 아이디
+var value;
+var arr= new Array();
+var alldata=[];
+var placearr=[];
+var memodata=[];
+var travelmemo;
+
+$(function() {
+	   $(function() {
+	      
+	        $('input[name="daterange"]').daterangepicker({
+	          opens: 'left'
+	       
+	        }, function(start, end, label) {
+	        	$('.content_wrap').empty();
+	          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+	          const getDateDiff = (start, end) => {
+	               const date1 = new Date(start);
+	               const date2 = new Date(end);
+	               const datearr=new Array();
+               
+	               const diffDate = date1.getTime() - date2.getTime();
+	               days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
+	      			
+	               //console.log(days); //일 수
+	               //console.log(date1); //Date 형식으로
+	               const date=end.format('YYYY-MM-DD');
+	               travelStart=start.format('YYYY-MM-DD');
+	               travelEnd=end.format('YYYY-MM-DD');
+	            
+	               //console.log(date); //문자열식으로 가능
+	               //document.querySelector(".dayseq1").append(days);
+	               //document.querySelector(".firstdate").append(date);
+	               
+	                //date2.setDate(date.getDate())
+           
+	                 
+	           	for(var j=days; j>0; j--){
+	           			
+	           			date22=date2.toISOString().substring(0,10);
+	           			
+	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
+	                    const dayseqs=j;
+	                    const placemodal='placemodal'+j;
+	                    const memomodal='memo'+j;
+	                    const formid='form'+j;
+	                    
+	                    document.querySelector(".dayseq").id=dayseqs;
+	                    document.querySelector(".date").id='traveldate'+dayseqs;
+	                    document.querySelector(".dayseq").append(j);
+	                    document.querySelector(".modal_btn").id=placemodal;
+	                    document.querySelector(".modal_btn2").id=memomodal;
+	                    document.querySelector(".insertform").id=formid;
+	                    $('input[name=travelDate]').attr('value',date22);
+	                    //$('input[name=memo]').attr('class',memomodal);
+	            
+	                    
+	                    document.querySelector(".date").append(date22);
+	                    date2.setDate(date2.getDate()-1);
+	                    datearr.push(date22);
+	                    
+	                    
+	                    console.log(date22);
+	                    //console.log(date2.toISOString().substring(0,10));
+	                  
+	                  
+	        		}
+       
+	             }
+	          
+	   
+	             getDateDiff(start, end);
+	        });
+	        
+	        
+	        
+	      });
+	   
+	    
+	    
+	});
+	
+	
+	
+ $(function () {
+	
+    $(document).on("click", "button[class='save']", function () {
+        console.log("날짜 전송");
+        var travelStart1=travelStart.toString();
+        var travelEnd1=travelEnd.toString();
+        var travelPrivacy= $('.open_radio:checked').val();
+        var travelTitle= $('.title_input').val();
+        
+        console.log(travelPrivacy);
+        console.log(travelTitle);
+        console.log(id);
+        
+      //비동기 요청을 함
+        $.ajax({
+           url:"/travel/insertTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy,
+           method: "POST",
+           success:function(result){
+        	   console.log("travel전송");
+
+        		console.log(days);
+       	 	for(var k=1; k<=days; k++){
+       			 console.log(k);
+       			 $('#form'+k).submit();
+       		 }
+       	 	console.log("detail전송");
+       	 	
+       	 	
+       	 	ajax
+       	 	success:{
+       	 		
+       	 	}
+       	 	//location.replace
+       	 	
+       		
+           }
+           
+        });
+      
+      
+     		
+
+
+     });
+}); 
+ 
+ 	
+   
+
+
+
+	
 	function openModal(clicked_id){
 	//console.log(clicked_id);
 	id=clicked_id;
 	document.querySelectorAll(".checkbox").forEach(function(v, i) {
-	v.checked = false;
-		}); 
-	arr=[];
-	
-     
+		v.checked = false;
+			}); 
+		arr=[];
+ 
 	}
+	
+	
+	function openModal2(clicked_id){
+		//console.log(clicked_id);
+		id2=clicked_id;;
+		$('.memo_textarea').val('');
+	 
+		}
+	
 	function boxChecked(checked_value){
 		value=checked_value;
 		console.log(value);
@@ -468,27 +465,41 @@ window.onload = function() {
 
   	  
 	function closeModal() {
-    console.log("클릭됨22");
+    console.log("장소닫기");
     console.log(id);
     //console.log(arr[0]);
     	for(var i=0; i<arr.length; i++){
-    		var placename="";
+    		var selectedplacename="";
     		var num=i+1;
-    		
-    		placename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><input type="text" class="schedule" value="'+arr[i]+'" readonly></div></div>';
-    		document.getElementById(id).insertAdjacentHTML("beforeBegin",placename);
-    		
+    		console.log
+    		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
+    		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
+    		placearr.push(arr[i]);
+    		console.log(arr[i]);
+	
     	} 
-    	//document.getElementByName("checkbox").checked = false;
-    	
+    	//alldata={"travelDate":id, "placeName":placearr};
+	
     	
   	 $(".modal_wrap").hide();
   	 $(".black_bg").hide();
- 
-  
-  	 
+ 	 
    
  	}
+	
+	function closeModal2() {
+	    console.log("메모닫기");
+	    
+	    travelmemo= $('.memo_textarea').val();
+	    console.log(id2);
+	    $("input[name=memo]").attr('value',travelmemo);
+	    		
+	    	
+	  	 $(".modal_wrap").hide();
+	  	 $(".black_bg").hide();
+	 	 
+	   
+	 	}
 
 
 $(function(){

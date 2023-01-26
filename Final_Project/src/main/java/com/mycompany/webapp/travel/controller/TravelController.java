@@ -1,5 +1,6 @@
 package com.mycompany.webapp.travel.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,26 +44,67 @@ public class TravelController {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/travel/insert1")
+	@PostMapping(value = "/travel/insertTravel")
 	public String insertTravel(Model model, HttpSession session,
 			@RequestParam(value = "value", required = false) String travelStart,
 			@RequestParam(value = "value2", required = false) String travelEnd,
 			@RequestParam(value = "value3", required = false) String travelTitle,
 			@RequestParam(value = "value4", required = false) char travelPrivacy) {
 
-		String memberId = (String) session.getAttribute("memberId");
-		logger.info(memberId);
-		if (memberId != null && !memberId.equals("")) {
+			String memberId = (String) session.getAttribute("memberId");
+			/*logger.info(memberId);
 
 			System.out.println(travelTitle);
 			System.out.println(travelPrivacy);
 			System.out.println(travelStart);
 			System.out.println(travelEnd);
-			System.out.println(memberId);
+			System.out.println(memberId)*/;
 			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
-			System.out.println("왜입력안댐???");
-			//https://conanglog.tistory.com/120
+			//<input type="hidden" name="travelDate" value="">
+			//$('input[name=travelDate]').attr('value',date22);
+
 			return "travel/traveldetail";
+
+	}
+	
+	
+	@RequestMapping(value="/travel/insertTravelDetail", method=RequestMethod.POST)
+	public String insertTravel(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
+			
+			System.out.println("--------------------");
+			String travelDate=request.getParameter("travelDate");
+			String memo=request.getParameter("memo");
+			
+			System.out.println(Arrays.toString(placeName));
+			System.out.println(travelDate);
+			System.out.println(memo);
+
+			
+		for (int i = 0; i < placeName.length; i++) {
+			System.out.println(placeName[i]);
+			String placeName1=placeName[i];
+			TravelVo travelvo=travelService.findLastTravelId(placeName1);
+			String travelId=travelvo.getTravelId();
+			String placeId=travelvo.getPlaceId();
+			System.out.println(travelId);
+			System.out.println(placeId);
+			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
+		}
+
+			return "travel/traveldetail";
+
+	}
+
+	@RequestMapping("/travel/insert")
+	public String travelInsert(Model model, HttpSession session) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info(memberId);
+		if (memberId != null && !memberId.equals("")) {
+
+			List<PlaceVo> placeList = travelService.selectPlaceList();
+			model.addAttribute("placeList", placeList);
+			return "travel/travelinsert";
 
 		} else {
 			// userid가 세션에 없을 때 (로그인하지 않았을 때)
@@ -70,41 +112,7 @@ public class TravelController {
 			return "auth/signin";
 
 		}
-
-	}
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @PostMapping(value = "/travel/insert/test") public String
-	 * insertTest(@ModelAttribute TravelVo model, HttpSession session, Model model3,
-	 * 
-	 * @ModelAttribute TravelVo model2, @RequestParam(value = "value", required =
-	 * false) String travelStart,
-	 * 
-	 * @RequestParam(value = "value2", required = false) String travelEnd) {
-	 * 
-	 * String memberId = (String) session.getAttribute("memberId");
-	 * logger.info(memberId); if (memberId != null && !memberId.equals("")) { String
-	 * travelTitle = model.getTravelTitle(); char travelPrivacy =
-	 * model2.getTravelPrivacy(); logger.info(travelTitle);
-	 * System.out.println(travelPrivacy); System.out.println(travelStart);
-	 * System.out.println(travelEnd); // TravelService.insertTravel(traveltitle);
-	 * return "ok";
-	 * 
-	 * } else { // userid가 세션에 없을 때 (로그인하지 않았을 때) model3.addAttribute("message",
-	 * "로그인이 필요합니다."); return "auth/signin";
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
-
-	@RequestMapping("/travel/insert")
-	public String travelInsert(Model model) {
-		List<PlaceVo> placeList = travelService.selectPlaceList();
-		model.addAttribute("placeList", placeList);
-		return "travel/travelinsert";
+		
 	}
 
 	// 여행 입력 페이지의 관광지 선택 모달 검색

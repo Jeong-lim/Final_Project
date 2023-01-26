@@ -233,6 +233,21 @@
 		values('TRV' || LPAD(TRAVEL_SEQ.nextval, 5, 0), #{travelTitle}, #{travelStart}, #{travelEnd}, #{travelPrivacy}, 'Y', 
 		0, 0, #{memberId}, to_date(sysdate,'yyyy-mm-dd'), 1, 'Y')
 	</insert>
+	
+	<select id="findLastTravelId" parameterType="String" resultType="travel">		
+		select t.travel_id as travelId, p.place_id as placeId
+		from travel t, place p
+		where p.place_name like '%'||#{placeName1}||'%' and rownum=1
+		group by t.travel_id, p.place_id
+		order by travel_id desc
+	</select>
+	
+	
+	<insert id="insertTravelDetail" parameterType="map">
+		insert into travel_detail (travel_id, travel_detail_id, travel_date, place_id, memo, travel_detail_status)
+		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')
+	</insert>
+	
 
 
 

@@ -1,5 +1,6 @@
 package com.mycompany.webapp.travel.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,6 +70,21 @@ public class TravelService {
 	public int insertTravel(String memberId, String travelTitle, char travelPrivacy, String travelStart, String travelEnd) {
 		return travelDao.insertTravel(memberId, travelTitle, travelPrivacy,travelStart,travelEnd);
 		
+	}
+
+	public int insertTravelDetail(String travelId, String travelDate, String placeId, String memo ) {
+		Map<String, String> map = new HashMap<>();
+		map.put("travelDate", travelDate);
+		map.put("placeId", placeId);
+		map.put("memo", memo);
+		map.put("travelId", travelId);
+		System.out.println("service:"+travelId);
+		return travelDao.insertTravelDetail(map);
+		
+	}
+
+	public TravelVo findLastTravelId(String placeName1) {
+		return travelDao.findLastTravelId(placeName1);
 	}
 
 	
