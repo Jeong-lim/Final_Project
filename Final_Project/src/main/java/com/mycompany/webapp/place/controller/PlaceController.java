@@ -39,6 +39,7 @@ public class PlaceController {
 		int endRowNo=pager.getEndRowNo();
 		int startRowNo=pager.getStartRowNo();
 		List<PlaceVo> placeList=placeService.selectPlaceList(category, endRowNo, startRowNo);
+		System.out.println(placeList);
 		model.addAttribute("pager",pager);
 		model.addAttribute("placeList",placeList);
 		model.addAttribute("category", category);

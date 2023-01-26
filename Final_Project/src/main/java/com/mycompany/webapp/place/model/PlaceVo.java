@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PlaceVo {
-	private String placeId;
-	private String placeName;
-	private String areaName;
-	private String category;
-	private String fileNo;
-	private String fileSavedName;
-	private String placeDetail;
+	private String placeId; //장소아이디
+	private String placeName; //장소이름
+	private String areaName; //지역이름
+	private String category; //카테고리
+	private String fileNo; //관광지 사진 번호
+	private String fileSavedName; //관광지 사진파일이름
+	private String placeDetail; //장소설명
 	
 	
 	
