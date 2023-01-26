@@ -39,6 +39,10 @@ public interface TravelDao {
 
 	public int insertTravel(@Param("memberId")String memberId, @Param("travelTitle")String travelTitle, @Param("travelPrivacy")char travelPrivacy, @Param("travelStart")String travelStart, @Param("travelEnd")String travelEnd);
 
+	public int insertTravelDetail(Map<String,String> map);
+
+	public TravelVo findLastTravelId(@Param("placeName1")String placeName1);
+
 	
 	
 
