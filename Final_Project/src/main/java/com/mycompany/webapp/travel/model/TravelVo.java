@@ -9,7 +9,7 @@ public class TravelVo {
 	private String travelTitle;
 	private String travelStart;
 	private String travelEnd;
-	private char travelPrivacy;
+	private String travelPrivacy;
 	private char free;
 	private int viewCnt;
 	private int shareCnt;
@@ -59,10 +59,10 @@ public class TravelVo {
 	public void setTravelEnd(String travelEnd) {
 		this.travelEnd = travelEnd;
 	}
-	public char getTravelPrivacy() {
+	public String getTravelPrivacy() {
 		return travelPrivacy;
 	}
-	public void setTravelPrivacy(char travelPrivacy) {
+	public void setTravelPrivacy(String travelPrivacy) {
 		this.travelPrivacy = travelPrivacy;
 	}
 	public char getFree() {

@@ -23,7 +23,7 @@
 		<div class="top_title">
 			<label class="top_tit">${travelTitle}</label>
 			<label class="top_date">${startDate} - ${endDate}</label>
-			<c:if test="${follow eq 'Y' }">
+			<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' }">
 				<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
 			</c:if>
 		
@@ -37,7 +37,7 @@
 			<label class="profile_label" onclick="location.href='<c:url value="/mypage"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
 		</div>
 		
-		<c:if test="${follow eq 'Y' or writer == sessionScope.memberId }">
+		<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' or writer == sessionScope.memberId }"> <!-- 팔로우 or 전체공개 보여주기 일 때  -->
 		<div class="menu">
 			<div class="items">
 				<input type="radio" id="radio1" class="radiobtn" name="radio1" value="schedule" checked>
@@ -143,8 +143,12 @@
 			
 			</c:if>
 			
-			<c:if test="${follow eq 'N' }">
+			<c:if test="${travelPrivacy eq 'f' and follow eq 'U' }">
 				<div>팔로우한 유저만 볼 수 있는 페이지 입니다.</div>
+			</c:if>
+			
+			<c:if test="${travelPrivacy eq 'p' and writer != sessionScope.memberId }">
+				<div>글쓴이만 볼 수 있는 페이지 입니다.</div>
 			</c:if>
 		
 	</div>

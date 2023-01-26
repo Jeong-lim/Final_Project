@@ -48,20 +48,21 @@ public class TravelController {
 	private MemberService memberService;
 
 	@RequestMapping("/travel/{travelId}/{memberId}")
-	public String travelDetail(@PathVariable("travelId") String travelId,
-			@PathVariable("memberId") String memberId, Model model, HttpServletRequest request ) {
+	public String travelDetail(@PathVariable("travelId") String travelId, @PathVariable("memberId") String memberId,
+			Model model, HttpServletRequest request) {
 		TravelVo travel = travelService.selectTravel(memberId, travelId);
-		
-		
-		HttpSession session=request.getSession();
-		String sessionId=(String)session.getAttribute("memberId");
-		
-		if(sessionId != null) {
-			
-			//팔로우상태 체크 
-			String status=memberService.checkFollowStatus(memberId, sessionId);
-			model.addAttribute("follow",status);
-			
+
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("memberId");
+
+		String privacy = travel.getTravelPrivacy();
+		if (sessionId != null) { // 로그인이 된 상태인지 확인하기
+
+			// 팔로우상태 체크
+			String status = memberService.checkFollowStatus(memberId, sessionId);
+			model.addAttribute("follow", status);
+			logger.info(status);
+
 			if (travel != null) {
 				model.addAttribute("travelTitle", travel.getTravelTitle());
 				model.addAttribute("startDate", travel.getTravelStart());
@@ -69,6 +70,7 @@ public class TravelController {
 				model.addAttribute("writer", travel.getWriter());
 				model.addAttribute("viewCnt", travel.getViewCnt());
 				model.addAttribute("shareCnt", travel.getShareCnt());
+				model.addAttribute("travelPrivacy", travel.getTravelPrivacy());
 
 				FileVo fileVo = fileService.selectUserImage(memberId);
 				if (fileVo != null) {
@@ -83,18 +85,17 @@ public class TravelController {
 				model.addAttribute("detailList", detailList);
 				model.addAttribute("detailTravel", detailTravel);
 
-
 				model.addAttribute("detailList", detailList);
 
-			} else {
-				logger.info("travel 비어있음");
 			}
+
 		} else {
 			model.addAttribute("message", "회원만 게시글을 열람할 수 있습니다.");
 			return "auth/signin";
 		}
 
 		return "travel/traveldetail";
+
 	}
 	@ResponseBody
 	@PostMapping(value = "/travel/insertTravel")

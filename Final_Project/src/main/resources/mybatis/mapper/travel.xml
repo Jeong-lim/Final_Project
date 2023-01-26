@@ -258,6 +258,7 @@
       <result column="SHARE_CNT" property="shareCnt"/>
       <result column="WRITER" property="writer"/>
       <result column="WRITE_DATE" property="writeDate"/>
+      <result column="TRAVEL_PRIVACY" property="travelPrivacy"/>
     </resultMap> 
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
@@ -271,6 +272,7 @@
         , SHARE_CNT
         , WRITER
         , WRITE_DATE
+        , TRAVEL_PRIVACY
       FROM
          TRAVEL
       WHERE
