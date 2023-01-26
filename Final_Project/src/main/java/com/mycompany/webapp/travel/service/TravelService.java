@@ -86,17 +86,22 @@ public class TravelService {
 	public TravelVo findLastTravelId(String placeName1) {
 		return travelDao.findLastTravelId(placeName1);
 	}
-
 	
+	// travel detail 관련 service 
 	
-
-
+	public TravelVo selectTravel(String memberId, String travelId) {
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("travelId", travelId);
+		return travelDao.selectTravel(map);
+	}
 	
-
+	public List<Map<String, String>> selectTravelDetail(String travelId) {
+		return travelDao.selectTravelDetail(travelId);
+	}
 	
-
-
-		
-	
+	public List<Map<String, String>> selectTravelPlace(String travelId) {
+		return travelDao.selectTravelPlace(travelId);
+	}
 
 }

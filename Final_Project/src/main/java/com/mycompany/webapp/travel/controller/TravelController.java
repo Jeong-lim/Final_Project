@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.file.model.FileVo;
+import com.mycompany.webapp.file.service.FileService;
 import com.mycompany.webapp.member.controller.MemberController;
 import com.mycompany.webapp.member.model.MemberVo;
+import com.mycompany.webapp.member.service.MemberService;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
 import com.mycompany.webapp.travel.model.Search;
@@ -38,11 +41,61 @@ public class TravelController {
 	@Autowired
 	private TravelService travelService;
 
-	@RequestMapping("/travel/detail")
-	public String travelDetail() {
+	@Autowired
+	private FileService fileService;
+	
+	@Autowired
+	private MemberService memberService;
+
+	@RequestMapping("/travel/{travelId}/{memberId}")
+	public String travelDetail(@PathVariable("travelId") String travelId,
+			@PathVariable("memberId") String memberId, Model model, HttpServletRequest request ) {
+		TravelVo travel = travelService.selectTravel(memberId, travelId);
+		
+		
+		HttpSession session=request.getSession();
+		String sessionId=(String)session.getAttribute("memberId");
+		
+		if(sessionId != null) {
+			
+			//팔로우상태 체크 
+			String status=memberService.checkFollowStatus(memberId, sessionId);
+			model.addAttribute("follow",status);
+			
+			if (travel != null) {
+				model.addAttribute("travelTitle", travel.getTravelTitle());
+				model.addAttribute("startDate", travel.getTravelStart());
+				model.addAttribute("endDate", travel.getTravelEnd());
+				model.addAttribute("writer", travel.getWriter());
+				model.addAttribute("viewCnt", travel.getViewCnt());
+				model.addAttribute("shareCnt", travel.getShareCnt());
+
+				FileVo fileVo = fileService.selectUserImage(memberId);
+				if (fileVo != null) {
+					String fileSavedName = fileVo.getFileSavedName();
+					model.addAttribute("fileSavedName", fileSavedName);
+				}
+
+				List<Map<String, String>> detailList = travelService.selectTravelDetail(travelId);
+				List<Map<String, String>> detailTravel = travelService.selectTravelPlace(travelId);
+				logger.info(detailList.toString());
+				logger.info(detailTravel.toString());
+				model.addAttribute("detailList", detailList);
+				model.addAttribute("detailTravel", detailTravel);
+
+
+				model.addAttribute("detailList", detailList);
+
+			} else {
+				logger.info("travel 비어있음");
+			}
+		} else {
+			model.addAttribute("message", "회원만 게시글을 열람할 수 있습니다.");
+			return "auth/signin";
+		}
+
 		return "travel/traveldetail";
 	}
-
 	@ResponseBody
 	@PostMapping(value = "/travel/insertTravel")
 	public String insertTravel(Model model, HttpSession session,

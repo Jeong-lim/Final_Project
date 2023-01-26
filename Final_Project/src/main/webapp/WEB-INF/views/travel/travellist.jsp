@@ -81,15 +81,23 @@
 							src="<spring:url value='/place/${travel.fileSavedName}'/>" />
 						</div>
 						<div class="place_info">
-							<a href='<c:url value="/travel/detail"/>'>
+							<a href='<c:url value="/travel/${travel.travelId}/${travel.writer}"/>'>
 								<p class="travel_title">${travel.travelTitle}
 									
 									<label class="date">작성일 : <fmt:formatDate value="${travel.writeDate}"
 										pattern="YYYY/MM/dd" /></label>
 								</p>
-							</a> <a href='<c:url value="/mypage/${travel.writer}"/>'>
-								<p class="travel_writer">${travel.writer}</p>
-							</a>
+							</a> 
+							
+							<c:if test="${not empty sessionScope.memberId}">
+								<a href='<c:url value="/mypage/${travel.writer}"/>'>
+									<p class="travel_writer">${travel.writer}</p>
+								</a>
+							</c:if>
+							
+							<c:if test="${empty sessionScope.memberId}">
+									<p class="travel_writer">${travel.writer}</p>
+							</c:if>
 							<a href='<c:url value="/travel/insert"/>'>
 							<button class="scrap"
 								onclick="scrap(); return false;">스크랩</button></a>

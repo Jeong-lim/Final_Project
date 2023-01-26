@@ -34,6 +34,14 @@ public interface TravelDao {
 	public List<PlaceVo> selectTravelListByArea(@Param("searchType")String searchType, @Param("keyword")String keyword); //모달 장소리스트
 	
 	
+	// travel detail 관련 dao
+
+	public TravelVo selectTravel(Map<String, String> map);
+
+	public List<Map<String, String>> selectTravelDetail(String travelId);
+
+	public List<Map<String, String>> selectTravelPlace(String travelId);
+
 	// weather dao
 	public TravelVo selectLocationInfo(String locationSi);
 
