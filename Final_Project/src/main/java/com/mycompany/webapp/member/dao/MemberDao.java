@@ -24,6 +24,7 @@ public interface MemberDao {
 	public int countFollowing(String memberId); //팔로우 수
 	public void requestFollow(Map<String, String> map); //팔로우 신청
 	public String checkFollowStatus(Map<String, String> map); //팔로우 상태체크
+	public String searchFollowerSeq(Map<String,String>map);//팔로워 시퀀스 찾기
 	public String searchFollowSeq(Map<String,String>map);//팔로우 시퀀스 찾기
 	public void insertAlarm(Map<String, String> map); //알림 추가
 	public List<AlarmVo> selectAlarms(String sessionId); //알림 리스트
@@ -33,5 +34,6 @@ public interface MemberDao {
 	public void acceptFollow(String followSeq);//팔로우 허용
 	public void rejectFollow(String followSeq);//팔로우 거절
 	public void changeStatusN(String alarmSeq);//알림 상태 변경
+	public void unFollow(String followSeq);//언팔로우하기
 	
 }

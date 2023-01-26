@@ -114,8 +114,15 @@ public class MemberService  {
 		return memberDao.searchUser(keyword);
 	}
 	
-	public String searchFollowSeq(String memberId, String sessionId) {
+	public String searchFollowerSeq(String memberId, String sessionId) {
 		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		return memberDao.searchFollowerSeq(map);
+	}
+	
+	public String searchFollowSeq(String memberId, String sessionId) {
+		Map<String,String> map =new HashMap<>();
 		map.put("memberId", memberId);
 		map.put("sessionId", sessionId);
 		return memberDao.searchFollowSeq(map);
@@ -131,6 +138,10 @@ public class MemberService  {
 	
 	public void changeStatusN(String alarmSeq) {
 		memberDao.changeStatusN(alarmSeq);
+	}
+	
+	public void unFollow(String followSeq) {
+		memberDao.unFollow(followSeq);
 	}
 	
 	

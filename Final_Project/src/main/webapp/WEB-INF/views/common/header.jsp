@@ -101,13 +101,13 @@ $('document').ready(
 				success:function(result){
 					var length=result.length;
 					if(length >0){
-					
-					
+					console.log("성공");
 						for(var i=0; i<length; i++){
+							console.log(i);
 							if(result[i].alarmCode=='f'){
 								
 								var str='';
-									if(result[i].followStatus=='N'){
+									if(result[i].followStatus=='N' || result[i].followStatus=='U'){
 										str+='<div class="follow__wrapper" id='+i+'>';
 										str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>';
 										str+='<div class="follow_button__">';
