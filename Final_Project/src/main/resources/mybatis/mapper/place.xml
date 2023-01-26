@@ -14,16 +14,16 @@
 	
 	
 	<select id="selectPlaceList" parameterType="map" resultType="place">  <!-- 중복 관광지 제외 페이징 처리할 관광지 리스트 -->
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSaved_name
+		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
 		from (
 			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
 			from(
 				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
-				from(select distinct place_name, area_name , category , file_saved_name
+				from(select row_number() over(partition by place_name order by area_name)as rn ,place_name, area_name , category , file_saved_name
     				from place full outer join upload_file
     				on place.place_name = upload_file.file_code
-    				where place.category=#{category})m, detail_code d
-				where m.category=d.detail_cd_id
+    				where place.category=#{category} )m, detail_code d
+				where m.category=d.detail_cd_id and rn=1
 				order by m.place_name
 				
 			)
