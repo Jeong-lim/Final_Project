@@ -145,7 +145,7 @@
 						<div class="close closeBtnFollower">x</div>
 					</div>
 					<div class="search">
-						<input type="text" class="select" id="select1" spellcheck="false"> <img
+						<input type="text" class="select" id="select1" spellcheck="false" maxlength="20"> <img
 							src="../resources/images/search.png">
 					</div>
 					<div class="box">
@@ -190,7 +190,7 @@
 						<div class="close closeBtnFollowing">x</div>
 					</div>
 					<div class="search">
-						<input type="text" class="select" id="select2" spellcheck="false"> <img
+						<input type="text" class="select" id="select2" spellcheck="false" maxlength="20"> <img
 							src="../resources/images/search.png">
 					</div>
 					<div class="box">
