@@ -82,10 +82,10 @@
 					</c:if>
 					<c:if test="${followStatus != null }">
 						<c:if test="${followStatus =='N' }">
-							<button class="updateBtn" id="notfollowBtn">신청완료</button>
+							<input type="button" class="updateBtn" id="notfollowBtn"  value="신청완료" readonly>
 						</c:if>
 						<c:if test="${followStatus =='Y' }">
-							<button class="updateBtn" id="unfollowBtn">언팔하기</button>
+							<button class="updateBtn" id="unfollowBtn" value="${member.memberId}" onclick="unFollowBlock(this)">언팔하기</button>
 						</c:if>
 					</c:if>
 				</div>
@@ -369,7 +369,7 @@
 	}
 	
 	function unFollowBlock(e){
-		var unFollowName=$('#unFollowBlock').val();
+		var unFollowName=$(e).val();
 		console.log(unFollowName);
 		$.ajax({
 			type:"POST",
