@@ -400,6 +400,7 @@ $(function() {
         console.log(travelPrivacy);
         console.log(travelTitle);
         console.log(id);
+        //
         
       //비동기 요청을 함
         $.ajax({

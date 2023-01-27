@@ -71,6 +71,7 @@ public class TravelController {
 				model.addAttribute("viewCnt", travel.getViewCnt());
 				model.addAttribute("shareCnt", travel.getShareCnt());
 				model.addAttribute("travelPrivacy", travel.getTravelPrivacy());
+				
 
 				FileVo fileVo = fileService.selectUserImage(memberId);
 				if (fileVo != null) {
