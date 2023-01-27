@@ -43,7 +43,12 @@ body {
 
 .uk-dropdown {
 	padding: 0px;
-	width: 330px;
+	width: 370px;
+}
+
+.uk-nav{
+	height: 500px;
+    overflow: scroll;
 }
 
 
@@ -51,6 +56,11 @@ body {
 	padding: 5px 0px 5px 27px;
 	padding-left: 28px;
 	word-break: keep-all;
+	
+}
+
+.uk-nav li>a{
+	display:inline-block !important;
 }
 .follow__wrapper:hover {
 	background-color: #D1D5DB;
@@ -61,19 +71,22 @@ body {
     height: 65px;
     display: flex;
     align-items: center;
-    width: 115px;
+    width: 143px;
     justify-content: space-between;
-    margin-right: 5px;
 }
 
 .follow__wrapper {
-	
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 }
 
 
 .uk-dropdown-large {
 	padding: 0px;
-	left: -120px !important;
+	left: -150px !important;
+	
 }
 
 .follow_check {
@@ -83,7 +96,11 @@ body {
 
 .follow_cancel  {
 	width: 15px;
-	height: 15px;}
+	height: 15px;
+	float:right;
+	margin-right:10px;
+	cursor:pointer;
+	}
 
 a {
 	text-decoration: none !important;
@@ -224,14 +241,16 @@ a {
 
 .alarm_accept_btn{
 	border: none;
-    width: 45px;
+    width: 55px;
     height: 30px;
     background-color: #3B82F6;
     color: white;
+    cursor:pointer;
 }
 
 .alarm_reject_btn{
 	border: none;
-    width: 45px;
+    width: 55px;
     height: 30px;
+    cursor:pointer;
 }

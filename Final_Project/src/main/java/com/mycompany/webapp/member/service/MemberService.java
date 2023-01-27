@@ -144,6 +144,10 @@ public class MemberService  {
 		memberDao.unFollow(followSeq);
 	}
 	
+	public void changeFollowStatusN(String followSeq) {
+		memberDao.changeFollowStatusN(followSeq);
+	}
+	
 	
 	
 

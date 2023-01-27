@@ -199,6 +199,12 @@ public class MemberController {
 		memberService.insertAlarm(memberId, sessionId, alarmCode); //알림 전송
 		}
 		else if(followSeq !=null) {
+			String followStatus=memberService.checkFollowStatus(memberId, sessionId);
+			System.out.println("followStatus:"+followStatus);
+			if(followStatus.equals("U")) {
+				memberService.changeFollowStatusN(followSeq);
+				System.out.println("상태변경완료");
+			}
 			memberService.insertAlarm(memberId, sessionId, alarmCode); //알림 전송
 		}
 		System.out.println("알람전송");
