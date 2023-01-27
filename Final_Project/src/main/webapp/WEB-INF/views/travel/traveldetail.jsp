@@ -34,14 +34,14 @@
 		</div>
 		<c:if test="${writer == sessionScope.memberId }">
 		<div class="profile">
-			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/memberPage"/>'">
+			<img class="profile__img" src="<spring:url value='/image/${userProfile}'/>" onclick="location.href='<c:url value="/memberPage"/>'">
 			<label class="profile_label" onclick="location.href='<c:url value="/memberPage"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
 		</div>
 		</c:if>
 		
 		<c:if test="${writer != sessionScope.memberId }">
 		<div class="profile">
-			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/mypage/${writer}"/>'">
+			<img class="profile__img" src="<spring:url value='/image/${userProfile}'/>" onclick="location.href='<c:url value="/mypage/${writer}"/>'">
 			<label class="profile_label" onclick="location.href='<c:url value="/mypage/${writer}"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
 		</div>
 		</c:if>
