@@ -156,7 +156,6 @@ public class MemberController {
 	@RequestMapping(value="/mypage/{memberId}")
 	public String memberPage(HttpServletRequest request,@PathVariable("memberId")String memberId,Model model)throws Exception {
 		logger.info("실행");
-		
 		MemberVo member=memberService.selectMemberInfo(memberId);
 		model.addAttribute("member",member);
 		List<MemberVo> userList=memberService.userTravelList(memberId);
