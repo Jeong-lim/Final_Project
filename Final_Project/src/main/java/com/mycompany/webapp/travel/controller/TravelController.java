@@ -144,10 +144,6 @@ public class TravelController {
 			System.out.println(placeId);
 			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
 		}
-		
-/*		HttpSession session = request.getSession();
-		String sessionId=(String) session.getAttribute("memberId");
-			return "redirect:/travel/" + travelId + "/" + sessionId;*/
 
 			return "travel/traveldetail";
 
