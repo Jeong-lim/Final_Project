@@ -106,22 +106,14 @@ public class TravelController {
 			@RequestParam(value = "value4", required = false) char travelPrivacy) {
 
 			String memberId = (String) session.getAttribute("memberId");
-			/*logger.info(memberId);
-
-			System.out.println(travelTitle);
-			System.out.println(travelPrivacy);
-			System.out.println(travelStart);
-			System.out.println(travelEnd);
-			System.out.println(memberId)*/;
+			
 			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
-			//<input type="hidden" name="travelDate" value="">
-			//$('input[name=travelDate]').attr('value',date22);
 
 			return "travel/traveldetail";
 
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value="/travel/insertTravelDetail", method=RequestMethod.POST)
 	public String insertTravel(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
 			
@@ -145,7 +137,7 @@ public class TravelController {
 			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
 		}
 
-			return "travel/traveldetail";
+			return "ok";
 
 	}
 

@@ -344,7 +344,7 @@ $(function() {
 	           			
 	           			date22=date2.toISOString().substring(0,10);
 	           			
-	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
+	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
 	                    const dayseqs=j;
 	                    const placemodal='placemodal'+j;
 	                    const memomodal='memo'+j;
@@ -356,13 +356,13 @@ $(function() {
 	                    document.querySelector(".modal_btn").id=placemodal;
 	                    document.querySelector(".modal_btn2").id=memomodal;
 	                    document.querySelector(".insertform").id=formid;
-	                    $('input[name=travelDate]').attr('value',date22);
-	                    //$('input[name=memo]').attr('class',memomodal);
-	            
-	                    
 	                    document.querySelector(".date").append(date22);
+	                    document.querySelector(".travelDate").value=date22;
+	                    document.querySelector(".modal_btn2").id=memomodal;
+	                    document.querySelector("[name=memo]").classList.add(memomodal);
+	                    //$('input[name=memo]').attr('class',memomodal);
 	                    date2.setDate(date2.getDate()-1);
-	                    datearr.push(date22);
+	                    //datearr.push(date22);
 	                    
 	                    
 	                    console.log(date22);
@@ -406,7 +406,26 @@ $(function() {
            method: "POST",
            success:function(result){
         	   console.log("travel전송");
-
+        	   
+        	  for(var k=1; k<=days; k++){
+        		  
+        		  $.ajax({
+           		   url:"/travel/insertTravelDetail",
+           		   method: "POST",
+           		   data: $('#form'+k).serialize(),
+           		   success:function(){
+           			   console.log("form"+k+"전송");
+           			   if(k==days){
+           				   location.replace("/travel/travelDetail")
+           			   }
+           			   
+           		   }
+           		   
+           	   });
+        		  
+        	  } 
+        	  	   
+/* 
         		console.log(days);
        	 	for(var k=1; k<=days; k++){
        			 console.log(k);
@@ -418,7 +437,7 @@ $(function() {
        	 	ajax
        	 	success:{
        	 		
-       	 	}
+       	 	} */
        	 	//location.replace
        	 	//
        	 	
@@ -453,8 +472,11 @@ $(function() {
 	
 	function openModal2(clicked_id){
 		//console.log(clicked_id);
-		id2=clicked_id;;
 		$('.memo_textarea').val('');
+		id2=clicked_id;
+		var memos=document.querySelector("."+id2).value;
+		$('.memo_textarea').val(memos);
+		
 	 
 		}
 	
@@ -493,7 +515,8 @@ $(function() {
 	    
 	    travelmemo= $('.memo_textarea').val();
 	    console.log(id2);
-	    $("input[name=memo]").attr('value',travelmemo);
+	    //$("."+id).attr('value',travelmemo);
+	    document.querySelector("."+id2).value=travelmemo;
 	    		
 	    	
 	  	 $(".modal_wrap").hide();

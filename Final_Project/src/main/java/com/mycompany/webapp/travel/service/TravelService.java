@@ -78,7 +78,6 @@ public class TravelService {
 		map.put("placeId", placeId);
 		map.put("memo", memo);
 		map.put("travelId", travelId);
-		System.out.println("service:"+travelId);
 		return travelDao.insertTravelDetail(map);
 		
 	}
