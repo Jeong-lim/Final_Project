@@ -92,7 +92,6 @@ public class KakaoController {
 	@RequestMapping(value="/signupKakao", method=RequestMethod.POST)
 	public String signupKakao(MemberVo member, HttpSession session) {
 		kakaoService.insertKakao(member);
-		logger.info(member.toString());
 		session.setAttribute("memberId", member.getMemberId());
 		session.setAttribute("memberName", member.getMemberName());
 		session.setAttribute("email", member.getEmail());

@@ -24,20 +24,20 @@
 			<div class="wrap_insert">
 				<div>
 					<input type="text" id="email" class="input_text" name="memberId"
-						placeholder="사용자아이디" />
+						placeholder="사용자아이디" maxlength="20" />
 				</div>
 				<div>
 					<input type="password" id="password" class="input_text password" name="memberPassword"
-						placeholder="비밀번호" />
+						placeholder="비밀번호" maxlength="16" />
 				</div>
 			</div>
 			<div class="wrap_save">
-				<div class="box_check">
+				<!-- <div class="box_check">
 					<label class="save_id"><input type="checkbox">아이디
 						저장</label>
-				</div>
+				</div> -->
 				<div class="login_info">
-					<a>아이디 찾기</a><span class="bar"> | </span><a>비밀번호 찾기</a> <span
+					<a href="<c:url value='/member/idFind'/>" >아이디 찾기</a><span class="bar"> | </span><a>비밀번호 찾기</a> <span
 						class="bar"> |</span> <a href="<c:url value='/signup'/>"
 						class="signin">회원가입</a>
 				</div>

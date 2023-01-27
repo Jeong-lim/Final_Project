@@ -148,7 +148,9 @@ public class MemberService  {
 		memberDao.changeFollowStatusN(followSeq);
 	}
 	
-	
+	public String findUserId(String email, String userName) {
+		return memberDao.findUserId(email, userName);
+	}
 	
 
 

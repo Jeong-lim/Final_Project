@@ -253,4 +253,14 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		where follow_seq=#{followSeq}
 	</update>
 	
+	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" parameterType="String" resultType="String">
+		SELECT MEMBER_ID as memberId
+		FROM MEMBER
+		WHERE EMAIL = #{email}
+		AND MEMBER_NAME = #{userName}
+		AND MEMBER_STATUS = 'Y'
+	</select>
+	
 </mapper>
