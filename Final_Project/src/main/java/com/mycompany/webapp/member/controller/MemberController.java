@@ -376,9 +376,8 @@ public class MemberController {
 		return memberService.memberIdCheck(memberId);
 	}
 	
-	@RequestMapping(value="/member/idFindCheck")
+	@RequestMapping(value="/member/idFindcheck")
 	public String idFindCheck(String email, String userName, Model model) {
-		
 		logger.info(email);
 		logger.info(userName);
 		String userId = memberService.findUserId(email, userName);
@@ -387,21 +386,16 @@ public class MemberController {
 		
 		if(userId != null) {
 			model.addAttribute("userId", userId);
-			return "auth/idCheck";
-
+			return "auth/idcheck";
 		} else {
 			model.addAttribute("message", "해당 유저는 회원이 아닙니다.");
 			return "auth/signup";
-
 		}
-		
-		
-		
 	}
 	
 	@GetMapping(value="/member/idFind")
 	public String idFindCheck() {
-		return "auth/idCheck";
+		return "auth/idcheck";
 	}
 	
 
