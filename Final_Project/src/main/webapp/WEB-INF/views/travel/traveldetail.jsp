@@ -32,10 +32,19 @@
 			</c:if>
 		
 		</div>
+		<c:if test="${writer == sessionScope.memberId }">
 		<div class="profile">
-			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/mypage"/>'">
-			<label class="profile_label" onclick="location.href='<c:url value="/mypage"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
+			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/memberPage"/>'">
+			<label class="profile_label" onclick="location.href='<c:url value="/memberPage"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
 		</div>
+		</c:if>
+		
+		<c:if test="${writer != sessionScope.memberId }">
+		<div class="profile">
+			<img class="profile__img" src="<spring:url value='/image/${fileSavedName}'/>" onclick="location.href='<c:url value="/mypage/${writer}"/>'">
+			<label class="profile_label" onclick="location.href='<c:url value="/mypage/${writer}"/>'" >${writer}</label><label class="view-info">스크랩 &nbsp; ${shareCnt}</label><label class="view-info">조회 수&nbsp; ${viewCnt}</label>
+		</div>
+		</c:if>
 		
 		<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' or writer == sessionScope.memberId }"> <!-- 팔로우 or 전체공개 보여주기 일 때  -->
 		<div class="menu">
