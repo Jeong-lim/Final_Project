@@ -75,7 +75,7 @@
 								<select name="searchType" id="searchType" class="gugun1"></select>
 								<div class="search">
 									<input type="text" class="select" spellcheck="false" name="keyword" id="keyword" value="${Search.keyword}"> 
-									<button id="btnSearch">
+									<button id="btnSearch" class="btnSearch">
 									<img 
 										src="../resources/images/search.png"></button>
 								</div></span>
@@ -83,17 +83,6 @@
 						</div>
 					</div>
 					<div class="place_box">
-						<div class="place">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/경복궁.jpg">
-							<div class="place_content">
-								<div class="title">
-									<label>경복궁</label><input type="checkbox">
-								</div>
-								<div class="title_s">경복궁입니댱~~</div>
-							</div>
-						</div>
-
 						<div class="place_list" id="place_list">
 				
 				   <c:forEach var="place" items="${placeList}">
@@ -109,10 +98,12 @@
                      				src="/place/${place.fileSavedName}" />
 							</c:when>
 						</c:choose>
-							
 						</div>
-						<div class="place_info">
-								<p class="place_name" id="place_name">${place.placeName}</p><input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
+						<div class="place_content">
+						<div class="title">
+								<label class="place_name" id="place_name">${place.placeName}</label>
+								<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
+								</div>
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
 						</div>
@@ -560,8 +551,8 @@ $(function(){
 	               }
 	               
 	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
-	              str+='<div class="place_info"><p class="place_name" id="place_name">'+data[i].placeName+'</p>';
-	              str+='<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="'+data[i].placeName+'">'
+	              str+='<div class="place_content"><div class="title"><label class="place_name" id="place_name">'+data[i].placeName+'</label>';
+	              str+='<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="'+data[i].placeName+'"></div>'
 	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
 	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
 	                  

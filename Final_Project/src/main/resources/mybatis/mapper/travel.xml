@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.travel.dao.TravelDao">
-
+	
+	
+	<!-- 지역별 검색한 관광지 선택 모달 -->
 	<select id="selectTravelListByArea" resultType="place" parameterType="map">
 		select rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSavedName
 		from (
@@ -29,6 +31,7 @@
         
 	</select>
 	
+	<!-- 관광지 선택 모달 -->
 	<select id="selectPlaceList" resultType="place">
 		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
 		from (
@@ -46,6 +49,7 @@
 		
 	</select>
 
+	<!-- 여행 일정리스트 -->
 	<select id="selectTravelList" resultType="travel" parameterType="pager">
 
 		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id as originalTravelId
@@ -53,18 +57,19 @@
 		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id
 		  FROM (
                   
-		    select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+		     select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f, 
+					from upload_file f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
-      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
      				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id) a
-  			 		 where p.place_id=a.place_id) b 
-			where f.file_code like '%'||b.place_name||'%')c     
+        			  			 where t.travel_id=d.travel_id
+                                 group by t.travel_id) a
+  			 		 where p.place_id=a.place_id) b            
+			on f.file_code like '%'||b.place_name||'%')c     
             
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
@@ -105,14 +110,15 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f, 
+					from upload_file f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
-      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
      				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id) a
-  			 		 where p.place_id=a.place_id) b 
-			where f.file_code like '%'||b.place_name||'%')c    
+        			  			 where t.travel_id=d.travel_id
+                                 group by t.travel_id) a
+  			 		 where p.place_id=a.place_id) b            
+			on f.file_code like '%'||b.place_name||'%')c     
 			ORDER BY c.view_cnt desc
                
             
@@ -132,14 +138,15 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f, 
+					from upload_file f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
-      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
      				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id) a
-  			 		 where p.place_id=a.place_id) b 
-			where f.file_code like '%'||b.place_name||'%')c    
+        			  			 where t.travel_id=d.travel_id
+                                 group by t.travel_id) a
+  			 		 where p.place_id=a.place_id) b            
+			on f.file_code like '%'||b.place_name||'%')c   
 			ORDER BY original_Travel_Id desc
                
             
@@ -159,14 +166,15 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f, 
+					from upload_file f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
-      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
      				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id) a
-  			 		 where p.place_id=a.place_id) b 
-			where f.file_code like '%'||b.place_name||'%')c    
+        			  			 where t.travel_id=d.travel_id
+                                 group by t.travel_id) a
+  			 		 where p.place_id=a.place_id) b            
+			on f.file_code like '%'||b.place_name||'%')c    
 			ORDER BY c.write_date desc
                
             
@@ -187,20 +195,21 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f, 
+					from upload_file f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
-      				  		(select t.travel_id, d.place_id, t.travel_title, t.free, t.view_cnt, t.share_cnt, t.writer, t.write_date
+      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
      				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id) a
-  			 		 where p.place_id=a.place_id) b 
-			where f.file_code like '%'||b.place_name||'%'    
+        			  			 where t.travel_id=d.travel_id
+                                 group by t.travel_id) a
+  			 		 where p.place_id=a.place_id) b            
+			on f.file_code like '%'||b.place_name||'%')c   
 			<if test="searchType=='title' and keyword != null and keyword != '' ">
-				 AND travel_title like '%'||#{keyword}||'%'
+				 where travel_title like '%'||#{keyword}||'%'
 			</if>
 			<if test="searchType=='writer' and keyword != null and keyword != '' ">
-				 AND writer like '%'||#{keyword}||'%'
-			</if>)c
+				 where writer like '%'||#{keyword}||'%'
+			</if>
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
 		)
@@ -227,6 +236,7 @@
 	where location_si = #{locationSi} 
 	</select>
 	
+	<!-- travel insert -->
 	<insert id="insertTravel" parameterType="map">
 		insert into travel (travel_id, travel_title, travel_start, travel_end, travel_privacy, free, 
 		view_cnt, share_cnt, writer, write_date, ver_no, travel_status)
@@ -234,6 +244,7 @@
 		0, 0, #{memberId}, to_date(sysdate,'yyyy-mm-dd'), 1, 'Y')
 	</insert>
 	
+	<!-- travel detail insert 하기 위해 travelid랑 placeid 찾기 -->
 	<select id="findLastTravelId" parameterType="String" resultType="travel">		
 		select t.travel_id as travelId, p.place_id as placeId
 		from travel t, place p
@@ -242,7 +253,7 @@
 		order by travel_id desc
 	</select>
 	
-	
+	<!-- travel detail insert -->
 	<insert id="insertTravelDetail" parameterType="map">
 		insert into travel_detail (travel_id, travel_detail_id, travel_date, place_id, memo, travel_detail_status)
 		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')

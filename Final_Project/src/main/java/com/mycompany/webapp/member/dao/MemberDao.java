@@ -35,5 +35,6 @@ public interface MemberDao {
 	public void rejectFollow(String followSeq);//팔로우 거절
 	public void changeStatusN(String alarmSeq);//알림 상태 변경
 	public void unFollow(String followSeq);//언팔로우하기
+	public void changeFollowStatusN(String followSeq);
 	
 }

@@ -33,6 +33,11 @@ public interface TravelDao {
 
 	public List<PlaceVo> selectTravelListByArea(@Param("searchType")String searchType, @Param("keyword")String keyword); //모달 장소리스트
 	
+	public int insertTravel(@Param("memberId")String memberId, @Param("travelTitle")String travelTitle, @Param("travelPrivacy")char travelPrivacy, @Param("travelStart")String travelStart, @Param("travelEnd")String travelEnd);
+
+	public int insertTravelDetail(Map<String,String> map);
+
+	public TravelVo findLastTravelId(@Param("placeName1")String placeName1);
 	
 	// travel detail 관련 dao
 
@@ -41,15 +46,15 @@ public interface TravelDao {
 	public List<Map<String, String>> selectTravelDetail(String travelId);
 
 	public List<Map<String, String>> selectTravelPlace(String travelId);
+	
+	public void viewCount(String travelId);
 
 	// weather dao
 	public TravelVo selectLocationInfo(String locationSi);
 
-	public int insertTravel(@Param("memberId")String memberId, @Param("travelTitle")String travelTitle, @Param("travelPrivacy")char travelPrivacy, @Param("travelStart")String travelStart, @Param("travelEnd")String travelEnd);
+	
 
-	public int insertTravelDetail(Map<String,String> map);
-
-	public TravelVo findLastTravelId(@Param("placeName1")String placeName1);
+	
 
 	
 	
