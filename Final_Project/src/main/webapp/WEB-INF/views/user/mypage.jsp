@@ -274,7 +274,7 @@
 				console.log("성공"+result);
 				if(result == "followOk"){
 					$("#followBtn").html("신청완료");
-					
+					location.reload();
 				}
 			}
 		});

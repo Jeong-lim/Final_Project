@@ -167,7 +167,13 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		select follow_status
         from follow
         where to_id=#{memberId} and from_id=#{sessionId}
-	</select>	
+	</select>
+	
+	<!-- 팔로우상태 n으로 만들기 -->
+	<update id="changeFollowStatusN" parameterType="String">
+		update follow set follow_status='N'
+		where follow_seq=#{followSeq}
+	</update>
 	
 	<!-- 알림추가 -->
 	<insert id="insertAlarm" parameterType="map">
@@ -180,6 +186,7 @@ AND   PLC.CATEGORY = DC.DETAIL_CD_ID
 		select a.alarm_seq as alarmSeq,f.follow_seq as followSeq,a.alarm_to_id as alarmToId,a.alarm_from_id as alarmFromId,a.alarm_status as alarmStatus,f.follow_status as followStatus,a.alarm_code as alarmCode
 		from (select alarm_seq,alarm_to_id,alarm_from_id, alarm_status,alarm_code from alarm where alarm_to_id=#{sessionId} and alarm_status='Y')a full outer join(select to_id,from_id,follow_seq, follow_status from follow where to_id=#{sessionId}) f
        on a.alarm_to_id=f.to_id and a.alarm_from_id=f.from_id
+       order by alarm_seq desc
 	</select>
 	
 	<!-- 팔로워 리스트 -->
