@@ -109,7 +109,7 @@ public class TravelController {
 			
 			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
 
-			return "travel/traveldetail";
+			return "ok";
 
 	}
 	
@@ -124,20 +124,21 @@ public class TravelController {
 			System.out.println(Arrays.toString(placeName));
 			System.out.println(travelDate);
 			System.out.println(memo);
+			String travelId=null;
 
 			
 		for (int i = 0; i < placeName.length; i++) {
 			System.out.println(placeName[i]);
 			String placeName1=placeName[i];
 			TravelVo travelvo=travelService.findLastTravelId(placeName1);
-			String travelId=travelvo.getTravelId();
+			travelId=travelvo.getTravelId();
 			String placeId=travelvo.getPlaceId();
 			System.out.println(travelId);
 			System.out.println(placeId);
 			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
 		}
 
-			return "ok";
+			return travelId;
 
 	}
 

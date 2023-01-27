@@ -17,6 +17,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
+	<input type="hidden" class="memberId" value="${sessionScope.memberId}">
 
 	<div class="outer">
 		<div class="inner">
@@ -326,7 +327,6 @@ $(function() {
                
 	               const diffDate = date1.getTime() - date2.getTime();
 	               days=Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24))); 
-	      			
 	               //console.log(days); //일 수
 	               //console.log(date1); //Date 형식으로
 	               const date=end.format('YYYY-MM-DD');
@@ -395,6 +395,7 @@ $(function() {
         var travelEnd1=travelEnd.toString();
         var travelPrivacy= $('.open_radio:checked').val();
         var travelTitle= $('.title_input').val();
+        var memberid=$('.memberId').val();
         
         console.log(travelPrivacy);
         console.log(travelTitle);
@@ -404,43 +405,34 @@ $(function() {
         $.ajax({
            url:"/travel/insertTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy,
            method: "POST",
-           success:function(result){
+           success:function(result1){
         	   console.log("travel전송");
         	   
         	  for(var k=1; k<=days; k++){
-        		  
-        		  $.ajax({
-           		   url:"/travel/insertTravelDetail",
-           		   method: "POST",
-           		   data: $('#form'+k).serialize(),
-           		   success:function(){
-           			   console.log("form"+k+"전송");
-           			   if(k==days){
-           				   location.replace("/travel/travelDetail")
-           			   }
-           			   
-           		   }
-           		   
-           	   });
-        		  
+        		  (function(k){
+        			  $.ajax({
+                  		   url:"/travel/insertTravelDetail",
+                  		   method: "POST",
+                  		   data: $('#form'+k).serialize(),
+                  		   success:function(result2){
+                  			   console.log("form"+k+"전송");
+                  			   console.log("k:"+k);
+                  			   console.log("days:"+days)
+                  			   if(k==days){ 
+                  				console.log(result2);
+                  				location.replace("/travel/"+result2+"/"+memberid);
+                  			   }
+                  			   
+                  			  
+                  		   }
+                  		   
+                  	   });
+        		  })(k);
+  
         	  } 
+        	  
+			  
         	  	   
-/* 
-        		console.log(days);
-       	 	for(var k=1; k<=days; k++){
-       			 console.log(k);
-       			 $('#form'+k).submit();
-       		 }
-       	 	console.log("detail전송");
-       	 	
-       	 	
-       	 	ajax
-       	 	success:{
-       	 		
-       	 	} */
-       	 	//location.replace
-       	 	//
-       	 	
        		
            }
            
