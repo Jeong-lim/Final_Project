@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -373,6 +374,34 @@ public class MemberController {
 	@ResponseBody
 	public int idCheck(@RequestParam("memberId") String memberId) {
 		return memberService.memberIdCheck(memberId);
+	}
+	
+	@RequestMapping(value="/member/idFindCheck")
+	public String idFindCheck(String email, String userName, Model model) {
+		
+		logger.info(email);
+		logger.info(userName);
+		String userId = memberService.findUserId(email, userName);
+		
+		logger.info(userId);
+		
+		if(userId != null) {
+			model.addAttribute("userId", userId);
+			return "auth/idCheck";
+
+		} else {
+			model.addAttribute("message", "해당 유저는 회원이 아닙니다.");
+			return "auth/signup";
+
+		}
+		
+		
+		
+	}
+	
+	@GetMapping(value="/member/idFind")
+	public String idFindCheck() {
+		return "auth/idCheck";
 	}
 	
 
