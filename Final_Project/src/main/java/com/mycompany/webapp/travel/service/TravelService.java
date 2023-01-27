@@ -92,6 +92,7 @@ public class TravelService {
 		Map<String, String> map = new HashMap<>();
 		map.put("memberId", memberId);
 		map.put("travelId", travelId);
+		travelDao.viewCount(travelId);
 		return travelDao.selectTravel(map);
 	}
 	

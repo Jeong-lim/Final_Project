@@ -115,43 +115,36 @@
 
 			</div>
 		</div>
-		<div class="page">
-		<table>
-			<td colspan="4" class="text-center">
-				<div>
-					<a class="btn btn-outline-primary btn-sm" href="list?pageNo=1">처음</a>
+		<div>
+		<ul class="pagebtn">
+				
+					<a class="btn btn-outline-primary btn-sm" href="list?pageNo=1"><li class="pageli">처음</li></a>
 					<c:if test="${pager.groupNo>1}">
 						<a class="btn btn-outline-info btn-sm"
-							href="list?pageNo=${pager.startPageNo-1}">이전</a>
+							href="list?pageNo=${pager.startPageNo-1}"><li class="pageli">이전</li></a>
 					</c:if>
 
 					<c:forEach var="i" begin="${pager.startPageNo}"
 						end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo != i}">
 							<a class="btn btn-outline-success btn-sm"
-								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
+								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 						</c:if>
 						<c:if test="${pager.pageNo == i}">
 							<a class="btn btn-danger btn-sm"
-								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}">${i}</a>
+								href="list?pageNo=${i}&searchType=${searchType}&keyword=${keyword}"><li class="pageli">${i}</li></a>
 						</c:if>
 					</c:forEach>
 
 					<c:if test="${pager.groupNo<pager.totalGroupNo}">
 						<a class="btn btn-outline-info btn-sm"
-							href="list?pageNo=${pager.endPageNo+1}">다음</a>
+							href="list?pageNo=${pager.endPageNo+1}"><li class="pageli">다음</li></a>
 					</c:if>
 					<a class="btn btn-outline-primary btn-sm"
-						href="list?pageNo=${pager.totalPageNo}">맨끝</a>
-				</div>
-			</td>
-			</tr>
-		</table>
+						href="list?pageNo=${pager.totalPageNo}"><li class="pageli">맨끝</li></a>
+				
+		</ul>
 		</div>
-
-
-
-
 
 	</div>
 	<input type="hidden" id="categoryCheck" value="${category}">
@@ -177,45 +170,6 @@
 
 		});
 
-		/* $(document).ready(function() {
-			var searchType2 = $('#searchType2').val();
-			var keyword2 = $('#keyword2').val();
-
-			console.log(searchType2);
-			console.log(keyword2); 
-
-		  $(document).on('click','.btn btn-outline-success btn-sm',function(e){
-
-					e.preventDefault();
-
-					var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
-
-					url = url + "&searchType=" + searchType2;
-
-					url = url + "&keyword=" + keyword2;
-
-					location.href = url;
-
-					console.log(url);
-
-				});	
-			 
-			 $(document).on('click','.btn btn-danger btn-sm',function(e){
-
-					e.preventDefault();
-
-					var url = "/travel/search/list"+"?pageNo="+${pager.pageNo};
-
-					url = url + "&searchType=" + searchType2;
-
-					url = url + "&keyword=" + keyword2;
-
-					location.href = url;
-
-					console.log(url);
-
-				});	 
-		});*/
 
 		$(document).ready(function() {
 			var category = $("#categoryCheck").val();
