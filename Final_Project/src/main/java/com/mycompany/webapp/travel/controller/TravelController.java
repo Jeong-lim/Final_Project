@@ -75,8 +75,8 @@ public class TravelController {
 
 				FileVo fileVo = fileService.selectUserImage(memberId);
 				if (fileVo != null) {
-					String fileSavedName = fileVo.getFileSavedName();
-					model.addAttribute("fileSavedName", fileSavedName);
+					String userProfile = fileVo.getFileSavedName();
+					model.addAttribute("userProfile", userProfile);
 				}
 
 				List<Map<String, String>> detailList = travelService.selectTravelDetail(travelId);
