@@ -26,37 +26,39 @@
 				<span class="span">아이디 *</span>
 				<button id="idcheckbutton" class="idcheck" type="button">아이디 중복체크</button>
 				<div class="insert"><input type="text" id="user_id" class="input_text" name="memberId"
-					placeholder="소문자 숫자 포함 4글자 이상 20글자까지" required="required" pattern="(?=.*[a-zA-Z]).{4,20}"/>
+					placeholder="소문자 숫자 포함 4글자 이상 20글자까지" required="required" pattern="(?=.*[a-zA-Z]).{4,20}"
+					maxlength="20"
+					/>
 				<div class="check_font" id="id_check"></div>
 				</div>
 
 				<span class="span">비밀번호 *</span>
 				<div>
 					<input type="password" name="password" id="pw" class="input_text"
-						placeholder="특수문자 포함 6글자 이상" required="required" onchange="check_pw()" />
+						placeholder="특수문자 포함 6글자 이상" required="required" onchange="check_pw()" maxlength="16"/>
 				</div>
 
 				<span class="span">비밀번호 확인 *</span>
 				<div>
 					<input type="password" name="memberPassword" id="pw2" class="input_text" required="required" onchange="check_pw()" />
-						&nbsp;<span id="check"></span>
+						&nbsp;<span id="check" maxlength="16"></span>
 				</div>
 
 				<span class="span">이름 *</span>
 				<div>
-					<input type="text" name="memberName" id="name" class="input_text" required="required" />
+					<input type="text" name="memberName" id="name" class="input_text" required="required" maxlength="20"/>
 				</div>
 
 				<span class="span">전화번호 *</span>
 				<div>
 					<input type="text" name="phoneNumber" id="phonenumber" class="input_text"
-						placeholder="01012345678" required="required" />
+						placeholder="01012345678" required="required" maxlength="11"/>
 				</div>
 
 				<span class="span">이메일</span>
 				<div>
 					<input type="email" name="email" id="email" class="input_text"
-						placeholder="travel@travely.com" />
+						placeholder="travel@travely.com" maxlength="30"/>
 				</div>
 
 			</div>
