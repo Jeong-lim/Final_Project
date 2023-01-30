@@ -9,6 +9,7 @@
 <div class="scroll__header">
 NEXT, 여행은 TRAVELY
 </div>
+
 <div class="scroll__main">
 다음을 생각하는 건 꽤 중요한 일입니다. <br />
 이정표이자 목표가 되니까요. <br />

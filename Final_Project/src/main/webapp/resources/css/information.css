@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 .item {
-  width: 1000px;
+  width: 1200px;
   height: 380px;
-  margin: 50px auto;
+  margin-left: 120px;
+  margin-right: 300px;
   padding-top: 75px;
   text-align: center;
   color: #4E4C48;
@@ -14,8 +15,9 @@
 .scroll__header {
 	font-size: 40px;
 	float: left;
-	padding-bottom: 30px;
+	padding-bottom: 50px;
 	font-weight: bolder;
+	padding-top: 100px;
 }
 
 .scroll__main {

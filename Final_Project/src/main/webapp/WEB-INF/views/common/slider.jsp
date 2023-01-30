@@ -35,9 +35,11 @@
     		  autoControls: false,
     		  stopAutoOnClick: true,
     		  pager: true,
-    		  slideWidth: 1000,
+    		  slideWidth: 1250,
     		  speed: 400
     		});
     	});
+    
+
   </script>
 

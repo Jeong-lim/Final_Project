@@ -27,23 +27,23 @@
 .slide {
 	display: none;
 }
-
 #container {
-	margin: 0;
-	padding: 0;
-	display: grid;
-	place-items: center;
-	margin-bottom: 100px;
-	margin-top: 100px;
+    /* margin: 0; */
+    padding: 0;
+    /* display: grid; */
+    place-items: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    /* margin-right: 100px; */
+    margin-left: 90px;
 }
-
 #slider-container #slider .slide {
 	padding-bottom: 40px;
 }
 
 #slider-container {
 	height: 300px;
-	width: 1070px;
+	width: 1300px;
 	position: relative;
 	overflow: hidden;
 	padding-bottom: 60px;
@@ -94,7 +94,7 @@
 }
 
 .image-thumbnail {
-	width: 230px;
+	width: 270px;
 	height: 350px;
 	object-fit: cover;
 	border-radius: 20px;
@@ -147,7 +147,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 230px;
+	width: 270px;
 	height: 350px;
 	background: rgba(0, 0, 0, .5);
 	z-index: 1;
@@ -171,7 +171,7 @@
 
 .slider__travel {
 	width: 1000px;
-	margin: 0 auto;
+	margin: 30px;
 }
 
 .slider__travel__header {

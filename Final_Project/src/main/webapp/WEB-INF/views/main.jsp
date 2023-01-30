@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 </head>
 <body>
-	<div id="floatWeather">
+	<!-- <div id="floatWeather">
 		<div id="news-container">
 			<ul>
 				<li>
@@ -29,9 +29,9 @@
 
 				<li><div>전주시 ☃️</div></li>
 			</ul>
-		</div>
+		</div> -->
 
-	</div>
+<!-- 	</div> -->
 	<div id="floatMenu">
 				
 		<div class="container">
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	
-	<a href="#" class="top"><img src="${pageContext.request.contextPath}/resources/images/topbutton.png"></a>
+	<a href="/" class="top"><img src="${pageContext.request.contextPath}/resources/images/topbutton.png"></a>
 	
 	<%@ include file="/WEB-INF/views/common/slider.jsp"%>	
 	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	

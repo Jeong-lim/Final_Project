@@ -4,17 +4,36 @@
 	z-index: 1;
 }
 
-.slider_img_container {
-	margin: 0px auto;
+.bx-wrapper .bx-pager {
+	padding-left: 130px;
+	
 }
+
 
 .bx-wrapper .bx-controls-direction a {
 	display: none;
 }
 
+.slider_img_container {
+	width: 1250px;
+}
+
+.bx-wrapper img {
+	width: 1250px;
+}
+
+.bx-viewport {
+    margin-left: 120px;
+}
+
+
 .bx-wrapper {
 	border: none;
 	box-shadow: none;
-	margin: 0 auto;
 	top: 50px;
+	max-width: 1500px;
+}
+
+.image_container {
+	width: 1500px;
 }
