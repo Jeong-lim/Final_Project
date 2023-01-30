@@ -33,9 +33,9 @@
 
 <!-- 	</div> -->
 	<div id="floatMenu">
-				
+		<div class="weather_container">날씨</div>
+		<div class="place_container">장소</div>
 		<div class="container">
-			
 			<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
