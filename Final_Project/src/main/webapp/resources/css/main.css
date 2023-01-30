@@ -1,10 +1,10 @@
 /* head */
 .leaderboard .head {
-	padding: 16px 13px;
-	color: grey;
-	font-size: 18px;
-	text-align: center;
-	font-weight: bolder;
+    padding: 9px 13px;
+    color: grey;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bolder;
 }
 
 .leaderboard .head div {
@@ -21,10 +21,9 @@
 .leaderboard ol {
 	counter-reset: number; /* 定義和初始化計數器 */
 }
-
 .leaderboard li {
-	padding: 16px;
-	display: flex;
+    padding: 14px;
+    display: flex;
 }
 
 #floating__banner_1 {
@@ -85,43 +84,43 @@
 }
 
 .container {
-	width: 280px;
+    width: 280px;
     height: auto;
     border-radius: 10px;
     background-color: white;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     position: absolute;
     top: 172%;
-    top: 246%;
+    top: 192%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 2;
 }
-.place_container{
-	width: 280px;
-    height: 270px;
-    border:1px solid black;
+.place_container {
+    width: 280px;
+    height: 205px;
+    border: 1px solid black;
     left: 50%;
-    top: 90%;
-    border-radius: 10px;
+    top: 85%;
+    top: 59%;
+    order-radius: 10px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     position: absolute;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
-.weather_container{
-	width: 280px;
-    height: 230px;
-    border:1px solid black;
+.weather_container {
+    width: 280px;
+    height: 191px;
+    border: 1px solid black;
     left: 50%;
-    top: -39%;
+    top: -47%;
     border-radius: 10px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     position: absolute;
     margin-right: 4px;
     transform: translate(-50%, -50%);
 }
-
 #floatMenu {
 	position: absolute;
     width: 200px;
@@ -185,7 +184,7 @@ a.top {
 	position: fixed;
 	bottom: 50px;
 	display: none;
-	right: 3%;
+	left: 3%;
 }
 
 a.top img {
@@ -210,6 +209,7 @@ a.top img {
 
 
  /* @media ( max-width :1600px) {
+ 
 
 	
 	#floatMenu {

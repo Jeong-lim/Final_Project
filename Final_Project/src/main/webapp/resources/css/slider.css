@@ -5,7 +5,7 @@
 }
 
 .bx-wrapper .bx-pager {
-	padding-left: 130px;
+	padding-left: 50px;
 	
 }
 
@@ -15,25 +15,24 @@
 }
 
 .slider_img_container {
-	width: 1250px;
+	width: 1300px;
 }
 
 .bx-wrapper img {
-	width: 1250px;
+	width: 1300px;
 }
 
 .bx-viewport {
-    margin-left: 120px;
+    margin-left: 45px;
 }
 
 
 .bx-wrapper {
-	border: none;
-	box-shadow: none;
-	top: 50px;
-	max-width: 1500px;
+    border: none;
+    box-shadow: none;
+    top: 17px;
+    max-width: 1500px;
 }
-
 .image_container {
 	width: 1500px;
 }

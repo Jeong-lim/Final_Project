@@ -58,6 +58,7 @@
 	<%@ include file="/WEB-INF/views/common/slider.jsp"%>	
 	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	
 	<%@ include file="/WEB-INF/views/common/information.jsp"%>
+	<br /><br />
 	<%@ include file="/WEB-INF/views/common/sliderbanner.jsp"%>
 	<%@ include file="/WEB-INF/views/common/slidetravel.jsp"%>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
