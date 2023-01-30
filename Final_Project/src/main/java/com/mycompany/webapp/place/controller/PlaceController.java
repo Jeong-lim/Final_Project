@@ -87,7 +87,11 @@ public class PlaceController {
 		
 	}
 	
-	
+	@RequestMapping("/location")
+    public String location() {
+    	
+    	return "place/location";
+    }
 
 
 }
