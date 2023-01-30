@@ -85,16 +85,41 @@
 }
 
 .container {
-	width: 260px;
-	height: auto;
-	border-radius: 10px;
-	background-color: white;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
+	width: 280px;
+    height: auto;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    position: absolute;
+    top: 172%;
+    top: 246%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.place_container{
+	width: 280px;
+    height: 270px;
+    border:1px solid black;
+    left: 50%;
+    top: 90%;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.weather_container{
+	width: 280px;
+    height: 230px;
+    border:1px solid black;
+    left: 50%;
+    top: -39%;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    position: absolute;
+    margin-right: 4px;
+    transform: translate(-50%, -50%);
 }
 
 #floatMenu {
@@ -103,10 +128,9 @@
     height: 200px;
     /* left: 70px; */
     top: 280px;
-    background-color: #606060;
     color: #fff;
     z-index: 10;
-    right: 55px;
+    right: 85px;
 }
 
 #floatWeather {
@@ -184,11 +208,12 @@ a.top img {
 	color: #6B7280;
 }
 
- @media ( max-width :1600px) {
+
+ /* @media ( max-width :1600px) {
 
 	
 	#floatMenu {
 		display: none;
 	}
-} 
+}  */
 
