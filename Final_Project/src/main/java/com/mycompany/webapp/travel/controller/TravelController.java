@@ -99,6 +99,107 @@ public class TravelController {
 		return "travel/traveldetail";
 
 	}
+	
+	
+	@RequestMapping(value = "/travel/delete", method=RequestMethod.GET)
+	public String insertTravel(@RequestParam("travelId") String travelId) {	
+			travelService.deleteTravel(travelId);
+			logger.info(travelId);
+			logger.info("delete");
+
+			return "main";
+
+	}
+	
+	@RequestMapping(value = "/travel/update/{travelId}/{memberId}", method=RequestMethod.GET)
+	public String updateTravel(@PathVariable("travelId") String travelId, @PathVariable("memberId") String memberId, Model model, HttpServletRequest request) {	
+		
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("memberId");
+		TravelVo travel = travelService.selectTravel(memberId, travelId);
+			//TravelVo travel = travelService.travelListToUpdate(travelId);
+			
+			model.addAttribute("travelTitle", travel.getTravelTitle());
+			model.addAttribute("startDate", travel.getTravelStart());
+			model.addAttribute("endDate", travel.getTravelEnd());
+			model.addAttribute("travelDate", travel.getTravelDate());
+			model.addAttribute("writer", travel.getWriter());
+			model.addAttribute("momo", travel.getMemo());
+			model.addAttribute("travelPrivacy", travel.getTravelPrivacy());
+			
+			
+			
+			List<Map<String, String>> detailList = travelService.selectTravelDetail(travelId);
+			List<Map<String, String>> detailTravel = travelService.selectTravelPlace(travelId);
+			logger.info(detailList.toString());
+			logger.info(detailTravel.toString());
+			model.addAttribute("detailList", detailList);
+			model.addAttribute("detailTravel", detailTravel);
+
+			model.addAttribute("detailList", detailList);
+		
+		
+		
+		
+		
+			//travelService.updateTravel(travelId);
+			logger.info(travelId);
+			logger.info("update");
+
+			return "travel/travelupdate";
+
+	}
+	
+	
+	
+	@ResponseBody
+	@PostMapping(value = "/travel/updateTravel")
+	public String updateTravel(Model model, HttpSession session,
+			@RequestParam(value = "value", required = false) String travelStart,
+			@RequestParam(value = "value2", required = false) String travelEnd,
+			@RequestParam(value = "value3", required = false) String travelTitle,
+			@RequestParam(value = "value4", required = false) char travelPrivacy) {
+			
+			//travelService.updateTravelStatus(travelId);
+
+			String memberId = (String) session.getAttribute("memberId");
+			
+			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
+
+			return "ok";
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/travel/updateTravelDetail", method=RequestMethod.POST)
+	public String updateTravelDetail(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
+			
+			System.out.println("--------------------");
+			String travelDate=request.getParameter("travelDate");
+			String memo=request.getParameter("memo");
+			
+			System.out.println(Arrays.toString(placeName));
+			System.out.println(travelDate);
+			System.out.println(memo);
+			String travelId=null;
+
+			
+		for (int i = 0; i < placeName.length; i++) {
+			System.out.println(placeName[i]);
+			String placeName1=placeName[i];
+			TravelVo travelvo=travelService.findLastTravelId(placeName1);
+			travelId=travelvo.getTravelId();
+			String placeId=travelvo.getPlaceId();
+			System.out.println(travelId);
+			System.out.println(placeId);
+			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
+		}
+
+			return travelId;
+
+	}
+	
+	
 	@ResponseBody
 	@PostMapping(value = "/travel/insertTravel")
 	public String insertTravel(Model model, HttpSession session,
@@ -117,7 +218,7 @@ public class TravelController {
 	
 	@ResponseBody
 	@RequestMapping(value="/travel/insertTravelDetail", method=RequestMethod.POST)
-	public String insertTravel(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
+	public String insertTravelDetail(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
 			
 			System.out.println("--------------------");
 			String travelDate=request.getParameter("travelDate");

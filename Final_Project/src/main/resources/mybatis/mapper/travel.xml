@@ -10,11 +10,11 @@
 			select ROWNUM as rnum, place_id, place_name  , area_name  , detail_cd_name, place_detail, file_saved_name
 			from(
 				select m.place_id, m.place_name,m.area_name,d.detail_cd_name, m.place_detail, m.file_saved_name
-				from(select distinct place_id, place_name, area_name , category , place_detail, file_saved_name
+				from(select  row_number() over(partition by place_name order by area_name)as rn, place_id, place_name, area_name , category , place_detail, file_saved_name
     				from place full outer join upload_file
     				on place.place_name = upload_file.file_code
     				)m, detail_code d
-				where m.category=d.detail_cd_id
+				where m.category=d.detail_cd_id and rn=1
 				order by m.place_name	
 			)
 		)
@@ -38,11 +38,11 @@
 			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
 			from(
 				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
-				from(select distinct place_name, area_name , category , file_saved_name
+				from(select row_number() over(partition by place_name order by area_name)as rn, place_name, area_name , category , file_saved_name
     				from place full outer join upload_file
     				on place.place_name = upload_file.file_code
     				)m, detail_code d
-				where m.category=d.detail_cd_id
+				where m.category=d.detail_cd_id and rn=1
 				order by m.place_name	
 			)
 		)
@@ -61,7 +61,7 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f right outer Join           
+					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -69,13 +69,13 @@
         			  			 where t.travel_id=d.travel_id
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%')c     
+			on f.file_code like '%'||b.place_name||'%' )c     
             
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
 		)
 		WHERE rnum &gt;= #{startRowNo}
-
+		
 	</select>
 	
 	
@@ -110,7 +110,7 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f right outer Join           
+					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -138,7 +138,7 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f right outer Join           
+					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -166,7 +166,7 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f right outer Join           
+					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -195,7 +195,7 @@
 			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id
 			from 
 			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from upload_file f right outer Join           
+					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -241,7 +241,7 @@
 		insert into travel (travel_id, travel_title, travel_start, travel_end, travel_privacy, free, 
 		view_cnt, share_cnt, writer, write_date, ver_no, travel_status)
 		values('TRV' || LPAD(TRAVEL_SEQ.nextval, 5, 0), #{travelTitle}, #{travelStart}, #{travelEnd}, #{travelPrivacy}, 'Y', 
-		0, 0, #{memberId}, to_date(sysdate,'yyyy-mm-dd'), 1, 'Y')
+		0, 0, #{memberId}, to_date(sysdate,'yy-mm-dd'), 1, 'Y')
 	</insert>
 	
 	<!-- travel detail insert 하기 위해 travelid랑 placeid 찾기 -->
@@ -258,6 +258,30 @@
 		insert into travel_detail (travel_id, travel_detail_id, travel_date, place_id, memo, travel_detail_status)
 		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')
 	</insert>
+	
+	<delete id="deleteTravel" parameterType="String">
+		delete from travel
+		where travel_id=#{travelId}
+	</delete>
+	
+<!-- 	<select id="travelListToUpdate" parameterType="String">
+	select a.travel_id as travelId, a.travel_title as travelTitle, a.travel_start as travelStart, a.travel_end as travelEnd, a.travel_privacy as travelPrivacy, a.free as free,
+			a.original_travel_id as originalTravelId, a.original_writer as originalWriter, a.travel_detail_id as travelDetailId, a.travel_date as travelDate, p.place_name as placeName, a.memo as memo 
+	from (select t.travel_id, t.travel_title, t.travel_start, t.travel_end, t.travel_privacy, t.free, 
+				t.original_travel_id, t.original_writer, d.travel_detail_id, d.travel_date, d.place_id, d.memo
+			from travel t, travel_detail d 
+			where t.travel_id=d.travel_id and d.travel_detail_status ='Y' and t.travel_id=#{travelId})a, place p
+	where p.place_id=a.place_id
+	</select>	 -->
+	
+	
+	<update id="updateTravelStatus" parameterType="String">
+	UPDATE travel_detail
+	SET
+	TRAVEL_DETAIL_STATUS = 'N'
+	WHERE
+	travel_id = #{travelId};
+	</update>
 	
 	
 	<resultMap type="com.mycompany.webapp.travel.model.TravelVo" id="selectTravel">

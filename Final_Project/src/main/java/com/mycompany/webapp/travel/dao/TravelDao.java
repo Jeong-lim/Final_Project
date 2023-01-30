@@ -39,6 +39,8 @@ public interface TravelDao {
 
 	public TravelVo findLastTravelId(@Param("placeName1")String placeName1);
 	
+	public void deleteTravel(@Param("travelId") String travelId);
+	
 	// travel detail 관련 dao
 
 	public TravelVo selectTravel(Map<String, String> map);
@@ -51,6 +53,10 @@ public interface TravelDao {
 
 	// weather dao
 	public TravelVo selectLocationInfo(String locationSi);
+
+	public TravelVo travelListToUpdate(String travelId);
+
+
 
 	
 
