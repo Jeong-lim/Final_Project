@@ -103,7 +103,7 @@
     left: 50%;
     top: 85%;
     top: 59%;
-    order-radius: 10px;
+    border-radius: 10px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     position: absolute;
     transform: translate(-50%, -50%);
