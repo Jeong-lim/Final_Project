@@ -5,8 +5,8 @@
 }
 
 .section .slidewrap {
-	max-width: 1000px;
-	margin: 0 auto;
+    max-width: 1300px;
+    margin-left: 50px;
 }
 
 .section .slidelist {
@@ -153,10 +153,9 @@
 .slider__banner {
     width: 1000px;
     margin-bottom: 30px;
-    margin-left: 120px;
+    margin-left: 50px;
     margin-top: 421px;
 }
-
 .slider__banner__header {
 	font-size: 40px;
 	font-weight: bold;
@@ -169,7 +168,3 @@
 	margin-top: 10px;
 }
 
-.section .slidewrap {
-    max-width: 1250px;
-    margin-left: 120px;
-}

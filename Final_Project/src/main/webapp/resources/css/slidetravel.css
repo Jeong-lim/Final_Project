@@ -2,6 +2,7 @@
 
 @media only screen and (min-width: 1100px) {
 	#slider-container #slider .slide {
+	
 		width: calc(2.5% - 20px);
 	}
 }
@@ -35,7 +36,7 @@
     margin-bottom: 100px;
     margin-top: 100px;
     /* margin-right: 100px; */
-    margin-left: 90px;
+    margin-left: 50px;
 }
 #slider-container #slider .slide {
 	padding-bottom: 40px;
@@ -170,8 +171,7 @@
 }
 
 .slider__travel {
-	width: 1000px;
-	margin: 30px;
+    width: 1000px;
 }
 
 .slider__travel__header {
