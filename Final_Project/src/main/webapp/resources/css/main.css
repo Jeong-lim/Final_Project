@@ -97,6 +97,7 @@
     z-index: 2;
 }
 .place_container {
+	color:black;
     width: 280px;
     height: 205px;
     border: 1px solid black;
@@ -110,6 +111,7 @@
     z-index: 1;
 }
 .weather_container {
+	color:black;
     width: 280px;
     height: 191px;
     border: 1px solid black;

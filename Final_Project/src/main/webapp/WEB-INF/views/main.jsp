@@ -34,7 +34,9 @@
 <!-- 	</div> -->
 	<div id="floatMenu">
 		<div class="weather_container">날씨</div>
-		<div class="place_container">장소</div>
+		<div class="place_container">
+			
+		</div>
 		<div class="container">
 			<div class="leaderboard">
 				<div class="head">
@@ -65,7 +67,55 @@
 	
 
 </body>
+	<script>
+	navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+	var lat;
+	var lng;
+	function onGeoOk(position) {
+	  lat = position.coords.latitude;
+	  lng = position.coords.longitude; 
 
+       $.ajax({
+           url: 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
+           dataType: "json",
+           type: "GET",
+           async: "false",
+           success: function(resp) {
+               console.log(resp);
+               console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+               console.log("현재습도 : "+ resp.main.humidity);
+               console.log("날씨 : "+ resp.weather[0].main );
+               console.log("상세날씨설명 : "+ resp.weather[0].description );
+               console.log("날씨 이미지 : "+ resp.weather[0].icon );
+               console.log("바람   : "+ resp.wind.speed );
+               console.log("나라   : "+ resp.sys.country );
+               console.log("도시이름  : "+ resp.name );
+               console.log("구름  : "+ (resp.clouds.all) +"%" ); 
+               /* $('#city').html(resp.name);
+               $('#temp').html(Math.round((resp.main.temp-273.15) * 10) / 10);
+               $('#weather').html(resp.weather[0].main); */
+               selectPlaceList(resp);
+           }
+       });
+   };
+   
+   function selectPlaceList(resp){
+	   console.log("들어옴");
+	   console.log(resp.name);
+	   console.log(resp.main.temp- 273.15);
+	   console.log(resp.weather[0].main);
+	   console.log(lat);
+	   console.log(lng);
+	   
+   }
+	   
+	
+
+	function onGeoError() {
+	  alert("날씨 정보를 가져오지 못했어요🤔");
+	}
+
+</script>
 	<script>
 		$(function(){
 	        $( window ).scroll( function() {
