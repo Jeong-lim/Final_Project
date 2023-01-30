@@ -37,6 +37,26 @@
 				<div class="slide">
 					<a class="slider__a__" href="">
 						<div class="screen">
+							<div class="top">올 여름은 망상해수욕장으로</div>
+							<div class="bottom">TRAVELY</div>
+							<img class="image-thumbnail"
+								src="${pageContext.request.contextPath}/resources/images/망상해수욕장역.jpg" />
+						</div>
+					</a>
+				</div>
+				<div class="slide">
+					<a class="slider__a__" href="">
+						<div class="screen">
+							<div class="top">올 여름은 망상해수욕장으로</div>
+							<div class="bottom">TRAVELY</div>
+							<img class="image-thumbnail"
+								src="${pageContext.request.contextPath}/resources/images/망상해수욕장역.jpg" />
+						</div>
+					</a>
+				</div>
+				<div class="slide">
+					<a class="slider__a__" href="">
+						<div class="screen">
 							<div class="top">제주도하면 뭐? 우도</div>
 							<div class="bottom">TRAVELY</div>
 							<img class="image-thumbnail"

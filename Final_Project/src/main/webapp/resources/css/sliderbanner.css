@@ -151,9 +151,10 @@
 }
 
 .slider__banner {
-	width: 1000px;
-	margin: 0 auto;
-	margin-bottom: 30px;
+    width: 1000px;
+    margin-bottom: 30px;
+    margin-left: 120px;
+    margin-top: 421px;
 }
 
 .slider__banner__header {
@@ -166,4 +167,9 @@
 	font-size: 20px;
 	color: #3B82F6;
 	margin-top: 10px;
+}
+
+.section .slidewrap {
+    max-width: 1250px;
+    margin-left: 120px;
 }
