@@ -85,7 +85,7 @@
 								<p class="travel_title">${travel.travelTitle}
 									
 									<label class="date">작성일 : <fmt:formatDate value="${travel.writeDate}"
-										pattern="YYYY/MM/dd" /></label>
+										pattern="YY-MM-dd" /></label>
 								</p>
 							</a> 
 							

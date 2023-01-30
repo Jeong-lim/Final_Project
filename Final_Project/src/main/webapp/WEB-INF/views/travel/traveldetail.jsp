@@ -28,7 +28,8 @@
 			</c:if>
 		
 			<c:if test="${writer == sessionScope.memberId }">
-			<button class="update_btn" onclick="location.href='<c:url value="/travel/insert"/>'">수정</button><hr class="uk-divider-vertical"><button id="delete_btn" class="delete_btn" >삭제</button>
+			<button class="update_btn" onclick="location.href='<c:url value="/travel/update/${travelId}/${writer}"/>'">수정</button><hr class="uk-divider-vertical">
+			<a href="/travel/delete?travelId=${travelId}" role="button" "button id="delete_btn" class="delete_btn" >삭제</a>
 			</c:if>
 		
 		</div>
@@ -87,11 +88,7 @@
 						
 						</c:if>
 						
-						</c:forEach>
-						
-					
-					
-					
+						</c:forEach>	
 					<div class="memo">
 						<img class="note__img" src="${pageContext.request.contextPath}/resources/images/note.png"><label class="memo_content">${detailList.travelMemo}</label>
 					</div>
@@ -406,12 +403,12 @@ function removeAllChildNods(el) {
 </script>
 </body>
 <script>
-
+/* 
 $('#delete_btn').click(function(e){
 	e.preventDefault();
 	$('.modal').modal("show");
 });
-	
+	 */
 $(document).ready(function(){
 	
 	console.log("ok");

@@ -103,5 +103,13 @@ public class TravelService {
 	public List<Map<String, String>> selectTravelPlace(String travelId) {
 		return travelDao.selectTravelPlace(travelId);
 	}
+	
+	public void deleteTravel(String travelId) {
+		travelDao.deleteTravel(travelId);
+	}
+
+	public TravelVo travelListToUpdate(String travelId) {
+		return travelDao.travelListToUpdate(travelId);
+	}
 
 }

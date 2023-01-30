@@ -18,43 +18,66 @@
 </head>
 <body>
 	<input type="hidden" class="memberId" value="${sessionScope.memberId}">
+	<input type="hidden" class="travelId" value="${sessionScope.travelId}">
 
 	<div class="outer">
 		<div class="inner">
 		
 			<div class="selectdiv1">
 				<label class="top_title">여행 일정 등록하기</label> <span> 
-				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio1" value="a" checked><label for="open_radio1" class="open_radio_label">전체 공개</label> 
-				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio2" value="f"><label for="open_radio2" class="open_radio_label">팔로우 공개</label> 
-				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio3" value="p"><label for="open_radio3" class="open_radio_label">비공개</label></span> 
-				<input type="text" name="daterange" class="daterange"
-					value="01/01/2023 - 01/02/2023" readonly />
+				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio1" value="a" <c:if test="${travelPrivacy eq 'a'}">checked</c:if>><label for="open_radio1" class="open_radio_label">전체 공개</label> 
+				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio2" value="f" <c:if test="${travelPrivacy eq 'f'}">checked</c:if>><label for="open_radio2" class="open_radio_label">팔로우 공개</label> 
+				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio3" value="p" <c:if test="${travelPrivacy eq 'p'}">checked</c:if>><label for="open_radio3" class="open_radio_label">비공개</label></span> 
+				<input type="text"  class="daterange" value="${travelStart} - ${travelEnd}"/>
 			</div>
 			<div class="title_input_box">
-				<input type="text" id="title_input" class="title_input" placeholder="일정 제목을 입력해주세요" name="travelTitle">
+				<input type="text" id="title_input" class="title_input" value="${travelTitle}" name="travelTitle">
 				<img class="title_input_img" id="title_input_img" src="../resources/images/pen.png">
 			</div>
 
 			<hr class="uk-divider-icon">
 
-			<div class="content_wrap" id="test">
-				<div class="content_title">
-					<label class="dayseq1">DAY </label><label class="firstdate"></label>
-					<button type="button" class="modal_btn2" name="modal_btn2">
-						<img
-							src="${pageContext.request.contextPath}/resources/images/note.png">
-					</button>
-				</div>
 			
-				<button type="button" class="modal_btn" name="modal_btn">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
-						추가하기</label>
-				</button>
-			</div>	
+			<c:forEach var="detailList" items="${detailList}" varStatus="status">
 
-			<%-- <button class="save"
-				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>  onClick="submitForm()"--%>
+
+					<form action="<c:url value='/travel/insertTravelDetail'/>" method="post" class="insertform">
+						<div class="content_wrap">
+						
+							<div class="content_title">
+								<label class="dayseq">DAY  ${status.count}</label><label class="date">${detailList.travelDate}</label> 
+								<input type="hidden" class="travelDate" name="travelDate" value="" />
+								<button type="button" class="modal_btn2" name="modal_btn2"
+									onClick="openModal2(this.id)">
+									<input type="hidden" name="memo" value="${detailList.travelMemo}" /> <img
+										src="${pageContext.request.contextPath}/resources/images/note.png">
+								</button>
+							</div>
+							<c:set var="num1" value="${detailList.travelDate}"></c:set>
+							<c:forEach var="detailTravel" items="${detailTravel}" varStatus="statusNm">
+							<c:set var="num2" value="${detailTravel.travelDate }"></c:set>
+							<c:if test="${num1 eq num2 }">
+							<div class="schedule_box">
+								<div class="insert_num">${detailTravel.NUM}</div>
+									<input type="text" class="schedule" value="${detailTravel.placeName}" name="placeName" readonly>
+								</div>
+							</div>
+							</c:if>
+							</c:forEach>
+							
+							
+							<button type="button" class="modal_btn" name="modal_btn"
+								onClick="openModal(this.id)">
+								<img
+									src="${pageContext.request.contextPath}/resources/images/add.png">
+								<label>일정 추가하기</label>
+							</button>
+						</div>
+					</form>
+
+
+			</c:forEach>	
+
 				<button class="save">확인</button>
 				
 		
@@ -469,13 +492,14 @@ $(function() {
 		console.log(value);
 		arr.push(value);
 	}
-
-	var lastnum; 
+	var lastnum;
+  	  
 	function closeModal() {
     console.log("장소닫기");
     console.log(id);
     //console.log(arr[0]);
-    if(lastnum==null){
+    
+if(lastnum==null){
     	
     	for(var i=0; i<arr.length; i++){
     		var selectedplacename="";
@@ -504,8 +528,10 @@ $(function() {
 	
     	}
     }
-    
-    
+    	
+    	//alldata={"travelDate":id, "placeName":placearr};
+	
+    	
   	 $(".modal_wrap").hide();
   	 $(".black_bg").hide();
  	 
