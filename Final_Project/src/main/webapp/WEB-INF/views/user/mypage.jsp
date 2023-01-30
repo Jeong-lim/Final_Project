@@ -93,9 +93,9 @@
 		 
 			<div class="mytravel">
 				<c:forEach items="${userList}" var="travel">
-				<fmt:parseDate var="date_date" value="${ travel.travelStart }" pattern="yyyy-MM-dd" />
+				<fmt:parseDate var="date_date" value="${ travel.travelStart }" pattern="yyyy/MM/dd" />
 				<fmt:formatDate value="${date_date}" pattern="yyyy/MM/dd" var="start_date"/>
-				<fmt:parseDate var="date_date2" value="${ travel.travelEnd }" pattern="yyyy-MM-dd" />
+				<fmt:parseDate var="date_date2" value="${ travel.travelEnd }" pattern="yyyy/MM/dd" />
 				<fmt:formatDate value="${date_date2}" pattern="dd" var="end_date"/>
 				<a href='<c:url value="/travel/${travel.travelId}/${travel.writer}"/>'>
 					<div class="card">
