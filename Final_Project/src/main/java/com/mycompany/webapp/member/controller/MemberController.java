@@ -376,12 +376,15 @@ public class MemberController {
 		return memberService.memberIdCheck(memberId);
 	}
 	
-	@RequestMapping(value="/member/idFindCheck")
+	@RequestMapping(value="/member/idFindCheck", method = RequestMethod.GET)
+	@ResponseBody
 	public String idFindCheck(@RequestParam("email")String email, @RequestParam("userName")String userName, Model model) {
 		logger.info(email);
 		logger.info(userName);
+		
+		String userId = memberService.findUserId(email, userName);
 
-		return memberService.findUserId(email, userName);
+		return userId;
 	}
 	
 	@GetMapping(value="/member/idFind")
