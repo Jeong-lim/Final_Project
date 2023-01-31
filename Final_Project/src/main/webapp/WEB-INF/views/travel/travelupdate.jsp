@@ -97,9 +97,9 @@
 				<div>
 					<div class="modal_wrap_box">
 						<div class="place_sel_box">
-							<img src="../resources/images/logo.png" class="place_sel_logo"><label
+							<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="place_sel_logo"><label
 								class="place_title">관광지 선택하기</label><img
-								src="../resources/images/x.png" class="place_title_x"
+								src="${pageContext.request.contextPath}/resources/images/x.png" class="place_title_x"
 								id="place_title_x">
 						</div>
 						<div class="place_search_box">
@@ -109,7 +109,7 @@
 									<input type="text" class="select" spellcheck="false" name="keyword" id="keyword" value="${Search.keyword}"> 
 									<button id="btnSearch" class="btnSearch">
 									<img 
-										src="../resources/images/search.png"></button>
+										src="${pageContext.request.contextPath}/resources/images/search.png"></button>
 								</div></span>
 							<button type="button" id="modal_close" class="place_btn" onClick="closeModal()">확인</button>
 						</div>
