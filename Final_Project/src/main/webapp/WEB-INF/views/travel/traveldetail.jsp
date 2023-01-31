@@ -23,7 +23,7 @@
 		<div class="top_title">
 			<label class="top_tit">${travelTitle}</label>
 			<label class="top_date">${startDate} - ${endDate}</label>
-			<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' }">
+			<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' or writer == sessionScope.memberId }">
 				<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
 			</c:if>
 		

@@ -67,7 +67,7 @@ public class TravelService {
 		return travelDao.selectLocationInfo(locationSi);
 	}
 
-	public int insertTravel(String memberId, String travelTitle, char travelPrivacy, String travelStart, String travelEnd) {
+	public int insertTravel(String memberId, String travelTitle, String travelPrivacy, String travelStart, String travelEnd) {
 		return travelDao.insertTravel(memberId, travelTitle, travelPrivacy,travelStart,travelEnd);
 		
 	}
@@ -110,6 +110,25 @@ public class TravelService {
 
 	public TravelVo travelListToUpdate(String travelId) {
 		return travelDao.travelListToUpdate(travelId);
+	}
+
+	public void updateTravelStatus(String travelId) {
+		travelDao.updateTravelStatus(travelId);
+		
+	}
+
+	public void updateTravel(String travelId, String travelTitle, String travelPrivacy, String travelStart, String travelEnd, String memberId) {
+		travelDao.updateTravel(travelId, travelTitle, travelPrivacy, travelStart, travelEnd,memberId);
+		
+	}
+
+	public void updateTravelDetail(String travelId, String travelDate, String placeId, String memo) {
+		travelDao.updateTravelDetail(travelId, travelDate, placeId, memo);
+		
+	}
+
+	public TravelVo findPlaceId(String placeName1) {
+		return travelDao.findPlaceId(placeName1);
 	}
 
 }
