@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -87,10 +88,18 @@ public class PlaceController {
 		
 	}
 	
-	@RequestMapping("/location")
-    public String location() {
-    	
-    	return "place/location";
+	@ResponseBody
+    @PostMapping("/selectPlaceList")
+    public List<PlaceVo> selectPlaceList(@RequestParam("city")String city
+    							 ,@RequestParam("lat") String lat
+    							 ,@RequestParam("lng") String lng
+    							 ,@RequestParam("weather")String weather){
+    	System.out.println(city);
+    	System.out.println(lat);
+    	System.out.println(lng);
+    	String indoor="실내";
+    	List<PlaceVo> recomandPlace=placeService.selectPlaceDistance(lat, lng, indoor);
+    	return recomandPlace;
     }
 
 

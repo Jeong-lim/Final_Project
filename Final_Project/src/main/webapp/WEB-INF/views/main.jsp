@@ -35,7 +35,12 @@
 	<div id="floatMenu">
 		<div class="weather_container">날씨</div>
 		<div class="place_container">
-			
+			<p class="place_con_tit">Travely가 추천하는 주변 관광지</p>
+			<div class="place_con_img">
+				<ul class="place_con_ul">
+					
+				</ul>
+			</div>
 		</div>
 		<div class="container">
 			<div class="leaderboard">
@@ -72,8 +77,8 @@
 	var lat;
 	var lng;
 	function onGeoOk(position) {
-	  lat = position.coords.latitude;
-	  lng = position.coords.longitude; 
+	  lat = position.coords.latitude; //위도
+	  lng = position.coords.longitude;  //경도
 
        $.ajax({
            url: 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
@@ -104,15 +109,33 @@
 	   console.log(resp.name);
 	   console.log(resp.main.temp- 273.15);
 	   console.log(resp.weather[0].main);
-	   console.log(lat);
-	   console.log(lng);
+	   console.log(lat); //위도
+	   console.log(lng); //경도
+	   $.ajax({
+		  type:"POST",
+		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main,
+		  success:function(result){
+			  console.log(result);
+			  for(var i=0; i<result.length; i++){
+				  
+				  console.log(result[i].placeName);
+				  console.log(result[i].distance);
+				  console.log(result[i].fileSavedName);
+				  var str='';
+				  str+=`<li><a href="<c:url value='/place/detail/`+result[i].placeName+`'/>"><div class="screen"><div class="top">`+result[i].placeName+`</div><div class="bottom">`+result[i].distance+`km</div><img src="<spring:url value='/place/`+result[i].fileSavedName+`'/>"/></div></a></li>`;
+				  console.log(str);
+				  $(".place_con_ul").append(str);
+			  }
+			  
+		  }
+	   });
 	   
    }
 	   
 	
 
 	function onGeoError() {
-	  alert("날씨 정보를 가져오지 못했어요🤔");
+	  console.log("날씨 정보를 가져오지 못했어요🤔");
 	}
 
 </script>

@@ -102,6 +102,21 @@
         where place_name=#{placeName} and p.category=d.detail_cd_id
 	</select>
 	
+	<select id="selectPlaceDistance" parameterType="map" resultType="place">
+		select place_name as placeName,round(distance,1) as distance,indoor as indoor,file_saved_name as fileSavedName
+		from(SELECT place_name,indoor,score,file_saved_name,
+					(6371 * acos(cos(CAST(LAT AS FLOAT) * 3.14 / 180.0) * cos(#{lat} * 3.14 / 180.0) 
+		               * cos((#{lng}* 3.14 / 180.0) - (CAST(LON AS FLOAT) * 3.14 / 180.0)) + sin(CAST(LAT AS FLOAT) * 3.14 / 180.0) 
+		               * sin(#{lat} * 3.14 / 180.0))) as distance
+    		 FROM place p full outer join (select row_number() over(partition by file_code order by file_saved_name)as rn, file_code, file_saved_name
+										  from upload_file
+										  group by file_code,file_saved_name)f
+    		 on p.place_name=f.file_code
+    		 where indoor=#{indoor} and rn=1
+    		 order by distance)
+		where rownum &lt;=2
+	</select>
+	
 	
 	
 	

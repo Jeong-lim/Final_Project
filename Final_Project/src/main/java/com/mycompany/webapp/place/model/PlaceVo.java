@@ -12,6 +12,10 @@ public class PlaceVo {
 	private String fileNo; //관광지 사진 번호
 	private String fileSavedName; //관광지 사진파일이름
 	private String placeDetail; //장소설명
+	private String lat; // 위도
+	private String lng; //경도
+	private String indoor;//실내여부
+	private String distance;//거리
 	
 	
 	
@@ -58,12 +62,38 @@ public class PlaceVo {
 	public void setPlaceDetail(String placeDetail) {
 		this.placeDetail = placeDetail;
 	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+	public String getIndoor() {
+		return indoor;
+	}
+	public void setIndoor(String indoor) {
+		this.indoor = indoor;
+	}
+	public String getDistance() {
+		return distance;
+	}
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 	@Override
 	public String toString() {
 		return "PlaceVo [placeId=" + placeId + ", placeName=" + placeName + ", areaName=" + areaName + ", category="
 				+ category + ", fileNo=" + fileNo + ", fileSavedName=" + fileSavedName + ", placeDetail=" + placeDetail
-				+ "]";
+				+ ", lat=" + lat + ", lng=" + lng + ", indoor=" + indoor + ", distance=" + distance + "]";
 	}
+	
+	
 	
 	
 	
