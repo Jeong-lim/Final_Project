@@ -66,7 +66,11 @@
 	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	
 	<%@ include file="/WEB-INF/views/common/information.jsp"%>
 	<br /><br />
-	<%@ include file="/WEB-INF/views/common/sliderbanner.jsp"%>
+	<div id="slideBanner">
+		<c:if test="${not empty sessionScope.memberId}">
+			<%@ include file="/WEB-INF/views/common/sliderbanner.jsp"%>
+		</c:if>
+	</div>
 	<%@ include file="/WEB-INF/views/common/slidetravel.jsp"%>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
