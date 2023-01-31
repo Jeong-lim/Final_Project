@@ -113,11 +113,10 @@
 	   console.log(lng); //경도
 	   $.ajax({
 		  type:"POST",
-		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main,
+		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15),
 		  success:function(result){
 			  console.log(result);
 			  for(var i=0; i<result.length; i++){
-				  
 				  console.log(result[i].placeName);
 				  console.log(result[i].distance);
 				  console.log(result[i].fileSavedName);
@@ -125,7 +124,7 @@
 				  str+=`<li><a href="<c:url value='/place/detail/`+result[i].placeName+`'/>"><div class="screen"><div class="top">`+result[i].placeName+`</div><div class="bottom">`+result[i].distance+`km</div><img src="<spring:url value='/place/`+result[i].fileSavedName+`'/>"/></div></a></li>`;
 				  console.log(str);
 				  $(".place_con_ul").append(str);
-			  }
+			  } 
 			  
 		  }
 	   });
