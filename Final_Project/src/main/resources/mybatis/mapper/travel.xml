@@ -259,6 +259,39 @@
 		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')
 	</insert>
 	
+	
+	
+	
+	
+	<!-- travel update -->
+	<update id="updateTravel" parameterType="map">
+		update travel 
+		set travel_title=#{travelTitle}, travel_start=#{travelStart}, travel_end=#{travelEnd}, travel_privacy=#{travelPrivacy}, MODIFIER=#{memberId},
+			MODIFY_DATE=to_date(sysdate,'yy-mm-dd'), ver_no=ver_no+1
+		where travel_id=#{travelId}
+	</update>
+	
+	<update id="updateTravelStatus" parameterType="String">
+	UPDATE travel_detail
+	SET
+	TRAVEL_DETAIL_STATUS = 'N'
+	WHERE
+	travel_id = #{travelId}
+	</update>
+	
+	<!-- travel detail update -->
+	<insert id="updateTravelDetail" parameterType="map">
+		insert into travel_detail (travel_id, travel_detail_id, travel_date, place_id, memo, travel_detail_status)
+		values(#{travelId}, 'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo}, 'Y')
+	</insert>
+	
+	<select id="findPlaceId" parameterType="String" resultType="travel">		
+		select place_id as placeId
+		from place
+		where place_name like '%'||#{placeName1}||'%' and rownum=1
+	</select>
+	
+		
 	<delete id="deleteTravel" parameterType="String">
 		delete from travel
 		where travel_id=#{travelId}
@@ -275,13 +308,7 @@
 	</select>	 -->
 	
 	
-	<update id="updateTravelStatus" parameterType="String">
-	UPDATE travel_detail
-	SET
-	TRAVEL_DETAIL_STATUS = 'N'
-	WHERE
-	travel_id = #{travelId};
-	</update>
+	
 	
 	
 	<resultMap type="com.mycompany.webapp.travel.model.TravelVo" id="selectTravel">
@@ -324,7 +351,8 @@
 	<!-- 유저 선택할 수 있는 쿼리문 -->
 	<select id="selectTravelDetail" parameterType="string" resultMap="selectTravelDetail">
 		SELECT DISTINCT
-		    TRAVEL_DATE
+			TRAVEL_ID
+		  , TRAVEL_DATE
 		  , MEMO
 	    FROM
 	        TRAVEL_DETAIL

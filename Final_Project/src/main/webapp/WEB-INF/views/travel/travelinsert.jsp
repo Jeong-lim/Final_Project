@@ -480,8 +480,16 @@ $(function() {
     	for(var i=0; i<arr.length; i++){
     		var selectedplacename="";
     		var num=i+1;
+    		//var 'num'+id;
+    		//id:placemodal1
+    		//document.querySelector(".modal_btn2").id=memomodal;
+    		//var num2=num+id; //1placemodal1
+    		//console.log("num2"+num2);
     		console.log(num);
     		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
+    		//document.querySelector(".insert_num").id=num2;
+    		//document.querySelector(".insert_num").id=(num+id);
+    		//document.querySelector(".num2").append(num);
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
     		placearr.push(arr[i]);
     		console.log(arr[i]);

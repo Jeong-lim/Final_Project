@@ -15,10 +15,15 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/travelinsert.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style>
+.daterange1{
+	width:
+}
+</style>
 </head>
 <body>
-	<input type="hidden" class="memberId" value="${sessionScope.memberId}">
-	<input type="hidden" class="travelId" value="${sessionScope.travelId}">
+	<input type="hidden" class="memberId" value="${sessionScope.memberId}"/>
+	<input type="hidden" class="travelId" value="${travelId}"/>
 
 	<div class="outer">
 		<div class="inner">
@@ -28,57 +33,61 @@
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio1" value="a" <c:if test="${travelPrivacy eq 'a'}">checked</c:if>><label for="open_radio1" class="open_radio_label">전체 공개</label> 
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio2" value="f" <c:if test="${travelPrivacy eq 'f'}">checked</c:if>><label for="open_radio2" class="open_radio_label">팔로우 공개</label> 
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio3" value="p" <c:if test="${travelPrivacy eq 'p'}">checked</c:if>><label for="open_radio3" class="open_radio_label">비공개</label></span> 
-				<input type="text"  class="daterange" value="${travelStart} - ${travelEnd}"/>
+				<input type="text"  class="daterange1" id="startDate" value="${startDate}"/>-
+				<input type="text"  class="daterange1" id="endDate" value="${endDate}"/>
 			</div>
 			<div class="title_input_box">
 				<input type="text" id="title_input" class="title_input" value="${travelTitle}" name="travelTitle">
-				<img class="title_input_img" id="title_input_img" src="../resources/images/pen.png">
+				<img class="title_input_img" id="title_input_img" src="${pageContext.request.contextPath}/resources/images/pen.png">
 			</div>
 
 			<hr class="uk-divider-icon">
 
-			
+		
 			<c:forEach var="detailList" items="${detailList}" varStatus="status">
-
-
-					<form action="<c:url value='/travel/insertTravelDetail'/>" method="post" class="insertform">
+				
+					<form action="<c:url value='/travel/insertTravelDetail'/>" method="post" class="insertform" id="form${status.count}">
+					<input type="hidden" class="travelId" name="travelId" value="${travelId}">
 						<div class="content_wrap">
 						
 							<div class="content_title">
-								<label class="dayseq">DAY  ${status.count}</label><label class="date">${detailList.travelDate}</label> 
-								<input type="hidden" class="travelDate" name="travelDate" value="" />
-								<button type="button" class="modal_btn2" name="modal_btn2"
-									onClick="openModal2(this.id)">
-									<input type="hidden" name="memo" value="${detailList.travelMemo}" /> <img
-										src="${pageContext.request.contextPath}/resources/images/note.png">
+								<label class="dayseq">DAY  ${status.count}</label> 
+								<input type="text" class="travelDate" name="travelDate" value="${detailList.travelDate}" />
+								<button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)" id="memomodal${status.count}">
+									<input type="hidden" name="memo" class="memomodal${status.count}" value="${detailList.travelMemo}" /> 
+									<img src="${pageContext.request.contextPath}/resources/images/note.png">
 								</button>
 							</div>
 							<c:set var="num1" value="${detailList.travelDate}"></c:set>
 							<c:forEach var="detailTravel" items="${detailTravel}" varStatus="statusNm">
-							<c:set var="num2" value="${detailTravel.travelDate }"></c:set>
-							<c:if test="${num1 eq num2 }">
-							<div class="schedule_box">
-								<div class="insert_num">${detailTravel.NUM}</div>
-									<input type="text" class="schedule" value="${detailTravel.placeName}" name="placeName" readonly>
+								<c:set var="num2" value="${detailTravel.travelDate}"></c:set>
+								<c:if test="${num1 eq num2 }">
+								<div class="schedule_box" id="scheduledelete${statusNm.count}">
+										<input type="text" class="schedule" value="${detailTravel.placeName}" name="placeName" readonly>
+										<button type="button" class="insert_num" onClick="cancelSchedule(this.id)" id="delete${statusNm.count}">X</button>
 								</div>
-							</div>
-							</c:if>
+								</c:if>
+								<input type="hidden" class="count2" value="${statusNm.count}"/>
 							</c:forEach>
 							
 							
 							<button type="button" class="modal_btn" name="modal_btn"
-								onClick="openModal(this.id)">
+								onClick="openModal(this.id)" id="placemodal${status.count}">
 								<img
 									src="${pageContext.request.contextPath}/resources/images/add.png">
 								<label>일정 추가하기</label>
 							</button>
 						</div>
 					</form>
-
-
-			</c:forEach>	
+					
+			<input type="hidden" class="count" value="${status.count}"/>
+			
+			</c:forEach>
+			
+			
 
 				<button class="save">확인</button>
+				
 				
 		
 				
@@ -88,9 +97,9 @@
 				<div>
 					<div class="modal_wrap_box">
 						<div class="place_sel_box">
-							<img src="../resources/images/logo.png" class="place_sel_logo"><label
+							<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="place_sel_logo"><label
 								class="place_title">관광지 선택하기</label><img
-								src="../resources/images/x.png" class="place_title_x"
+								src="${pageContext.request.contextPath}/resources/images/x.png" class="place_title_x"
 								id="place_title_x">
 						</div>
 						<div class="place_search_box">
@@ -100,7 +109,7 @@
 									<input type="text" class="select" spellcheck="false" name="keyword" id="keyword" value="${Search.keyword}"> 
 									<button id="btnSearch" class="btnSearch">
 									<img 
-										src="../resources/images/search.png"></button>
+										src="${pageContext.request.contextPath}/resources/images/search.png"></button>
 								</div></span>
 							<button type="button" id="modal_close" class="place_btn" onClick="closeModal()">확인</button>
 						</div>
@@ -146,8 +155,8 @@
 			<div class="modal_wrap2" id="modal_wrap2">
 				<div>
 					<div class="memo_title">
-						<img src="../resources/images/logo.png" class="memo_title_logo"><img
-							src="../resources/images/x.png" class="memo_title_x"
+						<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="memo_title_logo"><img
+							src="${pageContext.request.contextPath}/resources/images/x.png" class="memo_title_x"
 							id="memo_title_x">
 					</div>
 					<textarea class="memo_textarea" rows="10" cols="50"
@@ -318,12 +327,16 @@ var datearr=new Array();
 var days;
 var id; //일정 추가버튼 아이디
 var id2; //메모버튼 아이디
+var id3; //스케줄 삭제 아이디
 var value;
 var arr= new Array();
 var alldata=[];
 var placearr=[];
 var memodata=[];
 var travelmemo;
+var count=$('.count:last').val();
+var count2=$('.count2:last').val();
+console.log("카운트"+count);
 
 $(function() {
 	   $(function() {
@@ -405,35 +418,38 @@ $(function() {
 	
     $(document).on("click", "button[class='save']", function () {
         console.log("날짜 전송");
-        var travelStart1=travelStart.toString();
-        var travelEnd1=travelEnd.toString();
+        var travelStart1=$('#startDate').val();
+        var travelEnd1=$('#endDate').val();
         var travelPrivacy= $('.open_radio:checked').val();
         var travelTitle= $('.title_input').val();
         var memberid=$('.memberId').val();
+        var travelId=$('.travelId').val();
         
+        console.log(travelStart1);
+        console.log(travelEnd1);
         console.log(travelPrivacy);
         console.log(travelTitle);
-        console.log(id);
+        console.log(memberid);
+        console.log(travelId);
         //
         
       //비동기 요청을 함
         $.ajax({
-           url:"/travel/insertTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy,
+           url:"/travel/updateTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy+"&value5="+travelId,
            method: "POST",
            success:function(result1){
         	   console.log("travel전송");
         	   
-        	  for(var k=1; k<=days; k++){
+        	  for(var k=1; k<=count; k++){
         		  (function(k){
         			  $.ajax({
-                  		   url:"/travel/insertTravelDetail",
+                  		   url:"/travel/updateTravelDetail",
                   		   method: "POST",
                   		   data: $('#form'+k).serialize(),
                   		   success:function(result2){
                   			   console.log("form"+k+"전송");
                   			   console.log("k:"+k);
-                  			   console.log("days:"+days)
-                  			   if(k==days){ 
+                  			   if(k==count){ 
                   				console.log(result2);
                   				location.replace("/travel/"+result2+"/"+memberid);
                   			   }
@@ -460,12 +476,16 @@ $(function() {
      });
 }); 
  
- 	
+
+	function cancelSchedule(clicked_id){
+	
+	id3=clicked_id;
+	console.log(id3);
+	document.querySelector("#schedule"+id3).remove();
+
+	}
    
 
-
-
-	
 	function openModal(clicked_id){
 	//console.log(clicked_id);
 	id=clicked_id;
@@ -492,44 +512,36 @@ $(function() {
 		console.log(value);
 		arr.push(value);
 	}
-	var lastnum;
+	//var lastnum;
   	  
 	function closeModal() {
     console.log("장소닫기");
     console.log(id);
+    console.log(count2);
+    count2=parseInt(count2);
+    var count22=count2+1;
+    var schedule="schedule"+count22;
+    console.log(schedule);
+    var deletePlace="deletePlace"+count22;
     //console.log(arr[0]);
-    
-if(lastnum==null){
     	
     	for(var i=0; i<arr.length; i++){
     		var selectedplacename="";
-    		var num=i+1;
-    		console.log(num);
-    		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
+    		//var num=i+1;
+    		//console.log("카운트2: "+count2);
+    		selectedplacename+='<div class="schedule_box" id="schduledelete'+count22+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><button class="insert_num" onClick="cancelSchedule(this.id)" id="delete${statusNm.count}">X</button></div></div>';
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
+    		//document.querySelector(".schedule_box").id=schedule;
+    		//document.querySelector(".insert_num").id=deletePlace;
     		placearr.push(arr[i]);
     		console.log(arr[i]);
-    		lastnum=num;
+    		//lastnum=num;
+    		count22+=1;
+    		
 	
     	} 
-    }
-    else if(lastnum>0){
-    	console.log("for문 밖");
-    	console.log(arr.length);
-    	for(var i=0; i<arr.length; i++){
-    		var selectedplacename="";
-    		lastnum1=lastnum+1;
-    		console.log("lastnum"+lastnum);
-    		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+lastnum1+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
-    		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
-    		placearr.push(arr[i]);
-    		console.log(arr[i]);
-    		lastnum=lastnum1;
-	
-    	}
-    }
-    	
-    	//alldata={"travelDate":id, "placeName":placearr};
+  
+ 
 	
     	
   	 $(".modal_wrap").hide();

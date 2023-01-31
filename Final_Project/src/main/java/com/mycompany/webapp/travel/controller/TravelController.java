@@ -62,7 +62,7 @@ public class TravelController {
 			// 팔로우상태 체크
 			String status = memberService.checkFollowStatus(memberId, sessionId);
 			model.addAttribute("follow", status);
-			logger.info(status);
+			//logger.info(status);
 
 			if (travel != null) {
 				model.addAttribute("travelTitle", travel.getTravelTitle());
@@ -82,12 +82,11 @@ public class TravelController {
 
 				List<Map<String, String>> detailList = travelService.selectTravelDetail(travelId);
 				List<Map<String, String>> detailTravel = travelService.selectTravelPlace(travelId);
-				logger.info(detailList.toString());
-				logger.info(detailTravel.toString());
+				//logger.info(detailList.toString());
+				//logger.info(detailTravel.toString());
 				model.addAttribute("detailList", detailList);
 				model.addAttribute("detailTravel", detailTravel);
 
-				model.addAttribute("detailList", detailList);
 
 			}
 
@@ -104,8 +103,8 @@ public class TravelController {
 	@RequestMapping(value = "/travel/delete", method=RequestMethod.GET)
 	public String insertTravel(@RequestParam("travelId") String travelId) {	
 			travelService.deleteTravel(travelId);
-			logger.info(travelId);
-			logger.info("delete");
+			//logger.info(travelId);
+			//logger.info("delete");
 
 			return "main";
 
@@ -124,27 +123,26 @@ public class TravelController {
 			model.addAttribute("endDate", travel.getTravelEnd());
 			model.addAttribute("travelDate", travel.getTravelDate());
 			model.addAttribute("writer", travel.getWriter());
-			model.addAttribute("momo", travel.getMemo());
+			model.addAttribute("memo", travel.getMemo());
 			model.addAttribute("travelPrivacy", travel.getTravelPrivacy());
+			model.addAttribute("travelId", travel.getTravelId());
 			
+			List<PlaceVo> placeList = travelService.selectPlaceList();
+			model.addAttribute("placeList", placeList);
 			
-			
+	
 			List<Map<String, String>> detailList = travelService.selectTravelDetail(travelId);
 			List<Map<String, String>> detailTravel = travelService.selectTravelPlace(travelId);
-			logger.info(detailList.toString());
-			logger.info(detailTravel.toString());
+			
+			//logger.info(detailList.toString());
+			//logger.info(detailTravel.toString());
 			model.addAttribute("detailList", detailList);
 			model.addAttribute("detailTravel", detailTravel);
 
-			model.addAttribute("detailList", detailList);
-		
-		
-		
-		
 		
 			//travelService.updateTravel(travelId);
-			logger.info(travelId);
-			logger.info("update");
+			//logger.info(travelId);
+			//logger.info("update");
 
 			return "travel/travelupdate";
 
@@ -158,13 +156,22 @@ public class TravelController {
 			@RequestParam(value = "value", required = false) String travelStart,
 			@RequestParam(value = "value2", required = false) String travelEnd,
 			@RequestParam(value = "value3", required = false) String travelTitle,
-			@RequestParam(value = "value4", required = false) char travelPrivacy) {
+			@RequestParam(value = "value4", required = false) String travelPrivacy,
+			@RequestParam(value = "value5", required = false) String travelId) {
 			
-			//travelService.updateTravelStatus(travelId);
+		
+			travelService.updateTravelStatus(travelId);
 
 			String memberId = (String) session.getAttribute("memberId");
+			logger.info(travelId);
+			logger.info(memberId);
+			logger.info(travelTitle);
+			System.out.println(travelPrivacy);
+			logger.info(travelStart);
+			logger.info(travelEnd);
 			
-			travelService.insertTravel(memberId, travelTitle, travelPrivacy, travelStart, travelEnd);
+			
+			travelService.updateTravel(travelId, travelTitle, travelPrivacy, travelStart, travelEnd, memberId);
 
 			return "ok";
 
@@ -177,22 +184,23 @@ public class TravelController {
 			System.out.println("--------------------");
 			String travelDate=request.getParameter("travelDate");
 			String memo=request.getParameter("memo");
+			String travelId=request.getParameter("travelId");
 			
 			System.out.println(Arrays.toString(placeName));
 			System.out.println(travelDate);
 			System.out.println(memo);
-			String travelId=null;
+			
 
 			
 		for (int i = 0; i < placeName.length; i++) {
 			System.out.println(placeName[i]);
 			String placeName1=placeName[i];
-			TravelVo travelvo=travelService.findLastTravelId(placeName1);
-			travelId=travelvo.getTravelId();
+			TravelVo travelvo=travelService.findPlaceId(placeName1);
+			//travelId=travelvo.getTravelId();
 			String placeId=travelvo.getPlaceId();
 			System.out.println(travelId);
 			System.out.println(placeId);
-			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
+			travelService.updateTravelDetail(travelId, travelDate, placeId, memo);
 		}
 
 			return travelId;
@@ -206,7 +214,7 @@ public class TravelController {
 			@RequestParam(value = "value", required = false) String travelStart,
 			@RequestParam(value = "value2", required = false) String travelEnd,
 			@RequestParam(value = "value3", required = false) String travelTitle,
-			@RequestParam(value = "value4", required = false) char travelPrivacy) {
+			@RequestParam(value = "value4", required = false) String travelPrivacy) {
 
 			String memberId = (String) session.getAttribute("memberId");
 			
@@ -220,24 +228,23 @@ public class TravelController {
 	@RequestMapping(value="/travel/insertTravelDetail", method=RequestMethod.POST)
 	public String insertTravelDetail(Model model, HttpServletRequest request,  @RequestParam String[] placeName) {
 			
-			System.out.println("--------------------");
 			String travelDate=request.getParameter("travelDate");
 			String memo=request.getParameter("memo");
 			
-			System.out.println(Arrays.toString(placeName));
+			/*System.out.println(Arrays.toString(placeName));
 			System.out.println(travelDate);
-			System.out.println(memo);
+			System.out.println(memo);*/
 			String travelId=null;
 
 			
 		for (int i = 0; i < placeName.length; i++) {
-			System.out.println(placeName[i]);
+			//System.out.println(placeName[i]);
 			String placeName1=placeName[i];
 			TravelVo travelvo=travelService.findLastTravelId(placeName1);
 			travelId=travelvo.getTravelId();
 			String placeId=travelvo.getPlaceId();
-			System.out.println(travelId);
-			System.out.println(placeId);
+			//System.out.println(travelId);
+			//System.out.println(placeId);
 			travelService.insertTravelDetail(travelId, travelDate, placeId, memo);
 		}
 
@@ -249,7 +256,7 @@ public class TravelController {
 	public String travelInsert(Model model, HttpSession session) {
 		
 		String memberId = (String) session.getAttribute("memberId");
-		logger.info(memberId);
+		//logger.info(memberId);
 		if (memberId != null && !memberId.equals("")) {
 
 			List<PlaceVo> placeList = travelService.selectPlaceList();
@@ -271,8 +278,8 @@ public class TravelController {
 			@RequestParam("keyword") String keyword, Model model) {
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("keyword", keyword);
-		logger.info(searchType);
-		logger.info(keyword);
+		//logger.info(searchType);
+		//logger.info(keyword);
 		List<PlaceVo> placeList = travelService.selectTravelListByArea(searchType, keyword);
 		model.addAttribute("placeList", placeList);
 
