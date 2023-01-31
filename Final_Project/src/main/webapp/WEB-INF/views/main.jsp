@@ -104,9 +104,45 @@
                $('#temp').html(Math.round((resp.main.temp-273.15) * 10) / 10);
                $('#weather').html(resp.weather[0].main); */
                selectPlaceList(resp);
+               
+               var nowTemp = resp.main.temp- 273.15;
+               var nowHumid = resp.main.humidity;
+    		   var weather = resp.weather[0].main;
+    		   var wind = resp.wind.speed;
+    		   var country = resp.name;
+    		   var cloud = resp.clouds.all;
+    		   var sunrise = resp.sys.sunrise;
+    		   var sunset = resp.sys.sunset;
+    		   
+    		   
+               selectPlaceList(resp);
+               selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset);
            }
        });
    };
+   
+   
+   function airPollution(position) {
+		  lat = position.coords.latitude; //위도
+		  lng = position.coords.longitude;  //경도
+
+	       $.ajax({
+	           url: 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
+	           dataType: "json",
+	           type: "GET",
+	           async: "false",
+	           success: function(resp) {
+	        	   console.log(resp);
+	               console.log("대기질 심각 레벨 : "+ resp.list[0].main.aqi); // 레벨 5까지
+	               var air = resp.list[0].main.aqi;
+	               selectWeatherInfo(air);
+	           }
+	       });
+	   };
+	   
+	   
+	
+   
    
    function selectPlaceList(resp){
 	   console.log("들어옴");
@@ -140,6 +176,94 @@
 	function onGeoError() {
 	  console.log("날씨 정보를 가져오지 못했어요🤔");
 	}
+	
+	   /* 날씨 정보 받아오기 */
+	   function selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset, air) {
+		   
+		   console.log("날씨 정보 들어왔졍");
+		   console.log(sunrise);
+		   console.log(sunset);
+		   
+		   var today = new Date();
+		   var nowTime = today.getTime();
+		   var nowTime2 = nowTime / 1000;
+			
+		   const sunriseDiv = document.getElementById('weather_sunshine');
+		   const tempDiv = document.getElementById('weather_temp');
+		   const humidDiv = document.getElementById('weather_humid');
+		   const airDiv = document.getElementById('weather_air');
+		   const stateDiv = document.getElementById('weather_state');
+		   const windDiv = document.getElementById('weather_wind');
+		   console.log(nowTime2);
+		   
+		   /* 일몰 일출 */
+		   
+		   if(nowTime2 <= sunset) {
+			   const newText = document.createTextNode('오늘 하루도 힘찬 하루 되세요~');
+			   sunriseDiv.appendChild(newText);
+		   } else if (nowTime >= sunset) {
+			   const newText = document.createTextNode('야간 운전 조심하세요~');
+			   sunriseDiv.appendChild(newText);
+		   }
+		   
+		   /* 온도 */
+		   if(nowTemp <= 0) {
+			   if(nowHumid <= 70) {
+				   const newText = document.createTextNode('날씨가 춥고 건조해요');
+				   tempDiv.appendChild(newText);
+			   } else if(nowHumid > 70) {
+				   const newText = document.createTextNode('날씨가 춥지만 습도가 적당해요');
+				   tempDiv.appendChild(newText);
+			   }
+		   } else if( nowTemp <= 8 ){
+			   if(nowHumid < 70) {
+				   const newText = document.createTextNode('날씨가 쌀쌀하고 건조해요');
+				   tempDiv.appendChild(newText);
+			   } else if(nowHumid >= 70) {
+				   const newText = document.createTextNode('날씨가 쌀쌀하지만 습도가 적당해요');
+				   tempDiv.appendChild(newText);
+			   }
+		   } else if( (nowTemp > 8) && (nowTemp <= 18) ){
+			   if(nowHumid < 70) {
+				   const newText = document.createTextNode('날씨가 선선하고 건조해요');
+				   tempDiv.appendChild(newText);
+			   } else if(nowHumid >= 70) {
+				   const newText = document.createTextNode('날씨가 선선하지만 습도가 적당해요');
+				   tempDiv.appendChild(newText);
+			   }
+		   } else if( (nowTemp > 18) && (nowTemp <= 25) ){
+			   if((nowTemp > 18) && (nowTemp <= 20)) {
+				   if(nowHumid < 60) {
+					   const newText = document.createTextNode('날씨가 따뜻하고 건조해요');
+					   tempDiv.appendChild(newText);
+				   } else if(nowHumid >= 60) {
+					   const newText = document.createTextNode('날씨가 따뜻하지만 습도가 적당해요');
+					   tempDiv.appendChild(newText);
+				   }
+			   } else if((nowTemp > 21) && (nowTemp <= 23)) {
+				   if(nowHumid < 50) {
+					   const newText = document.createTextNode('날씨가 따뜻하고 건조해요');
+					   tempDiv.appendChild(newText);
+				   } else if(nowHumid >= 50) {
+					   const newText = document.createTextNode('날씨가 따뜻하고 습도가 적당해요');
+					   tempDiv.appendChild(newText);
+				   }
+			   }
+		   } else if( nowTemp >= 30 ){
+			   if(nowHumid < 40) {
+				   const newText = document.createTextNode('날씨가 덥지만 건조해요');
+				   tempDiv.appendChild(newText);
+			   } else if(nowHumid >= 40) {
+				   const newText = document.createTextNode('날씨가 덥고 습도가 적당해요');
+				   tempDiv.appendChild(newText);
+			   } else if(nowHumid >= 70) {
+				   const newText = document.createTextNode('날씨가 덥고 끈적끈적해요');
+				   tempDiv.appendChild(newText);
+			   }
+		   }
+		   
+		  
+	   };
 
 </script>
 	<script>
