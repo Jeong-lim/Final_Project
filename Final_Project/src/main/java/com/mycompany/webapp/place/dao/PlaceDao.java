@@ -15,14 +15,16 @@ public interface PlaceDao {
 	
 	public int count(String category); //전체 관광지 개수 (중복없이)
 	 //전체관광지리스트페이징처리
-	public List<PlaceVo> selectPlaceList(@Param("category")String category, @Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
+	public List<PlaceVo> selectPlaceList(Map<Object,Object>map);
 	
-	public int countKeyword(@Param("key")String key,@Param("keyword")String keyword);
+	public int countKeyword(Map<String,String>map);
 	
-	public List<PlaceVo> KeywordPlaceSearch(@Param("key")String key, @Param("keyword")String keyword,@Param("endRowNo")int endRowNo,@Param("startRowNo")int startRowNo);
+	public List<PlaceVo> KeywordPlaceSearch(Map<Object,Object>map);
 	
 	public List<PlaceVo> detailPlaceInfo(String placeName);
 	
 	public PlaceVo placeInfo(String placeName);
+	
+	public List<PlaceVo> selectPlaceDistance(Map<String,String>map);
 
 }
