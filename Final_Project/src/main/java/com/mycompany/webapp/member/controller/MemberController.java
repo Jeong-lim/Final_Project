@@ -66,7 +66,7 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/signin", method=RequestMethod.POST)
-	public String login(String memberId, String memberPassword, HttpSession session, Model model) {
+	public String login(String memberId, String memberPassword, HttpSession session, Model model) throws Exception {
 		logger.info("sign in post ?????????????????????");
 		MemberVo member = memberService.selectMember(memberId); // 멤버 id가 있는 지 확인
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -91,7 +91,7 @@ public class MemberController {
 							String fileSavedName = fileVo.getFileSavedName();
 							session.setAttribute("fileSavedName", fileSavedName);
 						}
-						
+
 						logger.info("login 실행");
 						
 						return "redirect:/";
@@ -392,6 +392,16 @@ public class MemberController {
 		return "auth/idcheck";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/travelSlide/{sessionScope.memberId}")	
+	public String travelSlide(@PathVariable("sessionScope.memberId")String sessionId, Model model) throws Exception {
+		logger.info(sessionId);
+		List<MemberVo> userList = memberService.userTravelList(sessionId);
+		model.addAttribute("userList", userList);
+		logger.info(userList.toString());
+		
+		return "common/sliderbanner";
+	}
 
 	
 	
