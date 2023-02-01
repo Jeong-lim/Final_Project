@@ -27,8 +27,8 @@
 		<div>
 			<div class="uk-inline">
 				<button class="uk-button uk-button-default" id="alarmBtn" type="button" >
-					<img class="header__alarm__img"
-						src="${pageContext.request.contextPath}/resources/images/alarm_full.png">
+					<%-- <img class="header__alarm__img"
+						src="${pageContext.request.contextPath}/resources/images/alarm_full.png"> --%>
 				</button>
 				
 				
@@ -101,7 +101,8 @@ $('document').ready(
 				success:function(result){
 					var length=result.length;
 					if(length >0){
-					console.log("성공");
+						var str2='<img class="header__alarm__img" src="${pageContext.request.contextPath}/resources/images/alarm_full.png">';
+						$('.uk-button').append(str2);
 						for(var i=0; i<length; i++){
 							console.log(i);
 							if(result[i].alarmCode=='f'){
@@ -144,6 +145,7 @@ $('document').ready(
 									}
 									
 							}
+							
 							$('.uk-nav').append(str);
 						}
 					
@@ -152,10 +154,16 @@ $('document').ready(
 					}else if(length == 0 ){
 						console.log('알림없음');
 						var str='';
+						var str2='';
+						str2+='<img class="header__alarm__img" src="${pageContext.request.contextPath}/resources/images/alarm.png">';
+						$('.uk-button').append(str2);
+						
 						str+='<div class="follow__wrapper">';
 						str+='<li class="uk-active"> 알림이 없습니다. </li></div>';
 						str+='</ul></div>'; 
+						
 						$('.uk-nav').append(str);
+						
 					}
 				}
 			})
