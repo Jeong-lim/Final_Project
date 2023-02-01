@@ -307,6 +307,47 @@
 	where p.place_id=a.place_id
 	</select>	 -->
 	
+	<update id="travelReview" parameterType="String">
+		update travel
+		set travel_review = #{travelReview}
+		where travel_id=#{travelId}
+	</update>
+	
+	
+	<insert id="scrapTravel" parameterType="String">
+		INSERT INTO travel(travel_id, travel_title, travel_start, travel_end, writer, write_date, original_travel_id, original_writer)
+		SELECT 'TRV' || LPAD(TRAVEL_SEQ.nextval, 5, 0), travel_title, travel_start, travel_end, #{memberId}, to_date(sysdate,'yy-mm-dd'), travel_Id, writer
+		FROM travel
+		WHERE travel_id=#{travelId}
+	</insert>
+	
+	<select id="findLastTravelId2" resultType="String">
+		select travel_id from travel where rownum=1 order by travel_id desc
+	</select>
+	
+	<select id="selectTravelDetailList" resultType="Map">
+		select travel_date as travelDate, place_id as placeId, memo from travel_detail where travel_id=#{travelId} and travel_detail_status='Y'
+	</select>
+	
+	<!-- <insert id="scrapTravelDetail" parameterType="String">
+		 insert into travel_detail(travel_id, travel_detail_id, travel_date, place_id, memo)
+		<foreach collection="travelDetailList" item="item" separator=",">
+         VALUES (#{travelId2},'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{item.travelDate} , #{item.placeId} , #{item.memo})
+    	</foreach>	
+	</insert> -->
+	
+	<insert id="scrapTravelDetail" parameterType="Map">
+		insert into travel_detail(travel_id, travel_detail_id, travel_date, place_id, memo)
+    	 select #{travelId2},'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), traveldetail.* 
+    	 from(
+          <foreach collection="travelDetailList" item="item" separator="UNION ALL">
+          <![CDATA[
+				SELECT #{item.travelDate}, #{item.placeId}, #{item.memo}
+        	    FROM dual ]]>
+         </foreach>
+         ) traveldetail
+	</insert>
+	
 	
 	
 	
@@ -321,6 +362,7 @@
       <result column="WRITER" property="writer"/>
       <result column="WRITE_DATE" property="writeDate"/>
       <result column="TRAVEL_PRIVACY" property="travelPrivacy"/>
+      <result column="TRAVEL_REVIEW" property="travelReview"/>
     </resultMap> 
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
@@ -335,6 +377,7 @@
         , WRITER
         , WRITE_DATE
         , TRAVEL_PRIVACY
+        , TRAVEL_REVIEW
       FROM
          TRAVEL
       WHERE

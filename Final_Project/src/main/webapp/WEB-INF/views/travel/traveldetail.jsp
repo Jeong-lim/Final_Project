@@ -24,12 +24,12 @@
 			<label class="top_tit">${travelTitle}</label>
 			<label class="top_date">${startDate} - ${endDate}</label>
 			<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' or writer == sessionScope.memberId }">
-				<button class="share_btn" onclick="location.href='<c:url value="/travel/insert"/>'">스크랩</button>
+				<a href="/travel/scrap?travelId=${travelId}&memberId=${sessionScope.memberId}" role="button" class="share_btn">스크랩</a>
 			</c:if>
 		
 			<c:if test="${writer == sessionScope.memberId }">
 			<button class="update_btn" onclick="location.href='<c:url value="/travel/update/${travelId}/${writer}"/>'">수정</button><hr class="uk-divider-vertical">
-			<a href="/travel/delete?travelId=${travelId}" role="button" "button id="delete_btn" class="delete_btn" >삭제</a>
+			<a href="/travel/delete?travelId=${travelId}" role="button" id="delete_btn" class="delete_btn" >삭제</a>
 			</c:if>
 		
 		</div>
@@ -95,9 +95,31 @@
 				</div>	
 				
 			</c:forEach>
+			
+			
+			 <div class="travel_riveiw">
+				<div class="review_title">여행은 즐거우셨나요? 여행 후기를 남겨보세요!</div>
+				<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
+				<c:if test="${writer == sessionScope.memberId }">
+					<c:if test="${travelReview eq null or ''}">
+					<button class="review_btn" onclick="travelReview()">확인</button>
+					</c:if>
+					<c:if test="${travelReview ne null}">
+					<button class="updatereview_btn" onclick="travelReview()">수정</button>
+					</c:if>
+					
+				</c:if>
+				</div> 
+			
 				
 				</div>
-			</div>		
+	
+			</div>	
+			
+			
+			
+			
+				
 			
 			<div class="weather" id="weather">
 				<div class="weather_select"><select name="sido1" id="sido1" class="sido1"></select> 
@@ -180,10 +202,34 @@
     </div>
   </div>
 </div>
+
+<input type="hidden" class="travel_id" value="${travelId}"/>
 <%@ include file="../common/footer.jsp"%>
 
 <script type="text/javascript"  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=812e2e855f4c09a3782d4e48436912b8&libraries=services"></script>
 <script>
+
+function travelReview() {
+    console.log("리뷰");
+    
+    var travelReview=document.getElementById("review").value;
+    var travelId=$('.travel_id').val();
+    console.log(travelReview);
+    console.log(travelId);
+     $.ajax({
+        url:"/travel/review?travelReview="+travelReview+"&travelId="+travelId,
+        method: "POST",
+        success:function(result1){
+     	   console.log("리뷰전송"); 	  	   
+    		
+        }
+        
+     }); 
+ 	 
+   
+ 	}
+
+
 // 마커를 담을 배열입니다
 var markers = [];
 
