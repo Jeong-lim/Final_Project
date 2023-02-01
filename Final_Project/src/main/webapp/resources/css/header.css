@@ -119,7 +119,7 @@ a {
 
 .navbar__menu {
 	display: flex;
-	width: 300px;
+	width: 310px;
 	list-style: none;
 	justify-content: space-between;
 	align-items: center;
@@ -232,6 +232,10 @@ a {
 	.hvr-underline-from-center:active:before {
 	left: 0;
 	right: 0;
+}
+
+.header__a_tag{
+	font-size:20px;
 }
 
 .header__alarm__img {
