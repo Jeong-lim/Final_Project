@@ -1,5 +1,6 @@
 package com.mycompany.webapp.travel.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -125,16 +127,28 @@ public class TravelController {
 		//System.out.println(travelId2);
 		
 		List<Map<String, String>> travelDetailList = travelService.selectTravelDetailList(travelId);	
-		/*
+		
+		List<String> travelDateList = new ArrayList<String>();
+		List<String> placeIdList = new ArrayList<String>();
+		List<String> memoList = new ArrayList<String>();
+		String travelDate;
+		String placeId;
+		String memo;
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		Map<String, String> element0 = travelDetailList.get(0);
-		logger.info(element0.toString());
-		String*/
-		
-		System.out.println(travelDetailList);
-		travelService.scrapTravelDetail(travelId2,travelDetailList);
-		
+		for(Map<String, String> data : travelDetailList){
+			
+			travelDate=data.get("TRAVELDATE");
+			placeId=data.get("PLACEID");
+			memo=data.get("MEMO");
+			travelService.scrapTravelDetail(travelId2,travelDate,placeId,memo);
+
+			System.out.println(travelDate);
+			System.out.println(placeId);
+			System.out.println(memo);
+			
+		}
 
 			return "main";
 

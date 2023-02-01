@@ -70,11 +70,13 @@ public interface TravelDao {
 
 	public void scrapTravel(@Param("travelId")String travelId, @Param("memberId")String memberId);
 
-	public void scrapTravelDetail(@Param("travelId")String travelId, List<Map<String, String>> travelDetailList);
+	
 
 	public String findLastTravelId2();
 
 	public List<Map<String, String>> selectTravelDetailList(@Param("travelId")String travelId);
+
+	public void scrapTravelDetail(@Param("travelId2")String travelId2, @Param("travelDate")String travelDate, @Param("placeId")String placeId, @Param("memo")String memo);
 
 
 
