@@ -33,7 +33,14 @@
 
 <!-- 	</div> -->
 	<div id="floatMenu">
-		<div class="weather_container">날씨</div>
+		<div class="weather_container">
+			<div id="weather_sunshine"></div>
+			<div id="weather_temp"></div>
+			<div id="weather_air"></div>
+			<div id="weather_humid"></div>
+			<div id="weather_state"></div>
+			<div id="weather_wind"></div>
+		</div>
 		<div class="place_container">
 			<p class="place_con_tit">Travely가 추천하는 주변 관광지</p>
 			<div class="place_con_img">
@@ -80,17 +87,51 @@
 	navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 	var lat;
 	var lng;
+	var nowTemp;
+	var nowHumid;
+	var weather;
+	var wind;
+	var country;
+	var cloud;
+	var sunrise;
+	var sunset;
 	var air;
 	function onGeoOk(position) {
 	  lat = position.coords.latitude; //위도
 	  lng = position.coords.longitude;  //경도
-	  airPollution(position);
        $.ajax({
            url: 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
            dataType: "json",
            type: "GET",
            async: "false",
            success: function(resp) {
+        	   
+        	   nowTemp = resp.main.temp- 273.15;
+               nowHumid = resp.main.humidity;
+    		   weather = resp.weather[0].id;
+    		   wind = resp.wind.speed;
+    		   country = resp.name;
+    		   cloud = resp.clouds.all;
+    		   sunrise = resp.sys.sunrise;
+    		   sunset = resp.sys.sunset;
+        	   
+        	   $.ajax({
+                   url: 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
+                   dataType: "json",
+                   type: "GET",
+                   async: "false",
+                   success: function(res) {
+                       /* console.log("대기질 심각 레벨 : "+ resp.list[0].main.aqi); // 레벨 5까지 */
+                       air = res.list[0].main.aqi;
+                       
+                       selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset, air);
+                       
+                       selectPlaceList(resp, air);
+                   }
+               });
+        	  
+        	   
+        	   
                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
                console.log("현재습도 : "+ resp.main.humidity);
                console.log("날씨 : "+ resp.weather[0].main );
@@ -101,53 +142,50 @@
                console.log("도시이름  : "+ resp.name );
                console.log("구름  : "+ (resp.clouds.all) +"%" ); 
                
-               var nowTemp = resp.main.temp- 273.15;
-               var nowHumid = resp.main.humidity;
-    		   var weather = resp.weather[0].main;
-    		   var wind = resp.wind.speed;
-    		   var country = resp.name;
-    		   var cloud = resp.clouds.all;
-    		   var sunrise = resp.sys.sunrise;
-    		   var sunset = resp.sys.sunset;
-    		   
-               selectPlaceList(resp);
-               selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset);
+               nowTemp = resp.main.temp- 273.15;
+               nowHumid = resp.main.humidity;
+    		   weather = resp.weather[0].id;
+    		   wind = resp.wind.speed;
+    		   country = resp.name;
+    		   cloud = resp.clouds.all;
+    		   sunrise = resp.sys.sunrise;
+    		   sunset = resp.sys.sunset;
+
            }
        });
+       
+       
+       
+       
    };
  
-   function airPollution(position) {
-		  lat = position.coords.latitude; //위도
-		  lng = position.coords.longitude;  //경도
-
-	       $.ajax({
-	           url: 'http://api.openweathermap.org/data/2.5/air_pollution?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
-	           dataType: "json",
-	           type: "GET",
-	           async: "false",
-	           success: function(resp) {
-	        	   console.log(resp);
-	               console.log("대기질 심각 레벨 : "+ resp.list[0].main.aqi); // 레벨 5까지
-	               air = resp.list[0].main.aqi;
-	               console.log("air"+air);
-	               selectWeatherInfo(air);
-	           }
-	       });
-	   };
+  
 	   
 	   
 	
    
    
-   function selectPlaceList(resp){
-	   console.log("durltj:"+air);
+   function selectPlaceList(resp, air){
+	   console.log("들어옴");
+	   console.log(resp.name);
+	   console.log(resp.main.temp- 273.15);
+	   console.log(resp.weather[0].main);
+	   console.log(lat); //위도
+	   console.log(lng); //경도
+	   console.log(air); // 대기 레벨 
 	   $.ajax({
+		  
 		  type:"POST",
-		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15)+'&air='+air,
+		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15),
 		  success:function(result){
+			  console.log("결과값" + result);
 			  for(var i=0; i<result.length; i++){
+				  console.log(result[i].placeName);
+				  console.log(result[i].distance);
+				  console.log(result[i].fileSavedName);
 				  var str='';
 				  str+=`<li><a href="<c:url value='/place/detail/`+result[i].placeName+`'/>"><div class="screen"><div class="top">`+result[i].placeName+`</div><div class="bottom">`+result[i].distance+`km</div><img src="<spring:url value='/place/`+result[i].fileSavedName+`'/>"/></div></a></li>`;
+				  console.log("str" + str);
 				  $(".place_con_ul").append(str);
 			  } 
 			  
@@ -162,13 +200,13 @@
 	  console.log("날씨 정보를 가져오지 못했어요🤔");
 	}
 	
-	   /* 날씨 정보 받아오기 */
+	/* 날씨 정보 받아오기 */
 	   function selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset, air) {
 		   
 		   console.log("날씨 정보 들어왔졍");
 		   console.log(sunrise);
 		   console.log(sunset);
-		   
+		   console.log("대기 상태 " + air);
 		   var today = new Date();
 		   var nowTime = today.getTime();
 		   var nowTime2 = nowTime / 1000;
@@ -186,13 +224,14 @@
 		   if(nowTime2 <= sunset) {
 			   const newText = document.createTextNode('오늘 하루도 힘찬 하루 되세요~');
 			   sunriseDiv.appendChild(newText);
-		   } else if (nowTime >= sunset) {
+		   } else if (nowTime2 >= sunset) {
 			   const newText = document.createTextNode('야간 운전 조심하세요~');
 			   sunriseDiv.appendChild(newText);
 		   }
 		   
 		   /* 온도 */
 		   if(nowTemp <= 0) {
+			   
 			   if(nowHumid <= 70) {
 				   const newText = document.createTextNode('날씨가 춥고 건조해요');
 				   tempDiv.appendChild(newText);
@@ -245,6 +284,70 @@
 				   const newText = document.createTextNode('날씨가 덥고 끈적끈적해요');
 				   tempDiv.appendChild(newText);
 			   }
+		   }
+		   
+		   /*  미세먼지 농도 */
+		   if(air == 1) {
+			   const newText = document.createTextNode('대기 상태가 아주 좋아요');
+			   airDiv.appendChild(newText);
+		   } else if(air == 2) {
+			   const newText = document.createTextNode('대기 상태가 좋아요');
+			   airDiv.appendChild(newText);
+		   } else if(air == 3) {
+			   const newText = document.createTextNode('대기 상태가 보통이에요');
+			   airDiv.appendChild(newText);
+		   } else if(air == 4) {
+			   const newText = document.createTextNode('대기 상태가  안좋아요');
+			   airDiv.appendChild(newText);
+		   } else if(air == 5) {
+			   const newText = document.createTextNode('대기 상태가 안좋으니 외출을 삼가하세요');
+			   airDiv.appendChild(newText);
+		   }  
+		   
+		   
+		   /* 날씨 */
+		   
+		   console.log(weather);
+		   
+		   if(weather < 300) {
+			   const newText = document.createTextNode('번개가 치는 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 400) {
+			   const newText = document.createTextNode('이슬비가 오는 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 600) {
+			   const newText = document.createTextNode('비가 오는 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 700) {
+			   const newText = document.createTextNode('눈이 오는 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 800) {
+			   const newText = document.createTextNode('안개가 끼는 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather == 800) {
+			   const newText = document.createTextNode('맑은 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 900) {
+			   const newText = document.createTextNode('구름이 낀 날이네요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather < 910) {
+			   const newText = document.createTextNode('날씨가 안좋아요 외출을 삼가해주세요');
+			   stateDiv.appendChild(newText);
+		   } else if(weather > 950) {
+			   const newText = document.createTextNode('날씨가 안좋아요 외출을 삼가해주세요');
+			   stateDiv.appendChild(newText);
+		   }
+		   
+		   
+		   if(wind > 10) {
+			   const newText = document.createTextNode('바람이 많이 불어요');
+			   windDiv.appendChild(newText);
+		   } else if((wind > 5) && (wind <= 10)) {
+			   const newText = document.createTextNode('바람이 약간 불어요');
+			   windDiv.appendChild(newText);
+		   } else if((wind > 0) && (wind <= 5)) {
+			   const newText = document.createTextNode('바람이 거의 불지 않아요');
+			   windDiv.appendChild(newText);
 		   }
 		   
 		  
