@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.place.dao.PlaceDao;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
+import com.mycompany.webapp.travel.model.TravelVo;
 
 @Service
 public class PlaceService {
@@ -63,6 +64,10 @@ public class PlaceService {
 		map.put("lng",lng);
 		map.put("indoor",indoor);
 		return placeDao.selectPlaceDistance(map);
+	}
+	
+	public List<TravelVo> bestTravelLIst(){
+		return placeDao.bestTravelLIst();
 	}
 
 }

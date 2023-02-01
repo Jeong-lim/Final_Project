@@ -1,16 +1,29 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.place.service.PlaceService;
+import com.mycompany.webapp.travel.model.TravelVo;
 
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	private PlaceService placeService;
+	
+	@Autowired
+	private PlaceService travelService;
+	
 	@RequestMapping("/")
-	public String main() {
-		//logger.info("실행");
-		//log.info("실행");
+	public String main(Model model) {
+		List<TravelVo> bestTravelList=placeService.bestTravelLIst();
+		model.addAttribute("bestTravelList",bestTravelList);
 		return "main";
 	}
 	

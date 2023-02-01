@@ -56,11 +56,17 @@
 					<div>✈️ 실시간 여행 인기코스 ✈️</div>
 				</div>
 				<div class="body">
-					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_1">꼭 가봐야 할 3박4일 서울 여행</li></a>
+					<c:forEach var="bestPlaceList" items="${bestTravelList}" varStatus="status">
+						<a href="<c:url value='travel/${bestPlaceList.travelId}/${bestPlaceList.writer}'/>"><li id="floating__banner_${status.count}">${bestPlaceList.travelTitle}</li></a>
+					</c:forEach>
+				
+					
+				
+					<%-- <a href="<c:url value='/travel/detail'/>"><li id="floating__banner_1">꼭 가봐야 할 3박4일 서울 여행</li></a>
 					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_2">아이들과 가기 좋은 역사 여행</li></a>
 					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_3">남자친구랑 떠나는 남산 타워 투어</li></a>
 					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_4">부모님과 함께하는 효도 여행 코스</li></a>
-					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_5">겨울에도 함께할 수 있는 여행 코스</li></a>
+					<a href="<c:url value='/travel/detail'/>"><li id="floating__banner_5">겨울에도 함께할 수 있는 여행 코스</li></a> --%>
 				</div>
 			</div>
 

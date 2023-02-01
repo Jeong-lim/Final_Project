@@ -185,6 +185,22 @@
 		WHERE ROWNUM &lt;=2
 	</select>
 	
+	<!-- 메인 인기여행일정 순위 5위까지 -->
+	<select id="bestTravelLIst" resultType="travel">
+		SELECT TRAVEL_ID AS travelId
+			  ,TRAVEL_TITLE AS travelTitle
+			  ,SHARE_CNT AS shareCnt
+			  ,WRITER as writer
+		  FROM (
+		  		SELECT TRAVEL_ID
+		  			  ,TRAVEL_TITLE
+		  			  ,SHARE_CNT
+		  			  ,WRITER
+			      FROM TRAVEL
+			  ORDER BY SHARE_CNT DESC
+			    )
+		 WHERE ROWNUM &lt;=5
+	</select>	
 	
 	
 	
