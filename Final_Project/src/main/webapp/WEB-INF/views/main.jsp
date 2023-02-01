@@ -176,7 +176,7 @@
 	   $.ajax({
 		  
 		  type:"POST",
-		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15),
+		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15)+'&air='+(air),
 		  success:function(result){
 			  console.log("결과값" + result);
 			  for(var i=0; i<result.length; i++){
