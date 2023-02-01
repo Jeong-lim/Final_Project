@@ -80,17 +80,17 @@
 	navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 	var lat;
 	var lng;
+	var air;
 	function onGeoOk(position) {
 	  lat = position.coords.latitude; //위도
 	  lng = position.coords.longitude;  //경도
-
+	  airPollution(position);
        $.ajax({
            url: 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lng+'&appid=91de9c0159f4971a9cc7231b11927a64',
            dataType: "json",
            type: "GET",
            async: "false",
            success: function(resp) {
-               console.log(resp);
                console.log("현재온도 : "+ (resp.main.temp- 273.15) );
                console.log("현재습도 : "+ resp.main.humidity);
                console.log("날씨 : "+ resp.weather[0].main );
@@ -100,10 +100,6 @@
                console.log("나라   : "+ resp.sys.country );
                console.log("도시이름  : "+ resp.name );
                console.log("구름  : "+ (resp.clouds.all) +"%" ); 
-               /* $('#city').html(resp.name);
-               $('#temp').html(Math.round((resp.main.temp-273.15) * 10) / 10);
-               $('#weather').html(resp.weather[0].main); */
-               selectPlaceList(resp);
                
                var nowTemp = resp.main.temp- 273.15;
                var nowHumid = resp.main.humidity;
@@ -114,14 +110,12 @@
     		   var sunrise = resp.sys.sunrise;
     		   var sunset = resp.sys.sunset;
     		   
-    		   
                selectPlaceList(resp);
                selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset);
            }
        });
    };
-   
-   
+ 
    function airPollution(position) {
 		  lat = position.coords.latitude; //위도
 		  lng = position.coords.longitude;  //경도
@@ -134,7 +128,8 @@
 	           success: function(resp) {
 	        	   console.log(resp);
 	               console.log("대기질 심각 레벨 : "+ resp.list[0].main.aqi); // 레벨 5까지
-	               var air = resp.list[0].main.aqi;
+	               air = resp.list[0].main.aqi;
+	               console.log("air"+air);
 	               selectWeatherInfo(air);
 	           }
 	       });
@@ -145,24 +140,14 @@
    
    
    function selectPlaceList(resp){
-	   console.log("들어옴");
-	   console.log(resp.name);
-	   console.log(resp.main.temp- 273.15);
-	   console.log(resp.weather[0].main);
-	   console.log(lat); //위도
-	   console.log(lng); //경도
+	   console.log("durltj:"+air);
 	   $.ajax({
 		  type:"POST",
-		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15),
+		  url:'/selectPlaceList?city='+resp.name+'&lat='+lat+'&lng='+lng+'&weather='+resp.weather[0].main+'&temp='+(resp.main.temp-273.15)+'&air='+air,
 		  success:function(result){
-			  console.log(result);
 			  for(var i=0; i<result.length; i++){
-				  console.log(result[i].placeName);
-				  console.log(result[i].distance);
-				  console.log(result[i].fileSavedName);
 				  var str='';
 				  str+=`<li><a href="<c:url value='/place/detail/`+result[i].placeName+`'/>"><div class="screen"><div class="top">`+result[i].placeName+`</div><div class="bottom">`+result[i].distance+`km</div><img src="<spring:url value='/place/`+result[i].fileSavedName+`'/>"/></div></a></li>`;
-				  console.log(str);
 				  $(".place_con_ul").append(str);
 			  } 
 			  

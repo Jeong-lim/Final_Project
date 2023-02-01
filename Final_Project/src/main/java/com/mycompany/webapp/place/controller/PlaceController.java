@@ -86,10 +86,24 @@ public class PlaceController {
 										,@RequestParam("lat")String lat
 										,@RequestParam("lng")String lng
 										,@RequestParam("weather")String weather
-										,@RequestParam("temp")String temp) {
-		String indoor = "실내";
-		List<PlaceVo> recomandPlace = placeService.selectPlaceDistance(lat, lng, indoor); //추천 관광지 리스트
-		return recomandPlace;
+										,@RequestParam("temp")double temp
+										,@RequestParam("air")int air)throws Exception {
+		String indoor;
+		if(air<=3 && weather.equals("Clear")){
+			indoor="실외";
+			List<PlaceVo> recomandPlace = placeService.selectPlaceDistance(lat, lng, indoor); //추천 관광지 리스트
+			return recomandPlace;
+		}
+		else if(temp<10.0) {
+			indoor="실내";
+			List<PlaceVo> recomandPlace = placeService.selectPlaceDistance(lat, lng, indoor); //추천 관광지 리스트
+			return recomandPlace;
+		}
+		else {
+			indoor="실내";
+			List<PlaceVo> recomandPlace = placeService.selectPlaceDistance(lat, lng, indoor); //추천 관광지 리스트
+			return recomandPlace;
+		}
 	}
 
 }
