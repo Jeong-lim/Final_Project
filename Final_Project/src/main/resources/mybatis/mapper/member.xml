@@ -68,11 +68,11 @@
 				  , MODIFIER
 				  , MODIFY_DATE
 				  , MEMBER_STATUS)
-			VALUES (#{memberId, jdbcType=VARCHAR}
-				 , #{memberPassword, jdbcType=VARCHAR}
-				 , #{memberName, jdbcType=VARCHAR}
+			VALUES (#{memberId}
+				 , #{memberPassword}
+				 , #{memberName}
 				 , #{email, jdbcType=VARCHAR}
-				 , #{phoneNumber, jdbcType=VARCHAR}
+				 , #{phoneNumber}
 				 , NULL
 				 , SYSDATE
 				 , NULL
