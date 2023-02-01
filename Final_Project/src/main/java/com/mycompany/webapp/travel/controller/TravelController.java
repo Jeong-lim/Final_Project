@@ -72,6 +72,7 @@ public class TravelController {
 				model.addAttribute("viewCnt", travel.getViewCnt());
 				model.addAttribute("shareCnt", travel.getShareCnt());
 				model.addAttribute("travelPrivacy", travel.getTravelPrivacy());
+				model.addAttribute("travelReview", travel.getTravelReview());
 				
 
 				FileVo fileVo = fileService.selectUserImage(memberId);
@@ -98,6 +99,47 @@ public class TravelController {
 		return "travel/traveldetail";
 
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/travel/review")
+	public String travelReview(Model model, HttpSession session,
+			@RequestParam(value = "travelReview", required = false) String travelReview,
+			@RequestParam(value = "travelId", required = false) String travelId) {
+
+			
+			travelService.travelReview(travelId, travelReview);
+
+			return travelReview;
+
+	}
+	
+	@RequestMapping(value = "/travel/scrap", method=RequestMethod.GET)
+	public String scrapTravel(@RequestParam("travelId") String travelId, @RequestParam("memberId") String memberId) {	
+		
+		
+		logger.info(travelId);
+		logger.info(memberId);
+		
+		travelService.scrapTravel(travelId, memberId);	
+		String travelId2=travelService.findLastTravelId2();
+		//System.out.println(travelId2);
+		
+		List<Map<String, String>> travelDetailList = travelService.selectTravelDetailList(travelId);	
+		/*
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		Map<String, String> element0 = travelDetailList.get(0);
+		logger.info(element0.toString());
+		String*/
+		
+		System.out.println(travelDetailList);
+		travelService.scrapTravelDetail(travelId2,travelDetailList);
+		
+
+			return "main";
+
+	}
+	
 	
 	
 	@RequestMapping(value = "/travel/delete", method=RequestMethod.GET)
@@ -207,7 +249,7 @@ public class TravelController {
 
 	}
 	
-	
+	 
 	@ResponseBody
 	@PostMapping(value = "/travel/insertTravel")
 	public String insertTravel(Model model, HttpSession session,

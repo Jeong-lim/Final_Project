@@ -66,6 +66,16 @@ public interface TravelDao {
 
 	public TravelVo findPlaceId(String placeName1);
 
+	public void travelReview(@Param("travelId")String travelId, @Param("travelReview")String travelReview);
+
+	public void scrapTravel(@Param("travelId")String travelId, @Param("memberId")String memberId);
+
+	public void scrapTravelDetail(@Param("travelId")String travelId, List<Map<String, String>> travelDetailList);
+
+	public String findLastTravelId2();
+
+	public List<Map<String, String>> selectTravelDetailList(@Param("travelId")String travelId);
+
 
 
 	

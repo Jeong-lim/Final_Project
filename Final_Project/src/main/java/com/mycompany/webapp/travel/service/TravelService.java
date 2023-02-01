@@ -23,7 +23,7 @@ public class TravelService {
 
 	@Resource
 	private TravelDao travelDao;
-
+	
 	public int countTravel() {
 		return travelDao.countTravel();
 
@@ -129,6 +129,29 @@ public class TravelService {
 
 	public TravelVo findPlaceId(String placeName1) {
 		return travelDao.findPlaceId(placeName1);
+	}
+
+	public void travelReview(String travelId, String travelReview) {
+		 travelDao.travelReview(travelId,travelReview);
+		
+	}
+
+	public void scrapTravel(String travelId, String memberId) {
+		travelDao.scrapTravel(travelId, memberId);
+		
+	}
+
+	public void scrapTravelDetail(String travelId, List<Map<String, String>> travelDetailList) {
+		travelDao.scrapTravelDetail(travelId, travelDetailList);
+		
+	}
+
+	public String findLastTravelId2() {
+		return travelDao.findLastTravelId2();
+	}
+
+	public List<Map<String, String>> selectTravelDetailList(String travelId) {
+		return travelDao.selectTravelDetailList(travelId);
 	}
 
 }

@@ -17,8 +17,43 @@ input:focus {
 .inner {
 	width: 1000px;
 	margin: 60px auto;
+	margin-bottom:150px;
 	height: auto;
-	min-height: 1000px;
+	min-height: 1200px;
+}
+.travel_riveiw{
+	margin:20px;
+	
+}
+.review_btn{
+    border: none;
+    box-shadow: 1px 1px 1px 0 black;
+    border-radius: 3px;
+    width: 70px;
+    height: 35px;
+    margin: 0 30px;
+    background-color: #3B82F6;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+.updatereview_btn{
+    border: none;
+    box-shadow: 1px 1px 1px 0 black;
+    border-radius: 3px;
+    width: 70px;
+    height: 35px;
+    margin: 0 30px;
+    background-color: #3B82F6;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+.review_title{
+	margin:10px;
+	font-size: 20px;
 }
 
 #weatherImg img {
