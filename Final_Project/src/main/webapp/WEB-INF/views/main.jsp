@@ -11,35 +11,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 </head>
 <body>
-	<!-- <div id="floatWeather">
-		<div id="news-container">
-			<ul>
-				<li>
-					<div>서울시 ⛈️</div>
-				</li>
-				<li>
-					<div>파주시 🌤️</div>
-				</li>
-				<li>
-					<div>고양시 ⛅</div>
-				</li>
-				<li>
-					<div>평택시 ❄️</div>
-				</li>
 
-				<li><div>전주시 ☃️</div></li>
-			</ul>
-		</div> -->
-
-<!-- 	</div> -->
 	<div id="floatMenu">
 		<div class="weather_container">
-			<div id="weather_sunshine"></div>
-			<div id="weather_temp"></div>
-			<div id="weather_air"></div>
-			<div id="weather_humid"></div>
+			<div id="weather_icon">☁️</div>
 			<div id="weather_state"></div>
-			<div id="weather_wind"></div>
+			<div id="weather_air"></div>
 		</div>
 		<div class="place_container">
 			<p class="place_con_tit">Travely가 추천하는 주변 관광지</p>
@@ -217,147 +194,222 @@
 		   var nowTime = today.getTime();
 		   var nowTime2 = nowTime / 1000;
 			
-		   const sunriseDiv = document.getElementById('weather_sunshine');
-		   const tempDiv = document.getElementById('weather_temp');
-		   const humidDiv = document.getElementById('weather_humid');
+		   /* const sunriseDiv = document.getElementById('weather_sunshine'); */
 		   const airDiv = document.getElementById('weather_air');
 		   const stateDiv = document.getElementById('weather_state');
-		   const windDiv = document.getElementById('weather_wind');
 		   console.log(nowTime2);
 		   
 		   /* 일몰 일출 */
-		   
+		  /*  
 		   if(nowTime2 <= sunset) {
 			   const newText = document.createTextNode('오늘 하루도 힘찬 하루 되세요~');
 			   sunriseDiv.appendChild(newText);
 		   } else if (nowTime2 >= sunset) {
 			   const newText = document.createTextNode('야간 운전 조심하세요~');
 			   sunriseDiv.appendChild(newText);
-		   }
+		   } */
 		   
-		   /* 온도 */
+		   /* 날씨 */
 		   if(nowTemp <= 0) {
-			   
 			   if(nowHumid <= 70) {
-				   const newText = document.createTextNode('날씨가 춥고 건조해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 춥고 건조하지만 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 춥고 건조하고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 춥고 건조하고 미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }  
 			   } else if(nowHumid > 70) {
-				   const newText = document.createTextNode('날씨가 춥지만 습도가 적당해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 춥지만 습도가 적당하고 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 춥지만 습도가 적당하고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 춥지만 습도가 적당하고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   } 
 			   }
 		   } else if( nowTemp <= 8 ){
 			   if(nowHumid < 70) {
-				   const newText = document.createTextNode('날씨가 쌀쌀하고 건조해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하고 건조하지만 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하고 건조하지만 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하고 건조하지만  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   } 
+
 			   } else if(nowHumid >= 70) {
-				   const newText = document.createTextNode('날씨가 쌀쌀하지만 습도가 적당해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하지만 습도가 적당하고 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하지만 습도가 적당하고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 쌀쌀하지만 습도가 적당하고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   } 
 			   }
 		   } else if( (nowTemp > 8) && (nowTemp <= 18) ){
 			   if(nowHumid < 70) {
-				   const newText = document.createTextNode('날씨가 선선하고 건조해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 선선하고 건조하지만 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 선선하고 건조하지만 미세먼지가 보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 선선하고 건조하지만  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }
+				   
+				   
+				   
 			   } else if(nowHumid >= 70) {
-				   const newText = document.createTextNode('날씨가 선선하지만 습도가 적당해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨가 선선하고 습도가 적당하고 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 선선하고 습도가 적당하고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨가 선선하고 습도가 적당하고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }
+
 			   }
 		   } else if( (nowTemp > 18) && (nowTemp <= 25) ){
 			   if((nowTemp > 18) && (nowTemp <= 20)) {
 				   if(nowHumid < 60) {
-					   const newText = document.createTextNode('날씨가 따뜻하고 건조해요');
-					   tempDiv.appendChild(newText);
+					   if(air <= 3) {
+						   const newText = document.createTextNode('날씨가 따뜻하지만 건조하고 미세먼지가 좋아요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 4) {
+						   const newText = document.createTextNode('날씨가 따뜻하지만 건조하고 미세먼지가  보통이에요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 5) {
+						   const newText = document.createTextNode('날씨가 따뜻하지만 건조하고  미세먼지가 안좋아요');
+						   airDiv.appendChild(newText);
+					   }
+
 				   } else if(nowHumid >= 60) {
-					   const newText = document.createTextNode('날씨가 따뜻하지만 습도가 적당해요');
-					   tempDiv.appendChild(newText);
+					   if(air <= 3) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 습도도 적당하고 미세먼지가 좋아요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 4) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 습도도 적당하고 미세먼지가  보통이에요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 5) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 습도도 적당하고  미세먼지가 안좋아요');
+						   airDiv.appendChild(newText);
+					   }
+
 				   }
 			   } else if((nowTemp > 21) && (nowTemp <= 23)) {
 				   if(nowHumid < 50) {
-					   const newText = document.createTextNode('날씨가 따뜻하고 건조해요');
-					   tempDiv.appendChild(newText);
+					   if(air <= 3) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 건조하지만 미세먼지가 좋아요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 4) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 건조하지만 미세먼지가  보통이에요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 5) {
+						   const newText = document.createTextNode('날씨가 따뜻하고 건조하지만  미세먼지가 안좋아요');
+						   airDiv.appendChild(newText);
+					   }
+
 				   } else if(nowHumid >= 50) {
-					   const newText = document.createTextNode('날씨가 따뜻하고 습도가 적당해요');
-					   tempDiv.appendChild(newText);
+					   if(air <= 3) {
+						   const newText = document.createTextNode('날씨도 따뜻하고 습도도 쾌적하고 미세먼지가 좋아요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 4) {
+						   const newText = document.createTextNode('날씨도 따뜻하고 습도도 쾌적하지만 미세먼지가  보통이에요');
+						   airDiv.appendChild(newText);
+					   } else if(air == 5) {
+						   const newText = document.createTextNode('날씨도 따뜻하고 습도도 쾌적하지만  미세먼지가 안좋아요');
+						   airDiv.appendChild(newText);
+					   }
+
 				   }
 			   }
 		   } else if( nowTemp >= 30 ){
 			   if(nowHumid < 40) {
-				   const newText = document.createTextNode('날씨가 덥지만 건조해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도는 건조한 편이고 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도는 건조한 편이고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도는 건조한 편이고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }
 			   } else if(nowHumid >= 40) {
-				   const newText = document.createTextNode('날씨가 덥고 습도가 적당해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도는 적당하고 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도는 적당하고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨도 덥지만습도는 적당하고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }
 			   } else if(nowHumid >= 70) {
-				   const newText = document.createTextNode('날씨가 덥고 끈적끈적해요');
-				   tempDiv.appendChild(newText);
+				   if(air <= 3) {
+					   const newText = document.createTextNode('날씨도 덥고 습도가 높지만 미세먼지가 좋아요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 4) {
+					   const newText = document.createTextNode('날씨가 덥고 습도도 높고 미세먼지가  보통이에요');
+					   airDiv.appendChild(newText);
+				   } else if(air == 5) {
+					   const newText = document.createTextNode('날씨도 덥지만 습도도 높고  미세먼지가 안좋아요');
+					   airDiv.appendChild(newText);
+				   }
 			   }
 		   }
-		   
-		   /*  미세먼지 농도 */
-		   if(air == 1) {
-			   const newText = document.createTextNode('대기 상태가 아주 좋아요');
-			   airDiv.appendChild(newText);
-		   } else if(air == 2) {
-			   const newText = document.createTextNode('대기 상태가 좋아요');
-			   airDiv.appendChild(newText);
-		   } else if(air == 3) {
-			   const newText = document.createTextNode('대기 상태가 보통이에요');
-			   airDiv.appendChild(newText);
-		   } else if(air == 4) {
-			   const newText = document.createTextNode('대기 상태가  안좋아요');
-			   airDiv.appendChild(newText);
-		   } else if(air == 5) {
-			   const newText = document.createTextNode('대기 상태가 안좋으니 외출을 삼가하세요');
-			   airDiv.appendChild(newText);
-		   }  
-		   
-		   
-		   /* 날씨 */
-		   
-		   console.log(weather);
+
 		   
 		   if(weather < 300) {
-			   const newText = document.createTextNode('번개가 치는 날이네요');
+			   const newText = document.createTextNode('오늘은 번개가 치는 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather < 400) {
-			   const newText = document.createTextNode('이슬비가 오는 날이네요');
+			   const newText = document.createTextNode('오늘은 이슬비가 오는 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather < 600) {
-			   const newText = document.createTextNode('비가 오는 날이네요');
+			   const newText = document.createTextNode('오늘은 비가 오는 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather < 700) {
-			   const newText = document.createTextNode('눈이 오는 날이네요');
+			   const newText = document.createTextNode('오늘은 눈이 오는 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather < 800) {
-			   const newText = document.createTextNode('안개가 끼는 날이네요');
+			   const newText = document.createTextNode('오늘은 안개가 끼는 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather == 800) {
-			   const newText = document.createTextNode('맑은 날이네요');
+			   const newText = document.createTextNode('오늘은 맑은 날이네요');
 			   stateDiv.appendChild(newText);
 		   } else if(weather < 900) {
-			   const newText = document.createTextNode('구름이 낀 날이네요');
+			   const newText = document.createTextNode('오늘은 구름이 낀 날이네요');
 			   stateDiv.appendChild(newText);
-		   } else if(weather < 910) {
-			   const newText = document.createTextNode('날씨가 안좋아요 외출을 삼가해주세요');
-			   stateDiv.appendChild(newText);
-		   } else if(weather > 950) {
-			   const newText = document.createTextNode('날씨가 안좋아요 외출을 삼가해주세요');
+		   } else if(weather >= 900) {
+			   const newText = document.createTextNode('오늘은 날씨가 안좋아요 외출을 삼가해주세요');
 			   stateDiv.appendChild(newText);
 		   }
 		   
-		   
-		   if(wind > 10) {
-			   const newText = document.createTextNode('바람이 많이 불어요');
-			   windDiv.appendChild(newText);
-		   } else if((wind > 5) && (wind <= 10)) {
-			   const newText = document.createTextNode('바람이 약간 불어요');
-			   windDiv.appendChild(newText);
-		   } else if((wind > 0) && (wind <= 5)) {
-			   const newText = document.createTextNode('바람이 거의 불지 않아요');
-			   windDiv.appendChild(newText);
-		   }
+	
 		   
 		  
 	   };
+
 
 </script>
 	<script>
