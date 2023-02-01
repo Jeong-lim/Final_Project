@@ -141,10 +141,7 @@ public class TravelService {
 		
 	}
 
-	public void scrapTravelDetail(String travelId, List<Map<String, String>> travelDetailList) {
-		travelDao.scrapTravelDetail(travelId, travelDetailList);
-		
-	}
+	
 
 	public String findLastTravelId2() {
 		return travelDao.findLastTravelId2();
@@ -152,6 +149,11 @@ public class TravelService {
 
 	public List<Map<String, String>> selectTravelDetailList(String travelId) {
 		return travelDao.selectTravelDetailList(travelId);
+	}
+
+	public void scrapTravelDetail(String travelId2, String travelDate, String placeId, String memo) {
+		travelDao.scrapTravelDetail(travelId2, travelDate, placeId, memo);
+		
 	}
 
 }

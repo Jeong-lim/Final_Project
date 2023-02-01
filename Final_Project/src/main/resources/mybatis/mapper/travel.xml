@@ -336,16 +336,9 @@
     	</foreach>	
 	</insert> -->
 	
-	<insert id="scrapTravelDetail" parameterType="Map">
+	<insert id="scrapTravelDetail" parameterType="String">
 		insert into travel_detail(travel_id, travel_detail_id, travel_date, place_id, memo)
-    	 select #{travelId2},'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), traveldetail.* 
-    	 from(
-          <foreach collection="travelDetailList" item="item" separator="UNION ALL">
-          <![CDATA[
-				SELECT #{item.travelDate}, #{item.placeId}, #{item.memo}
-        	    FROM dual ]]>
-         </foreach>
-         ) traveldetail
+    	values(#{travelId2},'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{travelDate}, #{placeId}, #{memo, jdbcType=VARCHAR})
 	</insert>
 	
 	
