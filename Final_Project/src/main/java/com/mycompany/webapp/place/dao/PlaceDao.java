@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
+import com.mycompany.webapp.travel.model.TravelVo;
 
 @Mapper
 public interface PlaceDao {
@@ -27,5 +28,7 @@ public interface PlaceDao {
 	public PlaceVo placeInfo(String placeName);
 
 	public List<PlaceVo> selectPlaceDistance(Map<String, String> map);
+	
+	public List<TravelVo> bestTravelLIst(); 
 
 }
