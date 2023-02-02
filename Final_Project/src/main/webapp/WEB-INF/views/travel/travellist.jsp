@@ -30,7 +30,7 @@
 							<option value="title">제목</option>
 							<option value="writer">작성자</option>
 						</select> <input type="text" class="search_bar" name="keyword" id="keyword"
-							value="" placeholder="search..">
+							value="" placeholder="search.." required onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
 	
 						<button type="submit" class="search_btn" name="btnSearch" id="btnSearch">
 							<img class="search_img"
@@ -210,6 +210,14 @@
 	            }
 	        });
 	 }
+	 
+	 function characterCheck(obj){
+			var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
+			if( regExp.test(obj.value) ){
+				alert("특수문자는 입력하실수 없습니다.");
+				obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+				}
+			}
 	</script>
 </body>
 
