@@ -140,6 +140,14 @@ a {
 	display: flex;
 	align-items: center;
 	width: 150px;
+	margin-top: 10px;
+}
+
+.navbar__links_2 {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	width: 150px;
 }
 
 .navbar__toggleBtn {
