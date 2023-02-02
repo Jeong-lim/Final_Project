@@ -152,6 +152,13 @@ public class MemberService  {
 		return memberDao.findUserId(email, userName);
 	}
 	
+	public void cancelFollowAlarm(String memberId,String sessionId) {
+		Map<String,String>map =new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("sessionId", sessionId);
+		memberDao.cancelFollowAlarm(map);
+	}
+	
 
 
 

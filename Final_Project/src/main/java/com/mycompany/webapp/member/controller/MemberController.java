@@ -286,7 +286,17 @@ public class MemberController {
 		return "언팔로우완료";
 	}
 	
-	
+	//팔로우신청 취소
+	@ResponseBody
+	@PostMapping("/cancelFollow")
+	public String cancelFollow(@RequestParam("value")String memberId,HttpSession session) {
+		String sessionId=(String)session.getAttribute("memberId");
+		String followSeq=memberService.searchFollowSeq(memberId, sessionId);
+		System.out.println(followSeq);
+		memberService.rejectFollow(followSeq);
+		memberService.cancelFollowAlarm(memberId, sessionId);
+		return "신청취소완료";
+	}
 	
 	
 	

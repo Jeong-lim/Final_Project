@@ -100,8 +100,9 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <script>
-$('document').ready(
 		
+$('document').ready(
+	
 		
 			 $.ajax({
 				type:"POST",
@@ -176,12 +177,11 @@ $('document').ready(
 				}
 			})
 			//ajax 끝
-			
-					
-			
+				
+)	
+
 		
-		
-)
+
 
 function follow_accept(e){
 	var memberId=$(e).attr('value');
@@ -211,8 +211,10 @@ function follow_reject(e){
 		url:'/rejectFollow/${sessionScope.memberId}?value='+memberId+'&value2='+num,
 		success:function(result){
 			console.log("거절완료");
-			$('button[name='+num+']').prop("disabled",true);
+			/* $('button[name='+num+']').prop("disabled",true); */
+			$('button[name=]'+num+']').remove();
 			$(e).html("거절됨");
+			location.reload();
 		}
 	})
 }
