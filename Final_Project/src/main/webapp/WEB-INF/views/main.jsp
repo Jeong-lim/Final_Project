@@ -56,11 +56,34 @@
 	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	
 	<%@ include file="/WEB-INF/views/common/information.jsp"%>
 	<br /><br />
-	<div id="slideBanner">
+
 		<c:if test="${not empty sessionScope.memberId}">
+				<div class="slider__banner">
+					<div class="slider__banner__header">나의 여행 일지</div>
+					<div class="slider__banner__text">TRAVELY에서 작성한 여행 일지를 확인해보세요!</div>
+				</div>
+				<div class="section">
+					<input type="radio" name="slide" id="slide01" checked> <input
+						type="radio" name="slide" id="slide02"> <input type="radio"
+						name="slide" id="slide03"> <input type="radio" name="slide"
+						id="slide04">
+					<div class="slidewrap">
 			<%@ include file="/WEB-INF/views/common/sliderbanner.jsp"%>
-		</c:if>
+			
+			</div>
+			<!-- 페이징 -->
+			<ul class="slide-pagelist">
+				<li><label for="slide01"></label></li>
+				<li><label for="slide02"></label></li>
+				<li><label for="slide03"></label></li>
+			</ul>
+		
+
+
 	</div>
+	
+</div>
+		</c:if>
 	<%@ include file="/WEB-INF/views/common/slidetravel.jsp"%>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	

@@ -71,10 +71,10 @@
 	transform: translateX(-200%);
 }
 
-/* 페이징 */
 .slide-pagelist {
-	text-align: center;
-	padding: 0px;
+    text-align: center;
+    padding-right: 340px;
+    /* margin: 0 auto; */
 }
 
 .slide-pagelist>li {
