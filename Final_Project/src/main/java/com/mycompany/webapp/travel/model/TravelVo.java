@@ -24,6 +24,7 @@ public class TravelVo {
 	private String originalWriter;
 	private String memberId;
 	private String travelReview;
+	private String originalTravelIdCount;
 	
 	// weather vo
 		private String lat;
@@ -164,6 +165,12 @@ public class TravelVo {
 	public void setTravelReview(String travelReview) {
 		this.travelReview = travelReview;
 	}
+	public String getOriginalTravelIdCount() {
+		return originalTravelIdCount;
+	}
+	public void setOriginalTravelIdCount(String originalTravelIdCount) {
+		this.originalTravelIdCount = originalTravelIdCount;
+	}
 	@Override
 	public String toString() {
 		return "TravelVo [travelId=" + travelId + ", travelTitle=" + travelTitle + ", travelStart=" + travelStart
@@ -171,9 +178,11 @@ public class TravelVo {
 				+ viewCnt + ", shareCnt=" + shareCnt + ", writer=" + writer + ", writeDate=" + writeDate
 				+ ", travelDate=" + travelDate + ", placeId=" + placeId + ", memo=" + memo + ", placeName=" + placeName
 				+ ", fileSavedName=" + fileSavedName + ", originalTravelId=" + originalTravelId + ", originalWriter="
-				+ originalWriter + ", memberId=" + memberId + ", travelReview=" + travelReview + ", lat=" + lat
-				+ ", lon=" + lon + ", locationSi=" + locationSi + "]";
+				+ originalWriter + ", memberId=" + memberId + ", travelReview=" + travelReview
+				+ ", originalTravelIdCount=" + originalTravelIdCount + ", lat=" + lat + ", lon=" + lon + ", locationSi="
+				+ locationSi + "]";
 	}
+	
 	
 
 	

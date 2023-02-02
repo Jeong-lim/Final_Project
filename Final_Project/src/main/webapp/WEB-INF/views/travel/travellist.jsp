@@ -12,22 +12,6 @@
 	href="${pageContext.request.contextPath}/resources/css/travellist.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
-<style>
-.page {
-	list-style: none;
-	padding: 6px;
-	text-align:center;
-	width: fit-content;
-    margin: auto;
-
-} 
-.travel_title .date{
-	font-size:15px;
-	float:right;
-	margin-right:30px;
-	color:#666666;
-}
-</style>
 <body>
 
 	<div class="container_top">
@@ -75,10 +59,19 @@
 			</div>
 			<div class="place_list">
 				<c:forEach var="travel" items="${travelList}">
+					
 					<div class="place">
 						<div class="image_wrap">
-						<img class="place_img"
-							src="<spring:url value='/place/${travel.fileSavedName}'/>" />
+						<c:choose>
+							<c:when test="${travel.fileSavedName eq null }">
+								<img class="place_img"
+									src="${pageContext.request.contextPath}/resources/images/default.png" />
+							</c:when>
+							<c:when test="${travel.fileSavedName ne null }">
+								<img class="place_img"
+                     				src="<spring:url value='/place/${travel.fileSavedName}'/>" />
+							</c:when>
+						</c:choose>
 						</div>
 						<div class="place_info">
 							<a href='<c:url value="/travel/${travel.travelId}/${travel.writer}"/>'>
@@ -105,7 +98,7 @@
 								<img class="views"
 									src="${pageContext.request.contextPath}/resources/images/views.png" />
 								${travel.viewCnt} <img class="publish"
-									src="${pageContext.request.contextPath}/resources/images/publish.png" />${travel.originalTravelId}
+									src="${pageContext.request.contextPath}/resources/images/publish.png" />${travel.originalTravelIdCount}
 							</div>
 						</div>
 					</div>
