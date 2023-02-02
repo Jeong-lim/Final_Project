@@ -118,12 +118,12 @@ a {
 }
 
 .navbar__menu {
-	display: flex;
-	width: 310px;
-	list-style: none;
-	justify-content: space-between;
-	align-items: center;
-	padding-left: 0;
+    display: flex;
+    width: 400px;
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
 }
 
 .navbar_logo {
@@ -140,7 +140,6 @@ a {
 	display: flex;
 	align-items: center;
 	width: 150px;
-	margin-top: 10px;
 }
 
 .navbar__toggleBtn {
