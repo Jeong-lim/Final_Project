@@ -24,10 +24,21 @@
 	</select>
 	
 	<select id="selectMemberInfo" parameterType="string" resultType="member">
-		select member_id as memberId, member_name as memberName,member_password as memberPassword,phone_number as phoneNumber,email as email,file_saved_name as fileSavedName
-		from member m left outer join (select * from upload_file where file_status='Y') f
-		on m.member_id=f.file_code
-		where m.member_id=#{memberId}
+		SELECT MEMBER_ID AS MEMBERID
+			  ,MEMBER_NAME AS MEMBERNAME
+			  ,MEMBER_PASSWORD AS MEMBERPASSWORD
+			  ,PHONE_NUMBER AS PHONENUMBER
+			  ,EMAIL AS EMAIL
+			  ,FILE_SAVED_NAME AS FILESAVEDNAME
+		  FROM MEMBER M 
+		  	   LEFT OUTER JOIN 
+		  	  (
+		  	   SELECT * 
+		  	     FROM UPLOAD_FILE 
+		  	    WHERE FILE_STATUS='Y'
+		  	  )F
+		    ON M.MEMBER_ID=F.FILE_CODE
+		 WHERE M.MEMBER_ID=#{memberId}
 	</select>
 	
 	<!-- 유저 정보 수정할 수 있는 쿼리문 -->
@@ -152,119 +163,181 @@
 	
 	<!-- 팔로워 수 -->
 	<select id="countFollower" parameterType="String" resultType="int">
-		select count(*)
-        from follow
-        where to_id=#{memberId} and follow_status='Y'
+		SELECT COUNT(*)
+          FROM FOLLOW
+         WHERE TO_ID=#{memberId} AND FOLLOW_STATUS='Y'
 	</select>
 	
 	<!-- 팔로우 수 -->
 	<select id="countFollowing" parameterType="String" resultType="int">
-		select count(*)
-        from follow
-        where from_id=#{memberId} and follow_status='Y'
+		SELECT COUNT(*)
+          FROM FOLLOW
+         WHERE FROM_ID=#{memberId} AND FOLLOW_STATUS='Y'
 	</select>
 	
 	<!-- 팔로우 요청 -->
 	<insert id="requestFollow" parameterType="map">
-		 insert into follow(follow_seq,to_id,from_id,follow_date,follow_status)
-        values('FOL'||LPAD(follow_seq.nextval,5,0),#{memberId},#{sessionId},sysdate,'N')
+		 INSERT INTO FOLLOW(FOLLOW_SEQ
+		 				   ,TO_ID
+		 				   ,FROM_ID
+		 				   ,FOLLOW_DATE
+		 				   ,FOLLOW_STATUS)
+         VALUES('FOL'||LPAD(FOLLOW_SEQ.NEXTVAL,5,0)
+         		,#{memberId}
+         		,#{sessionId}
+         		,SYSDATE
+         		,'N')
 	</insert>
 	
 	<!-- 팔로우 상태 체크 -->
 	<select id="checkFollowStatus" parameterType="map" resultType="string">
-		select follow_status
-        from follow
-        where to_id=#{memberId} and from_id=#{sessionId}
+		SELECT FOLLOW_STATUS
+          FROM FOLLOW
+         WHERE TO_ID=#{memberId} AND FROM_ID=#{sessionId}
 	</select>
 	
 	<!-- 팔로우상태 n으로 만들기 -->
 	<update id="changeFollowStatusN" parameterType="String">
-		update follow set follow_status='N'
-		where follow_seq=#{followSeq}
+		UPDATE FOLLOW SET FOLLOW_STATUS='N'
+		 WHERE FOLLOW_SEQ=#{followSeq}
 	</update>
 	
 	<!-- 알림추가 -->
 	<insert id="insertAlarm" parameterType="map">
-		insert into alarm(alarm_seq,alarm_to_id,alarm_from_id,alarm_code,alarm_status)
-        values('ALA'||LPAD(alarm_seq.nextval,5,0),#{memberId},#{sessionId},#{alarmCode},'Y')
+		INSERT INTO ALARM(ALARM_SEQ
+						 ,ALARM_TO_ID
+						 ,ALARM_FROM_ID
+						 ,ALARM_CODE
+						 ,ALARM_STATUS)
+        VALUES ('ALA'||LPAD(alarm_seq.nextval,5,0)
+        	   ,#{memberId}
+        	   ,#{sessionId}
+        	   ,#{alarmCode}
+        	   ,'Y')
 	</insert>	
 	
 	<!-- 알림 리스트 -->
 	<select id="selectAlarms" parameterType="String" resultType="alarm">
-		select a.alarm_seq as alarmSeq,f.follow_seq as followSeq,a.alarm_to_id as alarmToId,a.alarm_from_id as alarmFromId,a.alarm_status as alarmStatus,f.follow_status as followStatus,a.alarm_code as alarmCode
-		from (select alarm_seq,alarm_to_id,alarm_from_id, alarm_status,alarm_code from alarm where alarm_to_id=#{sessionId} and alarm_status='Y')a left outer join(select to_id,from_id,follow_seq, follow_status from follow where to_id=#{sessionId}) f
-       on a.alarm_to_id=f.to_id and a.alarm_from_id=f.from_id
-       order by alarm_seq desc
+		SELECT A.ALARM_SEQ AS alarmSeq
+			  ,F.FOLLOW_SEQ AS followSeq
+			  ,A.ALARM_TO_ID AS alarmSeq
+			  ,A.ALARM_FROM_ID AS alarmFromId
+			  ,A.ALARM_STATUS AS alarmStatus
+			  ,F.FOLLOW_STATUS AS followStatus
+			  ,A.ALARM_CODE AS alarmCode
+		  FROM (SELECT ALARM_SEQ
+				  	  ,ALARM_TO_ID
+				  	  ,ALARM_FROM_ID
+				  	  ,ALARM_STATUS
+				  	  ,ALARM_CODE 
+		  	      FROM ALARM 
+		  	     WHERE ALARM_TO_ID=#{sessionId} AND ALARM_STATUS='Y')A 
+		  		LEFT OUTER JOIN
+		  	   (SELECT TO_ID
+		  	   		  ,FROM_ID
+		  	   		  ,FOLLOW_SEQ
+		  	   		  ,FOLLOW_STATUS 
+		  	   	  FROM FOLLOW 
+		  	   	 WHERE TO_ID=#{sessionId}) F
+            ON A.ALARM_TO_ID=F.TO_ID AND A.ALARM_FROM_ID=F.FROM_ID
+      ORDER BY ALARM_SEQ DESC
 	</select>
 	
 	<!-- 팔로워 리스트 -->
 	<select id="selectFollowerList" parameterType="String" resultType="member">
-		select from_id as memberId, follow_status as status, file_saved_name as fileSavedName
-		from follow left outer join (select file_saved_name,file_code,file_status from upload_file where file_status='Y')upload_file
-		on follow.from_id=upload_file.file_code
-		where follow.to_id=#{memberId} and follow_status='Y'
+		SELECT FROM_ID AS memberId
+			  ,FOLLOW_STATUS AS status
+			  ,FILE_SAVED_NAME AS fileSavedName
+		  FROM FOLLOW 
+		  	   LEFT OUTER JOIN 
+		  	   (SELECT FILE_SAVED_NAME
+		  	   		  ,FILE_CODE
+		  	   		  ,FILE_STATUS 
+		  	   	  FROM UPLOAD_FILE 
+		  	   	 WHERE FILE_STATUS='Y')UPLOAD_FILE
+		    ON FOLLOW.FROM_ID=UPLOAD_FILE.FILE_CODE
+		 WHERE FOLLOW.TO_ID=#{memberId} AND FOLLOW_STATUS='Y'
 	</select>
 	
 	<!-- 팔로우 리스트 -->
 	<select id="selectFollowList" parameterType="String" resultType="member">
-		select to_id as memberId, follow_status as status, file_saved_name as fileSavedName
-		from follow left outer join (select file_saved_name,file_code,file_status from upload_file where file_status='Y')upload_file
-		on follow.to_id=upload_file.file_code
-		where follow.from_id=#{memberId} and follow_status='Y'
+		SELECT TO_ID AS memberId
+			  ,FOLLOW_STATUS AS status
+		      ,FILE_SAVED_NAME AS fileSavedName
+		  FROM FOLLOW 
+		  	   LEFT OUTER JOIN 
+		  	  (SELECT FILE_SAVED_NAME
+		  	  		 ,FILE_CODE
+		  	  		 ,FILE_STATUS 
+		  	     FROM UPLOAD_FILE 
+		  	    WHERE FILE_STATUS='Y')UPLOAD_FILE
+		   ON FOLLOW.TO_ID=UPLOAD_FILE.FILE_CODE
+		WHERE FOLLOW.FROM_ID=#{memberId} AND FOLLOW_STATUS='Y'
 	</select>
 	
 	<!-- 유저 검색 -->
 	<select id="searchUser" parameterType="String" resultType="member">
-		select member_id as memberId, file_saved_name as fileSavedName
-		from(select member_id
-   			 from member
-    	where member_id like '%'||#{keyword}||'%')m left outer join (select file_code,file_saved_name,file_status from upload_file where file_status='Y')f
-		on m.member_id=f.file_code
-		where member_id like '%'||#{keyword}||'%'
+		SELECT MEMBER_ID AS memberId
+			  ,FILE_SAVED_NAME AS fileSavedName
+		  FROM(SELECT MEMBER_ID
+   			     FROM MEMBER
+    	        WHERE MEMBER_ID LIKE '%'||#{keyword}||'%')M 
+    	       LEFT OUTER JOIN 
+    	      (SELECT FILE_CODE
+    	       		 ,FILE_SAVED_NAME
+    	       		 ,FILE_STATUS 
+    	       	 FROM UPLOAD_FILE 
+    	       	WHERE FILE_STATUS='Y')F
+		   ON M.MEMBER_ID=F.FILE_CODE
+		WHERE MEMBER_ID LIKE '%'||#{keyword}||'%'
 	</select>
 	
 	<!-- 팔로워 시퀀스 찾기 -->
 	<select id="searchFollowerSeq" parameterType="map" resultType="String">
-		select follow_seq
-		from follow
-		where to_id=#{sessionId} and from_id=#{memberId}
+		SELECT FOLLOW_SEQ
+		  FROM FOLLOW
+		 WHERE TO_ID=#{sessionId} AND FROM_ID=#{memberId}
 	</select>
 	
 	<!--팔로우 시퀀스 찾기  -->
 	<select id="searchFollowSeq" parameterType="map" resultType="String">
-		select follow_seq
-		from follow
-		where to_id=#{memberId} and from_id=#{sessionId}
+		SELECT FOLLOW_SEQ
+		  FROM FOLLOW
+		 WHERE TO_ID=#{memberId} AND FROM_ID=#{sessionId}
 	</select>
 	<!-- 팔로우 허용 -->
 	<update id="acceptFollow" parameterType="String">
-		update follow set follow_status='Y',
-						follow_date=sysdate
-		where follow_seq=#{followSeq}
+		UPDATE FOLLOW 
+		   SET FOLLOW_STATUS='Y'
+			  ,FOLLOW_DATE=SYSDATE
+		 WHERE FOLLOW_SEQ=#{followSeq}
 	</update>
 	
 	<!-- 팔로우 거절 -->
 	<delete id="rejectFollow" parameterType="String">
-		delete from follow where follow_seq=#{followSeq}
+		DELETE FROM FOLLOW WHERE FOLLOW_SEQ=#{followSeq}
 	</delete>
 	
 	<!-- 알림 상태변경 -->
 	<update id="changeStatusN" parameterType="String">
-		update alarm set alarm_status='N'
-		where alarm_seq=#{alarmSeq}
+		UPDATE ALARM 
+		   SET ALARM_STATUS='N'
+		 WHERE ALARM_SEQ=#{alarmSeq}
 	</update>
 	
 	<!-- 팔로우신청취소 -->
 	<update id="cancelFollowAlarm" parameterType="map">
-		update alarm set alarm_status='N'
-		where alarm_code='f' and alarm_to_id=#{memberId} and alarm_from_id=#{sessionId}
+		UPDATE ALARM 
+		   SET ALARM_STATUS='N'
+		 WHERE ALARM_CODE='F' AND ALARM_TO_ID=#{memberId} AND ALARM_FROM_ID=#{sessionId}
 	</update>
 	
 	<!-- 언팔로우하기(팔로우상태==U) -->
 	<update id="unFollow" parameterType="String">
-		update follow set follow_status='U',
-						unfollow_date=sysdate
-		where follow_seq=#{followSeq}
+		UPDATE FOLLOW 
+		   SET FOLLOW_STATUS='U'
+			  ,UNFOLLOW_DATE=SYSDATE
+		 WHERE FOLLOW_SEQ=#{followSeq}
 	</update>
 	
 	
