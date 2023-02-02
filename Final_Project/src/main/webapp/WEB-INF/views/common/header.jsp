@@ -45,11 +45,19 @@
 				
 		    </div>
 			
-
-			<span class="navbar__links"> <label class="navbar__links__li"
+			<c:if test="${empty sessionScope.memberId}">
+				<span class="navbar__links_2">
+			</c:if>
+			
+			<c:if test="${not empty sessionScope.memberId}">
+				<span class="navbar__links">
+			</c:if>
+			
+			 <label class="navbar__links__li"
 				onclick="location.href='<c:url value="/memberPage"/>'"> 
 				<div class="header_user_image">
 					<c:if test="${empty sessionScope.fileSavedName}">
+						
 						<img class="user_img" src="${pageContext.request.contextPath}/resources/images/default_user_img.png" />
 					</c:if>
 
