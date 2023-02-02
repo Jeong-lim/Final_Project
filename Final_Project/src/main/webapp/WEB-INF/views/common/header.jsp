@@ -214,7 +214,6 @@ function follow_reject(e){
 			/* $('button[name='+num+']').prop("disabled",true); */
 			$('button[name=]'+num+']').remove();
 			$(e).html("거절됨");
-			location.reload();
 		}
 	})
 }
@@ -229,7 +228,7 @@ function closeAlarm(e){
 		success:function(result){
 			$('div[id='+liId+']').remove();
 			console.log("알림 삭제완료");
-			
+			location.reload();
 		}
 	}) 
 	

@@ -390,7 +390,7 @@
 			url:'/cancelFollow?value='+cancelName,
 					success:function(result){
 						$(e).html("팔로우");
-						location.relaod();
+						location.reload();
 					}
 		});
 	}
