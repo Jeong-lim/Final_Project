@@ -23,19 +23,24 @@
 			<div>
 				<p class="list_tit">여행 일정 리스트</p>
 			</div>
-			<div class="search_area">
-				<div class="search">
-					<select class="select" name="searchType" id="searchType">
-						<option value="title">제목</option>
-						<option value="writer">작성자</option>
-					</select> <input type="text" class="search_bar" name="keyword" id="keyword"
-						value="" placeholder="search..">
-
-					<button class="search_btn" name="btnSearch" id="btnSearch">
-						<img class="search_img"
-							src="${pageContext.request.contextPath}/resources/images/search.png" />
-					</button>
+			<form action="/travel/search/list" method="post">
+				<div class="search_area">
+					<div class="search">
+						<select class="select" name="searchType" id="searchType">
+							<option value="title">제목</option>
+							<option value="writer">작성자</option>
+						</select> <input type="text" class="search_bar" name="keyword" id="keyword"
+							value="" placeholder="search.." required onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
+	
+						<button type="submit" class="search_btn" name="btnSearch" id="btnSearch">
+							<img class="search_img"
+								src="${pageContext.request.contextPath}/resources/images/search.png" />
+						</button>
+					</div>
 				</div>
+				<input type="hidden" name="page" value="${pager.pageNo }">
+			</form>
+				
 				<form name="readForm" method="post">
 					<input type="hidden" id="keyword2" name="keyword2"
 						value="${keyword}" /> <input type="hidden" id="searchType2"
@@ -43,7 +48,7 @@
 				</form>
 
 
-			</div>
+			
 			<div class="category">
 				<label class="test_obj"><a
 					href='<c:url value="/travel/recent/list"/>'> <input
@@ -145,7 +150,7 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script>
-		$(document).on('click', '#btnSearch', function(e) {
+		/* $(document).on('click', '#btnSearch', function(e) {
 			
 			console.log("click in")
 
@@ -161,7 +166,7 @@
 
 			console.log(url);
 
-		});
+		}); */
 
 
 		$(document).ready(function() {
@@ -205,6 +210,14 @@
 	            }
 	        });
 	 }
+	 
+	 function characterCheck(obj){
+			var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
+			if( regExp.test(obj.value) ){
+				alert("특수문자는 입력하실수 없습니다.");
+				obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+				}
+			}
 	</script>
 </body>
 

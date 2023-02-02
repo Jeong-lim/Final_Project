@@ -89,7 +89,7 @@ public class PlaceController {
 										,@RequestParam("temp")double temp
 										,@RequestParam("air")int air)throws Exception {
 		String indoor;
-		if(air<=3 && weather.equals("Clear")){
+		if(air<=3 && "Clear".equals(weather)){
 			indoor="실외";
 			List<PlaceVo> recomandPlace = placeService.selectPlaceDistance(lat, lng, indoor); //추천 관광지 리스트
 			return recomandPlace;
