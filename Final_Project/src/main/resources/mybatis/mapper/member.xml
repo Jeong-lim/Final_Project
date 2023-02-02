@@ -254,6 +254,11 @@
 		where alarm_seq=#{alarmSeq}
 	</update>
 	
+	<update id="cancelFollowAlarm" parameterType="map">
+		update alarm set alarm_status='N'
+		where alarm_code='f' and alarm_to_id=#{memberId} and alarm_from_id=#{sessionId}
+	</update>
+	
 	<!-- 언팔로우하기(팔로우상태==U) -->
 	<update id="unFollow" parameterType="String">
 		update follow set follow_status='U',

@@ -82,7 +82,7 @@
 					</c:if>
 					<c:if test="${followStatus != null }">
 						<c:if test="${followStatus =='N' }">
-							<input type="button" class="updateBtn" id="notfollowBtn"  value="신청완료" readonly>
+							<button class="updateBtn" id="notfollowBtn" value="${member.memberId }" onclick="cancelFollow(this)">신청완료</button>
 						</c:if>
 						<c:if test="${followStatus =='Y' }">
 							<button class="updateBtn" id="unfollowBtn" value="${member.memberId}" onclick="unFollowBlock(this)">언팔하기</button>
@@ -379,6 +379,19 @@
 				$(e).html("팔로우");
 				$(e).prop("disabled",true);
 			}
+		});
+	}
+	
+	function cancelFollow(e){
+		var cancelName=$(e).val();
+		console.log("신청취소요청");
+		$.ajax({
+			type:"POST",
+			url:'/cancelFollow?value='+cancelName,
+					success:function(result){
+						$(e).html("팔로우");
+						location.relaod();
+					}
 		});
 	}
 	
