@@ -60,7 +60,6 @@ public class TravelController {
 		String privacy = travel.getTravelPrivacy();
 		if (sessionId != null) { // 로그인이 된 상태인지 확인하기
 			
-			
 			// 팔로우상태 체크
 			String status = memberService.checkFollowStatus(memberId, sessionId);
 			model.addAttribute("follow", status);
@@ -69,7 +68,7 @@ public class TravelController {
 			if (travel != null) {
 				model.addAttribute("travelTitle", travel.getTravelTitle());
 				model.addAttribute("startDate", travel.getTravelStart());
-				model.addAttribute("endDate", travel.getTravelEnd());
+				model.addAttribute("en-dDate", travel.getTravelEnd());
 				model.addAttribute("writer", travel.getWriter());
 				model.addAttribute("viewCnt", travel.getViewCnt());
 				model.addAttribute("shareCnt", travel.getShareCnt());
@@ -157,7 +156,7 @@ public class TravelController {
 	
 	
 	@RequestMapping(value = "/travel/delete", method=RequestMethod.GET)
-	public String insertTravel(@RequestParam("travelId") String travelId) {	
+	public String deleteTravel(@RequestParam("travelId") String travelId) {	
 			travelService.deleteTravel(travelId);
 			//logger.info(travelId);
 			//logger.info("delete");
@@ -352,13 +351,7 @@ public class TravelController {
 
 		// 해당 페이지의 행을 가져오기
 		List<TravelVo> travelList = travelService.selectTravelList(pager);
-		/*String travelImage = travelList.get(0).getFileSavedName().toString();
-		logger.info(travelImage);
-		if(travelImage != null) {
-			model.addAttribute("travel, attributeValue)
-		} else {
-			
-		}*/
+		
 		
 		// JSP에서 사용할 데이터를 저장
 		model.addAttribute("pager", pager);

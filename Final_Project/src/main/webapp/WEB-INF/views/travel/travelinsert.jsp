@@ -40,6 +40,7 @@
 			<div class="content_wrap" id="test">
 				<div class="content_title">
 					<label class="dayseq1">DAY </label><label class="firstdate"></label>
+					<input type="hidden" name="travelDate" value=""/>
 					<button type="button" class="modal_btn2" name="modal_btn2">
 						<img
 							src="${pageContext.request.contextPath}/resources/images/note.png">
@@ -152,6 +153,7 @@
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
+
 $('document').ready(function() {
 	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 	  var area1 = ["서울"];
@@ -381,17 +383,30 @@ $(function() {
  $(function () {
 	
     $(document).on("click", "button[class='save']", function () {
-        console.log("날짜 전송");
-        var travelStart1=travelStart.toString();
-        var travelEnd1=travelEnd.toString();
-        var travelPrivacy= $('.open_radio:checked').val();
-        var travelTitle= $('.title_input').val();
-        var memberid=$('.memberId').val();
-        
-        console.log(travelPrivacy);
-        console.log(travelTitle);
-        console.log(id);
-        //
+    	
+    	var travelTitleValue=document.getElementById('title_input').value;
+    	if(!travelTitleValue){
+    		document.getElementById('title_input').focus();
+    	    alert("제목을 입력해 주세요.");
+    		console.log("제목없음");
+    	}else if(!travelStart){
+    		document.querySelector(".daterange").focus();
+    	    alert("날짜을 선택해 주세요.");
+    		console.log("날짜없음");
+    	}else{
+      	
+
+            console.log("날짜 전송");
+            var travelStart1=travelStart.toString();
+            var travelEnd1=travelEnd.toString();
+            var travelPrivacy= $('.open_radio:checked').val();
+            var travelTitle= $('.title_input').val();
+            var memberid=$('.memberId').val();
+            
+            console.log(travelPrivacy);
+            console.log(travelTitle);
+            console.log(id);
+        	
         
       //비동기 요청을 함
         $.ajax({
@@ -414,21 +429,28 @@ $(function() {
                   				console.log(result2);
                   				location.replace("/travel/"+result2+"/"+memberid);
                   			   }
-                  			   
+	   
                   			  
                   		   }
+        			  		
                   		   
                   	   });
         		  })(k);
   
         	  } 
         	  
-			  
-        	  	   
+  	   
        		
            }
            
+        })
+        .done(function(result) {
+        	location.replace("/travel/list");
         });
+      
+      
+    	}
+    	
       
       
      		
