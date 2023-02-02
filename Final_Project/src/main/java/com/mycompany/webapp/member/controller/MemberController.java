@@ -405,10 +405,8 @@ public class MemberController {
 	@RequestMapping("/travelSlide/{sessionScope.memberId}")	
 	public String travelSlide(HttpServletRequest request,HttpSession session, Model model) throws Exception {
 		String memberId = (String)session.getAttribute("memberId");
-		logger.info(memberId);
 		List<MemberVo> userList = memberService.userTravelList(memberId);
 		model.addAttribute("userList", userList);
-		logger.info(userList.toString());
 		
 		return "common/sliderbanner";
 	}
