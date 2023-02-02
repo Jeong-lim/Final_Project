@@ -26,7 +26,7 @@
 					<option value="p.area_name">지역명</option>
 					<option value="p.place_name">관광지명</option>
 				</select> <input type="text" class="search_bar"  name="keyword" value=""
-					placeholder="search..">
+					placeholder="search.." required onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
 				<button type="submit" class="search_btn">
 					<img class="search_img"
 						src="${pageContext.request.contextPath}/resources/images/search.png" />
@@ -181,6 +181,14 @@
 		$('[name="category"]').prop("checked",false);
 		
 	});
+	
+	function characterCheck(obj){
+		var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
+		if( regExp.test(obj.value) ){
+			alert("특수문자는 입력하실수 없습니다.");
+			obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+			}
+		}
 	
 	
 </script>

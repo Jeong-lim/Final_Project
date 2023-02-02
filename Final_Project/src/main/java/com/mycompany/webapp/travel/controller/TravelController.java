@@ -415,11 +415,17 @@ public class TravelController {
 	}
 
 	// 여행 일정 리스트 검색
-	@RequestMapping(value = "/travel/search/list", method = RequestMethod.GET)
-	public String getTravelListBySearch(@RequestParam(defaultValue = "1") int pageNo,
-			@RequestParam(required = false, defaultValue = "title") String searchType,
-			@RequestParam(required = false) String keyword, Model model) {
-
+	@RequestMapping(value = "/travel/search/list", method = RequestMethod.POST)
+	public String getTravelListBySearch(HttpServletRequest request,Model model) {
+		int pageNo = Integer.parseInt(request.getParameter("page"));
+		String searchType=request.getParameter("searchType");
+		String keyword=request.getParameter("keyword");
+		
+		System.out.println(pageNo);
+		System.out.println(searchType);
+		System.out.println(keyword);
+		
+		
 		int totalRows = travelService.countTravelSearch(searchType, keyword);
 		PagerVo pager = new PagerVo(10, 5, totalRows, pageNo);
 		int endRowNo = pager.getEndRowNo();
