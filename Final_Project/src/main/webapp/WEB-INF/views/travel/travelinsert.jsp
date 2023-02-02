@@ -38,25 +38,13 @@
 			<hr class="uk-divider-icon">
 
 			<div class="content_wrap" id="test">
-				<div class="content_title">
-					<label class="dayseq1">DAY </label><label class="firstdate"></label>
-					<input type="hidden" name="travelDate" value=""/>
-					<button type="button" class="modal_btn2" name="modal_btn2">
-						<img
-							src="${pageContext.request.contextPath}/resources/images/note.png">
-					</button>
-				</div>
-			
-				<button type="button" class="modal_btn" name="modal_btn">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정
-						추가하기</label>
-				</button>
+				<label class="firstlabel">여행 날짜를 선택해 주세요!</label>
+				<input type="hidden" class="modal_btn2" name="modal_btn2">
+				<input type="hidden" class="modal_btn" name="modal_btn">
 			</div>	
 
-			<%-- <button class="save"
-				onclick="location.href='<c:url value="/travel/detail"/>'">확인</button>  onClick="submitForm()"--%>
-				<button class="save">확인</button>
+			
+				
 				
 		
 				
@@ -103,7 +91,7 @@
 						<div class="place_content">
 						<div class="title">
 								<label class="place_name" id="place_name">${place.placeName}</label>
-								<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
+								<input type="checkbox" class="checkbox" name="checkbox" value="${place.placeName}">
 								</div>
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
@@ -297,12 +285,17 @@ var datearr=new Array();
 var days;
 var id; //일정 추가버튼 아이디
 var id2; //메모버튼 아이디
+var id3=0; //스케줄 삭제 아이디
+var id4;
 var value;
 var arr= new Array();
 var alldata=[];
 var placearr=[];
 var memodata=[];
 var travelmemo;
+
+
+
 
 $(function() {
 	   $(function() {
@@ -363,6 +356,8 @@ $(function() {
 	                  
 	                  
 	        		}
+	                
+	           		 $("#test").after('<button class="save">확인</button>');
        
 	             }
 	          
@@ -393,6 +388,9 @@ $(function() {
     		document.querySelector(".daterange").focus();
     	    alert("날짜을 선택해 주세요.");
     		console.log("날짜없음");
+    	}else if(id3==0){
+    	    alert("일정을 선택해 주세요.");
+    		console.log("일정없음");
     	}else{
       	
 
@@ -460,9 +458,6 @@ $(function() {
 }); 
  
  	
-   
-
-
 
 	
 	function openModal(clicked_id){
@@ -486,54 +481,37 @@ $(function() {
 	 
 		}
 	
-	function boxChecked(checked_value){
+/* 	function boxChecked(checked_value){
 		value=checked_value;
 		console.log(value);
 		arr.push(value);
-	}
+	} */
 
-	var lastnum; 
 	function closeModal() {
     console.log("장소닫기");
     console.log(id);
     //console.log(arr[0]);
-    if(lastnum==null){
+    
+    $('input:checkbox[name=checkbox]').each(function (index) {
+		if($(this).is(":checked")==true){
+	    	console.log($(this).val());
+	    	arr.push($(this).val());
+	    }
+	})
     	
     	for(var i=0; i<arr.length; i++){
     		var selectedplacename="";
     		var num=i+1;
-    		//var 'num'+id;
-    		//id:placemodal1
-    		//document.querySelector(".modal_btn2").id=memomodal;
-    		//var num2=num+id; //1placemodal1
-    		//console.log("num2"+num2);
-    		console.log(num);
-    		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+num+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
-    		//document.querySelector(".insert_num").id=num2;
-    		//document.querySelector(".insert_num").id=(num+id);
-    		//document.querySelector(".num2").append(num);
+    		id3+=1;
+    		
+    		selectedplacename+='<div class="schedule_box" id="scheduledelete'+id3+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><div class="insert_num" onClick="cancelSchedule(this.id)" id="delete'+id3+'">X</div></div></div>';	
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
     		placearr.push(arr[i]);
     		console.log(arr[i]);
-    		lastnum=num;
 	
     	} 
-    }
-    else if(lastnum>0){
-    	console.log("for문 밖");
-    	console.log(arr.length);
-    	for(var i=0; i<arr.length; i++){
-    		var selectedplacename="";
-    		lastnum1=lastnum+1;
-    		console.log("lastnum"+lastnum);
-    		selectedplacename+='<div class="schedule_box"><div class="insert_num">'+lastnum1+'</div><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly></div></div>';
-    		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
-    		placearr.push(arr[i]);
-    		console.log(arr[i]);
-    		lastnum=lastnum1;
-	
-    	}
-    }
+
+
     
     
   	 $(".modal_wrap").hide();
@@ -541,6 +519,14 @@ $(function() {
  	 
    
  	}
+	
+	function cancelSchedule(clicked_id){
+		
+		id4=clicked_id;
+		console.log(id4);
+		document.querySelector("#schedule"+id4).remove();
+
+		}
 	
 	function closeModal2() {
 	    console.log("메모닫기");
@@ -600,7 +586,7 @@ $(function(){
 	               
 	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
 	              str+='<div class="place_content"><div class="title"><label class="place_name" id="place_name">'+data[i].placeName+'</label>';
-	              str+='<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="'+data[i].placeName+'"></div>'
+	              str+='<input type="checkbox" class="checkbox" name="checkbox" value="'+data[i].placeName+'"></div>'
 	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
 	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
 	                  

@@ -1,5 +1,10 @@
 .outer {
 	text-align: center;
+	min-height:750px;
+}
+.firstlabel{
+	font-size:22px;
+	margin:10px;
 }
 
 .inner {
@@ -7,6 +12,11 @@
 	margin: auto;
 	margin-top: 50px;
 	height: auto;
+	
+}
+input[type="text"]:focus {
+    padding: 1px 2px;
+    outline: none;
 }
 
 .sido1, .gugun1 {
@@ -24,6 +34,9 @@
 
 .sido1:focus {
 	outline: 0;
+}
+.schedule:focus {
+	outline:0;
 }
 
 .daterange {

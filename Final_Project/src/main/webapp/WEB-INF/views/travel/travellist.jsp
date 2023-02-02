@@ -91,14 +91,14 @@
 								<a href='<c:url value="/mypage/${travel.writer}"/>'>
 									<p class="travel_writer">${travel.writer}</p>
 								</a>
+								<a href="/travel/scrap?travelId=${travel.travelId}&memberId=${sessionScope.memberId}" role="button" class="share_btn"><button class="scrap">스크랩</button></a>
 							</c:if>
 							
 							<c:if test="${empty sessionScope.memberId}">
 									<p class="travel_writer">${travel.writer}</p>
+									<a href="/signin" role="button" class="share_btn"><button class="scrap">스크랩</button></a>
 							</c:if>
-							<a href='<c:url value="/travel/insert"/>'>
-							<button class="scrap"
-								onclick="scrap(); return false;">스크랩</button></a>
+							
 							<div class="icons">
 								<img class="views"
 									src="${pageContext.request.contextPath}/resources/images/views.png" />

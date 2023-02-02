@@ -68,7 +68,7 @@ public class TravelController {
 			if (travel != null) {
 				model.addAttribute("travelTitle", travel.getTravelTitle());
 				model.addAttribute("startDate", travel.getTravelStart());
-				model.addAttribute("en-dDate", travel.getTravelEnd());
+				model.addAttribute("endDate", travel.getTravelEnd());
 				model.addAttribute("writer", travel.getWriter());
 				model.addAttribute("viewCnt", travel.getViewCnt());
 				model.addAttribute("shareCnt", travel.getShareCnt());
@@ -148,8 +148,9 @@ public class TravelController {
 			System.out.println(memo);
 			
 		}
-
-			return "main";
+		
+			String scrapID=travelService.findLastTravelId2();
+			return "redirect:/travel/"+scrapID+"/"+memberId;
 
 	}
 	

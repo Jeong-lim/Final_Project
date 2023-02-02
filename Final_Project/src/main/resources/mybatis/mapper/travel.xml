@@ -147,7 +147,7 @@
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
 			on f.file_code like '%'||b.place_name||'%')c   
-			ORDER BY original_Travel_Id desc
+			ORDER BY original_Travel_Id_count desc
                
             
 		  )
