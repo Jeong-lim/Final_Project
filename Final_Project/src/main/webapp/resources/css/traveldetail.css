@@ -6,6 +6,10 @@ input:focus {
 	outline: none;
 	spellCheck: false;
 }
+input[type="text"]:focus {
+    padding: 1px 2px;
+    outline: none;
+}
 
 .search_button {
 	border: none;

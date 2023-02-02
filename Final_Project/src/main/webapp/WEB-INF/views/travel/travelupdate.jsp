@@ -417,6 +417,29 @@ $(function() {
  $(function () {
 	
     $(document).on("click", "button[class='save']", function () {
+    	
+    	var travelTitleValue=document.getElementById('title_input').value;
+    	var travelStartValue=document.getElementById('startDate').value;
+    	var travelEndValue=document.getElementById('endDate').value;
+    	var travelDateValue=$('.travelDate').val();
+    	if(!travelTitleValue){
+    		document.getElementById('title_input').focus();
+    	    alert("제목을 입력해주세요.");
+    		console.log("제목없음");
+    	}else if(!travelStartValue){
+    		document.querySelector("#startDate").focus();
+    	    alert("여행 시작일을 입력해주세요.");
+    		console.log("시작일없음");
+    	}else if(!travelEndValue){
+    		document.querySelector("#endDate").focus();
+    	    alert("여행 종료일을 입력해주세요.");
+    		console.log("종료일없음");
+    	}else if(!travelDateValue){
+    	    alert("여행 일자를 빠짐없이 입력해주세요");
+    		console.log("여행날짜없음");
+    	}else{
+    	
+    	
         console.log("날짜 전송");
         var travelStart1=$('#startDate').val();
         var travelEnd1=$('#endDate').val();
@@ -471,7 +494,7 @@ $(function() {
       
       
      		
-
+    	}
 
      });
 }); 
@@ -529,7 +552,7 @@ $(function() {
     		var selectedplacename="";
     		//var num=i+1;
     		//console.log("카운트2: "+count2);
-    		selectedplacename+='<div class="schedule_box" id="schduledelete'+count22+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><button class="insert_num" onClick="cancelSchedule(this.id)" id="delete${statusNm.count}">X</button></div></div>';
+    		selectedplacename+='<div class="schedule_box" id="scheduledelete'+count22+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><button class="insert_num" onClick="cancelSchedule(this.id)" id="delete${statusNm.count}">X</button></div></div>';
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
     		//document.querySelector(".schedule_box").id=schedule;
     		//document.querySelector(".insert_num").id=deletePlace;

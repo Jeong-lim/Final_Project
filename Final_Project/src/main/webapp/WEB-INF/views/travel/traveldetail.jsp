@@ -29,7 +29,8 @@
 		
 			<c:if test="${writer == sessionScope.memberId }">
 			<button class="update_btn" onclick="location.href='<c:url value="/travel/update/${travelId}/${writer}"/>'">수정</button><hr class="uk-divider-vertical">
-			<a href="/travel/delete?travelId=${travelId}" role="button" id="delete_btn" class="delete_btn" >삭제</a>
+			<a href="/travel/delete?travelId=${travelId}" onclick="return confirm('삭제 하시겠습니까?')" role="button" id="delete_btn" class="delete_btn" >삭제</a>
+			<input type="hidden" id="travelId" value="${travelId}">
 			</c:if>
 		
 		</div>
