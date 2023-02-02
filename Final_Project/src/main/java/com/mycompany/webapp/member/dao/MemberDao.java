@@ -37,5 +37,5 @@ public interface MemberDao {
 	public void unFollow(String followSeq);//언팔로우하기
 	public void changeFollowStatusN(String followSeq);
 	public String findUserId(@Param("email") String email, @Param("userName") String userName); // 유저 아이디 찾기
-	public void cancelFollowAlarm(Map<String,String>map);
+	public void cancelFollowAlarm(Map<String,String>map);//팔로우신청취소
 }
