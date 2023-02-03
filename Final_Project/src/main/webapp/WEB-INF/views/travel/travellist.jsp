@@ -13,17 +13,26 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
-
+	<img class="main_img" src="${pageContext.request.contextPath}/resources/images/TourList.png"/>
 	<div class="container_top">
 		<div class="container">
-			<br>
-			<div>
-				<span>TRAVELY가 준비한</span>
-			</div>
-			<div>
-				<p class="list_tit">여행 일정 리스트</p>
-			</div>
-			<form action="/travel/search/list" method="post">
+			<br><br>
+			
+			<div class="category">
+				<div>
+				<label class="test_obj"><a
+					href='<c:url value="/travel/recent/list"/>'> <input
+						type="radio" name="category" id="recent"><span>최신순</span></a>
+				</label> <label class="test_obj"><a
+					href='<c:url value="/travel/shareCnt/list"/>'> <input
+						type="radio" name="category" id="shareCnt"><span>인기순</span></a>
+				</label> <label class="test_obj"><a
+					href='<c:url value="/travel/viewCnt/list"/>'> <input
+						type="radio" name="category" id="viewCnt"><span>조회순</span></a>
+				</label>
+				</div>
+				<div>
+				<form action="/travel/search/list" method="post">
 				<div class="search_area">
 					<div class="search">
 						<select class="select" name="searchType" id="searchType">
@@ -40,27 +49,7 @@
 				</div>
 				<input type="hidden" name="page" value="${pager.pageNo }">
 			</form>
-				
-				<form name="readForm" method="post">
-					<input type="hidden" id="keyword2" name="keyword2"
-						value="${keyword}" /> <input type="hidden" id="searchType2"
-						name="searchType2" value="${searchType}" />
-				</form>
-
-
-			
-			<div class="category">
-				<label class="test_obj"><a
-					href='<c:url value="/travel/recent/list"/>'> <input
-						type="radio" name="category" id="recent"><span>최신순</span></a>
-				</label> <label class="test_obj"><a
-					href='<c:url value="/travel/shareCnt/list"/>'> <input
-						type="radio" name="category" id="shareCnt"><span>인기순</span></a>
-				</label> <label class="test_obj"><a
-					href='<c:url value="/travel/viewCnt/list"/>'> <input
-						type="radio" name="category" id="viewCnt"><span>조회순</span></a>
-				</label>
-
+			</div>
 			</div>
 			<div class="place_list">
 				<c:forEach var="travel" items="${travelList}">
