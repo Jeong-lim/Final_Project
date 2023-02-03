@@ -68,6 +68,11 @@ public class MemberService  {
 		return memberDao.userTravelList(memberId);
 	}
 	
+	public List<MemberVo> userMainTravelList(String memberId) throws Exception{
+		return memberDao.userMainTravelList(memberId);
+	}
+	
+	
 	public int countFollower(String memberId) {
 		return memberDao.countFollower(memberId);
 	}

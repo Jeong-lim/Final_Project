@@ -25,9 +25,6 @@
 	transition: all .5s;
 }
 
-.section .slidelist>li>a {
-	position: relative;
-}
 
 .section .slidelist>li>a img {
 	width: 100%;
@@ -41,17 +38,6 @@
 	padding: 50px;
 	cursor: pointer;
 }
-
-.section .slidelist .textbox {
-	position: absolute;
-	z-index: 1;
-	top: 50%;
-	left: 30%;
-	transform: translate(-50%, -50%);
-	line-height: 1.6;
-	text-align: center;
-}
-
 
 
 /* input에 체크되면 슬라이드 효과 */
@@ -71,10 +57,13 @@
 	transform: translateX(-200%);
 }
 
+/* 페이징 */
 .slide-pagelist {
-    text-align: center;
-    padding-right: 340px;
-    /* margin: 0 auto; */
+	text-align: center;
+	padding: 0px;
+	width: 200px;
+	justify-content: center;
+
 }
 
 .slide-pagelist>li {
@@ -124,32 +113,66 @@
 }
 
 .slide_travel_name {
-	font-weight: bold;
-	font-size: 30px;
-	color: black;
-	transform: translateY(70px);
-	transition: all .5s;
-	padding-left: 300px;
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+    transform: translateY(19px);
+    transition: all .5s;
+    padding-left: 197px;
+}
+.slide_travel_period {
+    float: left;
+    font-size: 20px;
+    color: black;
+    transform: translateY(26px);
+    transition: all .5s;
+    padding-left: 48px;
 }
 
-.slide_travel_period {
-	float: left;
-	font-size: 20px;
-	color: black;
-	transform: translateY(70px);
-	transition: all .5s;
-	padding-left: 300px;
+.category.a { /* 자연 힐링 */
+	background-color: #06b66c;
+	color: white;
+}
+
+
+.category.b { /* 문화/예술 */
+	background-color: #faa04b;
+	color: white;
+
+}
+
+.category.c { /* 체험/학습/산업 */
+	background-color: #f4495d;
+	color: white;
+}
+.category.d { /* 캠핑/스포츠 */
+	background-color: #3B82F6;
+	color: white;
+}
+.category.e { /* 종교/역사/전통 */
+	background-color: #8b949e;
+	color: white;
+}
+.category.f { /* 쇼핑/놀이 */
+	background-color: #f778ba;
+	color: white;
 }
 
 .slide_travel_theme {
-	float: left;
-	font-size: 20px;
-	color: black;
-	transform: translateY(70px);
-	transition: all .5s;
-	padding-left: 300px;
+    float: left;
+    font-size: 20px;
+    color: black;
+    /* transform: translateY(63px); */
+    transform: translate(-228px, 64px);
+    transition: all .5s;
+    left: 0px;
+    width: 140px;
+    height: 26px;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    padding: 3px;
 }
-
 .slider__banner {
     width: 1000px;
     margin-bottom: 30px;

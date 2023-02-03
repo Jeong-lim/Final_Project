@@ -9,6 +9,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sliderbanner.css" />
 </head>
 <body>
 

@@ -117,6 +117,9 @@
       <result column="DETAIL_CD_NAME" property="categoryName"/>
       <result column="WRITER" property="writer"/>
       <result column="TRAVEL_ID" property="travelId"/>
+      <result column="PLACE_NAME" property="placeName"/>
+      <result column="PLACE_ID" property="placeId"/>
+      <result column="FILE_SAVED_NAME" property="fileSavedName"/>
     </resultMap> 
 	
 	
@@ -142,6 +145,35 @@
 		    	   	 , PLACE PLC
 		    	   	 , DETAIL_CODE DC
 		WHERE B.PLACE_ID = PLC.PLACE_ID AND PLC.CATEGORY = DC.DETAIL_CD_ID
+	</select>
+	
+	<select id="userMainTravelList" parameterType="string" resultMap="selectTravel">
+		SELECT distinct B.*, PLC.place_name , Dc.Detail_Cd_Name, UF.file_saved_name FROM 
+			(SELECT A.* FROM
+		        (SELECT ROW_NUMBER() OVER
+		        	(PARTITION BY Trv.Travel_Id ORDER BY Trvde.Travel_Date) AS rn
+		           , TRV.TRAVEL_TITLE
+		           ,TRV.WRITER
+		           , TRV.TRAVEL_ID
+		           , TRVDE.Place_Id
+		           , TRV.TRAVEL_START
+		           , TRV.TRAVEL_END
+		           , TRV.VIEW_CNT
+		           , TRV.SHARE_CNT
+		           FROM Travel TRV
+		           , TRAVEL_DETAIL TRVDE
+                   , PLACE PLC
+                   , upload_file UF
+		           WHERE  TRV.TRAVEL_ID = Trvde.Travel_Id
+                   and Trvde.PLACE_ID = PLC.place_id
+                   
+		           AND TRV.WRITER = #{memberId}) A
+		    	   	   WHERE A.RN = 1 ) B
+		    	   	 , DETAIL_CODE DC
+                     , PLACE PLC
+                     , upload_file UF
+		WHERE B.PLACE_ID = PLC.PLACE_ID AND PLC.CATEGORY = DC.DETAIL_CD_ID
+        and  UF.file_code = PLC.PLACE_NAME
 	</select>
 	
 	<select id="userTravelCount" parameterType="string" resultType="int">

@@ -37,6 +37,27 @@
 	font-size: 18px;
 }
 
+.section input[id="slide01"]:checked 
+	{
+	background: #999;
+}
+
+.section input[id="slide02"]:checked
+	{
+	background: #999;
+}
+
+.section input[id="slide03"]:checked 
+	{
+	background: #999;
+}
+
+.section input[id="slide04"]:checked 
+	{
+	background: #999;
+}
+
+
 .leaderboard ol {
 	counter-reset: number; /* 定義和初始化計數器 */
 }

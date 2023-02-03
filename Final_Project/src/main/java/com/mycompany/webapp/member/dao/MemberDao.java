@@ -19,6 +19,7 @@ public interface MemberDao {
 	public String getPassword(String memberId);
 	public int checkOverId(String memberId);
 	public List<MemberVo> userTravelList(String memberId) throws Exception;
+	public List<MemberVo> userMainTravelList(String memberId) throws Exception;
 	public int userTravelCount(String memberId);
 	public int countFollower(String memberId); // 팔로워 수
 	public int countFollowing(String memberId); //팔로우 수
