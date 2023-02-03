@@ -10,16 +10,11 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 </head>
 <body>
-	
+	<img class="main_img" src="${pageContext.request.contextPath}/resources/images/PlaceList.png"/>
+	<br><br><br>
 	<div class="container_top">
 		<div class="container">
-			<br>
-			<div>
-				<span>TRAVELY가 준비한</span>
-			</div>
-			<div>
-				<p class="list_tit">우리나라 관광지 리스트</p>
-			</div>
+	
 			<form action="/searchPlace" method="post" id="searchform">
 			<div class="search">
 				<select class="select" name="key">
