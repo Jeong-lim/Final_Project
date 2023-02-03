@@ -14,7 +14,8 @@ public class MemberVo {
 	private String categoryName;
 	private String fileSavedName;
 	private String status;
-	
+	private String placeName;
+	private String placeId;
 	private String writer;
 	private String travelId;
 	
@@ -99,14 +100,7 @@ public class MemberVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", travelTitle=" + travelTitle
-				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
-				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + ", fileSavedName=" + fileSavedName
-				+ ", status=" + status + "]";
-	}
+	
 	public String getTravelId() {
 		return travelId;
 	}
@@ -119,12 +113,29 @@ public class MemberVo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
+	public String getPlaceName() {
+		return placeName;
+	}
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
+	}
+	public String getPlaceId() {
+		return placeId;
+	}
+	public void setPlaceId(String placeId) {
+		this.placeId = placeId;
+	}
+	@Override
+	public String toString() {
+		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
+				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", travelTitle=" + travelTitle
+				+ ", travelStart=" + travelStart + ", travelEnd=" + travelEnd + ", viewCount=" + viewCount
+				+ ", shareCount=" + shareCount + ", categoryName=" + categoryName + ", fileSavedName=" + fileSavedName
+				+ ", status=" + status + ", placeName=" + placeName + ", placeId=" + placeId + ", writer=" + writer
+				+ ", travelId=" + travelId + "]";
+	}
 	
 
-	
-	
-	
 
 	
 }

@@ -86,7 +86,7 @@ public class KakaoController {
 			logger.info(email);
 			return "auth/signupkakao";
 		}
-		return "main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/signupKakao", method=RequestMethod.POST)
@@ -95,7 +95,7 @@ public class KakaoController {
 		session.setAttribute("memberId", member.getMemberId());
 		session.setAttribute("memberName", member.getMemberName());
 		session.setAttribute("email", member.getEmail());
-		return "main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/login/logout_proc")

@@ -378,7 +378,7 @@ public class MemberController {
 	@RequestMapping("/travelSlide/{sessionScope.memberId}")
 	public String travelSlide(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 		String memberId = (String) session.getAttribute("memberId");
-		List<MemberVo> userList = memberService.userTravelList(memberId);
+		List<MemberVo> userList = memberService.userMainTravelList(memberId);
 		model.addAttribute("userList", userList);
 
 		return "common/sliderbanner";

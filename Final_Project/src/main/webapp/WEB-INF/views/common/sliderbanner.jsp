@@ -12,9 +12,8 @@
 	<c:forEach items="${userList}" var="result" varStatus="status">
 
 		<li class="slideitem"><img class="img_slideitem"
-			src="${pageContext.request.contextPath}/resources/images/청계천.jpg" />
+			src="<spring:url value='/place/${result.fileSavedName}'/>" />
 			<a href="<c:url value='/travel/detail'/>">
-				<div class="textbox">
 					<div class="slide_travel_name">
 						<c:out value="${result.travelTitle }" />
 					</div>
@@ -25,11 +24,45 @@
 						<c:out value="${result.travelEnd }" />
 					</div>
 					<br />
-					<div class="slide_travel_theme">
-						<c:out value="${result.categoryName }" />
-					</div>
-					<br />
-				</div>
+					<c:if test="${result.categoryName eq '자연/힐링'}">
+
+						<div class="slide_travel_theme">
+							<p class="category a">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+
+					</c:if> <c:if test="${result.categoryName eq '문화/예술'}">
+						<div class="slide_travel_theme">
+							<p class="category b">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+					</c:if> <c:if test="${result.categoryName eq '체험/학습/산업'}">
+						<div class="slide_travel_theme">
+							<p class="category c">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+					</c:if> <c:if test="${result.categoryName eq '캠핑/스포츠'}">
+						<div class="slide_travel_theme">
+							<p class="category d">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+					</c:if> <c:if test="${result.categoryName eq '종교/역사/전통'}">
+						<div class="slide_travel_theme">
+							<p class="category e">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+					</c:if> <c:if test="${result.categoryName eq '쇼핑/놀이'}">
+						<div class="slide_travel_theme">
+							<p class="category f">
+								<c:out value="${result.categoryName }" />
+							</p>
+						</div>
+					</c:if> <br />
 		</a></li>
 
 	</c:forEach>
