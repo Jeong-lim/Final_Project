@@ -22,13 +22,13 @@
 				<div>
 				<label class="test_obj"><a
 					href='<c:url value="/travel/recent/list"/>'> <input
-						type="radio" name="category" id="recent"><span>최신순</span></a>
+						type="radio" name="category" id="recent" value="recent"><span>최신순</span></a>
 				</label> <label class="test_obj"><a
 					href='<c:url value="/travel/shareCnt/list"/>'> <input
-						type="radio" name="category" id="shareCnt"><span>인기순</span></a>
+						type="radio" name="category" id="shareCnt" value="shareCnt"><span>인기순</span></a>
 				</label> <label class="test_obj"><a
 					href='<c:url value="/travel/viewCnt/list"/>'> <input
-						type="radio" name="category" id="viewCnt"><span>조회순</span></a>
+						type="radio" name="category" id="viewCnt" value="viewCnt"><span>조회순</span></a>
 				</label>
 				</div>
 				<div>
@@ -135,7 +135,7 @@
 
 	</div>
 	<input type="hidden" id="categoryCheck" value="${category}">
-	
+</body>	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script>
@@ -159,20 +159,17 @@
 
 
 		$(document).ready(function() {
-			var category = $("#categoryCheck").val();
+			var category = $('#categoryCheck').val();
 			var categorylength = $("[name='category']").length;
 			var categoryarr = new Array(categorylength);
-			console.log(category);
 			for (var i = 0; i < categorylength; i++) {
 				categoryarr[i] = $("[name='category']").eq(i).val();
 				if (category == categoryarr[i]) {
 					$('[name="category"]').eq(i).attr("checked", true);
 
 				}
-				console.log(category);
 
 			}
-			console.log(category);
 
 		});
 	</script>
@@ -208,7 +205,7 @@
 				}
 			}
 	</script>
-</body>
+
 
 </html>
 

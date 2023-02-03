@@ -357,7 +357,6 @@ public class TravelController {
 		// JSP에서 사용할 데이터를 저장
 		model.addAttribute("pager", pager);
 		model.addAttribute("travelList", travelList);
-
 		logger.info("여행리스트");
 		return "travel/travellist";
 	}
@@ -373,7 +372,7 @@ public class TravelController {
 		model.addAttribute("travelList", travelList);
 
 		String category = "viewCnt";
-		model.addAttribute(category);
+		model.addAttribute("category",category);
 		logger.info(category);
 
 		logger.info("조회수");
@@ -390,7 +389,7 @@ public class TravelController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("travelList", travelList);
 		String category = "shareCnt";
-		model.addAttribute(category);
+		model.addAttribute("category",category);
 		logger.info(category);
 
 		logger.info("공유수");
@@ -406,9 +405,8 @@ public class TravelController {
 		List<TravelVo> travelList = travelService.selectTravelListByRecent(pager);
 		model.addAttribute("pager", pager);
 		model.addAttribute("travelList", travelList);
-
 		String category = "recent";
-		model.addAttribute(category);
+		model.addAttribute("category",category);
 		logger.info(category);
 
 		logger.info("최신순");
