@@ -15,7 +15,7 @@
 }
 
 .openBtnFollowing:hover {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .closeBtnFollower:hover {
@@ -26,25 +26,31 @@
 	cursor: pointer;
 }
 
-
 .mypage_title {
 	text-align: center;
+	font-weight: 600;
+}
+
+a:hover {
+	color: black !important;
+	text-decoration: none !important;
 }
 
 .start_date_mypage {
 	margin: 0 auto;
 	width: 150px;
+	font-size: larger;
+	margin-top: 25px;
 }
 
 .end_date_mypage {
 	margin: 0 auto;
 	width: 30px;
-	
 }
 
 .profile {
 	width: 980px;
-	border-bottom: 2px solid #A4A4A4;
+	border-bottom: 4px solid #D1D5DB;
 	padding: 20px;
 	height: 180px;
 	margin: auto;
@@ -52,7 +58,6 @@
 
 .profile_img {
 	float: left;
-	border: 1px solid black;
 	width: 160px;
 	height: 160px;
 	margin: 10px;
@@ -67,7 +72,7 @@
 
 .profile_info {
 	float: left;
-	margin: 0 20px 0 40px;
+	margin: 28px 20px 0 40px;
 	text-align: left;
 	font-size: 18px;
 }
@@ -103,22 +108,28 @@
 }
 
 .mytravel {
-	width: 1040px;
-	margin: 30px 0;
+	width: 1100px;
+	margin: 30px 9px;
 	min-height: 1000px;
 }
 
 .card {
-	width: 200px;
-	height: 220px;
-	border: 1px solid black;
+	width: 232px;
+	height: 279px;
+	border: 5px solid #D1D5DB;
+	border-radius: 20px;
 	float: left;
-	margin: 20px;
+	margin: -34px;
 	padding: 20px 5px 2px 5px;
+	margin-right: 56px;
+	margin-bottom: 55px;
+	margin-top: -13px;
 }
 
 .card:hover {
-	box-shadow: 4px 4px 10px #BDBDBD;
+/* 	box-shadow: 4px 4px 10px #BDBDBD; */
+	transform: scale(1.025);
+	transition: transform .5s;
 }
 
 .card.last {
@@ -126,12 +137,13 @@
 }
 
 .travel_tit {
-	font-size: 25px;
-   font-weight: 500;
-   width: 200px;
-   text-overflow:ellipsis;
-   overflow : hidden;
-   white-space:nowrap;
+	font-size: 28px;
+	font-weight: 500;
+	width: 230px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-top: 17px;
 }
 
 a {
@@ -141,10 +153,10 @@ a {
 
 .category {
 	background-color: #68B984;
-	width: 120px;
+	width: 122px;
 	margin: auto;
-	padding: 2px;
-	margin-top: 10px;
+	padding: 4px;
+	margin-top: 32px;
 	border-radius: 15px;
 	color: white;
 	border-radius: 15px;
@@ -161,12 +173,15 @@ a {
 .category.c { /* 체험/학습/산업 */
 	background-color: #f4495d;
 }
+
 .category.d { /* 캠핑/스포츠 */
 	background-color: #3B82F6;
 }
+
 .category.e { /* 종교/역사/전통 */
 	background-color: #8b949e;
 }
+
 .category.f { /* 쇼핑/놀이 */
 	background-color: #f778ba;
 }
@@ -276,8 +291,7 @@ a {
 
 .modal_li {
 	list-style-type: none;
-	padding:5px;
-
+	padding: 5px;
 }
 
 .block {
@@ -331,7 +345,7 @@ a {
 
 .follower_tit {
 	line-height: 30px;
-	margin-right:70px;
+	margin-right: 70px;
 }
 
 .search img {
@@ -340,7 +354,6 @@ a {
 	padding: 3px;
 	cursor: pointer;
 	margin-top: 3px;
-	
 }
 
 .search {

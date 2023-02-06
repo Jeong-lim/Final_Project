@@ -13,7 +13,7 @@
 
 		<li class="slideitem"><img class="img_slideitem"
 			src="<spring:url value='/place/${result.fileSavedName}'/>" />
-			<a href="<c:url value='/travel/detail'/>">
+			<a href="<c:url value="/travel/${result.travelId}/${result.writer}"/>">
 					<div class="slide_travel_name">
 						<c:out value="${result.travelTitle }" />
 					</div>
