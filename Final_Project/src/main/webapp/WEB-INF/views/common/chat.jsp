@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>웹소켓 채팅</title>
+<title>Insert title here</title>
 <style>
 .container {
 	width: 500px;
@@ -43,18 +41,16 @@
 
 	</div>
 </body>
-<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
 //채팅 서버 주소
-let url = "ws://localhost/chatserver";
+let url = "ws://192.168.0.29/chatserver";
    		
 // 웹 소켓
 let ws;
 
 // 연결하기
 $('#btnConnect').click(function() {
-	console.log("클릭");
 
 	// 유저명 확인
    	if ($('#user').val().trim() != '') {
@@ -177,4 +173,5 @@ $('#btnDisconnect').click(function() {
 	$('#msg').attr('disabled', true);
 });
 </script>
+
 </html>
