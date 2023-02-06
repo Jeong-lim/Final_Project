@@ -20,6 +20,12 @@ public class MemberVo {
 	private String travelId;
 	
 	
+	// 마이페이지 checkList
+	private String checkId;
+	private String checkItem;
+	private String checkStatus;
+	
+	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -125,6 +131,26 @@ public class MemberVo {
 	public void setPlaceId(String placeId) {
 		this.placeId = placeId;
 	}
+
+	public String getCheckId() {
+		return checkId;
+	}
+	public void setCheckId(String checkId) {
+		this.checkId = checkId;
+	}
+	public String getCheckItem() {
+		return checkItem;
+	}
+	public void setCheckItem(String checkItem) {
+		this.checkItem = checkItem;
+	}
+	public String getCheckStatus() {
+		return checkStatus;
+	}
+	public void setCheckStatus(String checkStatus) {
+		this.checkStatus = checkStatus;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVo [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
@@ -134,8 +160,6 @@ public class MemberVo {
 				+ ", status=" + status + ", placeName=" + placeName + ", placeId=" + placeId + ", writer=" + writer
 				+ ", travelId=" + travelId + "]";
 	}
-	
-
 
 	
 }
