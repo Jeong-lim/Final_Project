@@ -62,9 +62,6 @@
 				<div class="profile_info">
 					<p>${member.memberName}</p>
 					<p>${member.email}</p>
-					<c:if test="${member.memberId == sessionScope.memberId }">
-						<p>${member.phoneNumber}</p>
-					</c:if>
 					<p>
 						게시글 수 ${travelCount} <label class="openBtnFollower"> 팔로워 ${followerNum}</label ><label class="openBtnFollowing"> 팔로우  ${followingNum}</label>
 					</p>
