@@ -100,15 +100,18 @@
 			
 			 <div class="travel_riveiw">
 				<div class="review_title">여행은 즐거우셨나요? 여행 후기를 남겨보세요!</div>
-				<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
 				<c:if test="${writer == sessionScope.memberId }">
+					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
 					<c:if test="${travelReview eq null or ''}">
-					<button class="review_btn" onclick="travelReview()">확인</button>
+					<button class="review_btn" onclick="travelReview(this)">확인</button>
 					</c:if>
 					<c:if test="${travelReview ne null}">
-					<button class="updatereview_btn" onclick="travelReview()">수정</button>
+					<button class="updatereview_btn" onclick="travelReview(this)">수정</button>
 					</c:if>
 					
+				</c:if>
+				<c:if test="${writer ne sessionScope.memberId }">
+					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false" readonly>${travelReview}</textarea>
 				</c:if>
 				</div> 
 			
@@ -210,7 +213,7 @@
 <script type="text/javascript"  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=812e2e855f4c09a3782d4e48436912b8&libraries=services"></script>
 <script>
 
-function travelReview() {
+function travelReview(e) {
     console.log("리뷰");
     
     var travelReview=document.getElementById("review").value;
@@ -221,7 +224,9 @@ function travelReview() {
         url:"/travel/review?travelReview="+travelReview+"&travelId="+travelId,
         method: "POST",
         success:function(result1){
-     	   console.log("리뷰전송"); 	  	   
+     	   console.log("리뷰전송");
+     	   location.reload();
+     	   
     		
         }
         
