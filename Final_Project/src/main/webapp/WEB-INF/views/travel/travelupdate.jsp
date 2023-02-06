@@ -83,6 +83,10 @@
 			<input type="hidden" class="count" value="${status.count}"/>
 			
 			</c:forEach>
+			<%-- <button type="button" class="modal_btn3" name="modal_btn3" onClick="dayadd(this.id)" id="dayadd">
+				<img src="${pageContext.request.contextPath}/resources/images/add.png">
+				<label>날짜 추가하기</label>
+			</button> --%>
 			
 			
 
@@ -134,7 +138,7 @@
 						<div class="place_content">
 						<div class="title">
 								<label class="place_name" id="place_name">${place.placeName}</label>
-								<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="${place.placeName}">
+								<input type="checkbox" class="checkbox" name="checkbox" value="${place.placeName}">
 								</div>
 							<p class="place_area" id="place_area">${place.areaName}</p>
 							<label class="category_label"> <span id="category_label">${place.category}</span></label>
@@ -233,9 +237,11 @@ $('document').ready(function() {
 	});
 	
 	
+var arr= new Array();
 
 window.onload = function() {
 	var btnClear = document.querySelector('#title_input_img');
+	arr=[];
 	btnClear.addEventListener('click', function(){
 		console.log("click");
 	    document.querySelector('#title_input').value="";
@@ -319,8 +325,7 @@ window.onload = function() {
        
       });
 	
-</script>
-<script>
+
 var travelStart;
 var travelEnd;
 var datearr=new Array();
@@ -329,7 +334,7 @@ var id; //일정 추가버튼 아이디
 var id2; //메모버튼 아이디
 var id3; //스케줄 삭제 아이디
 var value;
-var arr= new Array();
+
 var alldata=[];
 var placearr=[];
 var memodata=[];
@@ -371,7 +376,7 @@ $(function() {
 	           			
 	           			date22=date2.toISOString().substring(0,10);
 	           			
-	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
+	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="text" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
 	                    const dayseqs=j;
 	                    const placemodal='placemodal'+j;
 	                    const memomodal='memo'+j;
@@ -507,6 +512,34 @@ $(function() {
 	document.querySelector("#schedule"+id3).remove();
 
 	}
+	var dayaddnum=parseInt(count)+1;
+	
+	/* function dayadd(clicked_id){
+		
+		$(".modal_btn3").before(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform0"><div class="content_wrap"><div class="content_title"><label class="dayseq0">DAY </label><label class="date0"></label><input type="text" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn20" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo0" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
+        
+		//const dayseqs=j;
+		
+		console.log(dayaddnum);
+        const placemodal2='placemodal'+dayaddnum;
+        const memomodal2='memo'+dayaddnum;
+        const formid2='form'+dayaddnum;
+        
+        document.querySelector(".dayseq0").id=dayaddnum;
+        document.querySelector(".date0").id='traveldate'+dayaddnum;
+        document.querySelector(".dayseq0").append(dayaddnum);
+        //document.querySelector(".modal_btn0").id=placemodal2;
+        document.querySelector(".modal_btn20").id=memomodal2;
+        document.querySelector(".insertform0").id=formid2;
+        //document.querySelector(".date").append(date22);
+        //document.querySelector(".travelDate").value=date22;
+        document.querySelector(".modal_btn20").id=memomodal2;
+        document.querySelector("[name=memo0]").classList.add(memomodal2);
+       
+        //date2.setDate(date2.getDate()-1); 
+		dayaddnum+=1;
+
+		} */
    
 
 	function openModal(clicked_id){
@@ -530,21 +563,23 @@ $(function() {
 	 
 		}
 	
-	function boxChecked(checked_value){
-		value=checked_value;
-		console.log(value);
-		arr.push(value);
-	}
-	//var lastnum;
   	  
 	function closeModal() {
     console.log("장소닫기");
-    console.log(id);
-    console.log(count2);
+    
+    $('input:checkbox[name=checkbox]').each(function (index) {
+		if($(this).is(":checked")==true){
+	    	console.log($(this).val());
+	    	arr.push($(this).val());
+	    }
+	})
+	
+    //console.log(id);
+    //console.log(count2);
     count2=parseInt(count2);
     var count22=count2+1;
     var schedule="schedule"+count22;
-    console.log(schedule);
+    //console.log(schedule);
     var deletePlace="deletePlace"+count22;
     //console.log(arr[0]);
     	
@@ -552,13 +587,11 @@ $(function() {
     		var selectedplacename="";
     		//var num=i+1;
     		//console.log("카운트2: "+count2);
-    		selectedplacename+='<div class="schedule_box" id="scheduledelete'+count22+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><button class="insert_num" onClick="cancelSchedule(this.id)" id="delete${statusNm.count}">X</button></div></div>';
+    		selectedplacename+='<div class="schedule_box" id="scheduledelete'+count22+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><button class="insert_num" onClick="cancelSchedule(this.id)" id="delete'+count22+'">X</button></div></div>';
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
-    		//document.querySelector(".schedule_box").id=schedule;
-    		//document.querySelector(".insert_num").id=deletePlace;
+		
     		placearr.push(arr[i]);
     		console.log(arr[i]);
-    		//lastnum=num;
     		count22+=1;
     		
 	
@@ -631,7 +664,7 @@ $(function(){
 	               
 	              str+='<div class="place"><div class="image_wrap">'+filestr+'</div>';
 	              str+='<div class="place_content"><div class="title"><label class="place_name" id="place_name">'+data[i].placeName+'</label>';
-	              str+='<input type="checkbox" class="checkbox" name="checkbox" onClick="boxChecked(this.value)" value="'+data[i].placeName+'"></div>'
+	              str+='<input type="checkbox" class="checkbox" name="checkbox" value="'+data[i].placeName+'"></div>'
 	              str+='<p class="place_area" id="place_area">'+data[i].areaName+'</p>';
 	              str+='<label class="category_label"> <span id="category_label">'+data[i].category+'</span></label></div></div>';
 	                  

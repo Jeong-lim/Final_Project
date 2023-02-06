@@ -18,7 +18,7 @@
 </head>
 <body>
 	<input type="hidden" class="memberId" value="${sessionScope.memberId}">
-
+	<label class=""><a href='<c:url value="/chat.action"/>'>채팅채팅채팅</a></label>
 	<div class="outer">
 		<div class="inner">
 		
