@@ -20,16 +20,17 @@
 		<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
-					<div>✈️ 실시간 여행 인기코스 ✈️</div><input name="check_list_button" onclick="clickBtn()" value="저장" />
+					<div>✈️ 실시간 여행 인기코스 ✈️</div>
+					<button type="button" class="checkBtn">checkBtn</button>
+					<button type="button" class="notCheckBtn">notCheckBtn</button>
 				</div>
 				<div class="body" id="checkListBody">
 				
 					<c:forEach var="checkList" items="${checkList}" varStatus="status">			
 					<li id="floating_banner_1"><input  type="checkbox" name="aaaa"
-						id="check_btn" class="checkbox" ${checkList.itemStatus == "N" ? "checked" : ""} /> 
+						id="check_btn" value="${checkList.item}"class="checkbox" ${checkList.itemStatus == "N" ? "checked" : ""} /> 
 						<span class="check_text">${checkList.item}</span>
 					</li>
-					
 					
 					</c:forEach>
 
@@ -465,12 +466,37 @@ $(".check_list_submit").on("click", function() {
 		})
 	});
 	
-$(document).ready(function(){
-	  $("input[name='tmpChkbox[]']:checked").each(function() {
-		    var tmpVal = $(this).val();
-		    console.log(tmpVal);
-		  });
-		  
+$(document).ready(function() {
+	
+	$('input:checkbox[name="aaaa"]').each(function() {
+		// 체크 안됐다가 되었을 때
+		
+		// 체크 됐다가 안되었을 떄
+		
+
+		if(this.checked){//checked 처리된 항목의 값
+
+            alert(this.value); 
+      }
+
+	 });
+	
+/* 	  $(".checkBtn").click(function(){
+	    var days = [];
+	    $.each($("input[name='aaaa']:checked"), function(){
+	      days.push($(this).val());
+	    });
+	    alert("Selected say(s) are: " + days);
+	    
+	  });
+	  
+	  $(".notCheckBtn").click(function() {
+		  var days1 = [];
+		  $.each($("input[name='aaaa']:not(:checked)"), function(){
+		      days1.push($(this).val());
+		 });
+	    alert("Selected say(s) are: " + days1);
+	  }); */
 	});
 
 </script>

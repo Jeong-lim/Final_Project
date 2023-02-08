@@ -168,6 +168,10 @@ public class MemberService  {
 	public void insertCheckList(@Param("memberId") String memberId, @Param("Item") String Item) {
 		memberDao.insertCheckList(memberId, Item);
 	}
+	
+	public List<Map<String, String>> selectCheckList(String memberId) {
+		return memberDao.selectCheckList(memberId);
+	}
 
 
 }

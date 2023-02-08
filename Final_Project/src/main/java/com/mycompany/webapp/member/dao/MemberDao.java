@@ -40,4 +40,5 @@ public interface MemberDao {
 	public String findUserId(@Param("email") String email, @Param("userName") String userName); // 유저 아이디 찾기
 	public void cancelFollowAlarm(Map<String,String>map);//팔로우신청취소
 	public void insertCheckList(@Param("memberId") String memberId, @Param("Item") String Item); // 체크리스트 등록
+	public List<Map<String, String>> selectCheckList(String memberId);
 }
