@@ -397,5 +397,23 @@
          		,SYSDATE)
 	</insert>
 	
+	<resultMap type="HashMap" id="checkListMap">
+      <result column="CHECK_ID" property="checkListId"/>
+      <result column="ITEM_STATUS" property="itemStatus"/>
+      <result column="WRITER" property="writer"/>
+      <result column="ITEM" property="item"/>
+    </resultMap>
+	
+	
+	<select id="selectCheckList" resultMap="checkListMap" parameterType="string">
+		SELECT
+			CHECK_ID
+		  , WRITER
+		  , ITEM
+		  , ITEM_STATUS
+		FROM CHECK_LIST
+		WHERE WRITER = #{memberId}
+	</select>
+	
 	
 </mapper>

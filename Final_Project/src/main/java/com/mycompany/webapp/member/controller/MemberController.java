@@ -1,6 +1,7 @@
 package com.mycompany.webapp.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,7 +59,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String memberPage() {
-
+		
 		return "user/mypage";
 	}
 
@@ -139,6 +140,11 @@ public class MemberController {
 			model.addAttribute("followerList", followerList);
 			model.addAttribute("followList", followList);
 			model.addAttribute("msg", msg);
+			
+			// 체크 리스트
+			List<Map<String, String>> checkList = memberService.selectCheckList(memberId);
+			model.addAttribute("checkList", checkList);
+			logger.info(checkList.toString());
 
 			return "user/mypage";
 
