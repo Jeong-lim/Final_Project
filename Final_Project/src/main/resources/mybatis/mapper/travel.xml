@@ -419,6 +419,11 @@
         AND TRAVEL_DETAIL_STATUS='Y'
 	</select>
 	
+	<select id="findTravelId" parameterType="string" resultType="string">
+		SELECT WRITER
+		FROM TRAVEL
+		WHERE TRAVEL_ID=#{travelId}
+	</select>
 	
 
 

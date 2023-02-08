@@ -24,6 +24,8 @@
 		</ul>
 		
 		
+		
+		
 		<div>
 			<div class="uk-inline">
 				<button class="uk-button uk-button-default" id="alarmBtn" type="button" >
@@ -154,7 +156,14 @@ $('document').ready(
 									}
 									
 							}
-							
+							else if(result[i].alarmCode !='f'){
+								var str='';
+								str+='<div class="follow__wrapper" id='+i+'>';
+								str+='<input type="hidden" id='+i+' value='+result[i].alarmSeq+'>';
+								str+=`<li class="uk-active">`+result[i].alarmFromId+`이 <a href="<c:url value='/travel/`+result[i].alarmCode+`/`+result[i].alarmToId+`'/>">게시물</a>을 스크랩 하였습니다.</li>`;
+								str+='<img class="follow_cancel" src="${pageContext.request.contextPath}/resources/images/close.png" value='+i+' onclick="closeAlarm(this)" />';
+								str+='</div>'; 
+							}
 							$('.uk-nav').append(str);
 						}
 					
@@ -233,6 +242,9 @@ function closeAlarm(e){
 	}) 
 	
 }
+
+
+
 	
 	
 	

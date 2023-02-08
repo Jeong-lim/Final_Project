@@ -79,7 +79,7 @@ public interface TravelDao {
 	public void scrapTravelDetail(@Param("travelId2")String travelId2, @Param("travelDate")String travelDate, @Param("placeId")String placeId, @Param("memo")String memo);
 
 
-
+	public String findTravelId(@Param("travelId")String travelId); //여행 오리지날 작성자 찾기
 	
 
 	

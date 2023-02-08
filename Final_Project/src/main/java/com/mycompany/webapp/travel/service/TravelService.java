@@ -155,5 +155,9 @@ public class TravelService {
 		travelDao.scrapTravelDetail(travelId2, travelDate, placeId, memo);
 		
 	}
+	
+	public String findTravelId(String travelId) {
+		return travelDao.findTravelId(travelId);
+	}
 
 }

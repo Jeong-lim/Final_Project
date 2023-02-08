@@ -115,7 +115,8 @@ public class TravelController {
 	}
 	
 	@RequestMapping(value = "/travel/scrap", method=RequestMethod.GET)
-	public String scrapTravel(@RequestParam("travelId") String travelId, @RequestParam("memberId") String memberId) {	
+	public String scrapTravel(@RequestParam("travelId") String travelId, @RequestParam("memberId") String memberId,HttpSession session) {	
+		
 		
 		
 		logger.info(travelId);
@@ -150,6 +151,10 @@ public class TravelController {
 		}
 		
 			String scrapID=travelService.findLastTravelId2();
+			String sessionId = (String) session.getAttribute("memberId");
+			String memberId1=travelService.findTravelId(travelId);
+			String alarmCode=travelId;
+			memberService.insertAlarm(memberId1, sessionId, alarmCode); //스크랩 알람 추가
 			return "redirect:/travel/"+scrapID+"/"+memberId;
 
 	}
