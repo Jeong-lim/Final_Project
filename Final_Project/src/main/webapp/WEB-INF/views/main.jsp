@@ -90,6 +90,7 @@
 	
 
 </body>
+
 	<script>
 	navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 	var lat;

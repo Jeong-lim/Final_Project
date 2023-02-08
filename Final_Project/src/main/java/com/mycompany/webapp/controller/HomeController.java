@@ -27,6 +27,11 @@ public class HomeController {
 		return "main";
 	}
 	
+	@RequestMapping("/product")
+	public String buyProduct() {
+		return "common/product";
+	}
+	
 	/*@RequestMapping("/signin")
 	public String signIn() {
 		return "auth/signin";

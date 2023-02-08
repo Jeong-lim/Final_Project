@@ -252,7 +252,7 @@
 	<select id="selectAlarms" parameterType="String" resultType="alarm">
 		SELECT A.ALARM_SEQ AS alarmSeq
 			  ,F.FOLLOW_SEQ AS followSeq
-			  ,A.ALARM_TO_ID AS alarmSeq
+			  ,A.ALARM_TO_ID AS alarmToId
 			  ,A.ALARM_FROM_ID AS alarmFromId
 			  ,A.ALARM_STATUS AS alarmStatus
 			  ,F.FOLLOW_STATUS AS followStatus
@@ -272,6 +272,7 @@
 		  	   	  FROM FOLLOW 
 		  	   	 WHERE TO_ID=#{sessionId}) F
             ON A.ALARM_TO_ID=F.TO_ID AND A.ALARM_FROM_ID=F.FROM_ID
+            	
       ORDER BY ALARM_SEQ DESC
 	</select>
 	
