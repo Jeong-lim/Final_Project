@@ -10,9 +10,29 @@
 * {
 	font-family: 'Pretendard-Regular';
 }
-
+input[type="text"]:focus {
+    outline: none;
+}
 body {
 	margin: 0;
+}
+.chat_img{
+		width:30px;
+		height:30px;
+	
+}
+.chatBtn{
+	background:none;
+	border:none;
+}
+.container2 {
+	width: 300px;
+}
+
+#list {
+	height: 300px;
+	padding: 15px;
+	overflow: auto;
 }
 
 @media screen and (max-width:680px) {
