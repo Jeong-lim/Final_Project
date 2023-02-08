@@ -17,6 +17,9 @@ input[type="text"]:focus {
 	background-color: #60A5FA;
 	border: 2px solid #60A5FA;
 }
+textarea:focus {
+	outline: none;
+}
 
 .inner {
 	width: 1000px;
@@ -28,6 +31,22 @@ input[type="text"]:focus {
 .travel_riveiw{
 	margin:20px;
 	
+}
+.scrap {
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 60px;
+	height: 28px;
+	background-color: #3B82F6;
+	color: white;
+	font-size: 15px;
+	margin:20px;
+}
+
+.scrap:hover {
+	background-color: #205295;
 }
 .review_btn{
     border: none;
@@ -307,20 +326,6 @@ input[type="text"]:focus {
 	font-size: 18px;
 	display: inline-block;
 	margin-left: 20px;
-}
-
-.share_btn {
-	border: none;
-	box-shadow: 1px 1px 1px 0 black;
-	border-radius: 3px;
-	width: 70px;
-	height: 35px;
-	margin: 0 30px;
-	background-color: #3B82F6;
-	color: white;
-	font-weight: bold;
-	font-size: 17px;
-	cursor: pointer;
 }
 
 .top_title button:hover {

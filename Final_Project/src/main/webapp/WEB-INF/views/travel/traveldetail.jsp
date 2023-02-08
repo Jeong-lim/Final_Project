@@ -24,7 +24,7 @@
 			<label class="top_tit">${travelTitle}</label>
 			<label class="top_date">${startDate} - ${endDate}</label>
 			<c:if test="${travelPrivacy eq 'a' or follow eq 'Y' or writer == sessionScope.memberId }">
-				<a href="/travel/scrap?travelId=${travelId}&memberId=${sessionScope.memberId}" role="button" class="share_btn">스크랩</a>
+				<a href="/travel/scrap?travelId=${travelId}&memberId=${sessionScope.memberId}" role="button" class="share_btn"><button class="scrap">스크랩</button></a>
 			</c:if>
 		
 			<c:if test="${writer == sessionScope.memberId }">

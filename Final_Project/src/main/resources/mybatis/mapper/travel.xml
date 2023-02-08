@@ -69,7 +69,7 @@
         			  			 where t.travel_id=d.travel_id
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%' )c     
+			on f.file_code = b.place_name)c     
             
 		  )
 		  WHERE rownum &lt;= #{endRowNo}  
@@ -118,7 +118,7 @@
         			  			 where t.travel_id=d.travel_id
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%')c     
+			on f.file_code = b.place_name)c     
 			ORDER BY c.view_cnt desc
                
             
@@ -146,7 +146,7 @@
         			  			 where t.travel_id=d.travel_id
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%')c   
+			on f.file_code = b.place_name)c   
 			ORDER BY original_Travel_Id_count desc
                
             
@@ -178,7 +178,7 @@
         			  			 WHERE t.travel_id=d.travel_id
                                  GROUP BY t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%')c    
+			on f.file_code = b.place_name)c    
 			ORDER BY c.write_date desc
                
             
@@ -207,7 +207,7 @@
         			  		  where t.travel_id=d.travel_id
                                  group by t.travel_id) a
   			 		 where p.place_id=a.place_id) b            
-			on f.file_code like '%'||b.place_name||'%')c   
+			on f.file_code =b.place_name)c   
 			<if test="searchType=='title' and keyword != null and keyword != '' ">
 				 where travel_title like '%'||#{keyword}||'%'
 			</if>
