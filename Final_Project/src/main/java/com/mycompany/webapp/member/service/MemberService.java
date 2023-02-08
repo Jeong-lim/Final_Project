@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -164,7 +165,9 @@ public class MemberService  {
 		memberDao.cancelFollowAlarm(map);
 	}
 	
-
+	public void insertCheckList(@Param("memberId") String memberId, @Param("Item") String Item) {
+		memberDao.insertCheckList(memberId, Item);
+	}
 
 
 }

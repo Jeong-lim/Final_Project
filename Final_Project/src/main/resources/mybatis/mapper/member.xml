@@ -382,4 +382,19 @@
 		AND MEMBER_STATUS = 'Y'
 	</select>
 	
+	
+	<insert id="insertCheckList" parameterType="map">
+		 INSERT INTO CHECK_LIST(CHECK_ID
+		 				   ,WRITER
+		 				   ,ITEM
+		 				   ,ITEM_STATUS
+		 				   , WRITE_DATE)
+         VALUES ('CHK'||LPAD(CHECK_SEQ.NEXTVAL,5,0)
+         		,#{memberId}
+         		,#{Item}
+         		,'Y'
+         		,SYSDATE)
+	</insert>
+	
+	
 </mapper>

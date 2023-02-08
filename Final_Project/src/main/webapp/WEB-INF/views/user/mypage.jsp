@@ -15,6 +15,27 @@
 </head>
 
 <body>
+<div id="floatMenu" style="top: 280px">
+<div class="container_1">
+		<div class="leaderboard">
+				<div class="head">
+					<i class="fas fa-crown"></i>
+					<div>✈️ 실시간 여행 인기코스 ✈️</div>
+				</div>
+				<div class="body">
+					<li id="floating_banner_1"><input type="checkbox"
+						id="check_btn" /> <label for="check_btn"><span>선택!</span></label></li>
+
+					<li id="floating_banner_1"><input type="text" name="item" class="checkList_input" /> 
+					<input type="submit" class="check_list_submit" value="저장" />
+					</li>
+<%-- 					<c:forEach var="bestPlaceList" items="${bestTravelList}" varStatus="status">
+						<a href="<c:url value='travel/${bestPlaceList.travelId}/${bestPlaceList.writer}'/>"><li id="floating__banner_${status.count}">${bestPlaceList.travelTitle}</li></a>
+					</c:forEach> --%>
+				</div>
+	</div>
+	</div>
+	</div>
 	<br>
 	<br>
 	<br>
@@ -225,6 +246,10 @@
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+
+
+
 <script>
   const open = () => {
     document.querySelector("#modal1").classList.remove("hidden");
@@ -393,8 +418,46 @@
 	}
 	
 	
+	$(document).ready(function() {
+
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#floatMenu").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+		$(window).scroll(function() {
+
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			var newPosition = scrollTop + floatPosition + "px";
+			$("#floatMenu").stop().animate({
+				"top" : newPosition
+			}, 650);
+
+		}).scroll();
+
+	});
+	
 
 </script>
+
+<script>
+$(".check_list_submit").on("click", function() {
+	var checkItem = $("input[name=item]").val();
+	
+	console.log(checkItem);
+ 	$.ajax({
+		url : '/checkList?checkItem=' + checkItem,
+		type : 'POST',
+		success : function(data) {
+			console.log("받아온 데이터는 " + data);							
+		
+			}, error : function() {
+					console.log("실패");
+			}
+		}); 
+	});
+
+</script>
+
 
 <%@ include file="../common/footer.jsp"%>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -383,5 +384,20 @@ public class MemberController {
 
 		return "common/sliderbanner";
 	}
+	
+	// 마이페이지 체크리스트 
+	@RequestMapping("/checkList")
+	public String checkListInsert(HttpSession session, @RequestParam("checkItem") String Item, Model model) {
+		String memberId = (String) session.getAttribute("memberId");
+		logger.info(Item);
+		logger.info(memberId);
+		
+		memberService.insertCheckList(memberId, Item);
+		
+		return Item;
+		
+	}
+	
+	
 
 }
