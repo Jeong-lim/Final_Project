@@ -20,11 +20,18 @@
 		<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
-					<div>✈️ 실시간 여행 인기코스 ✈️</div>
+					<div>✈️ 실시간 여행 인기코스 ✈️</div><input name="check_list_button" onclick="clickBtn()" value="저장" />
 				</div>
-				<div class="body">
-					<li id="floating_banner_1"><input type="checkbox"
-						id="check_btn" /> <label for="check_btn"><span>선택!</span></label></li>
+				<div class="body" id="checkListBody">
+				
+					<c:forEach var="checkList" items="${checkList}" varStatus="status">			
+					<li id="floating_banner_1"><input  type="checkbox" name="aaaa"
+						id="check_btn" class="checkbox" ${checkList.itemStatus == "N" ? "checked" : ""} /> 
+						<span class="check_text">${checkList.item}</span>
+					</li>
+					
+					
+					</c:forEach>
 
 					<li id="floating_banner_1"><input type="text" name="item" class="checkList_input" /> 
 					<input type="submit" class="check_list_submit" value="저장" />
@@ -312,7 +319,7 @@
 			$.ajax({
 				type:"POST",
 				url:'/userSearch?value='+keyword,
-				success:function(result){
+				success:function(result){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 					$('#modal_ul_follower').html('');
 					
 					var length= result.length;
@@ -442,18 +449,28 @@
 <script>
 $(".check_list_submit").on("click", function() {
 	var checkItem = $("input[name=item]").val();
-	
 	console.log(checkItem);
- 	$.ajax({
+ 	
+	$.ajax({
 		url : '/checkList?checkItem=' + checkItem,
 		type : 'POST',
 		success : function(data) {
-			console.log("받아온 데이터는 " + data);							
-		
+			console.log("받아온 데이터는 " + data);	
+			location.reload();
 			}, error : function() {
-					console.log("실패");
+				console.log("실패");
+			}, complete: function() {
+				location.reload();
 			}
-		}); 
+		})
+	});
+	
+$(document).ready(function(){
+	  $("input[name='tmpChkbox[]']:checked").each(function() {
+		    var tmpVal = $(this).val();
+		    console.log(tmpVal);
+		  });
+		  
 	});
 
 </script>
