@@ -47,7 +47,7 @@
 <script>
 
 //채팅 서버 주소
-let url = "ws://localhost/chatserver";
+let url = "ws://192.168.0.29/chatserver";
    		
 // 웹 소켓
 let ws;
