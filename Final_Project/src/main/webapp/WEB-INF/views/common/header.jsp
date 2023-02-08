@@ -27,8 +27,8 @@
 		
 		
 		<div>
-		
-		<div class="uk-inline">
+		<c:if test="${not empty sessionScope.memberId}">
+		<div class="uk-inline dropchat">
 			<button type="button" class="chatBtn" onClick="chatStart()">
 				<img class="chat_img"
 					src="${pageContext.request.contextPath}/resources/images/chat.png">
@@ -40,27 +40,27 @@
 
 					<table class="table table-bordered">
 						<tr>
-							<td><input type="text" name="user" id="user"
+							<td colspan="2"><input type="text" name="user" id="user"
 								class="form-control" placeholder="유저명"
 								value="${sessionScope.memberId}"></td>
-							<td>
+							<td class="btntd">
 								<button type="button" class="btn btn-default" id="btnConnect">연결</button>
-								<button type="button" class="btn btn-default" id="btnDisconnect"
-									disabled>종료</button>
+								<button type="button" class="btn btn-default" id="btnDisconnect" disabled>종료</button>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><div id="list"></div></td>
+							<td colspan="3"><div id="list"></div></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="text" name="msg" id="msg"
-								placeholder="대화 내용을 입력하세요." class="form-control" disabled></td>
+							<td colspan="3"><input type="text" name="msg" id="msg"
+								placeholder="대화 내용을 입력하세요." class="form-control2" disabled></td>
 						</tr>
 					</table>
 
 				</div>
 			</div>
 		</div>
+		</c:if>
 		
 		
 			<div class="uk-inline">
@@ -304,12 +304,14 @@ function chatStart(e) {
 <script>
 //채팅 서버 주소
 let url = "ws://192.168.0.29/chatserver";
+//let url = "ws://192.168.0.56/chatserver";
    		
 // 웹 소켓
 let ws;
 
 // 연결하기
 $('#btnConnect').click(function() {
+	
 
 	// 유저명 확인
    	if ($('#user').val().trim() != '') {
@@ -347,6 +349,9 @@ $('#btnConnect').click(function() {
 				print3(user);
 			}
 			$('#list').scrollTop($('#list').prop('scrollHeight'));
+			let chatscroll = document.querySelector('#list');
+			chatscroll.scrollTop = chatscroll.scrollHeight;
+			console.log("상대가채팅입력");
 		};
 	   			
 		ws.onclose = function (evt) {
@@ -372,6 +377,9 @@ function print(user, txt) {
 	temp += '</div>';
 			
 	$('#list').append(temp);
+	let chatscroll = document.querySelector('#list');
+	chatscroll.scrollTop = chatscroll.scrollHeight;
+	console.log("내가채팅입력");
 }
 		
 // 다른 client 접속		
