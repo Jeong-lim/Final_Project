@@ -390,7 +390,7 @@ a {
 }
 
 .leaderboard li {
-	padding: 14px;
+	padding: 12px;
 	display: flex;
 	border-bottom: 1px #60A5FA solid;
 }
@@ -406,40 +406,25 @@ a {
 	display: inline-block;
 	margin-left: 4px;
 }
-input#check_btn{
-  display:none;
-  }
 
-input#check_btn + label{
-  cursor:pointer;
- }
+input[type="checkbox"]:checked ~ .check_text {
+  color: grey;
+  text-decoration:line-through
+}
 
-input#check_btn + label > span{
-  vertical-align: middle;
-  padding-left: 5px;
-  color: black;
- }
+.checkbox {
+	zoom:1.5;
+	
+}
 
-/* label:before에 체크하기 전 상태 CSS */
-input#check_btn + label:before{
-  content:"";
-  display:inline-block;
-  width:17px;
-  height:17px;
-  border:2px solid #F47C7C;
-  border-radius: 4px;
-  vertical-align:middle;
-  }
-  
-/* label:before에 체크 된 상태 CSS */  
-input#check_btn:checked + label:before{
-  content:"";
-  background-color:#F47C7C;
-  border-color:#F47C7C;
-  background-image: url('../images/check_btn.png');
-  background-repeat: no-repeat;
-  background-position: 50%;
-  }
+.checkbox:hover {
+	cursor: pointer;
+	
+}
+.check_text {
+	color: black;
+	margin-left: 5px;
+}
 
 .container_1 {
 	width: 280px;
