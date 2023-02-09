@@ -44,14 +44,14 @@
 	
 	<select id="selectUserImage" parameterType="string" resultMap="selectUserImage">
 		SELECT
-			FILE_ORIGINAL_NAME
-		  , FILE_SAVED_NAME
-		  , UPLOAD_ROOT
-		  , FILE_CODE
-		FROM
-			UPLOAD_FILE
-		WHERE
-			FILE_CODE=#{userName} AND FILE_STATUS='Y'
+				FILE_ORIGINAL_NAME
+			  , FILE_SAVED_NAME
+			  , UPLOAD_ROOT
+			  , FILE_CODE
+		  FROM
+				UPLOAD_FILE
+		 WHERE
+				FILE_CODE=#{userName} AND FILE_STATUS='Y'
 	</select>
 	
 </mapper>
