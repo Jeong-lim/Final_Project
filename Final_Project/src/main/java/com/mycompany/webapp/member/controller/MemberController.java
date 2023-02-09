@@ -29,6 +29,7 @@ import com.mycompany.webapp.file.service.FileService;
 import com.mycompany.webapp.member.model.AlarmVo;
 import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.MemberService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 @Controller
 public class MemberController {
@@ -394,14 +395,16 @@ public class MemberController {
 	
 	// 마이페이지 체크리스트 
 	@RequestMapping("/checkList")
-	public int checkListInsert(HttpSession session, @RequestParam("checkItem") String Item, Model model) {
+	@ResponseBody
+	public String checkListInsert(HttpSession session, @RequestParam("checkItem") String Item, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
 		List<Map<String, String>> checkList = memberService.selectCheckList(memberId);		
-		int status = 0;
+		String status = "";
 		if (checkList.size() <= 10) {
 			memberService.insertCheckList(memberId, Item);
+			status = "Y";
 		} else {
-			status = 1;
+			status = "N";
 		}
 		
 		System.out.println(status);
@@ -410,6 +413,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/checkList/update")
+	@ResponseBody
 	public void checkListUpdate(HttpSession session, @RequestParam("checkId") String checkId, @RequestParam("status") String status) {
 		
 		String memberId = (String) session.getAttribute("memberId");
@@ -417,6 +421,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/checkList/delete")
+	@ResponseBody
 	public void checkListDelete(HttpSession session, @RequestParam("checkId") String checkId) {
 		String memberId = (String) session.getAttribute("memberId");
 		memberService.deleteCheckList(memberId, checkId);
