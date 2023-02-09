@@ -32,7 +32,13 @@
 			<a href="/travel/delete?travelId=${travelId}" onclick="return confirm('삭제 하시겠습니까?')" role="button" id="delete_btn" class="delete_btn" >삭제</a>
 			<input type="hidden" id="travelId" value="${travelId}">
 			</c:if>
-		
+			<c:if test="${not empty originalTravelId}">
+			<div class="original_post">
+			<a href='<c:url value="/travel/${originalTravelId}/${originalWriter}"/>'><button class="original_btn">원본 게시글로 이동</button></a>
+			</div>
+			</c:if>
+			
+			
 		</div>
 		<c:if test="${writer == sessionScope.memberId }">
 		<div class="profile">
@@ -117,8 +123,10 @@
 			
 				
 				</div>
+				
 	
 			</div>	
+			
 			
 			
 			
@@ -173,10 +181,14 @@
 				</div>
 			</div>
 			
+			
+			
 			</c:if>
 			
-			<c:if test="${travelPrivacy eq 'f' and follow eq 'U' }">
+			<c:if test="${travelPrivacy eq 'f'}" >
+				<c:if test=" ${follow eq 'N' or follow eq 'U' or follow eq null}">
 				<div>팔로우한 유저만 볼 수 있는 페이지 입니다.</div>
+				</c:if>
 			</c:if>
 			
 			<c:if test="${travelPrivacy eq 'p' and writer != sessionScope.memberId }">
@@ -184,6 +196,8 @@
 			</c:if>
 		
 	</div>
+	
+	
 	
 
 

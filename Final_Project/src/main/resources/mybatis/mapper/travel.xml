@@ -5,47 +5,51 @@
 	
 	<!-- 지역별 검색한 관광지 선택 모달 -->
 	<select id="selectTravelListByArea" resultType="place" parameterType="map">
-		select rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSavedName
-		from (
-			select ROWNUM as rnum, place_id, place_name  , area_name  , detail_cd_name, place_detail, file_saved_name
-			from(
-				select m.place_id, m.place_name,m.area_name,d.detail_cd_name, m.place_detail, m.file_saved_name
-				from(select  row_number() over(partition by place_name order by area_name)as rn, place_id, place_name, area_name , category , place_detail, file_saved_name
-    				from place full outer join upload_file
-    				on place.place_name = upload_file.file_code
-    				)m, detail_code d
-				where m.category=d.detail_cd_id and rn=1
-				order by m.place_name	
-			)
-		)
-        where 
+	
+		SELECT rnum, place_id as placeId, place_name as placeName , area_name as areaName , detail_cd_name as category, place_detail as placeDetail, file_saved_name as fileSavedName
+		  FROM (
+			   SELECT ROWNUM as rnum, place_id, place_name  , area_name  , detail_cd_name, place_detail, file_saved_name
+			     FROM (
+					  SELECT m.place_id, m.place_name,m.area_name,d.detail_cd_name, m.place_detail, m.file_saved_name
+					    FROM (
+							 SELECT row_number() OVER(PARTITION BY place_name ORDER BY area_name)as rn, place_id, place_name, area_name , category , place_detail, file_saved_name
+    						   FROM place FULL OUTER JOIN upload_file
+    						     ON place.place_name = upload_file.file_code
+    						 )m, detail_code d
+					   WHERE m.category=d.detail_cd_id AND rn=1
+					ORDER BY m.place_name	
+					  )		
+				)
+         WHERE 
         <if test="searchType!= null and searchType!='' and keyword != null and keyword != '' ">
-                area_name like #{searchType, jdbcType=VARCHAR} and place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+                area_name LIKE #{searchType, jdbcType=VARCHAR} AND place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
         </if>
          <if test="searchType== null or searchType=='' and keyword != null and keyword != '' ">
-                place_name like '%'||#{keyword, jdbcType=VARCHAR}||'%'
+                place_name LIKE '%'||#{keyword, jdbcType=VARCHAR}||'%'
         </if>
          <if test="searchType!= null and searchType!='' and keyword == null or keyword == '' ">
-                area_name like #{searchType, jdbcType=VARCHAR}
+                area_name LIKE #{searchType, jdbcType=VARCHAR}
         </if>
         
 	</select>
 	
 	<!-- 관광지 선택 모달 -->
 	<select id="selectPlaceList" resultType="place">
-		select rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
-		from (
-			select ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
-			from(
-				select m.place_name,m.area_name,d.detail_cd_name,m.file_saved_name
-				from(select row_number() over(partition by place_name order by area_name)as rn, place_name, area_name , category , file_saved_name
-    				from place full outer join upload_file
-    				on place.place_name = upload_file.file_code
-    				)m, detail_code d
-				where m.category=d.detail_cd_id and rn=1
-				order by m.place_name	
-			)
-		)
+	
+		SELECT rnum, place_name as placeName , area_name as areaName , detail_cd_name as category,file_saved_name as fileSavedName
+		  FROM (
+			   SELECT ROWNUM as rnum, place_name  , area_name  , detail_cd_name,file_saved_name
+				 FROM (
+					  SELECT m.place_name,m.area_name, d.detail_cd_name, m.file_saved_name
+					    FROM (
+						     SELECT row_number() OVER(PARTITION BY place_name ORDER BY area_name)as rn, place_name, area_name , category , file_saved_name
+    					       FROM place FULL OUTER JOIN upload_file
+    						     ON place.place_name = upload_file.file_code
+    						 )m, detail_code d
+					   WHERE m.category=d.detail_cd_id AND rn=1
+					ORDER BY m.place_name	
+				      )
+			   )
 		
 	</select>
 
@@ -53,64 +57,83 @@
 	<select id="selectTravelList" resultType="travel" parameterType="pager">
 
 		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id_count as originalTravelIdCount
-		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id_count
 		  FROM (
-                  
-		     select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
-			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id_count
-			from 
-			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
-   					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
-    					  from place p, 
-      				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
-     				  			 from travel t, travel_detail d
-        			  			 where t.travel_id=d.travel_id
-                                 group by t.travel_id) a
-  			 		 where p.place_id=a.place_id) b            
-			on f.file_code = b.place_name)c     
-            
-		  )
-		  WHERE rownum &lt;= #{endRowNo}  
-		)
-		WHERE rnum &gt;= #{startRowNo}
+		 	   SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id_count
+		 		 FROM (
+		 		 
+				 	  SELECT c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+							(SELECT count(*) 
+						 	   FROM travel 
+							  WHERE original_travel_id like c.travel_id) as original_Travel_Id_count
+				        FROM 
+				 			(SELECT f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+					 		   FROM (
+					 				SELECT * 
+					 				  FROM upload_file 
+					 				 WHERE (file_code, file_id) IN (
+					 												SELECT file_code, MAX(file_id) 
+					 												  FROM upload_file 
+					 											  GROUP BY file_code)
+					 				) f RIGHT OUTER JOIN           
+   											 			(SELECT p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
+    					 			 		 		       FROM place p, 
+      				  							  				(SELECT t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
+     				  			 				   				   FROM travel t, travel_detail d
+        			  							   				  WHERE t.travel_id=d.travel_id
+                                				   			   GROUP BY t.travel_id) a
+  			 		 						  			  WHERE p.place_id=a.place_id) b            
+								ON f.file_code = b.place_name) c  
+								   
+		 		       )
+		 	   	 WHERE rownum &lt;= #{endRowNo}  
+			   )
+		 WHERE rnum &gt;= #{startRowNo}
 		
 	</select>
 	
 	
 	<select id="countTravel" resultType="int">
-		select count(*)
-		from travel
+		SELECT count(*)
+		  FROM travel
 	</select>
 	
 	<select id="countTravelSearch" resultType="int" parameterType="map">
-		select count(*)
-		FROM travel
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
+	
+		SELECT count(*)
+		  FROM travel
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
 		<if test="keyword != null and keyword != '' ">
 			<if test="searchType=='title'">
-				 AND travel_title like '%'||#{keyword}||'%'
+			 	AND travel_title LIKE '%'||#{keyword}||'%'
 			</if>
 			<if test="searchType=='writer'">
-				 AND writer like '%'||#{keyword}||'%'
+				 AND writer LIKE '%'||#{keyword}||'%'
 			</if>
 		</if>
-		</trim>
+	</trim>
 				
 	</select>
 	
 	<select id="selectTravelListByView" resultType="travel" parameterType="pager">
+	
 		SELECT rnum, file_saved_name as fileSavedName, travel_id as travelId, travel_title as travelTitle, free as free, view_cnt as viewCnt, share_cnt as shareCnt, writer as writer, write_date as writeDate, original_Travel_Id_count as originalTravelIdCount
-		FROM (
-		  SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id_count
 		  FROM (
+		 	   SELECT ROWNUM as rnum, file_saved_name, travel_id, travel_title, free, view_cnt, share_cnt, writer, write_date, original_Travel_Id_count
+		 	     FROM (
                   
-		    select c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
-			(select count(*) from travel where original_travel_id like c.travel_id) as original_Travel_Id_count
-			from 
-			(select f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
-					from (SELECT * FROM upload_file WHERE (file_code, file_id) IN (SELECT file_code, MAX(file_id) FROM upload_file GROUP BY file_code)) f right outer Join           
+		   			  SELECT c.file_saved_name, c.travel_id, c.travel_title, c.free, c.view_cnt, c.share_cnt, c.writer, c.write_date,
+							 (SELECT count(*) 
+							    FROM travel 
+							   WHERE original_travel_id LIKE c.travel_id) as original_Travel_Id_count
+						FROM 
+							 (SELECT f.file_saved_name, b.travel_id, b.travel_title, b.free, b.view_cnt, b.share_cnt, b.writer, b.write_date
+								FROM (
+									 SELECT * 
+									   FROM upload_file 
+									  WHERE (file_code, file_id) IN (
+									  								SELECT file_code, MAX(file_id) 
+									  								  FROM upload_file 
+									  							  GROUP BY file_code)) f RIGHT OUTER JOIN           
    					 (select p.place_name, a.travel_id, a.travel_title, a.free, a.view_cnt, a.share_cnt, a.writer, a.write_date
     					  from place p, 
       				  		(select t.travel_id, min(d.place_id) as place_id, min(t.travel_title) as travel_title, min(t.free) as free, min(t.view_cnt) as view_cnt, min(t.share_cnt) as share_cnt, min(t.writer) as writer, min(t.write_date) as write_date
@@ -301,15 +324,6 @@
 		where travel_id=#{travelId}
 	</delete>
 	
-<!-- 	<select id="travelListToUpdate" parameterType="String">
-	select a.travel_id as travelId, a.travel_title as travelTitle, a.travel_start as travelStart, a.travel_end as travelEnd, a.travel_privacy as travelPrivacy, a.free as free,
-			a.original_travel_id as originalTravelId, a.original_writer as originalWriter, a.travel_detail_id as travelDetailId, a.travel_date as travelDate, p.place_name as placeName, a.memo as memo 
-	from (select t.travel_id, t.travel_title, t.travel_start, t.travel_end, t.travel_privacy, t.free, 
-				t.original_travel_id, t.original_writer, d.travel_detail_id, d.travel_date, d.place_id, d.memo
-			from travel t, travel_detail d 
-			where t.travel_id=d.travel_id and d.travel_detail_status ='Y' and t.travel_id=#{travelId})a, place p
-	where p.place_id=a.place_id
-	</select>	 -->
 	
 	<update id="travelReview" parameterType="String">
 		update travel
@@ -333,12 +347,6 @@
 		select travel_date as travelDate, place_id as placeId, memo from travel_detail where travel_id=#{travelId} and travel_detail_status='Y'
 	</select>
 	
-	<!-- <insert id="scrapTravelDetail" parameterType="String">
-		 insert into travel_detail(travel_id, travel_detail_id, travel_date, place_id, memo)
-		<foreach collection="travelDetailList" item="item" separator=",">
-         VALUES (#{travelId2},'TDE'||LPAD(travel_detail_seq.nextval, 5, 0), #{item.travelDate} , #{item.placeId} , #{item.memo})
-    	</foreach>	
-	</insert> -->
 	
 	<insert id="scrapTravelDetail" parameterType="String">
 		insert into travel_detail(travel_id, travel_detail_id, travel_date, place_id, memo)
@@ -360,6 +368,8 @@
       <result column="WRITE_DATE" property="writeDate"/>
       <result column="TRAVEL_PRIVACY" property="travelPrivacy"/>
       <result column="TRAVEL_REVIEW" property="travelReview"/>
+      <result column="ORIGINAL_TRAVEL_ID" property="originalTravelId"/>
+      <result column="ORIGINAL_WRITER" property="originalWriter"/>
     </resultMap> 
 	
 	<!-- 유저 선택할 수 있는 쿼리문 -->
@@ -375,6 +385,8 @@
         , WRITE_DATE
         , TRAVEL_PRIVACY
         , TRAVEL_REVIEW
+        , ORIGINAL_TRAVEL_ID
+        , ORIGINAL_WRITER
       FROM
          TRAVEL
       WHERE

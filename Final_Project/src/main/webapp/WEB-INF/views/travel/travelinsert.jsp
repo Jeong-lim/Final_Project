@@ -304,6 +304,11 @@ $(function() {
 	       
 	        }, function(start, end, label) {
 	        	$('.content_wrap').empty();
+	        	if(document.getElementById('save')){
+	        		var saveBtn= document.getElementById('save');
+	        		saveBtn.remove();
+	        		}
+	        	
 	          console.log("A new date selection was made: " + start.format('YYYY/MM/DD') + ' to ' + end.format('YYYY/MM/DD'));
 	          const getDateDiff = (start, end) => {
 	               const date1 = new Date(start);
@@ -356,7 +361,7 @@ $(function() {
 	                  
 	        		}
 	                
-	           		 $("#test").after('<button class="save">확인</button>');
+	           		 $("#test").after('<button class="save" id="save">확인</button>');
        
 	             }
 	          
