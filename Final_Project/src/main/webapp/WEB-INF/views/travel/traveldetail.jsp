@@ -103,8 +103,8 @@
 				
 			</c:forEach>
 
-				</div>
-				 <div class="travel_review">
+
+<div class="travel_review">
 				
 				<c:if test="${writer == sessionScope.memberId }">
 					<div class="review_title">💭여행은 즐거우셨나요❓여행 후기를 남겨보세요❗</div>
@@ -123,6 +123,9 @@
 				</div> 
 	
 			</div>	
+
+				</div>
+				 
 			
 			
 			
