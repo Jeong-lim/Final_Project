@@ -453,19 +453,21 @@
 <script>
 $("#check_list_insert").on("click", function() {
 	var checkItem = $("input[name=item]").val();
-	console.log(checkItem);
  	
 	$.ajax({
 		url : '/checkList?checkItem=' + checkItem,
 		type : 'POST',
+		async: false,
 		success : function(data) {
-			console.log("받아온 데이터는 " + data);	
-
-			location.reload();
-			}, error : function() {
-				alert("체크리스트는 10개까지 저장가능합니다!");
-			}, complete: function() {
+			if(data == 'Y') {
+				console.log("성공");
 				location.reload();
+			} else {
+				alert("체크박스는 10개까지 입력가능합니다.")
+			}
+
+			}, error : function() {
+				console.log("실패");
 			}
 		});
 	});
@@ -511,15 +513,14 @@ $("#check_list_insert").on("click", function() {
 			$.ajax({
 				url : '/checkList/update',
 				type : 'POST',
-				dataType : "json",
 				data : Params,
-				success : function(data) {
-					console.log("받아온 데이터는 " + data);	
+				success : function() {
+					console.log("성공");
 					location.reload();
 					}, error : function() {
 						console.log("실패");
 					}, complete: function() {
-						location.reload();
+						
 					}
 				});
 
@@ -543,11 +544,12 @@ $("#check_list_insert").on("click", function() {
 				url : '/checkList/delete?checkId=' + checkId,
 				type : 'POST',
 				success : function(data) {
+					console.log("성공");
 					location.reload();
 					}, error : function() {
 						console.log("실패");
 					}, complete: function() {
-						location.reload();
+
 					}
 				});
 			
