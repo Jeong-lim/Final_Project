@@ -37,6 +37,8 @@
 	cursor: pointer;
 }
 
+
+
 .mypage_title {
 	text-align: center;
 	font-weight: 600;
@@ -389,10 +391,16 @@ a {
 	font-size: 18px;
 }
 
-.leaderboard li {
-	padding: 12px;
-	display: flex;
-	border-bottom: 1px #60A5FA solid;
+.leaderboard li[class="floating__banner_1"] {
+    padding: 6px;
+    border-bottom: 1px #60A5FA solid;
+    /* margin-bottom: 10px; */
+    padding-bottom: 44px;
+    padding-top: 15px;
+}
+.leaderboard li[class="floating__banner_2"] {
+    padding: 12px 0px 18px 12px;
+    
 }
 .leaderboard .head {
 	padding: 11px 13px;
@@ -414,7 +422,7 @@ input[type="checkbox"]:checked ~ .check_text {
 
 .checkbox {
 	zoom:1.5;
-	
+	float: left;
 }
 
 .checkbox:hover {
@@ -424,6 +432,8 @@ input[type="checkbox"]:checked ~ .check_text {
 .check_text {
 	color: black;
 	margin-left: 5px;
+	float: left;
+	padding-left: 6px;
 }
 
 .container_1 {
@@ -439,23 +449,36 @@ input[type="checkbox"]:checked ~ .check_text {
 	z-index: 2;
 }
 
+::marker {
+	visibility: hidden;
+	display: none;
+}
+
+li {
+    /* display: list-item; */
+    list-style-type: none;
+    text-align: -webkit-match-parent;
+}
+
 .check_list_submit {
-	width:50px;
-	height: 31px;
-	display: inline-block;
-	outline: 0;
-	border: 0;
-	cursor: pointer;
-	will-change: box-shadow, transform;
-	background: radial-gradient(100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100%);
-	box-shadow: 0px 2px 4px rgb(45 35 66/ 40%), 0px 7px 13px -3px
-		rgb(45 35 66/ 30%), inset 0px -3px 0px rgb(58 65 111/ 50%);
-	border-radius: 6px;
-	color: #fff;
-	font-size: 15px;
-	text-shadow: 0 1px 0 rgb(0 0 0/ 40%);
-	transition: box-shadow 0.15s ease, transform 0.15s ease;
-	margin-left: 5px;
+    width: 51px;
+    height: 31px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    float: left;
+    cursor: pointer;
+    margin-left: 15px;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100%);
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    margin-left: 7px;
+    margin-right: -18px;
 }
 
 .check_list_submit:hover {
@@ -469,26 +492,59 @@ input[type="checkbox"]:checked ~ .check_text {
 	transform: translateY(2px);
 }
 
+.check_list_update_submit {
+    width: 50px;
+    height: 31px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    float: right;
+    cursor: pointer;
+    margin-left: 5px;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100%);
+    box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    /* margin-left: 15px; */
+}
+
+.check_list_update_submit:hover {
+	box-shadow: 0px 4px 8px rgb(45 35 66/ 40%), 0px 7px 13px -3px
+		rgb(45 35 66/ 30%), inset 0px -3px 0px #3c4fe0;
+	transform: translateY(-2px);
+}
+
+.check_list_update_submit:active {
+	box-shadow: inset 0px 3px 7px #3c4fe0;
+	transform: translateY(2px);
+}
+
 .checkList_input:focus {
 	outline: none !important;
 	
 }
 
 .checkList_input {
-	position: relative;
-	cursor: text;
-	font-size: 17px;
-	line-height: 20px;
-	padding: 0 16px;
-	height: 30px;
-	width: 50px
-	background-color: #fff;
-	border: 1px solid #d6d6e7;
-	border-radius: 3px;
-	color: rgb(35, 38, 59);
-	box-shadow: inset 0 1px 4px 0 rgb(119 122 175/ 30%);
-	overflow: hidden;
-	transition: all 100ms ease-in-out;
+    position: relative;
+    cursor: text;
+    font-size: 17px;
+    line-height: 11px;
+    padding: 0px 11px;
+    height: 30px;
+    width: 174px;
+    float: left;
+    width: 50px background-color: #fff;
+    border: 1px solid #d6d6e7;
+    border-radius: 3px;
+    color: rgb(35, 38, 59);
+    box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
+    overflow: hidden;
+    transition: all 100ms ease-in-out;
+    margin-bottom: 10px;
 }
 
 .checkList_input:focus {
@@ -496,14 +552,31 @@ input[type="checkbox"]:checked ~ .check_text {
 	box-shadow: 0 1px 0 0 rgb(35 38 59/ 5%);
 }
 
-#floating__banner_1 {
-	background: #DBEAFE;
-	color: #143601;
-	font-weight: bold;
-	border-bottom: 1px #60A5FA solid;
+.floating__banner_1 {
+    /* background: #DBEAFE; */
+    color: #143601;
+    font-weight: bold;
+    /* border-bottom: 1px #60A5FA solid; */
 }
 
-#floating__banner_1:hover {
-	transform: scale(1.03, 1.03);
-	transition: transform .1s;
+
+
+.floating__banner_2 {
+	color: #143601;
+	font-weight: bold;
+	border: none !important;
+}
+
+
+li.floating__banner_2::marker {
+	display:none !important;
+	visibility: hidden !important;
+}
+
+.cancle_check {
+	float: right;
+}
+
+.cancle_check:hover {
+	cursor: pointer;
 }
