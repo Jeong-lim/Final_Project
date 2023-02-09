@@ -172,6 +172,21 @@ public class MemberService  {
 	public List<Map<String, String>> selectCheckList(String memberId) {
 		return memberDao.selectCheckList(memberId);
 	}
+	
+	public void resetCheckList(@Param("memberId") String memberId) {
+		memberDao.resetCheckList(memberId);
+	}
+	
+	public void updateCheckList(@Param("memberId") String memberId, @Param("status") String status,
+			@Param("item") String item) {
+		memberDao.updateCheckList(memberId, status, item);
+	}
+
+	public void deleteCheckList(@Param("memberId") String memberId, @Param("checkId") String checkId) {
+		memberDao.deleteCheckList(memberId, checkId);
+		
+	}
+	 
 
 
 }

@@ -41,4 +41,9 @@ public interface MemberDao {
 	public void cancelFollowAlarm(Map<String,String>map);//팔로우신청취소
 	public void insertCheckList(@Param("memberId") String memberId, @Param("Item") String Item); // 체크리스트 등록
 	public List<Map<String, String>> selectCheckList(String memberId);
+	public void resetCheckList(@Param("memberId") String memberId);
+	public void updateCheckList(@Param("memberId") String memberId, @Param("status") String status,
+			@Param("item") String item);
+	public void deleteCheckList(@Param("memberId") String memberId, @Param("checkId") String checkId);
+	
 }

@@ -415,5 +415,27 @@
 		WHERE WRITER = #{memberId}
 	</select>
 	
+	<update id="resetCheckList" parameterType="String">
+		UPDATE CHECK_LIST 
+		   SET ITEM_STATUS='N'
+			  ,MODIFY_DATE=SYSDATE
+		 WHERE WRITER=#{memberId}
+	</update>
+	
+	<update id="updateCheckList" parameterType="String">
+		UPDATE CHECK_LIST 
+		   SET ITEM_STATUS=#{status}
+			  ,MODIFY_DATE=SYSDATE
+		 WHERE WRITER=#{memberId}
+		 AND CHECK_ID=#{item}
+	</update>
+	
+	<update id="deleteCheckList" parameterType="String">
+		DELETE FROM CHECK_LIST
+		 WHERE WRITER=#{memberId}
+		 AND CHECK_ID=#{checkId}
+	</update>
+	
+	
 	
 </mapper>

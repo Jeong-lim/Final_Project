@@ -20,22 +20,25 @@
 		<div class="leaderboard">
 				<div class="head">
 					<i class="fas fa-crown"></i>
-					<div>✈️ 실시간 여행 인기코스 ✈️</div>
-					<button type="button" class="checkBtn">checkBtn</button>
-					<button type="button" class="notCheckBtn">notCheckBtn</button>
+					<div>✈️ 체크리스트 ✈️</div>
 				</div>
+			
+
 				<div class="body" id="checkListBody">
 				
-					<c:forEach var="checkList" items="${checkList}" varStatus="status">			
-					<li id="floating_banner_1"><input  type="checkbox" name="aaaa"
-						id="check_btn" value="${checkList.item}"class="checkbox" ${checkList.itemStatus == "N" ? "checked" : ""} /> 
-						<span class="check_text">${checkList.item}</span>
+					<c:forEach var="checkList" items="${checkList}" varStatus="status">
+					<li id="checkCancle${status.count}" name="checkCancleClass" class="floating__banner_1">
+					<input type="hidden" name="checkCancle${status.count}" value="${checkList.checkListId}" />
+					<input type="hidden" name="checkInsert${status.count}" value="${checkList.checkListId}" />
+					<input type="hidden" name="checkInsert${status.count}" value="${checkList.itemStatus}" />
+					<input type="checkbox" id="checkInsert${status.count}" value="${checkList.checkListId}" class="checkbox" ${checkList.itemStatus == "N" ? "checked" : ""} /> 
+						<span class="check_text">${checkList.item}</span><div class="cancle_check" name="cancle_check" id="checkCancle${status.count}">✖️</div>	
 					</li>
 					
 					</c:forEach>
 
-					<li id="floating_banner_1"><input type="text" name="item" class="checkList_input" /> 
-					<input type="submit" class="check_list_submit" value="저장" />
+					<li class="floating__banner_2"><input type="text" name="item" class="checkList_input" /> 
+					<input type="submit" class="check_list_submit" id="check_list_insert" value="저장" />
 					</li>
 <%-- 					<c:forEach var="bestPlaceList" items="${bestTravelList}" varStatus="status">
 						<a href="<c:url value='travel/${bestPlaceList.travelId}/${bestPlaceList.writer}'/>"><li id="floating__banner_${status.count}">${bestPlaceList.travelTitle}</li></a>
@@ -448,7 +451,7 @@
 </script>
 
 <script>
-$(".check_list_submit").on("click", function() {
+$("#check_list_insert").on("click", function() {
 	var checkItem = $("input[name=item]").val();
 	console.log(checkItem);
  	
@@ -457,48 +460,103 @@ $(".check_list_submit").on("click", function() {
 		type : 'POST',
 		success : function(data) {
 			console.log("받아온 데이터는 " + data);	
+
 			location.reload();
 			}, error : function() {
-				console.log("실패");
+				alert("체크리스트는 10개까지 저장가능합니다!");
 			}, complete: function() {
 				location.reload();
 			}
-		})
-	});
-	
-$(document).ready(function() {
-	
-	$('input:checkbox[name="aaaa"]').each(function() {
-		// 체크 안됐다가 되었을 때
-		
-		// 체크 됐다가 안되었을 떄
-		
-
-		if(this.checked){//checked 처리된 항목의 값
-
-            alert(this.value); 
-      }
-
-	 });
-	
-/* 	  $(".checkBtn").click(function(){
-	    var days = [];
-	    $.each($("input[name='aaaa']:checked"), function(){
-	      days.push($(this).val());
-	    });
-	    alert("Selected say(s) are: " + days);
-	    
-	  });
-	  
-	  $(".notCheckBtn").click(function() {
-		  var days1 = [];
-		  $.each($("input[name='aaaa']:not(:checked)"), function(){
-		      days1.push($(this).val());
-		 });
-	    alert("Selected say(s) are: " + days1);
-	  }); */
+		});
 	});
 
+	
+
+
+</script>
+<script>
+
+
+	$(document).ready(function() {
+		var status_array = Array();
+		var chkbox = $(".checkbox");
+		var item_array = Array();
+		var send_cnt = 0;
+		
+		$('input[type="checkbox"]').click(function() {
+
+			
+			var checkName = $(this).attr('id');
+			var checkListId = document.getElementById(checkName).id;
+
+			var obj = document.getElementsByName(checkName);
+
+			
+			var checkId = obj[0].value;
+			var status = obj[1].value;
+
+			
+			
+			if(status == 'Y') {
+				status = 'N';
+			} else {
+				status = 'Y';
+			}
+
+			var Params = {
+					"checkId" : checkId,
+					"status" : status
+			};
+			
+			$.ajax({
+				url : '/checkList/update',
+				type : 'POST',
+				dataType : "json",
+				data : Params,
+				success : function(data) {
+					console.log("받아온 데이터는 " + data);	
+					location.reload();
+					}, error : function() {
+						console.log("실패");
+					}, complete: function() {
+						location.reload();
+					}
+				});
+
+		});
+		
+
+	});
+	
+
+	$('div[name="cancle_check"]').click(function(){
+		
+		var checkName = $(this).attr('id');
+		var checkListId = document.getElementById(checkName).id;
+		console.log(checkListId);		
+		var obj = document.getElementsByName(checkName);
+		var checkId = obj[0].value;
+		 
+		// checkId 같이 들고와서 삭제해주기
+		if(checkName == checkListId) {
+			 $.ajax({
+				url : '/checkList/delete?checkId=' + checkId,
+				type : 'POST',
+				success : function(data) {
+					location.reload();
+					}, error : function() {
+						console.log("실패");
+					}, complete: function() {
+						location.reload();
+					}
+				});
+			
+		} else {
+			alert("둘이 틀려 ~~~~~~~~~");
+		}
+	});
+	
+		
 </script>
 
 

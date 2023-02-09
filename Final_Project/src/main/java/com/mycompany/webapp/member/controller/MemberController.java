@@ -1,5 +1,6 @@
 package com.mycompany.webapp.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -393,14 +394,38 @@ public class MemberController {
 	
 	// 마이페이지 체크리스트 
 	@RequestMapping("/checkList")
-	public String checkListInsert(HttpSession session, @RequestParam("checkItem") String Item, Model model) {
+	public int checkListInsert(HttpSession session, @RequestParam("checkItem") String Item, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
-		logger.info(Item);
-		logger.info(memberId);
+		List<Map<String, String>> checkList = memberService.selectCheckList(memberId);		
+		int status = 0;
+		if (checkList.size() <= 10) {
+			memberService.insertCheckList(memberId, Item);
+		} else {
+			status = 1;
+		}
 		
-		memberService.insertCheckList(memberId, Item);
+		System.out.println(status);
 		
-		return Item;
+		return status;
+	}
+	
+	@RequestMapping("/checkList/update")
+	public void checkListUpdate(HttpSession session, @RequestParam("checkId") String checkId, @RequestParam("status") String status) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		memberService.updateCheckList(memberId, status, checkId);
+	}
+	
+	@RequestMapping("/checkList/delete")
+	public void checkListDelete(HttpSession session, @RequestParam("checkId") String checkId) {
+		String memberId = (String) session.getAttribute("memberId");
+		memberService.deleteCheckList(memberId, checkId);
+	}
+	
+	@RequestMapping("/checkList/reset")
+	public void checkListUpdate(HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		memberService.resetCheckList(memberId);
 		
 	}
 	
