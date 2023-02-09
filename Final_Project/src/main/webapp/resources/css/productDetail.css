@@ -72,7 +72,7 @@ input:focus{
 	height:40px;
 	margin:0 auto;
 	margin-top: 32px;
-	background-color:#FB2576;
+	background-color:#3B82F6;
 	border:none;
 	color:white;
 	font-weight:bold;
@@ -80,5 +80,5 @@ input:focus{
 }
 
 .buybtn:hover{
-	background-color:#D22779;
+	background-color:#205295;
 }
