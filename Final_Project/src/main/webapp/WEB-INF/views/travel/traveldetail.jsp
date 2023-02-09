@@ -118,7 +118,7 @@
 				</c:if>
 				<c:if test="${writer ne sessionScope.memberId }">
 					<div class="review_title">💭작성자가 쓴 여행 후기❗</div>
-					<textarea class="review_textarea" id="review" rows="3" cols="70" spellcheck="false">${travelReview}</textarea>
+					<textarea class="review_textarea" id="review" rows="3" cols="70" spellcheck="false" readonly>${travelReview}</textarea>
 				</c:if>
 				</div> 
 	
