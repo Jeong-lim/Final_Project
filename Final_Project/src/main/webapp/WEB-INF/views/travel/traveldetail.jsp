@@ -102,12 +102,12 @@
 				</div>	
 				
 			</c:forEach>
-			
-			
-			 <div class="travel_riveiw">
-				<div class="review_title">여행은 즐거우셨나요? 여행 후기를 남겨보세요!</div>
+
+				</div>
+				 <div class="travel_review">
+				<div class="review_title">💭여행은 즐거우셨나요❓여행 후기를 남겨보세요❗</div>
 				<c:if test="${writer == sessionScope.memberId }">
-					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
+					<input class="review_textarea" id="review" spellcheck="false">${travelReview}</input>
 					<c:if test="${travelReview eq null or ''}">
 					<button class="review_btn" onclick="travelReview(this)">확인</button>
 					</c:if>
@@ -117,13 +117,9 @@
 					
 				</c:if>
 				<c:if test="${writer ne sessionScope.memberId }">
-					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false" readonly>${travelReview}</textarea>
+					<input class="review_textarea" id="review" spellcheck="false" readonly>${travelReview}</input>
 				</c:if>
 				</div> 
-			
-				
-				</div>
-				
 	
 			</div>	
 			
@@ -194,10 +190,12 @@
 			<c:if test="${travelPrivacy eq 'p' and writer != sessionScope.memberId }">
 				<div>글쓴이만 볼 수 있는 페이지 입니다.</div>
 			</c:if>
+			
+			
 		
 	</div>
-	
-	
+	<%@ include file="../common/footer.jsp"%>
+	</div>
 	
 
 
@@ -222,7 +220,7 @@
 </div>
 
 <input type="hidden" class="travel_id" value="${travelId}"/>
-<%@ include file="../common/footer.jsp"%>
+
 
 <script type="text/javascript"  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=812e2e855f4c09a3782d4e48436912b8&libraries=services"></script>
 <script>
@@ -703,7 +701,7 @@ $('document').ready(function() {
 
 	});
 	
-	
+
 
 
 </script>
