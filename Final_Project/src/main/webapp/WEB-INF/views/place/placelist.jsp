@@ -83,10 +83,10 @@
 					 <div>
 					 <ul class="pagebtn">
 						 <c:if test="${keyword ne null }">
-							<a  href="searchPlace?pageNo=1"><li class="pageli">처음</li></a>
+							<a  href="searchPlace?pageNo=1&key=${key}&keyword=${keyword}"><li class="pageli">처음</li></a>
 						</c:if>
 						<c:if test="${category ne null }">
-							<a  href="place?pageNo=1"><li class="pageli">처음</li></a>
+							<a  href="place?pageNo=1&category=${category}"><li class="pageli">처음</li></a>
 						</c:if>
 					
 					
