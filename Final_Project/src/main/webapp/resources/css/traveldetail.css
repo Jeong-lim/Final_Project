@@ -24,13 +24,32 @@ textarea:focus {
 .inner {
 	width: 1000px;
 	margin: 60px auto;
-	margin-bottom:150px;
+	margin-bottom:30px;
 	height: auto;
-	min-height: 1200px;
+	min-height: 1000px;
 }
 .travel_riveiw{
 	margin:20px;
 	
+}
+.original_btn {
+	cursor: pointer;
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 140px;
+	height: 28px;
+	background-color: #3B82F6;
+	color: white;
+	font-size: 15px;
+	margin:20px 20px 20px 0;
+}
+.original_btn:hover {
+	background-color: #205295;
+}
+
+.scrap:hover {
+	background-color: #205295;
 }
 .scrap {
 	cursor: pointer;
@@ -390,7 +409,13 @@ textarea:focus {
 	background: none;
 	font-weight: bold;
 	color: dimgray;
+	
 }
+.delete_btn{
+	margin-right:20px;
+}
+
+
 
 .update_btn:hover, .delete_btn:hover {
 	background: none !important;
