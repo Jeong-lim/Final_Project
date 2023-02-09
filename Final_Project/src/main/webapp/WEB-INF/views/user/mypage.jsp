@@ -453,23 +453,30 @@
 <script>
 $("#check_list_insert").on("click", function() {
 	var checkItem = $("input[name=item]").val();
- 	
-	$.ajax({
-		url : '/checkList?checkItem=' + checkItem,
-		type : 'POST',
-		async: false,
-		success : function(data) {
-			if(data == 'Y') {
-				console.log("성공");
-				location.reload();
-			} else {
-				alert("체크박스는 10개까지 입력가능합니다.")
-			}
+	
+	if(checkItem == ""){
+        alert("입력해주세요");
+    } else {
+    	$.ajax({
+    		url : '/checkList?checkItem=' + checkItem,
+    		type : 'POST',
+    		async: false,
+    		success : function(data) {
+    			if(data == 'Y') {
+    				console.log("성공");
+    				location.reload();
+    			} else {
+    				alert("체크박스는 10개까지 입력가능합니다.")
+    			}
 
-			}, error : function() {
-				console.log("실패");
-			}
-		});
+    			}, error : function() {
+    				console.log("실패");
+    			}
+    		});
+    }
+ 	 
+
+	
 	});
 
 	
@@ -557,6 +564,7 @@ $("#check_list_insert").on("click", function() {
 			alert("둘이 틀려 ~~~~~~~~~");
 		}
 	});
+
 	
 		
 </script>
