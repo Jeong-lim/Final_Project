@@ -6,9 +6,10 @@ input:focus {
 	outline: none;
 	spellCheck: false;
 }
+
 input[type="text"]:focus {
-    padding: 1px 2px;
-    outline: none;
+	padding: 1px 2px;
+	outline: none;
 }
 
 .search_button {
@@ -17,21 +18,27 @@ input[type="text"]:focus {
 	background-color: #60A5FA;
 	border: 2px solid #60A5FA;
 }
+
 textarea:focus {
 	outline: none;
+}
+
+.review_textarea {
+	resize: none
 }
 
 .inner {
 	width: 1000px;
 	margin: 60px auto;
-	margin-bottom:30px;
+	margin-bottom: 30px;
 	height: auto;
 	min-height: 1000px;
 }
-.travel_review{
-	margin:44px 20px 20px 20px;
-	
+
+.travel_review {
+	margin: 44px 20px 20px 20px;
 }
+
 .original_btn {
 	cursor: pointer;
 	border: none;
@@ -42,8 +49,9 @@ textarea:focus {
 	background-color: #3B82F6;
 	color: white;
 	font-size: 15px;
-	margin:20px 20px 20px 0;
+	margin: 20px 20px 20px 0;
 }
+
 .original_btn:hover {
 	background-color: #205295;
 }
@@ -51,6 +59,7 @@ textarea:focus {
 .scrap:hover {
 	background-color: #205295;
 }
+
 .scrap {
 	cursor: pointer;
 	border: none;
@@ -61,40 +70,43 @@ textarea:focus {
 	background-color: #3B82F6;
 	color: white;
 	font-size: 15px;
-	margin:20px;
+	margin: 20px;
 }
 
 .scrap:hover {
 	background-color: #205295;
 }
-.review_btn{
-    border: none;
-    box-shadow: 1px 1px 1px 0 black;
-    border-radius: 3px;
-    width: 70px;
-    height: 35px;
-    margin: 0 30px;
-    background-color: #3B82F6;
-    color: white;
-    font-weight: bold;
-    font-size: 17px;
-    cursor: pointer;
+
+.review_btn {
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 70px;
+	height: 35px;
+	margin: 0;
+	background-color: #3B82F6;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
 }
-.updatereview_btn{
-    border: none;
-    box-shadow: 1px 1px 1px 0 black;
-    border-radius: 3px;
-    width: 70px;
-    height: 35px;
-    margin: 0 30px;
-    background-color: #3B82F6;
-    color: white;
-    font-weight: bold;
-    font-size: 17px;
-    cursor: pointer;
+
+.updatereview_btn {
+	border: none;
+	box-shadow: 1px 1px 1px 0 black;
+	border-radius: 3px;
+	width: 70px;
+	height: 35px;
+	margin: 0;
+	background-color: #3B82F6;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
 }
-.review_title{
-	margin:10px;
+
+.review_title {
+	margin: 10px;
 	font-size: 20px;
 }
 
@@ -408,13 +420,11 @@ textarea:focus {
 	background: none;
 	font-weight: bold;
 	color: dimgray;
-	
-}
-.delete_btn{
-	margin-right:20px;
 }
 
-
+.delete_btn {
+	margin-right: 20px;
+}
 
 .update_btn:hover, .delete_btn:hover {
 	background: none !important;

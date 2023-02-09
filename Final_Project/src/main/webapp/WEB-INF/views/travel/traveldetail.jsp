@@ -105,19 +105,20 @@
 
 				</div>
 				 <div class="travel_review">
-				<div class="review_title">💭여행은 즐거우셨나요❓여행 후기를 남겨보세요❗</div>
+				
 				<c:if test="${writer == sessionScope.memberId }">
-					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
+					<div class="review_title">💭여행은 즐거우셨나요❓여행 후기를 남겨보세요❗</div>
+					<textarea class="review_textarea" id="review" rows="3" cols="70" spellcheck="false">${travelReview}</textarea>
 					<c:if test="${travelReview eq null or ''}">
 					<button class="review_btn" onclick="travelReview(this)">확인</button>
 					</c:if>
 					<c:if test="${travelReview ne null}">
 					<button class="updatereview_btn" onclick="travelReview(this)">수정</button>
-					</c:if>
-					
+					</c:if>	
 				</c:if>
 				<c:if test="${writer ne sessionScope.memberId }">
-					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false" readonly>${travelReview}</textarea>
+					<div class="review_title">💭작성자가 쓴 여행 후기❗</div>
+					<textarea class="review_textarea" id="review" rows="3" cols="70" spellcheck="false">${travelReview}</textarea>
 				</c:if>
 				</div> 
 	
