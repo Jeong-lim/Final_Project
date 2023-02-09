@@ -28,8 +28,8 @@ textarea:focus {
 	height: auto;
 	min-height: 1000px;
 }
-.travel_riveiw{
-	margin:20px;
+.travel_review{
+	margin:44px 20px 20px 20px;
 	
 }
 .original_btn {
@@ -203,7 +203,6 @@ textarea:focus {
 }
 
 .schedule {
-	position: absolute;
 	width: 1000px;
 	margin: auto;
 	border: 2px solid #E6E6E6;
