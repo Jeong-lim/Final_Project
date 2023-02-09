@@ -33,6 +33,7 @@
 				<img class="chat_img"
 					src="${pageContext.request.contextPath}/resources/images/chat.png">
 			</button>
+		
 			<div uk-dropdown="mode: click">
 
 				<div class="container2">
@@ -431,7 +432,7 @@ $('#btnDisconnect').click(function() {
 	ws.close();
 			
 	$('#user').attr('readonly', false);
-    $('#user').val('');
+    //$('#user').val('');
 			
 	$('#btnConnect').attr('disabled', false);
 	$('#btnDisconnect').attr('disabled', true);
