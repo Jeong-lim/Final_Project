@@ -107,7 +107,7 @@
 				 <div class="travel_review">
 				<div class="review_title">💭여행은 즐거우셨나요❓여행 후기를 남겨보세요❗</div>
 				<c:if test="${writer == sessionScope.memberId }">
-					<input class="review_textarea" id="review" spellcheck="false">${travelReview}</input>
+					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false">${travelReview}</textarea>
 					<c:if test="${travelReview eq null or ''}">
 					<button class="review_btn" onclick="travelReview(this)">확인</button>
 					</c:if>
@@ -117,7 +117,7 @@
 					
 				</c:if>
 				<c:if test="${writer ne sessionScope.memberId }">
-					<input class="review_textarea" id="review" spellcheck="false" readonly>${travelReview}</input>
+					<textarea class="review_textarea" id="review" rows="8" cols="90" spellcheck="false" readonly>${travelReview}</textarea>
 				</c:if>
 				</div> 
 	
