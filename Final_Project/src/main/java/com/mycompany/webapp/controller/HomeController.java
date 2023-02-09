@@ -2,6 +2,9 @@ package com.mycompany.webapp.controller;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +33,24 @@ public class HomeController {
 	@RequestMapping("/product")
 	public String buyProduct() {
 		return "common/product";
+	}
+	
+	@RequestMapping("/productDetail")
+	public String productDetail(HttpServletRequest request,Model model) {
+		String img=(String)request.getParameter("img");
+		String title=(String)request.getParameter("title");
+		String price=(String)request.getParameter("price");
+		String pname=(String) request.getParameter("pname");
+		String pprice=(String) request.getParameter("pprice");
+		String pcode=(String)request.getParameter("pcode");
+		model.addAttribute("img",img);
+		model.addAttribute("title",title);
+		model.addAttribute("price",price);
+		model.addAttribute("pname",pname);
+		model.addAttribute("pprice",pprice);
+		model.addAttribute("pcode",pcode);
+		
+		return "common/productDetail";
 	}
 	
 	/*@RequestMapping("/signin")

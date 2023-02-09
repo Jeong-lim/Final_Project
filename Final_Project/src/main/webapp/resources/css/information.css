@@ -5,7 +5,6 @@
     height: 380px;
     margin-left: 50px;
     margin-right: 300px;
-    padding-top: 75px;
     text-align: center;
     color: #4E4C48;
     font-size: 1.5em;
@@ -17,7 +16,7 @@
 	float: left;
 	padding-bottom: 50px;
 	font-weight: bolder;
-	padding-top: 100px;
+	
 }
 
 .scroll__main {
@@ -25,5 +24,5 @@
 	float: left;
 	text-align: left;
 	line-height: 150%;
-    margin-bottom: 150px;
+    margin-bottom: 90px;
 }
