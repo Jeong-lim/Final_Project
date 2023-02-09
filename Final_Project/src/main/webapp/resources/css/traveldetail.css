@@ -24,7 +24,9 @@ textarea:focus {
 }
 
 .review_textarea {
-	resize: none
+	resize: none;
+	border: 2px solid #E6E6E6;
+	margin-bottom: -14px
 }
 
 .inner {
@@ -89,6 +91,7 @@ textarea:focus {
 	font-weight: bold;
 	font-size: 15px;
 	cursor: pointer;
+	
 }
 
 .updatereview_btn {
