@@ -54,7 +54,7 @@
 	<a href="/" class="top"><img src="${pageContext.request.contextPath}/resources/images/topbutton.png"></a>
 	
 	<%@ include file="/WEB-INF/views/common/slider.jsp"%>	
-	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>	
+	<%@ include file="/WEB-INF/views/common/advertising.jsp"%>
 	<%@ include file="/WEB-INF/views/common/information.jsp"%>
 	<br /><br />
 
