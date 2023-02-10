@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+<c:if test="${member.memberId eq sessionScope.memberId}">
 <div id="floatMenu" style="top: 280px">
 <div class="container_1">
 		<div class="leaderboard">
@@ -40,13 +42,14 @@
 					<li class="floating__banner_2"><input type="text" name="item" class="checkList_input" /> 
 					<input type="submit" class="check_list_submit" id="check_list_insert" value="저장" />
 					</li>
-<%-- 					<c:forEach var="bestPlaceList" items="${bestTravelList}" varStatus="status">
-						<a href="<c:url value='travel/${bestPlaceList.travelId}/${bestPlaceList.writer}'/>"><li id="floating__banner_${status.count}">${bestPlaceList.travelTitle}</li></a>
-					</c:forEach> --%>
+
 				</div>
 	</div>
 	</div>
 	</div>
+	
+</c:if>	
+	
 	<br>
 	<br>
 	<br>
@@ -224,7 +227,6 @@
 							src="../resources/images/search.png">
 					</div>
 					<div class="box">
-
 						<ul class="modal_ul" id="modal_ul_follow">
 							<c:if test="${not empty followList}">
 								<c:forEach var="follow" items="${followList }">
