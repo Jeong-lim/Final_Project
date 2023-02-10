@@ -26,7 +26,7 @@
 }
 
 .password_delete:focus {
-	border-color: #7c8aff;
+	border-color: #3B82F6;
 	background: #fff;
 	outline: none;
 }
@@ -45,7 +45,7 @@
 	border-radius: 4px;
 	font-size: 13px;
 	height: 30px;
-	background-color: #7c8aff;
+	background-color: #3B82F6;
 	color: white;
 	padding: 0 30px;
 	margin-top: 20px;
@@ -53,5 +53,5 @@
 
 }
 .submit_delete_member:hover {
-	background-color: #5468ff;
+	background-color: #205295;
 }
