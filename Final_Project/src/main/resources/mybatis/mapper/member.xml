@@ -413,6 +413,7 @@
 		  , ITEM_STATUS
 		FROM CHECK_LIST
 		WHERE WRITER = #{memberId}
+		ORDER BY CHECK_ID
 	</select>
 	
 	<update id="resetCheckList" parameterType="String">
