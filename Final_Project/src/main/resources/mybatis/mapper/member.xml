@@ -427,6 +427,7 @@
 		UPDATE CHECK_LIST 
 		   SET ITEM_STATUS=#{status}
 			  ,MODIFY_DATE=SYSDATE
+			  ,MODIFIER=#{memberId}
 		 WHERE WRITER=#{memberId}
 		 AND CHECK_ID=#{item}
 	</update>
