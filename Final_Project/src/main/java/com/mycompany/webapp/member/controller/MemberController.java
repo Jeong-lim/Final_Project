@@ -52,6 +52,8 @@ public class MemberController {
 		session.invalidate();
 		return "auth/signin";
 	}
+	
+	//
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public String login() {
