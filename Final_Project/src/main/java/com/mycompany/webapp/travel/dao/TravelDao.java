@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.webapp.file.model.FileVo;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
-import com.mycompany.webapp.travel.model.Search;
+import com.mycompany.webapp.travel.model.SearchVo;
 import com.mycompany.webapp.travel.model.TravelVo;
 
 @Mapper

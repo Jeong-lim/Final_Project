@@ -66,8 +66,8 @@ public class PlaceService {
 		return placeDao.selectPlaceDistance(map);
 	}
 	
-	public List<TravelVo> bestTravelLIst(){
-		return placeDao.bestTravelLIst();
+	public List<TravelVo> bestTravelList(){
+		return placeDao.bestTravelList();
 	}
 
 }

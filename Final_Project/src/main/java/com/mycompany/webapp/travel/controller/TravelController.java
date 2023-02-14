@@ -32,7 +32,7 @@ import com.mycompany.webapp.member.model.MemberVo;
 import com.mycompany.webapp.member.service.MemberService;
 import com.mycompany.webapp.place.model.PagerVo;
 import com.mycompany.webapp.place.model.PlaceVo;
-import com.mycompany.webapp.travel.model.Search;
+import com.mycompany.webapp.travel.model.SearchVo;
 import com.mycompany.webapp.travel.model.TravelVo;
 import com.mycompany.webapp.travel.service.TravelService;
 

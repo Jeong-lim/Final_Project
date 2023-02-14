@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.webapp.travel.model.TravelVo;
-import com.mycompany.webapp.travel.model.Weather;
+import com.mycompany.webapp.travel.model.WeatherVo;
 import com.mycompany.webapp.travel.service.TravelService;
 
 
@@ -62,7 +62,7 @@ public class WeatherApiController {
 	
     @GetMapping("/weather")
     @ResponseBody
-    public Weather restApiGetWeather(@RequestParam("si")String lo_si) throws Exception {
+    public WeatherVo restApiGetWeather(@RequestParam("si")String lo_si) throws Exception {
     	
     	
     	TravelVo travelVo = travelService.selectLocationInfo(lo_si);
@@ -72,7 +72,7 @@ public class WeatherApiController {
     	String lon = travelVo.getLon();
     	
     	 // 입력받을 weather 객체
-        Weather weather = new Weather();
+        WeatherVo weather = new WeatherVo();
         // 변수 설정
         String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
         String authKey = "eYxy%2BFWb2RXHCKaOnmpTvXqXYqSq2t79Rn9K8Nr0yIJw2%2FjYpABGjQKAdK7WFKA0ov2KsKCIh2cbPyLaNNRXMQ%3D%3D"; // 본인 서비스 키 입력

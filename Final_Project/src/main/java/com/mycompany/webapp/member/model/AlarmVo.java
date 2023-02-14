@@ -9,6 +9,7 @@ public class AlarmVo {
 	private String alarmStatus;
 	private String followStatus;
 	private String followSeq;
+	
 	public String getAlarmSeq() {
 		return alarmSeq;
 	}

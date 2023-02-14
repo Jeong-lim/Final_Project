@@ -29,6 +29,6 @@ public interface PlaceDao {
 
 	public List<PlaceVo> selectPlaceDistance(Map<String, String> map);
 	
-	public List<TravelVo> bestTravelLIst(); 
+	public List<TravelVo> bestTravelList(); 
 
 }
