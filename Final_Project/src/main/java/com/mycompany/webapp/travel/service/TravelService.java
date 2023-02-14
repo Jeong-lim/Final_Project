@@ -160,4 +160,9 @@ public class TravelService {
 		return travelDao.findTravelId(travelId);
 	}
 
+	public void deleteTravelScrap(String travelId) {
+		travelDao.deleteTravelScrap(travelId);
+		
+	}
+
 }

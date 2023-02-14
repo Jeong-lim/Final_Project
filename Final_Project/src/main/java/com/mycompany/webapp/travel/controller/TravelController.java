@@ -165,6 +165,7 @@ public class TravelController {
 	
 	@RequestMapping(value = "/travel/delete", method=RequestMethod.GET)
 	public String deleteTravel(@RequestParam("travelId") String travelId) {	
+			travelService.deleteTravelScrap(travelId);
 			travelService.deleteTravel(travelId);
 			//logger.info(travelId);
 			//logger.info("delete");
