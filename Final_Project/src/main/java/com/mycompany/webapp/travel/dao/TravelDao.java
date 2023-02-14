@@ -80,6 +80,8 @@ public interface TravelDao {
 
 
 	public String findTravelId(@Param("travelId")String travelId); //여행 오리지날 작성자 찾기
+
+	public void deleteTravelScrap(@Param("travelId")String travelId);
 	
 
 	
