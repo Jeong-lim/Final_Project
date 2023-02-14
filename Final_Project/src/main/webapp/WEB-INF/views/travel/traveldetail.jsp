@@ -203,7 +203,7 @@
 			</c:if>
 			
 			<c:if test="${travelPrivacy eq 'f'}" >
-				<c:if test=" ${follow eq 'N' or follow eq 'U' or follow eq null}">
+				<c:if test="${follow ne 'Y' or follow eq null}">
 				<div>팔로우한 유저만 볼 수 있는 페이지 입니다.</div>
 				</c:if>
 			</c:if>

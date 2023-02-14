@@ -29,7 +29,7 @@
 		<div class="inner">
 		
 			<div class="selectdiv1">
-				<label class="top_title">여행 일정 등록하기</label> <span> 
+				<label class="top_title">여행 일정 수정하기</label> <span> 
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio1" value="a" <c:if test="${travelPrivacy eq 'a'}">checked</c:if>><label for="open_radio1" class="open_radio_label">전체 공개</label> 
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio2" value="f" <c:if test="${travelPrivacy eq 'f'}">checked</c:if>><label for="open_radio2" class="open_radio_label">팔로우 공개</label> 
 				<input type="radio" name="travelPrivacy" class="open_radio" id="open_radio3" value="p" <c:if test="${travelPrivacy eq 'p'}">checked</c:if>><label for="open_radio3" class="open_radio_label">비공개</label></span> 
