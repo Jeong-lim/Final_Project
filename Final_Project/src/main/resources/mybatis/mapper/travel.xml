@@ -322,6 +322,12 @@
 		 WHERE travel_id=#{travelId}
 	</delete>
 	
+	<update id="deleteTravelScrap" parameterType="String">
+		UPDATE travel
+		   SET original_travel_id='null'
+		 WHERE original_travel_id=#{travelId}
+	</update>
+	
 	
 	<update id="travelReview" parameterType="String">
 		UPDATE travel
