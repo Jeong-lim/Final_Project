@@ -312,11 +312,10 @@ public class MemberController {
 
 		try {
 			memberService.updateMember(member);
-			model.addAttribute("message", "회원정보가 수정되었습니다.");
 			model.addAttribute("member", member);
 			session.setAttribute("email", member.getEmail());
 			logger.info(member.toString());
-			return "user/mypage";
+			return "redirect:/memberPage";
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();

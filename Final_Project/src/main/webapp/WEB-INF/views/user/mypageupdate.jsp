@@ -98,7 +98,7 @@
 				<a href="<c:url value='/mypage/delete'/>">
 					<input class="imgBtn_delete" value="회원 탈퇴"/>
 				</a>
-				<a href='/mypage'>
+				<a href='/memberPage'>
 					<input type="submit" class="user_update" value="수정 완료"/>
 				</a>
 				
