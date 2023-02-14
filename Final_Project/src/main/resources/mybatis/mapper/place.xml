@@ -186,7 +186,7 @@
 	</select>
 	
 	<!-- 메인 인기여행일정 순위 5위까지 -->
-	<select id="bestTravelLIst" resultType="travel">
+	<select id="bestTravelList" resultType="travel">
 		 SELECT TRAVEL_ID AS travelId
 		 	   ,TRAVEL_TITLE AS travelTitle
 		 	   ,WRITER AS writer 
