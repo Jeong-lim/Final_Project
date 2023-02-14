@@ -37,8 +37,7 @@
 						저장</label>
 				</div> -->
 				<div class="login_info">
-					<a href="<c:url value='/member/idFind'/>" >아이디 찾기</a><span class="bar"> | </span><a>비밀번호 찾기</a> <span
-						class="bar"> |</span> <a href="<c:url value='/signup'/>"
+					<a href="<c:url value='/member/idFind'/>" >아이디 찾기</a><span class="bar"> | </span> <a href="<c:url value='/signup'/>"
 						class="signin">회원가입</a>
 				</div>
 				
