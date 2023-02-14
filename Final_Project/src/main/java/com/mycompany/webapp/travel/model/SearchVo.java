@@ -1,6 +1,6 @@
 package com.mycompany.webapp.travel.model;
 
-public class Search {
+public class SearchVo {
 	
 	private String searchType;
 
