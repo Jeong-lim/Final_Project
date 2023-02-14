@@ -80,7 +80,7 @@
 								<a href='<c:url value="/mypage/${travel.writer}"/>'>
 									<p class="travel_writer">${travel.writer}</p>
 								</a>
-								<a href="/travel/scrap?travelId=${travel.travelId}&memberId=${sessionScope.memberId}" role="button" class="share_btn"><button class="scrap">스크랩</button></a>
+								<a href="/travel/scrap?travelId=${travel.travelId}&memberId=${sessionScope.memberId}" onclick="return confirm('스크랩 하시겠습니까?')" role="button" class="share_btn"><button class="scrap">스크랩</button></a>
 							</c:if>
 							
 							<c:if test="${empty sessionScope.memberId}">
