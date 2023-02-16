@@ -334,7 +334,7 @@ $(function() {
 	           			
 	           			date22=date2.toISOString().substring(0,10);
 	           			
-	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="hidden" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
+	                    $(".uk-divider-icon").after(`<form action="<c:url value='/travel/insertTravelDetail'/>" method="post"  class="insertform"><div class="content_wrap"><div class="content_title"><label class="dayseq">DAY </label><label class="date"></label><input type="hidden" class="travelDate" name="travelDate" value=""/><button type="button" class="modal_btn2" name="modal_btn2" onClick="openModal2(this.id)"><input type="text" id="inputmemo" name="memo" value=""/><img src="${pageContext.request.contextPath}/resources/images/note.png"></button></div><button type="button" class="modal_btn" name="modal_btn" onClick="openModal(this.id)"><img src="${pageContext.request.contextPath}/resources/images/add.png"><label>일정 추가하기</label></button></div></form>`  );
 	                    const dayseqs=j;
 	                    const placemodal='placemodal'+j;
 	                    const memomodal='memo'+j;
@@ -361,7 +361,7 @@ $(function() {
 	                  
 	        		}
 	                
-	           		 $("#test").after('<button class="save" id="save">확인</button>');
+	           		 $("#test").after(`<button class="save" id="save" >확인</button>`);
        
 	             }
 	          
@@ -382,7 +382,8 @@ $(function() {
  $(function () {
 	
     $(document).on("click", "button[class='save']", function () {
-    	
+    	if(confirm("저장 하시겠습니까?")==true){
+    		
     	var travelTitleValue=document.getElementById('title_input').value;
     	if(!travelTitleValue){
     		document.getElementById('title_input').focus();
@@ -453,6 +454,10 @@ $(function() {
       
     	}
     	
+    	}//확인 alert
+    	else {
+    		return false;
+    	}
       
       
      		

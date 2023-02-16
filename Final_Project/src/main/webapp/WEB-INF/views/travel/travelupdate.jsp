@@ -422,6 +422,7 @@ $(function() {
  $(function () {
 	
     $(document).on("click", "button[class='save']", function () {
+    	if(confirm("저장 하시겠습니까?")==true){  
     	
     	var travelTitleValue=document.getElementById('title_input').value;
     	var travelStartValue=document.getElementById('startDate').value;
@@ -500,6 +501,13 @@ $(function() {
       
      		
     	}
+    	
+    	
+    }//확인 alert
+    else {
+    	return false;
+    }
+    
 
      });
 }); 
