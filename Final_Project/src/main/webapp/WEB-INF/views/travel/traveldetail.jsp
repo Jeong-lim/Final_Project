@@ -201,6 +201,7 @@
 			
 			
 			</c:if>
+			<c:if test="${writer ne sessionScope.memberId }">
 			
 			<c:if test="${travelPrivacy eq 'f'}" >
 				<c:if test="${follow ne 'Y' or follow eq null}">
@@ -208,8 +209,11 @@
 				</c:if>
 			</c:if>
 			
+			
 			<c:if test="${travelPrivacy eq 'p' and writer != sessionScope.memberId }">
 				<div>글쓴이만 볼 수 있는 페이지 입니다.</div>
+			</c:if>
+			
 			</c:if>
 			
 			
