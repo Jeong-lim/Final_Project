@@ -117,7 +117,7 @@
 							<button class="updateBtn" id="notfollowBtn" value="${member.memberId }" onclick="cancelFollow(this)">신청완료</button>
 						</c:if>
 						<c:if test="${followStatus =='Y' }">
-							<button class="updateBtn" id="unfollowBtn" value="${member.memberId}" onclick="unFollowBlock(this)">언팔하기</button>
+							<button class="updateBtn" id="unfollowBtn" value="${member.memberId}" onclick="unFollow(this)">언팔하기</button>
 						</c:if>
 					</c:if>
 				</div>
@@ -309,6 +309,7 @@
 				console.log("성공"+result);
 				if(result == "followOk"){
 					$("#followBtn").html("신청완료");
+					/* $("#followBtn").attr("id","notfollowBtn"); */
 					location.reload();
 				}
 			}
@@ -397,29 +398,44 @@
 			success:function(result){
 				$(e).html("삭제됨");
 				$(e).prop("disabled",true);
-				console.log("성공");
+
 			}
 			
 		}); 
 		
 	}
 	
+	//언팔하기 (리스트에서 언팔)
 	function unFollowBlock(e){
 		var unFollowName=$(e).val();
-		console.log(unFollowName);
 		$.ajax({
 			type:"POST",
 			url:'/unFollowBlock?value='+unFollowName,
 			success:function(result){
 				$(e).html("팔로우");
 				$(e).prop("disabled",true);
+
 			}
 		});
 	}
 	
+	//언팔하기(사용자페이지에서 언팔)
+	function unFollow(e){
+		var unFollowName=$(e).val();
+		$.ajax({
+			type:"POST",
+			url:'/unFollowBlock?value='+unFollowName,
+			success:function(result){
+				$(e).html("팔로우");
+				location.reload();
+
+			}
+		});
+	}
+	
+	//팔로우신청 취소 요청
 	function cancelFollow(e){
 		var cancelName=$(e).val();
-		console.log("신청취소요청");
 		$.ajax({
 			type:"POST",
 			url:'/cancelFollow?value='+cancelName,

@@ -153,13 +153,12 @@ $('document').ready(
 						var str2='<img class="header__alarm__img" src="${pageContext.request.contextPath}/resources/images/alarm_full.png">';
 						$('.uk-button').append(str2);
 						for(var i=0; i<length; i++){
-							console.log(i);
 							if(result[i].alarmCode=='f'){
 								
 								var str='';
 									if(result[i].followStatus=='N' ){
 										str+='<div class="follow__wrapper" id='+i+'>';
-										/* str+='<li class="uk-active">'+result[i].alarmFromId+'이 회원님을 팔로우 하였습니다.</li>'; */
+										str+='<input type="hidden" id='+i+' value='+result[i].alarmSeq+'>';
 										str+=`<li class="uk-active"><a href="<c:url value='/mypage/`+result[i].alarmFromId+`'/>">`+result[i].alarmFromId+`</a>이 회원님을 팔로우 하였습니다.</li>`;
 										str+='<div class="follow_button__">';
 										str+='<button class="alarm_accept_btn" name='+i+' id='+result[i].alarmSeq+' onclick="follow_accept(this)" value='+result[i].alarmFromId+' >수락</button>';
@@ -208,7 +207,6 @@ $('document').ready(
 						
 						
 					}else if(length == 0 ){
-						console.log('알림없음');
 						var str='';
 						var str2='';
 						str2+='<img class="header__alarm__img" src="${pageContext.request.contextPath}/resources/images/alarm.png">';
@@ -239,8 +237,6 @@ function follow_accept(e){
       type:'POST',
       url:'/acceptFollow/${sessionScope.memberId}?value='+memberId,
       success:function(result){
-         console.log("승낙완료");
-         console.log(num);
          $('button[id='+num+']').prop("disabled",true); 
          $(e).html("수락됨");
          
@@ -253,13 +249,10 @@ function follow_accept(e){
 function follow_reject(e){
    var memberId=$(e).attr('value');
    var num=$(e).attr('id');
-   console.log(num);
    $.ajax({
       type:'POST',
       url:'/rejectFollow/${sessionScope.memberId}?value='+memberId+'&value2='+num,
       success:function(result){
-         console.log("거절완료");
-         /* $('button[name='+num+']').prop("disabled",true); */
          $('button[name=]'+num+']').remove();
          $(e).html("거절됨");
       }
@@ -269,13 +262,11 @@ function follow_reject(e){
 function closeAlarm(e){
    var liId=$(e).attr('value');
    var alarmSeq=$('input[id='+liId+']').val();
-   
     $.ajax({
       type:'POST',
       url:'/removeAlarm?value='+alarmSeq,
       success:function(result){
          $('div[id='+liId+']').remove();
-         console.log("알림 삭제완료");
          location.reload();
       }
    }) 
@@ -285,15 +276,10 @@ function closeAlarm(e){
 </script>
 <script>
 function chatStart(e) {
-    console.log("채팅");
-    
      $.ajax({
         url:'chat.action',
         method: "POST",
         success:function(result){
-     	   console.log("채팅채팅");
-     	   
-    		
         }
         
      }); 
@@ -352,15 +338,12 @@ $('#btnConnect').click(function() {
 			$('#list').scrollTop($('#list').prop('scrollHeight'));
 			let chatscroll = document.querySelector('#list');
 			chatscroll.scrollTop = chatscroll.scrollHeight;
-			console.log("상대가채팅입력");
 		};
 	   			
 		ws.onclose = function (evt) {
-			console.log('소켓이 닫힙니다.');
 		};
 
 		ws.onerror = function (evt) {
-			console.log(evt.data);
 		};
 	} else {
 		alert('유저명을 입력하세요.');
@@ -380,7 +363,6 @@ function print(user, txt) {
 	$('#list').append(temp);
 	let chatscroll = document.querySelector('#list');
 	chatscroll.scrollTop = chatscroll.scrollHeight;
-	console.log("내가채팅입력");
 }
 		
 // 다른 client 접속		

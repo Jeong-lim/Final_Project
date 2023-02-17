@@ -21,7 +21,8 @@
 			<div>${price }</div>
 			<div><label class="contentLabel">수량</label><input type="number" id="amount" step="1" min="1" max="10" onkeydown="preventCheck(this)" required /></div>
 			<div><label class="contentLabel">구매자 이름</label><input type="text" id="name"/></div>
-			<button type="button" class="buybtn" onclick="requestPay(this)">구매하기</button>
+			<button type="button" class="buybtn" onclick="payAlert()">구매하기</button>
+			
 		</div>
 	</div>
 	
@@ -41,7 +42,7 @@
 	var pprice=$('#pprice').val();
 	var pcode=$('#pcode').val();
 	
-	function requestPay(e) {
+	function requestPay() {
 		var name=$('#name').val();
 		var amount=$('#amount').val();
 		
@@ -60,6 +61,7 @@
 	        location.replace("/");
 	      } else {
 	        // 결제 실패 시 로직
+	        alert("구매가 취소되었습니다.");
 	      }
 	    });
 	  }
@@ -69,5 +71,14 @@
 			event.preventDefault();
 			}
 	
+		function payAlert(){
+			var result=confirm("구매 하시겠습니까?");
+			if(result==true){
+				requestPay();
+			}
+			else{
+				alert("구매 요청 취소");
+			}
+		}
 	</script>
 </html>
