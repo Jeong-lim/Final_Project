@@ -410,6 +410,7 @@ $('#msg').keydown(function() {
 });
 		
 $('#btnDisconnect').click(function() {
+	print($('#user').val(), '종료했습니다.');
 	ws.send('3#' + $('#user').val() + '#');
 	ws.close();
 			
