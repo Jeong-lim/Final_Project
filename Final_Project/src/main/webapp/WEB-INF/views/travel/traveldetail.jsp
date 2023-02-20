@@ -500,7 +500,6 @@ $('#delete_btn').click(function(e){
 	 */
 $(document).ready(function(){
 	
-	console.log("ok");
     $('#radio2').hide();   
     $('#radio3').hide();	
     $('#traffic').hide();
@@ -593,7 +592,6 @@ $('document').ready(function() {
 			}
 			
 			}, error : function() {
-					console.log("실패");
 			}
 		});
 	
@@ -686,7 +684,6 @@ $('document').ready(function() {
 					}
 					
 					}, error : function() {
-							console.log("실패");
 					}
 				});
 		  	

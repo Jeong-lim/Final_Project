@@ -158,8 +158,6 @@
 		var category=$("#categoryCheck").val();
 		var categorylength =$("[name='category']").length;
 		var categoryarr=new Array(categorylength);
-		console.log(categorylength);
-		console.log(categoryarr);
 		for(var i=0;i<categorylength; i++){
 			categoryarr[i]=$("[name='category']").eq(i).val();
 			if(category==categoryarr[i]){

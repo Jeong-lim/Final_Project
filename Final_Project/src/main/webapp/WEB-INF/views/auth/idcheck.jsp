@@ -49,16 +49,12 @@ $("#idFindButton").on("click", function() {
 	var email = $('#email').val();
 	var userName = $('#userName').val();
 	
-	console.log(email);
-	console.log(userName);
-	
 	$.ajax({
 		url : '/member/idFindCheck',
 		type : 'get',
 		data: {"email": email,
 	        "userName": userName},
-		success : function(data) {
-			console.log(data);							
+		success : function(data) {						
 			
 			if (data == 0) {
 				Swal.fire({
@@ -81,7 +77,6 @@ $("#idFindButton").on("click", function() {
 		        });
 			  }	
 			}, error : function() {
-					console.log("실패");
 			}
 		});
 	});

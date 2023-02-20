@@ -139,16 +139,7 @@
                });
         	  
         	   
-        	   
-               console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-               console.log("현재습도 : "+ resp.main.humidity);
-               console.log("날씨 : "+ resp.weather[0].main );
-               console.log("상세날씨설명 : "+ resp.weather[0].description );
-               console.log("날씨 이미지 : "+ resp.weather[0].icon );
-               console.log("바람   : "+ resp.wind.speed );
-               console.log("나라   : "+ resp.sys.country );
-               console.log("도시이름  : "+ resp.name );
-               console.log("구름  : "+ (resp.clouds.all) +"%" ); 
+        
                
                nowTemp = resp.main.temp- 273.15;
                nowHumid = resp.main.humidity;
@@ -174,13 +165,7 @@
    
    
    function selectPlaceList(resp, air){
-	   console.log("들어옴");
-	   console.log(resp.name);
-	   console.log(resp.main.temp- 273.15);
-	   console.log(resp.weather[0].main);
-	   console.log(lat); //위도
-	   console.log(lng); //경도
-	   console.log(air); // 대기 레벨 
+	   
 	   $.ajax({
 		  
 		  type:"POST",
@@ -188,12 +173,10 @@
 		  success:function(result){
 			  console.log("결과값" + result);
 			  for(var i=0; i<result.length; i++){
-				  console.log(result[i].placeName);
-				  console.log(result[i].distance);
-				  console.log(result[i].fileSavedName);
+				  
 				  var str='';
 				  str+=`<li><a href="<c:url value='/place/detail/`+result[i].placeName+`'/>"><div class="screen"><div class="top">`+result[i].placeName+`</div><div class="bottom">`+result[i].distance+`km</div><img src="<spring:url value='/place/`+result[i].fileSavedName+`'/>"/></div></a></li>`;
-				  console.log("str" + str);
+				  
 				  $(".place_con_ul").append(str);
 			  } 
 			  
@@ -205,16 +188,13 @@
 	
 
 	function onGeoError() {
-	  console.log("날씨 정보를 가져오지 못했어요🤔");
+	  
 	}
 	
 	/* 날씨 정보 받아오기 */
 	   function selectWeatherInfo(nowTemp, nowHumid, weather, wind, country, cloud, sunrise, sunset, air) {
 		   
-		   console.log("날씨 정보 들어왔졍");
-		   console.log(sunrise);
-		   console.log(sunset);
-		   console.log("대기 상태 " + air);
+		   
 		   var today = new Date();
 		   var nowTime = today.getTime();
 		   var nowTime2 = nowTime / 1000;

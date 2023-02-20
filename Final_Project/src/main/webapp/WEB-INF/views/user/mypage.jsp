@@ -297,7 +297,6 @@
 </script>
 <script>
 	$("#followBtn").click(function(){
-		console.log("클릭됨");
 		follow(true);
 	});
 	
@@ -306,7 +305,6 @@
 			type:"POST",
 			url:'/follow/${member.memberId}/${sessionScope.memberId}',
 			success:function(result){
-				console.log("성공"+result);
 				if(result == "followOk"){
 					$("#followBtn").html("신청완료");
 					/* $("#followBtn").attr("id","notfollowBtn"); */
@@ -333,14 +331,10 @@
 					for(var i=0;i<length; i++){
 						var str='';
 						str+=`<li class="modal_li"><a href='<c:url value="/mypage/`+result[i].memberId+`"/>'>`;
-						console.log(result[i].fileSavedName);
 						if(result[i].fileSavedName == null){
-							console.log(result[i].memberId);
-							console.log("사진없음");
 							str+=`<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />`;
 						}
 						if(result[i].fileSavedName!=null){
-							console.log("사진있음");
 							str+=`<img class="follower_img"  src="<spring:url value='/image/` + result[i].fileSavedName + `'/>" />`;
 						}
 						str+='<label class="follower_id">'+result[i].memberId+'</label></a>';
@@ -370,10 +364,7 @@
 					for(var i=0;i<length; i++){
 						var str='';
 						str+=`<li class="modal_li"><a href='<c:url value="/mypage/`+result[i].memberId+`"/>'>`;
-						console.log(result[i].fileSavedName);
 						if(result[i].fileSavedName == null){
-							console.log(result[i].memberId);
-							console.log("사진없음");
 							str+=`<img class="follower_img" src="${pageContext.request.contextPath}/resources/images/profile_img.jpg" />`;
 						}
 						if(result[i].fileSavedName!=null){
@@ -391,7 +382,6 @@
 	
 	function deleteBlock(e){
 		var deleteUserName=$('#deleteBlock').val();
-		console.log(deleteUserName);
 		$.ajax({
 			type:"POST",
 			url:'/deleteBlock?value='+deleteUserName,
@@ -481,14 +471,12 @@ $("#check_list_insert").on("click", function() {
     		async: false,
     		success : function(data) {
     			if(data == 'Y') {
-    				console.log("성공");
     				location.reload();
     			} else {
     				alert("체크박스는 10개까지 입력가능합니다.")
     			}
 
     			}, error : function() {
-    				console.log("실패");
     			}
     		});
     }
@@ -558,8 +546,7 @@ $("#check_list_insert").on("click", function() {
 	$('div[name="cancle_check"]').click(function(){
 		
 		var checkName = $(this).attr('id');
-		var checkListId = document.getElementById(checkName).id;
-		console.log(checkListId);		
+		var checkListId = document.getElementById(checkName).id;		
 		var obj = document.getElementsByName(checkName);
 		var checkId = obj[0].value;
 		 
@@ -569,7 +556,6 @@ $("#check_list_insert").on("click", function() {
 				url : '/checkList/delete?checkId=' + checkId,
 				type : 'POST',
 				success : function(data) {
-					console.log("성공");
 					location.reload();
 					}, error : function() {
 						console.log("실패");

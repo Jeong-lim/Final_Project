@@ -81,8 +81,7 @@ $("#idcheckbutton").on("click", function() {
 	$.ajax({
 		url : '${pageContext.request.contextPath}/member/idCheck?memberId='+ memberId,
 		type : 'get',
-		success : function(data) {
-			console.log(data);							
+		success : function(data) {						
 			
 			if (data == 1) {
 				window.alert('사용 중인 아이디 입니다.');
