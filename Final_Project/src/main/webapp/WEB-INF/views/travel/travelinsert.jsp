@@ -194,7 +194,6 @@ $('document').ready(function() {
 window.onload = function() {
 	var btnClear = document.querySelector('#title_input_img');
 	btnClear.addEventListener('click', function(){
-		console.log("click");
 	    document.querySelector('#title_input').value="";
 	    
 	})
@@ -244,13 +243,11 @@ window.onload = function() {
    
    $(function () {
        $(document).on("click", "button[name='modal_btn2']", function () {
-           console.log("클릭됨");
           $(".modal_wrap2").show();
           $("#black_bg2").show();
         });
        
        $(document).on("click", "button[name='modal_close2']", function () {
-           console.log("클릭됨");
           $(".modal_wrap2").hide();
           $("#black_bg2").hide();
         });
@@ -262,7 +259,6 @@ window.onload = function() {
    $(function () {
 	   
        $(document).on("click", "button[name='modal_btn']", function () {
-           console.log("클릭됨");
           $(".modal_wrap").show();
           $(".black_bg").show();
           $("#black_bg2").hide();
@@ -355,7 +351,6 @@ $(function() {
 	                    //datearr.push(date22);
 	                    
 	                    
-	                    console.log(date22);
 	                    //console.log(date2.toISOString().substring(0,10));
 	                  
 	                  
@@ -388,27 +383,20 @@ $(function() {
     	if(!travelTitleValue){
     		document.getElementById('title_input').focus();
     	    alert("제목을 입력해 주세요.");
-    		console.log("제목없음");
     	}else if(!travelStart){
     		document.querySelector(".daterange").focus();
     	    alert("날짜을 선택해 주세요.");
-    		console.log("날짜없음");
     	}else if(id3==0){
     	    alert("일정을 선택해 주세요.");
-    		console.log("일정없음");
     	}else{
       	
 
-            console.log("날짜 전송");
             var travelStart1=travelStart.toString();
             var travelEnd1=travelEnd.toString();
             var travelPrivacy= $('.open_radio:checked').val();
             var travelTitle= $('.title_input').val();
             var memberid=$('.memberId').val();
-            
-            console.log(travelPrivacy);
-            console.log(travelTitle);
-            console.log(id);
+
         	
         
       //비동기 요청을 함
@@ -416,7 +404,6 @@ $(function() {
            url:"/travel/insertTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy,
            method: "POST",
            success:function(result1){
-        	   console.log("travel전송");
         	   
         	  for(var k=1; k<=days; k++){
         		  (function(k){
@@ -429,7 +416,6 @@ $(function() {
                   			   console.log("k:"+k);
                   			   console.log("days:"+days)
                   			   if(k==days){ 
-                  				console.log(result2);
                   				location.replace("/travel/"+result2+"/"+memberid);
                   			   }
 	   
@@ -497,13 +483,11 @@ $(function() {
 	} */
 
 	function closeModal() {
-    console.log("장소닫기");
-    console.log(id);
+
     //console.log(arr[0]);
     
     $('input:checkbox[name=checkbox]').each(function (index) {
 		if($(this).is(":checked")==true){
-	    	console.log($(this).val());
 	    	arr.push($(this).val());
 	    }
 	})
@@ -516,7 +500,6 @@ $(function() {
     		selectedplacename+='<div class="schedule_box" id="scheduledelete'+id3+'"><input type="text" class="schedule" value="'+arr[i]+'" name="placeName" readonly><div class="insert_num" onClick="cancelSchedule(this.id)" id="delete'+id3+'">X</div></div></div>';	
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
     		placearr.push(arr[i]);
-    		console.log(arr[i]);
 	
     	} 
 
@@ -532,16 +515,13 @@ $(function() {
 	function cancelSchedule(clicked_id){
 		
 		id4=clicked_id;
-		console.log(id4);
 		document.querySelector("#schedule"+id4).remove();
 
 		}
 	
 	function closeModal2() {
-	    console.log("메모닫기");
 	    
 	    travelmemo= $('.memo_textarea').val();
-	    console.log(id2);
 	    //$("."+id).attr('value',travelmemo);
 	    document.querySelector("."+id2).value=travelmemo;
 	    		
@@ -563,8 +543,6 @@ $(function(){
 	      var searchType=searchType0.substr(0,2);
 	      var keyword= $('#keyword').val();
 
-	      console.log(searchType);
-	      console.log(keyword);
 	      
 	      //비동기 요청을 함
 	      var request=$.ajax({
@@ -574,9 +552,7 @@ $(function(){
 	         
 	      });
 	      request.done(function(data){
-	         console.log(data);
 	          var leng=data.length;
-	           console.log(leng);
 	           //console.log(data[1]);
 	           $('#place_list').empty(); 
 	           
@@ -612,7 +588,6 @@ $(function(){
 	            alert( "Request failed: " + textStatus );
 	        });
 	        request.always(function() {
-	            console.log('완료');
 	           
 	        });
 	        

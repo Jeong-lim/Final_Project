@@ -80,13 +80,11 @@
 			type : 'post',
 			dateType : 'json',
 			success : function(result) {
-				console.log(result);
 
 				$(".slidelist__").html(result);
 
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				console.log("실패");
 			}
 		});
 	});

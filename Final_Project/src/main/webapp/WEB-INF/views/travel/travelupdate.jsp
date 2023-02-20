@@ -243,7 +243,6 @@ window.onload = function() {
 	var btnClear = document.querySelector('#title_input_img');
 	arr=[];
 	btnClear.addEventListener('click', function(){
-		console.log("click");
 	    document.querySelector('#title_input').value="";
 	    
 	})
@@ -293,13 +292,11 @@ window.onload = function() {
    
    $(function () {
        $(document).on("click", "button[name='modal_btn2']", function () {
-           console.log("클릭됨");
           $(".modal_wrap2").show();
           $("#black_bg2").show();
         });
        
        $(document).on("click", "button[name='modal_close2']", function () {
-           console.log("클릭됨");
           $(".modal_wrap2").hide();
           $("#black_bg2").hide();
         });
@@ -311,7 +308,6 @@ window.onload = function() {
    $(function () {
 	   
        $(document).on("click", "button[name='modal_btn']", function () {
-           console.log("클릭됨");
           $(".modal_wrap").show();
           $(".black_bg").show();
           $("#black_bg2").hide();
@@ -341,7 +337,6 @@ var memodata=[];
 var travelmemo;
 var count=$('.count:last').val();
 var count2=$('.count2:last').val();
-console.log("카운트"+count);
 
 $(function() {
 	   $(function() {
@@ -351,7 +346,6 @@ $(function() {
 	       
 	        }, function(start, end, label) {
 	        	$('.content_wrap').empty();
-	          console.log("A new date selection was made: " + start.format('YYYY/MM/DD') + ' to ' + end.format('YYYY/MM/DD'));
 	          const getDateDiff = (start, end) => {
 	               const date1 = new Date(start);
 	               const date2 = new Date(end);
@@ -446,7 +440,6 @@ $(function() {
     	}else{
     	
     	
-        console.log("날짜 전송");
         var travelStart1=$('#startDate').val();
         var travelEnd1=$('#endDate').val();
         var travelPrivacy= $('.open_radio:checked').val();
@@ -454,12 +447,6 @@ $(function() {
         var memberid=$('.memberId').val();
         var travelId=$('.travelId').val();
         
-        console.log(travelStart1);
-        console.log(travelEnd1);
-        console.log(travelPrivacy);
-        console.log(travelTitle);
-        console.log(memberid);
-        console.log(travelId);
         //
         
       //비동기 요청을 함
@@ -467,7 +454,6 @@ $(function() {
            url:"/travel/updateTravel?value="+travelStart1+"&value2="+travelEnd1+"&value3="+travelTitle+"&value4="+travelPrivacy+"&value5="+travelId,
            method: "POST",
            success:function(result1){
-        	   console.log("travel전송");
         	   
         	  for(var k=1; k<=count; k++){
         		  (function(k){
@@ -476,10 +462,7 @@ $(function() {
                   		   method: "POST",
                   		   data: $('#form'+k).serialize(),
                   		   success:function(result2){
-                  			   console.log("form"+k+"전송");
-                  			   console.log("k:"+k);
                   			   if(k==count){ 
-                  				console.log(result2);
                   				location.replace("/travel/"+result2+"/"+memberid);
                   			   }
                   			   
@@ -516,7 +499,6 @@ $(function() {
 	function cancelSchedule(clicked_id){
 	
 	id3=clicked_id;
-	console.log(id3);
 	document.querySelector("#schedule"+id3).remove();
 
 	}
@@ -573,11 +555,9 @@ $(function() {
 	
   	  
 	function closeModal() {
-    console.log("장소닫기");
     
     $('input:checkbox[name=checkbox]').each(function (index) {
 		if($(this).is(":checked")==true){
-	    	console.log($(this).val());
 	    	arr.push($(this).val());
 	    }
 	})
@@ -599,7 +579,6 @@ $(function() {
     		document.getElementById(id).insertAdjacentHTML("beforeBegin",selectedplacename);
 		
     		placearr.push(arr[i]);
-    		console.log(arr[i]);
     		count22+=1;
     		
 	
@@ -615,7 +594,6 @@ $(function() {
  	}
 	
 	function closeModal2() {
-	    console.log("메모닫기");
 	    
 	    travelmemo= $('.memo_textarea').val();
 	    console.log(id2);
@@ -639,9 +617,6 @@ $(function(){
 	      var searchType0= $('#searchType').val();
 	      var searchType=searchType0.substr(0,2);
 	      var keyword= $('#keyword').val();
-
-	      console.log(searchType);
-	      console.log(keyword);
 	      
 	      //비동기 요청을 함
 	      var request=$.ajax({
@@ -651,9 +626,7 @@ $(function(){
 	         
 	      });
 	      request.done(function(data){
-	         console.log(data);
 	          var leng=data.length;
-	           console.log(leng);
 	           //console.log(data[1]);
 	           $('#place_list').empty(); 
 	           
@@ -689,7 +662,6 @@ $(function(){
 	            alert( "Request failed: " + textStatus );
 	        });
 	        request.always(function() {
-	            console.log('완료');
 	           
 	        });
 	        

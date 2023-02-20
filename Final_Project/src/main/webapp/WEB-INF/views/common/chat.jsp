@@ -91,11 +91,9 @@ $('#btnConnect').click(function() {
 		};
 	   			
 		ws.onclose = function (evt) {
-			console.log('소켓이 닫힙니다.');
 		};
 
 		ws.onerror = function (evt) {
-			console.log(evt.data);
 		};
 	} else {
 		alert('유저명을 입력하세요.');
